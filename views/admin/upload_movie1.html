@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
+ Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>input file</title> 
+<style type="text/css">body{font-family:Arial,Verdana,sans-serif; margin:100px;}</style>
+<script id="jquery_172" type="text/javascript" class="library" src="./views/js/jquery.js"></script>
+<script type="text/javascript" src="./views/js/jquery-upload-progress/lib/jquery.js"></script>
+<script type="text/javascript" src="./views/js/jquery-upload-progress/jquery.uploadProgress.js"></script>
+<link href="./views/css/tl.css" rel="stylesheet" type="text/css" />	
+<?php
+	$field_name= "file" . randomkeys(8);
+	$process_id = "proc" .randomkeys(30);
+?>
+
+<style>
+.bar {
+	width: 500px;
+}
+
+#progress {
+	background: #C0C0C0;
+	border: 1px solid #222;
+	margin-top: 20px;
+}
+
+#progressbar {
+	width: 0px;
+	height: 24px;
+	background: #008000;
+}
+</style>
+
+</head> 
+<body> 
+<span>field_name:"<?php echo $field_name;?>"</span>
+<span>sub_path:"<?php echo $sub_path;?>"</span>
+<span>token:"<?php echo $token;?>"</span>
+	<form id="form1" onsubmit="return check_submit();"
+		action="http://127.0.0.1/upload?sub_path=<?php echo $sub_path;?>&field_name=<?php echo $field_name;?>&start=<?php echo time();?>&token=<?php echo $token;?>&X-Progress-ID=<?php echo $process_id;?>"
+		method="POST" enctype="multipart/form-data">
+		<div class="uploader white">
+		<input type="text" class="filename" readonly="readonly"/>
+		<input type="file" name="<?php echo $field_name;?>" width=300/>
+		<input type="submit" name="btupload" value="上传 " class="btn btn-primary" />
+	</form>
+	<div id="uploading">
+	<div id="progress" class="bar">
+	<div id="progressbar"></div>
+	<div id="percents"></div>	
+</div>
+
+<script type="text/javascript">
+var tmStart  = new Date();
+
+function check_submit()
+{
+	if(form1.<?php echo $field_name;?>.value=="")
+	{
+		alert("Please select upload file!");
+		return false;
+	}
+	return true;
+}
+
+function timespan()
+{
+	var tmNow   = new Date();
+	var span    = (tmNow.getTime()  - tmStart.getTime())/1000;
+	if(span<=0) span =1;
+	return span;
+}
+
+$(function() {
+	  $('form').uploadProgress({
+		/* scripts locations for safari */
+		jqueryPath: "./views/js/jquery-upload-progress/lib/jquery.js",
+		uploadProgressPath: "./views/js/jquery-upload-progress/jquery.uploadProgress.js",
+		start: function() {
+			tmStart = new Date();
+		},
+		/* function called each time bar is updated */
+		uploading: function(upload) {
+			$('#percents').html(upload.percents+'% ' + Math.floor(upload.received/timespan()/1000) + 'KB/s');
+			document.title = upload.percents+'%';
+			if(parseInt(upload.percents)>=100)
+			{
+				$('#percents').html(upload.percents+'%  moving...please wait a moment');
+			}
+			form1.btupload.disabled = true;
+		},
+		
+		/* selector or element that will be updated */
+		progressBar: "#progressbar",
+
+		/* progress reports url */
+		progressUrl: "/progress",
+
+		/* how often will bar be updated */
+		interval: 500
+	  });
+	});
+</script>
+
+</body> 
+</html> 

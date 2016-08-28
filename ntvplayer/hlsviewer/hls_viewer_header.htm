@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title></title>
+<script language="javascript">
+tt = null;
+function startview()
+{
+    interval = parseInt(form1.interval.value);
+    if(interval<=0) interval = 1;
+    
+    if(form1.url.value=="")
+    {
+        alert("Please input hls url!");
+        return;
+    }
+    
+	tt = setInterval(function(){
+    	form1.submit();                    
+	},interval*1000);
+	
+	form1.B1.disabled=true;
+}
+
+function stopview()
+{
+	clearInterval(tt); 
+	form1.B1.disabled=false;
+}
+</script>
+<base target="main">
+</head>
+
+<body>
+
+<form method="POST" target="main" action="hls_viewer.php" name="form1">
+<p>HLS URL:<input type="text" name="url" size="76"><input
+	type="text" name="interval" size="6" value="1"><input
+	type="button" value="start view" name="B1" onclick="startview()">
+<input type="button" value="stop view" name="B2" onclick="stopview()"></p>
+</form>
+
+</body>
+
+</html>

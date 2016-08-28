@@ -1,0 +1,347 @@
+<html>
+<head>
+<script type="text/javascript" src="{$webpath}ntvplayer/jwplayer/jwplayer.js"></script>
+ <!-- version 7 license key --->
+<script type="text/javascript">jwplayer.key="38uAPADVt3eQaliBV2/DIi2ia+QhrVz0lhwLMg==";</script>
+
+<!-- version 6 license key 
+<script type="text/javascript">jwplayer.key="1EvDyEOEmASaZ4l1JdY3+WuYm+qrkzrBtucHrw==";</script>
+--->
+</head>
+<body onLoad="InitDoc()" onUnload="close_player()">
+<!--
+	<div id='fxplayer'></div>
+-->	
+<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<!--
+		<td width="300" height="52" align="center" valign="center" bgcolor="#4F647F">
+		<img border="0" src="../images/logo.png" width="252" height="51">
+		</td>
+		-->
+		<td align="right" height="52" width="200" bgcolor="#4F647F">
+		<font color="#FFFFFF"><span style="font-size: 22pt"><strong>Player lit </strong>| </span></font></td>
+		<td id="tp" align="left" height="52" bgcolor="#4F647F" colspan="2">
+	  </td>
+		<td width="2" height="52" align="left" valign="top" bgcolor="#4F647F">
+			
+		</td>
+	</tr>	
+	<tr>
+		<td id="tl" align="center" height="33" colspan="5" bgcolor="#000000">
+		<b><font color="#FFFFFF" size="5"></font></b></td>
+	</tr>
+	<tr>
+		<td align="center" colspan="5" bgcolor="#000000">
+			<div id='fxplayer'></div>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+
+	var playbyjw = false;
+	function is_jwplayer()
+	{
+	    var strcookie=document.cookie;
+	    if(strcookie.indexOf("jw")>=0)
+	    {
+	    	return true;
+	    }
+	    else
+	    {
+	       return false;
+	    }
+	}
+	
+	function is_autoplay()
+	{
+	    var strcookie=document.cookie;
+	    if(strcookie.indexOf("autostart")>=0)
+	    {
+	    	return true;
+	    }
+	    else
+	    {
+	       return false;
+	    }
+	}
+
+	function close_player()
+	{
+		 if(playbyjw)
+		 {
+		    jwplayer().stop();
+		 }
+	}
+	
+	function getUrlParam(name) 
+	{ 
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
+		var r = window.location.search.substr(1).match(reg); 
+		
+		if (r != null) 
+		{
+			return unescape(r[2]);
+		}
+		else
+		{
+			return null; 
+		}
+	} 
+
+	function ntv_uuid(len, radix) {
+	
+	    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+	    var uuid = [], i;
+	    radix = radix || chars.length;
+	
+	    if (len) {
+	      for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
+	    } else {
+	      var r;
+	      uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+	      uuid[14] = '4';
+	      for (i = 0; i < 36; i++) {
+	        if (!uuid[i]) {
+	          r = 0 | Math.random()*16;
+	          uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+	        }
+	      }
+	    }
+	
+	    return uuid.join('');
+	
+	}
+   function set_captions(mode,title)
+   {
+     var modetext="�ط�";
+     if(mode=="live")
+     {
+     		modetext="ֱ��";
+     }
+     var tl_text = "<font color='#FFFFFF' size='5'>" + title +"</font>";
+     var tp_text = "<font color='#FFFFFF' style='font-size: 20pt; font-weight: 700'>" + modetext + "</font>";
+     
+   	 tl.innerHTML = tl_text;
+   	 tp.innerHTML = tp_text;
+   }
+   
+    function playVod(url,title)
+    {
+    	var h = 480;
+    	var w = 640;
+		  play_flv(w,h,url,"",title);
+    }
+    
+    function playLive(url,title)
+    {
+    	var h = 480;
+    	var w = 640;
+		  play_flv(w,h,url,"live",title);
+    }
+
+    function playHTML5(url,title)
+    {
+        
+        var app    = '{$ns}';
+        var stream = '{$id}';
+        var fmt = '{$format}';
+		var h5 = "";
+        
+        if(h5!="" || fmt=="hls"){
+	        var h5url = "../players/h5player/?application=" + app + "&stream=" + stream + "&url=" + escape(url) + "&title=" + escape(title);
+    	    location.href = h5url;
+        }
+
+    	var text = "<video src=\"" + url + "\" controls=\"controls\" autoplay=\"autoplay\" width=\"100%\" height=\"600px\">";  //
+		    text = text + "<font color='#FFFFFF'>Your browser does not support the HTML5 video tag!</font>";
+	    text = text + "</video>";
+
+	    var doc = "<body bgcolor=\"#000000\">" + 
+	              "<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" height=\"100%\" >" +
+	    	      "<tr>" +
+	    		  "<td align=\"center\">"  + 
+	    		  text +
+	    		  "</td></tr></table></body>";
+	    
+    	fxplayer.innerHTML = text;
+	    //document.write(text);
+    }
+    
+    function playHLS(url,title) {
+      set_captions("vod",title);
+      //location.href = url;
+      playHTML5(url,title);
+    }
+    
+    function playMP4(url,title)
+    {
+      set_captions("vod",title);
+      playHTML5(url,title);
+    }
+    
+    
+    function gen_rtmp_live_url(host,app,stream,token,port)
+    {
+        var url   = "rtmp://"  + host + ":" + port + "/" + app + "/" + stream;
+				var npos = host.indexOf(":");
+				if(npos>0)
+				{
+					url = "rtmp://"  + host.substr(0,npos) + "/" + app + "/" + stream;
+				}
+
+        if(token!="")
+        {
+            url = url + "?token=" + token;
+        }
+        else{
+        	url = url + "?token=";
+        }
+        return url;
+    }
+    
+    function gen_flv_vod_url(host,app,stream,ver,token)
+    {
+        var url  = "http://"  + host + "/sps/" + app + "/" + stream + ".flv?ver=" + ver;
+        if(token!="")
+        {
+            url = url + "&token=" + token;
+        }
+        return url;
+    }
+    
+    function gen_mp4_url(host,app,stream,ver,token)
+    {
+        //var   url= "http://" + host + "/media/mp4/" + app + "/" + stream + "/" + stream;
+        var   url= "http://" + host + "/mp4/" + app + "/" + stream + "/" + stream;
+        if(ver>=0)
+        {
+           url = url + "_v" + ver;
+        }
+        url    = url  + ".mp4";
+        if(token!="")
+        {
+            url = url + "?token=" + token;
+        }else{
+        	url = url + "?token=";
+        }
+        return url;
+    }
+    
+    function gen_hls_url(host,app,stream,ver,token)
+    {
+    	var d = new Date();
+    	var url  = "http://"  + host + "/m3u8/" + app + "/" + stream + ".m3u8?from=mgr";
+    	if(ver!=null)
+    	{
+    	   url = url + "&ver=" + ver;
+    	}
+    	if(token!="")
+        {
+            url = url + "&token=" + token;
+        }
+    	return url;
+    }
+   
+    function InitDoc()
+    {
+       var app    = '{$ns}';
+       var stream = '{$id}';
+       var format = '{$format}';
+       var live   = '{$live}';
+       var ver    = '{$ver}';
+       var tl     = '{$title}';
+       var host   = '{$host}';
+       var url    = '{$media_url}';
+       var port   = '{$port}';
+       var token  = '{$token}';
+       
+       var autoplay = is_autoplay();
+       var jwplayer = is_jwplayer();
+       
+       alert(app);
+       alert(stream);
+       var  uid     = getUrlParam("uid");
+       if(uid=="" || uid==null)
+       {
+    	   uid     = ntv_uuid(16,16);
+       }
+       
+       if(url!="" && url!=null)
+       {
+       		return play_stream(url);
+       }
+       
+       if(app==null || stream==null)
+	   {
+		    fxplayer.innerHTML= "<font color=\"#FFFFFF\">Load stream error!</font>";
+		    return;
+	   }
+
+       if(tl==null || tl=="")
+       {
+           tl = app + " - " + stream;
+       }
+
+       if(port==null || port=="")
+       {
+           port = "1935";
+       }
+       
+	   if((host==null) || (host == ""))
+	   {
+	       	host  = document.location.host;
+		}
+		if(ver==null)
+		{
+	        ver="-1";
+	  }
+		if(format==null)
+		{
+		     format="flv";
+		}
+		   
+		if(live=="1")
+		{
+		 if(format=="flv")
+		 {
+		    url  = gen_rtmp_live_url(host,app,stream,token,port);
+		    url  = url + "&live=" + live + "&uid=" + uid + "&sid=" + uid;       
+		    playLive(url,tl);
+		 }
+		 else if(format=="hls")
+		 {
+		    url = gen_hls_url(host,app,stream,null,token);
+		 		url  = url +  "&live=" + live + "&uid=" + uid + "&sid=" + uid;  
+		    playHLS(url,tl);
+		 }
+		}
+		else
+		{
+		  if(format=="flv")
+		  {
+		     url = gen_flv_vod_url(host,app,stream,ver,token);
+		     url  = url + "&uid=" + uid + "&sid=" + uid;  
+		     playVod(url,tl);
+		  }
+		  else if(format=="mp4")
+		  {
+		      url = gen_mp4_url(host,app,stream,ver,token);
+		      url  = url + "&uid=" + uid + "&sid=" + uid;  
+		      playMP4(url,tl);
+		  }
+		  else if(format=="hls")
+		  {
+		      url = gen_hls_url(host,app,stream,ver,token);
+		      url  = url + "&uid=" + uid + "&sid=" + uid;  
+		      playHLS(url,tl); 
+		  }
+		}
+       window.focus();
+    }
+    
+</script>
+	
+</body>
+</html>

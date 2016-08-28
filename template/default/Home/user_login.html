@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>方讯--用户注册</title>
+<meta name="keywords" content="方讯" />
+<meta name="description" content="方讯" />
+<jsp:include page="../webpage/jq_css.jsp" ></jsp:include>
+<link rel="stylesheet" type="text/css" href="{$tplpath}style.css?v1.0.3"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}yiku.css"/>
+
+<script type="text/javascript" src="{$webpath}views/js/jquery.js"></script>
+<script type="text/javascript" src="{$webpath}views/js/system.js"></script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
+
+ <?php 
+ session_start();                                   //用于在$_SESSION中获取验证码的值
+?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	if($("input[type='text']").val()=="请输入正确的手机号"){
+		$("input[type='text']").css({color:"#aaa"});
+		$("textarea").css({color:"#aaa"});
+	}
+	input_init();
+	function input_init(){
+		$("input[type='text']").focus(function(){
+			$(this).css({color:"#666"});
+			if($(this).val()==this.defaultValue){ 
+				$(this).val(""); 
+			} 
+		}).blur(function(){
+			if($(this).val()=='') {
+				$(this).val(this.defaultValue);
+				$(this).css({color:"#aaa"});
+			}
+		});
+	}
+	
+	$("body").keypress(function(e) { 
+		if (e.which == 13) { 
+			submit();
+		} 
+	}); 
+
+
+});
+
+function submit(){
+		if ($("#ue").val() && $("#pd").val()) {
+			var ue = $("#ue").val();
+			var pd = $("#pd").val();
+			
+			$.ajax({
+				type:"get",
+				url: "?s=login/ajaxcheck/username/" + ue + "/userpwd/" + pd,
+		        dataType: "json",
+		        async: true,
+		        success: function (data) {
+					if(data){
+						document.location=home;
+					}else{
+						alert(data.msg);
+						$("#pd").val("");
+					}
+		        },
+		        error:function(XMLHttpRequest, textStatus, errorThrown){
+		        	alert("服务器正忙，请稍后再试。给您带来的不便，请您谅解!");
+		        }
+		    });
+		}else{
+			if($("#ue").val() ==""){
+				alert("请输入用户名!");
+				return false;
+			}
+			if($("#pd").val() ==""){
+				alert("请输入密码!");
+				return false;
+			}
+		}
+}
+</script>
+</head>
+
+<body>
+<include file="header" />
+<div class="width1000">
+	<div class="sub_breadcrumb_nav">
+    	
+    </div>
+    <div class="sub_main">
+    	<div class="sub_main_title">登录</div>
+    	<div class="sub_content pad_b">
+        	<div class="sub_login">
+        		<form action="?s=Login/ajaxcheck" method="post">
+            	<ul>
+                	<li>
+                        <div>
+                        	<input type="text" id="username" name="username" class="sub_login_user radius5" value="请输您的邮箱" />
+                        </div>
+                        <div class="clra"></div>
+                        <div class="verify_div">&nbsp;</div>
+                    </li>
+                    <li>
+                        <div>
+                        	<input type="password" id="userpwd" name="userpwd" class="sub_login_password radius5" />
+                        </div>
+                        <div class="clra"></div>
+                        <div class="verify_div">&nbsp;</div>
+                    </li>
+                    <li>
+                    	<input type="submit" value="登录" class="orange_btn radius5" />
+                    </li>
+                    <li class="sub_login_link">
+                    	<div class="lfloat">还没有帐号，<a href="?s=Login/Register">点此注册</a></div>
+            			<div class="rfloat"><a href="?s=Login/fog_pwd">忘记密码</a></div>
+                    </li>
+                </ul>
+                </form>
+                <div class="clra"></div>
+            </div>
+            
+            <div class="sub_other_line"><div>使用其他帐号登录</div></div>
+            <ul class="sub_other_link">
+            	<li><a href="#" class="weixin" onclick="loginWithSnp('weixin');"></a><div>微信</div></li>
+                <li><a href="javascript:;" class="qq" onclick="loginWithSnp('qq');"></a><div>QQ</div></li>
+                <li><a href="#" class="weibo" onclick="loginWithSnp('weibo');"></a><div>微博</div></li>
+            </ul>
+            
+            <div class="clra"></div>
+        </div>
+    </div>   
+    <include file="footer" />
+</div>
+
+<!-- QQLogin -S- -->
+<script type="text/javascript">
+/**跳转链接*/
+var g = function (url) {
+	location.href = url;
+};
+function loginWithSnp (snp) {
+    switch (snp) {
+    case "weixin":
+//    	g("/web/tl_wxQrc.xhtml");
+    	g("/web/tl_wxl.xhtml");
+        break;
+    case "qq":
+    	g("/web/tl_qql.xhtml");
+        break;
+    case "weibo":
+    	g("/web/tl_wbl.xhtml");
+        break;
+    }
+}
+</script>
+</body>
+</html>

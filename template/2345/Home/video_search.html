@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+
+<link href="/template/2345/css/global.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/template/2345/css/index20130725.css?130104" />
+<script type="text/javascript" src="/template/2345/js/xquery2.20.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/libnew.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/common.min.js"></script>
+<script type="text/javascript" src="/template/default/js/jquery.js"></script>
+<script type="text/javascript" src="/template/2345/js/topFuc.130115.js"></script>
+</head>
+<body>
+
+<include file="header" />
+
+
+<div class="wrapper wrapper_list">
+	<div class="container">    	
+
+       <div class="filter_select_con">
+			<div class="filter_select_con_th"><span class="sNum"><h1>共找到 {$count}条 "<FOnt color="#FF0000">{$keyword}</FOnt>"相关的视频</h1>&nbsp;</span>
+			<span class="filter_select_con_hot">		
+		</span></div>
+			<div class="filter_select_con_tb clearfix">
+				<dl>
+					<dd>
+                   <a href="{:getstypetaglink($cid,0)}" <if condition="($m_cid eq 0)">class="cur"</if>>全部</a>
+					<volist name="stypetag" id="item">
+                    <a href="{:getstypetaglink($cid,$item['m_cid'])}" <if condition="($m_cid eq $item['m_cid'])">class="cur"</if> target="_self">{$item.m_name}</a><em>|</em>
+                    </volist>
+                  </dd>
+				</dl>
+				<dl>
+					<dd>
+					 {:getarealist('cur',$cid)}
+				  </dd></dl>
+				<dl>
+					<dd class="num_font">
+					
+					{:getyearlistnew('cur',9,$cid)}					
+					</dd>
+			  </dl>
+			</div>
+	  </div>
+
+        <!-- <div class="back_top">
+        	<a href="javascript:window.scrollTo(0, 0);" target="_self">返回顶部</a>
+    	</div> -->
+    	
+		<div class="rightScroll" style="top: 265px; display: block;" id='rightMenu'>
+			<a href="javascript:window.scrollTo(0, 0);" style="display:none" class="goTop m8" id='goTop' target="_self"></a>
+		</div>
+    	
+        <div class="content clearfix">
+       	  <div class="sidebar">
+        	
+<div class="ivy191">
+
+
+            </div>
+
+        	
+        	
+        	
+        	        	<div class="box">
+                	<div class="box_hd">
+                    	<h3><i></i><a href="{:getlistorderurl('addtime')}">{$cname}最近更新</a></h3>
+                    </div>
+                    <div class="box_bd rank">
+                    	<dl class="clearfix">
+                    <gxcms name="video" cid="'.$cid.'" limit="10" order="addtime desc">
+                    	<dt><i <if condition="$i lt 4">class="hot"</if>>{$i}</i><a href='{$video.readurl}' title='{$video.title}' onclick="clickCount('chanpin_view_detail');">{$video.title|get_replace_html=0,14}</a></dt>
+                    </gxcms>					
+                      </dl>
+                    </div>
+                </div>        	
+        	        	<div class="box">
+                	<div class="box_hd">
+                    	<h3><i></i><a href="{:getlistorderurl('score')}">{$cname}排行榜</a></h3>
+                    </div>
+                    <div class="box_bd rank">
+                    	<dl class="clearfix">
+                        <gxcms name="video" cid="'.$cid.'" limit="10" order="hits desc">
+                            <dt><i <if condition="$i lt 4">class="hot"</if>>{$i}</i><a href='{$video.readurl}' title='{$video.title}' onclick="clickCount('chanpin_view_detail');">{$video.title|get_replace_html=0,14}</a></dt>
+                        </gxcms>					
+                      </dl>
+                        <a class="more" href="/index.php?s=top10"  rel="nofollow">更多排行&gt;&gt;</a>
+                    </div>
+                </div>        	
+        	        	       	
+            </div>
+            <div class="main">
+                <div class="section film_list sectionA">
+           <div class="film_list_tab">
+           					<i   <if condition="$order eq 'addtime'">class="cur"</if>    ><span><a target="_self" href="{:getlistorderurl('addtime')}" rel="nofollow" >最近更新</a></span></i>	
+                            <i  <if condition="$order eq 'score'">class="cur"</if>><span><a target="_self" href="{:getlistorderurl('score')}" rel="nofollow" >按好评</a></span></i> <em></em>					
+                            <i <if condition="$order eq 'weekhits'">class="cur"</if>><span><a target="_self" href="{:getlistorderurl('weekhits')}" rel="nofollow" >按热门</a></span></i>
+					
+				  </div>
+                    <div class="section_bd">
+                    	                    	                    	<ul class="clearfix">
+                                                                        
+                                                                        
+                               <gxsearch name="video" limit="20">                                        
+                    	                    		<li >
+                                <dl>
+                                	<dt>
+                                    	<a href="{$video.readurl}" >
+                                        	<img src="{$video.picurl}" width="110" height="147" alt="{$video.title}"/>
+                                            <p class="txtbg"></p>
+                                            <p><span>02:00:05</span> <em>高清</em></p>
+                                      </a>
+                                    </dt>
+                                	<dd class="film_name"><span><i>{$video.score}</i>分</span>                                	<a  title="{$video.title}" href="{$video.readurl}">{$video.title}</a>
+									</dd>
+                                    <dd>导演：{$video.director|default='未知'}</dd>
+                                    <dd class="actor">主演：{$video.actor|get_replace_html=0,10|get_actor_url}<dd>
+                                    <dd class="intro" >地区：<span>{$video.area}</span> | 年份：<span>{$video.year}</span></dd>
+                                    <dd class='play play_2'><em></em><span>
+                                    <p><a href="{$video.readurl}" target="_blank" style=" float:right;width:100px; color:#FFF; text-align:center;height:30px; line-height:30px; font-size:14px; background-color:#093; display:block; margin-top:6px;">立即播放</a></p>
+                                    
+                                    
+							 </span>
+							 <i class="clear"></i>
+							 </dd>
+                                </dl>
+                             	</li> 
+                               </gxsearch> 
+                                
+                                
+                                   
+                    	                    	</ul>
+                    	                    	                    	                        <div class="page">
+								{$pages}                              
+                        </div>
+                                                
+                        
+                        
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<include file="footer" />
+
+
+
+
+
+</body>
+</html>
+<!-- cache -->

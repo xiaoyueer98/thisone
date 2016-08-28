@@ -1,0 +1,10 @@
+<volist name="channel_list" id="ch">
+    <?php
+		$str = '';
+		if($mcid == $ch['id']){
+            $str = "checked='true'";
+		}
+	?>
+	<input type="radio" name="channel_mcid"  {$str} value="{$ch['id']}" onchange="changeChl(this.value)"/>{$ch['cname']}
+	<input type="hidden" name="nmcid" id="nmcid" value="{$mcid}">
+</volist>

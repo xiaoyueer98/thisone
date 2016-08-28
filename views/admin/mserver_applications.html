@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+$apps = get_application();
+?>
+<head>
+<link href="./views/css/tl.css" rel="stylesheet" type="text/css" />
+<title>Application List</title>
+</head>
+<script type="text/javascript">
+
+</script>
+
+<body> 
+<table border="1" bordercolor="#C0C0C0" class="table table-striped table-condensed">
+	<thead>
+	<tr>
+		<th><b>应用</b></th>
+		<th>协议</th>
+		<th>模式</th>
+		<th>媒体流</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php
+	if($apps!==FALSE)
+	{
+		$count = count($apps);
+		foreach($apps as $appname=>$app_array)
+		{
+			$mode  = "Live;Review;Time-shift;VOD";
+			$del   = FALSE;
+			foreach($app_array as $para_value)
+			{
+				$name = @$para_value[0];
+				$value= @$para_value[1];
+				if($name=="allow_live" && $value=="off")
+				{
+					$mode  = "VOD";
+				}
+				if($name=="audio_only" && $value=="on")
+				{
+					//$mode  .= ";Audio Only";
+				}
+				if($name=="user_defined" && $value=="yes")
+				{
+					$del   = TRUE;
+				}
+			}
+			?>
+	<tr>
+		<td width="300"><?php echo $appname;?> 
+			<?php 
+			if($del===TRUE)
+			{
+			?> 
+				<a href="mserver_application_remove.html?app=<?php echo $appname;?>"><img
+				border="0" src="../images/remove.png" width="25" height="25"></a> 
+			<?php 
+			}
+			?>
+		</td>
+		<td width="200">HlS;RTMP;HTTP</td>
+		<td width="300"><?php echo $mode;?></td>
+		<td width="200"><a href="../stream/mserver_streams_active.html?application=<?php echo $appname;?>&format=flv" class='btn btn-success  btn-xs'>Active</a>
+		|  <a href="../stream/mserver_streams.php?application=<?php echo $appname;?>&format=flv" class='btn btn-success  btn-xs'>Streams</a>
+		</td>
+	</tr>
+	<?php
+		}
+		//}
+		?>
+		</tbody>
+</table>
+		<?php
+	}
+	else
+	{
+		echo "<font color=red>Load application infomation failed!</font><br>";
+	}
+	?>
+<p align="left"><a class="btn btn-primary" href="add_app.html">Add application</a></p>
+</body>
+
+</html>

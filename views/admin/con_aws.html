@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<?php
+$src_id = get_src_id($filename);
+$cv      = "";
+$ca      = "";
+$bv      = "";
+$ba      = "";
+$sr      = "";
+$channels= "";
+$width   = 0;
+$height  = 0;
+$infotextv= "";
+$infotexta= "";
+$audios   = array();
+$videos   = array();
+$subtitles= array();
+
+$info_file= get_info_name('sourcefile/'.$filename);
+if(file_exists($info_file)!==FALSE)
+{
+	$i    = 0;
+	$info = get_mediainfo_array($info_file,"STREAM",$i);
+	while($info!==FALSE)
+	{
+		$codec = $info['codec_type'];
+		if($codec=="video")
+		{
+			$idx     = $info['index'];
+			$cv      = $info['codec_name'];
+			$width   = $info['width'];
+			$height  = $info['height'];
+			$bv      = $info['bit_rate'];
+				
+			$videos[$idx]=$idx . ": " . $cv ." - ". str_replace("B","bps",get_size_readable($bv));
+			$infotextv= $infotextv . "$cv $width" . "x" . "$height " . str_replace("B","bps",get_size_readable($bv)) . "; ";
+		}
+		else if($codec=="audio")
+		{
+			$idx     = $info['index'];
+			$ca      = $info['codec_name'];
+			$ba      = $info['bit_rate'];
+			$sr      = $info['sample_rate'];
+			$channels= $info['channels'];
+			$lan     = @$info['TAG:language'];
+				
+			if($lan!="") $lan = " - ".$lan;
+			$audios[$idx]=$idx . ": " . $ca ." - ". str_replace("B","bps",get_size_readable($ba)).$lan;
+			$infotexta= $infotexta . "$ca $sr" ."Hz " . str_replace("B","bps",get_size_readable($ba)) . "; ";
+		}
+		else if($codec=="subtitle")
+		{
+			$idx     = $info['index'];
+			$cs      = $info['codec_name'];
+			$lan     = @$info['TAG:language'];
+				
+			if($lan!="") $lan = " - ".$lan;
+			$subtitles[$idx]=$idx . ": " . $cs . $lan;
+		}
+		$i++;
+		$info = get_mediainfo_array($info_file,"STREAM",$i);
+	}
+}
+
+
+?>
+<head>
+<title>用户中心设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript">
+var isVideoTranscoding = false;
+var isAudioTranscoding = false;
+$(document).ready(function(){	
+
+});
+
+function loadpara()
+{
+	//hls;flv;mp4;jpeg_big;jpeg_lit
+	
+	var hls      = <?php echo is_instr($aws_format,"hls");?>;
+	var flash    = <?php echo is_instr($aws_format,"flash");?>;
+	var mp4      = <?php echo is_instr($aws_format,"mp4");?>;
+	var jpegb    = <?php echo is_instr($aws_format,"jpegb");?>;
+	var jpegl    = <?php echo is_instr($aws_format,"jpegl");?>;
+
+	document.all.hls.checked     = hls; 
+	document.all.flash.checked   = flash; 
+	document.all.mp4.checked     = mp4;
+	document.all.jpegb.checked   = jpegb;
+	document.all.jpegl.checked   = jpegl;
+}
+
+
+function init()
+{
+	var cv = "<?php echo $cv;?>";
+	var ca = "<?php echo $ca;?>";
+	var bv = parseInt("<?php echo $bv;?>");
+	var ba = parseInt("<?php echo $ba;?>");
+	var audios = <?php echo count($audios);?>;
+	var videos = <?php echo count($videos);?>;
+	if(cv=="h264" && bv<=2000000)
+	{
+	    form_codec.copy_video.checked = true;
+	}
+	if(ca=="aac" && ba<128000)
+	{
+	    form_codec.copy_audio.checked = true;
+	}
+	if(videos<=0 || bv<=0 || isNaN(bv))
+	{
+		form_codec.video_codec.value="NONE";
+		//form_codec.video_codec.disabled = true;
+	}
+	if(audios<=0)
+	{
+		form_codec.audio_codec.value="NONE";
+		//form_codec.audio_codec.disabled = true;
+	}
+	form_codec.publish.value = "<?php echo $publish;?>";
+}
+</script>
+</head>
+<body onload="loadpara()">
+<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+  <tr>
+    <td colspan="10" class="table_title">
+    	<eq name="id" value="0">
+    		<span class="fl"></span> 
+    	<else />
+    		<span class="fl">转码设置</span>
+    	</eq>
+    	<span class="fr" style="cursor:pointer;" onclick="javascript:history.back(-1);">返回</span>
+    </td>
+  </tr>
+  
+<form action="?s=Admin/Config/Updateaws" method="post" id="gxform" onSubmit="return formCheck()">
+<input type="hidden" name="bucketname" id="bucketname" value="{$bucketname}"/>
+<input type="hidden" name="filename" id="filename" value="{$filename}" />
+<!--  
+  <tr class="table_title">
+    <td colspan="2">输出文件：</td>
+  </tr>   
+<tr class="ji">
+  <td class="left">文件名</td>
+  <td>
+  	<input type="text" name="name" id="name" value="<?php echo urldecode($name); ?>" maxlength="256" size="50" />
+  	<input type="hidden" name="id" size="14" value="{$id}"></td>
+  </td>
+</tr>  
+
+<tr class="ji">
+  <td class="left">视频流</td>
+  <td>
+			<?php 
+			if(count($audios)<=1)
+			{
+				echo $infotextv;
+			}
+			else
+			{
+				$sel = "selected";
+				echo "<select size=\"1\" name=\"video_stream\">";
+				foreach($videos as $key=>$value)
+				{
+					echo "<option value=\"$key\" $sel>$value</option>";
+					$sel = "";
+				}
+				echo "</select>";
+			}
+			?>
+  </td>
+</tr>  
+
+<tr class="ji">
+  <td class="left">音频流</td>
+  <td>
+  	<span>ffffffffffff</span>
+  </td>
+</tr>  
+-->
+<tr class="table_title">
+  <td colspan="2">转码参数：</td>
+</tr> 
+<tr class="ji">
+  <td class="left">视频编码格式</td>
+  <td>
+  	<input name="flash" id="flash" type="checkbox" value="1" <eq name="flash" value="on">checked</eq>>Flash</input>
+  	<input name="hls" id="hls" type="checkbox" value="1" <eq name="hls" value="on">checked</eq>>HLS</input>
+  	<input name="mp4" id="mp4" type="checkbox" value="1" <eq name="mp4" value="on">checked</eq>>MP4</input>
+  	<input name="jpegb" id="jpegb" type="checkbox" value="1" <eq name="jpegb" value="on">checked</eq>>Jpeg-Big</input>
+  	<input name="jpegl" id="jpegl" type="checkbox" value="1" <eq name="jpegl" value="on">checked</eq>>Jpeg-Lit</input>
+  </td>
+</tr>   
+<tr class="ji">
+  <td class="left">视频码率</td>
+  <td>
+  	<select name="con[aws_video_bitrate]" id="video_bitrate" class="select" >
+  		<option value='200' <eq name="aws_video_bitrate" value="200"> selected </eq>>200bps</option>
+  		<option value='300' <eq name="aws_video_bitrate" value="300"> selected </eq>>300bps</option>
+  		<option value='400' <eq name="aws_video_bitrate" value="400"> selected </eq>>400bps</option>
+  		<option value='500' <eq name="aws_video_bitrate" value="500"> selected </eq>>500bps</option>
+  		<option value='600' <eq name="aws_video_bitrate" value="600"> selected </eq>>600bps</option>
+  		<option value='800' <eq name="aws_video_bitrate" value="800"> selected </eq>>800bps</option>
+  		<option value='1000' <eq name="aws_video_bitrate" value="1000"> selected </eq>>1Mbps</option>
+  		<option value='1200' <eq name="aws_video_bitrate" value="1200"> selected </eq>>1.2Mbps</option>
+  		<option value='1500' <eq name="aws_video_bitrate" value="1500"> selected </eq>>1.5Mbps</option>
+  		<option value='2000' <eq name="aws_video_bitrate" value="2000"> selected </eq>>2Mbps</option>
+  	</select>
+  </td>
+</tr>  
+<tr class="ji">
+  <td class="left">帧率</td>
+  <td>
+  	<select name="con[aws_video_rate]" id="video_rate" class="select" >
+  		<option value='60' <eq name="aws_video_rate" value="60"> selected </eq>>60</option>
+  		<option value='50' <eq name="aws_video_rate" value="50"> selected </eq>>50</option>
+  		<option value='30' <eq name="aws_video_rate" value="30"> selected </eq>>30</option>
+  		<option value='25' <eq name="aws_video_rate" value="25"> selected </eq>>25</option>
+  		<option value='15' <eq name="aws_video_rate" value="15"> selected </eq>>15</option>
+  		<option value='10' <eq name="aws_video_rate" value="10"> selected </eq>>10</option>
+  	</select>
+  </td>
+</tr>  
+<tr class="ji">
+  <td class="left">分辨率</td>
+  <td>
+	宽度:<input type="text" name="con[aws_video_width]" id="video_width" value="{$aws_video_width}" size="20"></input>
+	高度:<input type="text" name="con[aws_video_height]" id="video_height" value="{$aws_video_height}" size="20"></input>
+  </td>
+</tr>    
+
+<tr class="tr">
+  <td colspan="2"><input type="hidden" name="setting_sub" value="true">
+    <input class="bginput" type="submit" name="submit" value="确定">
+    <input class="bginput" type="button" name="Input" value="取消" onClick="window.location.href='?s=Admin/Mserver/Streaming'" >
+  </td>
+</tr>
+</form>
+</table>
+<include file="footer" />
+</body>
+</html>

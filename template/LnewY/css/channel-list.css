@@ -1,0 +1,43 @@
+.cntBar .box .content .ul-top li em{font-size: 11px;margin-left: 5px;}
+
+.Cletter.box {width: 956px;}
+.Cletter .box .letterL {padding: 11px 17px 4px;height: 22px;background: url(../images/starbg2.png) repeat-x 0 -28px;border-bottom: 1px dotted #E4E4E4;clear: both;margin: 0 15px;}
+.Cletter .box .letterL .txt {font-size: 13px;float: left;}
+.Cletter .box .letterL a {width: 18px;height: 18px;line-height: 18px;border: 1px solid #E4E4E4;background: white;font-size: 14px;margin-right: 3px;display: inline-block;color: #2782BD;text-align: center;float: left;}
+.Cletter .box .Cletter-list{overflow: hidden;clear: both;zoom: 1;margin-bottom: 15px;}
+.Cletter .box .Cletter-list h3 {margin: 10px 15px 0;height: 21px;font-size: 16px;line-height: 21px;background: #F9F9F9;clear: both;}
+.Cletter .box .Cletter-list h3 .l_bg {width: 10px;height: 21px;display: block;float: left;background: url(../images/starbg2.png) no-repeat 0 -212px;}
+.Cletter .box .Cletter-list h3 .r_bg {width: 10px;height: 21px;display: block;float: right;background: url(../images/starbg2.png) no-repeat right -212px;}
+.Cletter .box .Cletter-list .Videolist{padding: 0 17px;overflow: hidden;clear: both;zoom: 1;margin-bottom: 10px;}
+.Cletter .box .Cletter-list .Videolist li {padding-left: 18px;width: 134px;height: 26px;line-height: 26px;font-size: 13px;float: left;background: url(../images/starbg2.png) no-repeat -137px -132px;overflow: hidden;}
+
+.channel-title .list_px a,.channel-title .list_px label {color: #333;padding:0 6px 0 6px;height: 20px;line-height: 22px;_line-height: 20px;overflow: hidden;background: #EDEDED;border-width: 1px;border-style: solid;border-radius: 2px;border-color: #999 #DDD #DDD #999;margin: 10px 12px 0 0;float: left;font-family: 'ËÎÌו';_font-family: Tahoma;}
+.channel-title .list_px label  {background: white;margin-right: 0;border: 0;}
+.channel-title .list_px a:hover, .channel-title a.on {box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);}
+.channel-title .list_px a.on {color: white;background: #1782E4;border-color: #0143EC #0143EC #0A33B3 #0143EC;font-weight: bold;}
+.conBox .channel-content{}
+.conBox .channel-content ul {padding: 0 0 12px 0px;zoom: 1;overflow: hidden;}
+.conBox .channel-content ul li {margin: 12px 1px 0 8px;float: left;width: 312px;padding: 8px;overflow: hidden;border: 1px solid #CCC;}
+.conBox .channel-content ul li  a.ah {padding: 1px;display: block;position: relative;float: left;margin-right: 8px;}
+.conBox .channel-content ul li  label.bg {width: 107px;height: 20px;display: block;overflow: hidden;background: black;position: absolute;left: 4px;bottom: 4px;filter: alpha(opacity=50);opacity: 0.5;z-index: 1;}
+.conBox .channel-content ul li  label.time {width: 100px;height: 20px;line-height: 20px;display: block;overflow: hidden;font-size: 12px;position: absolute;left: 4px;bottom: 4px;padding: 0 5px;text-align: right;z-index: 2;color: white;white-space: nowrap;}
+.conBox .channel-content ul li  a img:hover{border: 1px solid #0060A5;}
+.conBox .channel-content ul li img {width: 105px;height: 145px;display: block;overflow: hidden;padding: 3px;border: 1px solid #CCC;}
+.conBox .channel-content ul li h2 {line-height: 1.5em;border-bottom: 1px dashed #CCC;margin-bottom: 5px;}
+.conBox .channel-content ul li h2,.conBox .channel-content ul li p {font-size: 12px;float: left;line-height: 2em;width: 60%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.conBox .channel-content ul li p {color: #777;}
+.conBox .channel-content ul li p em {margin-left: 15px;}
+.conBox .channel-content ul li.cbg { border:1px solid #FFCC00; background-color:#FFFF99;}
+.conBox .channel-content ul li .pt{font-size:12px; height:20px; line-height:20px; font-weight:normal; color:#666;}
+.conBox .channel-content ul li .pt a{color: #075db3}
+.conBox .channel-content ul li .xb {margin-top: 10px;}
+.conBox .channel-content ul li .xb a {padding-right: 8px;}
+.conBox .channel-content ul li .xb .bg {background: url(../images/channel_b_bg.png);}
+.conBox .channel-content ul li .xb .xq {background-position: 0 -198px;}
+.conBox .channel-content ul li .xb .bf {background-position: 0 -178px;}
+.conBox .channel-content ul li .xb .xq, .bf {width: 50px;height: 20px;display: inline-block;margin-right: 10px;}
+.conBox .channel-content ul li .xb a {color: black;text-decoration: none;}
+.conBox .page {height: 27px;border: 1px solid #A7DEF4;background: #E9F7FC;margin: 8px 10px;text-align: center;padding: 7px 0 0;}
+.conBox .page a {padding: 3px 5px;margin: 0 2px;background: white;border: 1px solid #D4D4D4;color: black;height: 20px;line-height: 20px;}
+.conBox .page span input{width: 50px;height: 20px;line-height: 20px;border: 1px solid #D4D4D4;vertical-align: middle;}
+.conBox .page span .btn{width: 51px;height: 22px;line-height: 24px;background: transparent url(../images/btn02.gif) no-repeat;cursor: pointer;font-size: 12px;color: #515151;border: none;vertical-align: middle;}

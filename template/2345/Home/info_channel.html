@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<link href="/template/2345/css/global.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/synopsis.common.20130703.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/tv.synopsis.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/template/2345/js/common.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/xquery2.20.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<include file="header_info" />
+<div class="main">
+  <div class="width1000 clearfix">
+    <div class="col_b"></div>
+    <div class="conList clearfix">
+      <div class="col_a">
+        <div class="diversityPlot">
+        
+        
+          <div class="paragraphCon">
+          	  <table width="100%" border="0" cellspacing="1" cellpadding="5">
+          	    <tr>
+          	      <td width="66%">文章标题</td>
+          	      <td width="34%" align="right">更新时间</td>
+       	        </tr>
+                <gxcms name="info" cid="'.$cid.'" limit="10" order="addtime desc">
+          	    <tr>
+          	      <td><a href="{$info.readurl}" target="_blank">{$info.title}</a></td>
+          	      <td align="right">{$info.addtime|get_color_date='Y-m-d',###,'#CCC'}</td>
+       	        </tr>
+          </gxcms>
+       	    </table>
+          </div>
+          
+          
+          
+          
+          
+        </div>
+      </div>
+      <div class="col_b">
+        <dl class="newsRecommend">
+          <dt>电视剧最近更新</dt>
+          <dd>
+            <ul class="ul_rank">
+            <gxcms name="video" limit="10" cid="2" order="addtime desc">
+              <li class="" onmouseover="this.className='liHover';" onmouseout="this.className='';"><i <if condition="$i lt 4">class="iFirst"</if>>{$i}</i><span class="sNum"><if condition="$video.serial gt 0">{$video.serial}集<else />完结</if></span><a href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></li>
+            </gxcms>
+            </ul>
+          </dd>
+        </dl>
+        
+        
+        <dl class="newsRecommend">
+          <dt>电影最近更新</dt>
+          <dd>
+            <ul class="ul_rank">
+            <gxcms name="video" limit="10" cid="1" order="addtime desc">
+              <li class="" onmouseover="this.className='liHover';" onmouseout="this.className='';"><i <if condition="$i lt 4">class="iFirst"</if>>{$i}</i><span class="sNum">{$video.score}</span><a href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></li>
+            </gxcms>
+            </ul>
+          </dd>
+        </dl>
+        
+        <div class="ivy200 mt10" >
+        </div>
+      </div>
+    </div>
+    <div class="conBottom"></div>
+  </div>
+  <include file="footer" />
+</body>
+</html>

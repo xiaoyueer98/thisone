@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$ckeywords}{$keywords}">
+<meta name="description" content="{$cdescription}{$description}">
+<link href="/template/LnewY/css/Common.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/channel.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/content.css" rel="stylesheet" type="text/css" />
+<script language="javascript">var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}';</script>
+<script type="text/javascript" src="/template/LnewY/js/jquery.min.js"></script>
+<script type="text/javascript" src="/template/LnewY/js/Common.js"></script>
+</head>
+
+<body>
+<include file="header" />
+<div class="wrap w960">
+  <div class="maxBox">
+    <div class="box">
+      <div class="video-box">
+        <div class="d-title">
+          <h2>{$title}({$cname})</h2>
+          <dl>
+            <dd><a class="pCollect" id="pCollect" href="javascript:void(0);" onclick="yiyi.user.Collect()">收藏</a></dd>
+            <dd><a class="pRss" id="pRss" href="javascript:void(0);" onclick="yiyi.user.Rss();">订阅</a></dd>
+          </dl>
+        </div>
+        <div class="introduce" id="introduce">
+          <div class="vod-img"><a href="#"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$picurl}" alt="爱回家(TVB电视剧)"></a></div>
+          <div class="vod-c">
+            <div class="vod_bigc">
+              <div class="vod_l">
+                <div class="info">
+                  <dl class="Actor">
+                    <dt>主演：</dt>
+                    <dd>
+                      <notempty name="actor">{$actor|get_actor_url}
+                        <else />
+                        未知</notempty>
+                    </dd>
+                  </dl>
+                  <dl class="status">
+                    <dt>状态：</dt>
+                    <dd>
+                      <if condition="$video.serial gt 0">更新至{$video.serial}
+                        <else />
+                        完结</if>
+                    </dd>
+                  </dl>
+                  <dl class="Lang">
+                    <dt>语言：</dt>
+                    <dd>粤语发音 中文字幕</dd>
+                  </dl>
+                  <dl class="Age">
+                    <dt>年份：</dt>
+                    <dd>{$year}</dd>
+                  </dl>
+                  <dl class="Type">
+                    <dt>类型：</dt>
+                    <dd><a href="{$showurl}">{$cname}</a> {$stype_mcid|eku_stype_url=$cid}</span></dd>
+                  </dl>
+                  <dl class="Direct">
+                    <dt>导演：</dt>
+                    <dd>
+                      <notempty name="director">{$director}
+                        <else />
+                        未知</notempty>
+                    </dd>
+                  </dl>
+                  <dl class="Time">
+                    <dt>时间：</dt>
+                    <dd>{$addtime|get_color_date='Y-m-d H:i:s',###,'#999'}</dd>
+                  </dl>
+                  <dl class="gather">
+                    <dt>集数：</dt>
+                    <dd>265集</dd>
+                  </dl>
+                  <dl class="Intr">
+                    <dt>剧情：</dt>
+                    <dd><span>{$content|htmlspecialchars_decode|get_replace_html=0,100}...</span><a href="#Introduce">详细剧情</a></dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="vod_r" id="ad_300_01">
+              {:get_cms_ads('play_250_250')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap w960" id="ad_960_02"></div>
+  <div class="maxBox"> 
+    
+    <!--百度影音-->
+    <volist name="ppplay" id="video">
+      <div class="box Video-list">
+        <div class="play-list b mb">
+          <div class="title">
+            <h3><span class="p_{{$video.playname}}"></span>{$video.playername} <span class="tips">( <a href="http://dl.p2sp.baidu.com/BaiduPlayer/un2/BaiduPlayerNetSetup_100820182.exe
+
+" target="_blank">点击下载百度影音播放器(2013年03月25号最新高速版）</a> )</span></h3>
+            <span class="pa order hascoll"> 排序：<a id="desc_1" class="desc" href="javascript:void(0);" onclick="desc(1,1,this)">降序</a> <em>|</em> <a id="asc_1" href="javascript:void(0);" class="asc asc_on" onclick="desc(0,1,this)">升序</a> </span> </div>
+          <div id="play_1">
+            <ul>
+              <volist name="video['son']" id="ppvodson" key='ii'>
+                <li> <a target='_blank' title='{$ppvodson.playname}' href='{$ppvodson.playurl}'>{$ppvodson.playname}</a></li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </volist>
+  </div>
+  <div class="wrap w960" id="ad_960_03"></div>
+  <div class="maxBox mb10">
+    <div class="box BigBox">
+      <div class="title">
+        <h3>热门{$cname}：</h3>
+      </div>
+      <div class="hotVideo">
+        <ul class="pic-list">
+        <gxcms name="video" limit="7" cid="'.$cid.'" order="score desc">
+          <li> <a class="play-pic" href="{$video.readurl}" title="{$video.title}"> <img src="{$video.picurl}" style="display: block; "> <span class="play-icon">&nbsp;</span>
+            <label class="bg">&nbsp;</label>
+            <label class="time">全集</label>
+            </a>
+            <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+            <p class="txt">
+            <notempty name="actor">{$video.actor|get_actor_url}
+                        <else />
+                        未知</notempty>
+            </p>
+          </li>
+        </gxcms>  
+        </ul>
+      </div>
+    </div>
+  </div>
+  <a name="Introduce" id="Introduce"></a>
+  <div class="maxBox mb10">
+    <div class="box BigBox">
+      <div class="title">
+        <h3>《{$title}{$cname}》剧情介绍：</h3>
+      </div>
+      <div class="introduction">
+        <p>{$content|htmlspecialchars_decode}</p>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+  <div class="maxBox mb10">
+    <div class="box BigBox">
+      <div class="title">
+        <h3>《{$title}{$cname}》评论：</h3>
+      </div>
+      <div class="introduction"> 
+        <!-- UY BEGIN -->
+        <div id="uyan_frame"></div>
+        <script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId={$youyan_id}" async=""></script> 
+        <!-- UY END --> 
+      </div>
+    </div>
+  </div>
+</div>
+<include file="footer" />
+</div>
+<!--wapper 结束-->
+
+</body>
+</html>

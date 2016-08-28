@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+$token = @$_SESSION["mstoken"];
+$field_name= "file" . randomkeys(8);
+?>
+ 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>Insert title here</title> 
+<style	type="text/css"> 
+	body,td,div {font-size: 12px;} 
+	#progressBar {width: 400px;height: 12px;background: #FFFFFF;border: 1px 
+	solid #000000;padding: 1px} 
+	#progressBarItem {height: 100%;background: #FF0000;} 
+</style> 
+
+<script type="text/javascript"> 
+	var _finished = true;	 //是否上传结束标识符 
+	function $(obj){ 
+		return document.getElementById(obj);	 //返回指定id的HTML元素 
+	} 
+
+	function showStatus(){ 
+		_finished = false;	 //显示进度条 
+		$('status').style.display = 'block';	 //将隐藏的进度条显示 
+		$('progressBarItem').style.width='1%';	 //设置进度条初始值为1% 
+		$('btnSubmit').disabled = true;	 //把提交按钮置灰 防止重复提交 
+		
+		setTimeout("requestStatus()",1000);	 //1秒后执行requestStatus()方法，更新上传进度 
+	} 
+
+	function requestStatus(){	 //向服务器请求上传进度信息 
+		if(_finished)  return;	 //如果已经结束，则返回 
+		var req = createRequest();	 //获取Ajax请求 
+		req.open("POST","http://{$host}/upload?sub_path={$sub_path}&field_name=<?php echo $field_name;?>&start=<?php echo time();?>&token=<?php echo $token;?>");	 //设置请求路径 
+		req.onreadystatechange=function(){callback(req)}	 //请求完毕就执行callback(req) 
+		req.send(null);	 //发送请求 
+		setTimeout("requestStatus()",1000);	 //1秒后执行requestStatus()方法，更新上传进度 
+	} 
+
+function createRequest(){	 //返回Ajax请求对象 
+	if(window.XMLHttpRequest){	 //Netscape浏览器 
+		return new XMLHttpRequest(); 
+	}else{	 //IE浏览器 
+		try{ 
+			return new ActiveXObject("Msxml2.XMLHTTP"); 
+		}catch(e){ 
+			return new ActiveXObject("Microsoft.XMLHTTP"); 
+		} 
+
+	} 
+	return null; 
+} 
+
+function callback(req){	 //刷新进度条 
+	if(req.readyState == 4){	 //请求结束后 
+		if(req.status != 200){	 //如果发生错误，则显示错误信息 
+			debug("发生错误。req.status: "+req.status + ""); 
+			return; 
+		} 
+		debug("status.jsp 返回值："+ req.responseText);	 //显示debug信息 
+		var ss = req.responseText.split("||");	 //处理进度条信息。格式格式化：百分比||已完成数（M）||文件总长度（M）||传输速率（K）||已用时间（s）|| 
+		//估计总时间（s）||估计剩余时间（s）||正在上传第几个文件 
+		$('progressBarItem').style.width='' + ss[0] + '%'; 
+		$('statusInfo').innerHTML = '已完成百分比: '+	 ss[0]+'%<br/>已完成数（M）:'+ss[1]+'<br/>文件总长度（M）: '+ ss[2]+ 
+		'<br/>传输速率（K）: '+ss[3]+'<br/>已用时间（s）: '+ss[4]+'<br/>估计总时间（s）: '+ss[5]+'<br/>估计剩余时间（s）: '+ 
+		ss[6]+'<br/>正在上传第几个文件: '+	ss[7];	
+		
+		if(ss[1] == ss[2]){ 
+			_finished = true; 
+			$('statusInfo').innerHTML += "<br/><br/><br/>上传成功。"; 
+			$('btnSubmit').disabled = false; 
+		}	
+	} 
+} 
+
+function debug(){ 
+	var div = document.createElement("DIV");	 //显示提示信息 
+	//div.innerHTML = "[debug]: "+ obj; 
+	document.body.appendChild(div); 
+} 
+</script> 
+</head> 
+<body> 
+<iframe name=upload_iframe width=0 height=0></iframe> 
+	<form action="http://{$host}/upload?sub_path={$sub_path}&field_name=<?php echo $field_name;?>&start=<?php echo time();?>&token=<?php echo $token;?>&uploader=web" method="post" enctype="multipart/form-data" 
+		target="upload_iframe" onsubmit="showStatus();"> 
+		<input type="file" name="field_name" style="width: 350px; "><br/> 
+		<input type="submit" value="UPLOAD" name="btnSubmit" id="btnSubmit"> 
+	</form> 
+<br/><br/> 
+<div id="status" style="display:none;"> 
+上传进度条： 
+<div id="progressBar"> 
+<div id="progressBarItem"></div> 
+</div><br/><br/> 
+<div id="statusInfo"></div> 
+</div> 
+
+
+</body> 
+</html> 
+
+<!--  
+<title>上传文件</title>
+<link href="./views/css/tl.css" rel="stylesheet" type="text/css" />
+<?php
+$token = @$_SESSION["mstoken"];
+$field_name= "file" . randomkeys(8);
+?>
+
+<head>
+<script type="text/javascript" src="./views/js/jquery-upload-progress/lib/jquery.js"></script>
+<script type="text/javascript" src="./views/js/jquery-upload-progress/jquery.uploadProgress.js"></script>
+
+
+<script type="text/javascript">
+
+var tmStart  = new Date();
+
+function check_submit()
+{
+	if(uploadform.<?php echo $field_name;?>.value=="")
+	{
+		alert("请选择上传文件!");
+		return false;
+	}
+	return true;
+}
+
+function timespan()
+{
+	var tmNow   = new Date();
+	var span    = (tmNow.getTime()  - tmStart.getTime())/1000;
+	if(span<=0) span =1;
+	return span;
+}
+
+
+$(function() {
+	  $('form').uploadProgress({
+		/* scripts locations for safari */
+		jqueryPath: "./views/js/jquery-upload-progress/lib/jquery.js",
+		uploadProgressPath: "./views/js/jquery-upload-progress/jquery.uploadProgress.js",
+		start: function() {
+			tmStart = new Date();
+		},
+		/* function called each time bar is updated */
+		uploading: function(upload) {
+			$('#percents').html(upload.percents+'% ' + Math.floor(upload.received/timespan()/1000) + 'KB/s');
+			document.title = upload.percents+'%';
+			if(parseInt(upload.percents)>=100)
+			{
+				$('#percents').html(upload.percents+'%  moving...please wait a moment');
+			}
+			form1.btupload.disabled = true;
+		},
+		
+		/* selector or element that will be updated */
+		progressBar: "#progressbar",
+
+		/* progress reports url */
+		progressUrl: "/progress",
+
+		/* how often will bar be updated */
+		interval: 500
+	  });
+	});
+</script>
+
+<style>
+.bar {
+	width: 500px;
+}
+
+#progress {
+	background: #C0C0C0;
+	border: 1px solid #222;
+	margin-top: 20px;
+}
+
+#progressbar {
+	width: 0px;
+	height: 24px;
+	background: #008000;
+}
+</style>
+</head>
+
+<body>
+<h3>文件上传</h3>
+<table border="0" width="500" cellspacing="0" cellpadding="0">
+	<tr>
+		<th>
+		<hr size="1">
+		</th>
+	</tr>
+	<tr>
+		<td>
+		<form id="uploadform" onsubmit="return check_submit();" 
+			action="http://{$host}/upload?sub_path={$sub_path}&field_name=<?php echo $field_name;?>&start=<?php echo time();?>&token=<?php echo $token;?>"
+			method="POST" enctype="multipart/form-data">
+			<span>${host}</span>
+			<input type="file" name="<?php echo $field_name;?>" width="300" /> 
+			<br>
+			<input type="submit" name="btupload" value=" 上传 " class="btn btn-primary" />
+		</form>
+
+		<div id="uploading">
+			<div id="progress" class="bar">
+			<div id="progressbar"></div>
+			<div id="percents"></div>
+			</div>
+		</div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
+-->

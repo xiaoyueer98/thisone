@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的关注</title>
+</head>
+<body>
+<div>
+    <gxlist name="video" cid="'.$cid.'" limit="15" order="'.$order.'">
+        <li>
+            <a href="{$video.readurl}" class="title" target="_blank">{$video.title}</a>
+            <p class="title1">{$video.actor|get_replace_html=0,10|get_actor_url}</p>
+        </li>
+    </gxlist>
+
+    <gt name="ekupage['count']" value="15">
+
+        <div class="pag">
+            共{$ekupage['count']} 部视频，当前{$ekupage['curpage']}/{$ekupage['totalpages']}页，
+
+            <a href="{$ekupage['firstlink']}">首页</a>
+            <a href="{$ekupage['prelink']}">上一页</a>
+
+            <volist name="ekupage['list']" id="vo">
+                <a href="{$vo.link}" <if condition="$ekupage['curpage'] eq $vo['ii']">class="on"</if>>{$vo.ii}</a>
+            </volist>
+
+            <a href="{$ekupage['nextlink']}">下一页</a>
+            <a href="{$ekupage['lastlink']}">最后一页</a>
+
+        </div>
+
+    </gt>
+</div>
+</body>
+</html>

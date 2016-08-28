@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<meta name="description" content="{$cdescription}{$description}">
+<link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+<link href="/template/2345/css/global.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/detail.common.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/movieDetail.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/2345/js/xquery2.20.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/libnew.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/common.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/detail.min.js"></script>
+</head>
+<body>
+<include file="header" />
+
+	<div style="width:100%; background-color:#262626; height:20px;">
+    </div>
+	<div style="width:100%; background-color:#292929; height:550px;">
+            <div class="main clearfix">
+            	
+                <div id="feng-yun-mini-wrap">
+                <a id="loading-info" href="http://www.fengyunzhibo.com" target="_blank">正在加载【风云TV】播放器，请稍候...</a>                    
+                </div>
+                
+                <script type="text/javascript">window.fengyunminicongf={tuiguangid:"ekucms",width:960,height:530}</script>
+                <script type="text/javascript" src="http://static.ws.kukuplay.com/support/mini/fyminiloader-min.js"></script>
+                
+                
+            </div>
+    </div>
+<include file="footer" />
+<script>
+function desc(a, b, c) {
+				if (c.className.indexOf('_on') == -1) {
+					if (a == 0) {
+						document.getElementById('desc_' + b).className = 'desc';
+						c.className = 'asc asc_on';
+					} else {
+						document.getElementById('asc_' + b).className = 'asc';
+						c.className = 'desc desc_on';
+					}
+					document.getElementById('play_' + b).innerHTML = '<ul'+(b=="999"?" class=\"Dlist\"":"")+'>' + document.getElementById('play_' + b).getElementsByTagName('ul')[0].innerHTML.toLowerCase().split('</li>').reverse().join('</li>').substring(5) + '</li></ul>';
+				}
+}
+  
+  
+</script>
+</body>
+</html>
+<!-- cache created at 2013-04-16 07:21 --><!-- cache created at 2013-07-25 07:13 -->
+

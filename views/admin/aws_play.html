@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+	$sClient = get_aws_client();
+	$url = $sClient->get_object_url($app, $stream);
+?>
+<head>
+<script type="text/javascript" src="{$webpath}jwplayer/jwplayer.js"></script>
+<script type="text/javascript" src="{$webpath}js/ntv_utils.js"></script>
+<script type="text/javascript">jwplayer.key="38uAPADVt3eQaliBV2/DIi2ia+QhrVz0lhwLMg==";</script>
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+
+<script type="text/javascript">
+var fls = flashChecker();
+if(fls.f){
+	   superFLV = 1;
+}else{
+	   superFLV = 0;
+}
+
+isPC = IsPC();
+
+function IsPC()  
+{  
+     var userAgentInfo = navigator.userAgent;  
+     var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");  
+     var flag = true;  
+     for (var v = 0; v < Agents.length; v++) {  
+         if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
+     }  
+     return flag;  
+}
+
+function flashChecker() {
+    var hasFlash = 0; //是否安装了flash
+    var flashVersion = 0; //flash版本
+    if (document.all) {
+      var swf = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+      if (swf) {
+        hasFlash = 1;
+        VSwf = swf.GetVariable("$version");
+        flashVersion = parseInt(VSwf.split(" ")[1].split(",")[0]);
+      }
+    } else {
+      if (navigator.plugins && navigator.plugins.length > 0) {
+        var swf = navigator.plugins["Shockwave Flash"];
+        if (swf) {
+          hasFlash = 1;
+          var words = swf.description.split(" ");
+          for (var i = 0; i < words.length; ++i) {
+            if (isNaN(parseInt(words[i]))) continue;
+            flashVersion = parseInt(words[i]);
+          }
+        }
+      }
+    }
+    return { f: hasFlash, v: flashVersion };
+  }
+  
+function play_flv(w,h,url,livemode)
+{
+	
+    var autoplay = true;            //is_autoplay();
+	     var usejw    = true;            //is_jwplayer();
+	    // set_captions(livemode,tl);
+	     if(usejw && livemode!="live")
+	     {
+	     		jwplayer('fxplayer').setup({
+		        file:   url,
+		        image:  'jwplayer/jwplayer.jpg',
+		        width:  w,
+		        height: h,
+		        autostart: autoplay,
+		        logo: {
+		    		file: '/video/views/images/player_logo.png',
+		    		link: ''
+		    	},		    
+		    	abouttext: "关于方讯",
+		    	aboutlink: "",		    	
+		        //aspectratio: '16:9',
+		        startparam: 'start'
+		     });
+		     playbyjw = true;
+	    }
+	    else
+	    {
+	    	//play(w,h,url,livemode,autoplay);
+	    	jwplayer('fxplayer').setup({
+		        file:   url,
+		        image:  'jwplayer/jwplayer.jpg',
+		        width:  w,
+		        height: h,		    	
+		        autostart: autoplay,
+		        logo: {
+		    		file: '/video/views/images/player_logo.png',
+		    		link: ''
+		    	},		    
+		    	abouttext: "关于方讯",
+		    	aboutlink: ""		        
+		     });
+		     playbyjw = true;
+	    }  
+}
+  
+function close_player()
+{
+	 if(playbyjw)
+	 {
+	    jwplayer().stop();
+	 }
+}
+
+function playVod(url)
+{
+	var h = 600;
+	var w = 800;
+   play_flv(w,h,url,"");
+}
+
+function playLive(url)
+{
+	var h = 600;
+	var w = 800;
+	play_flv(w,h,url,"live");
+}
+
+function playHTML5(url)
+{
+	var text = "<video src=\"" + url + "\" controls=\"controls\" autoplay=\"autoplay\" width=\"640px\" height=\"360px\">";  //
+		    text = text + "<font color='#FFFFFF'>您的浏览器不支持   HTML5 !</font>";
+	    text = text + "</video>";
+
+	    var doc = "<body bgcolor=\"#000000\">" + 
+	              "<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" height=\"100%\" >" +
+	    	      "<tr>" +
+	    		  "<td align=\"center\">"  + 
+	    		  text +
+	    		  "</td></tr></table></body>";
+	    
+	fxplayer.innerHTML = text;
+	    //document.write(text);
+}
+
+function playHLS(url) {
+	  // set_captions("vod",title);
+	   //location.href = url;
+	   playHTML5(url);
+	 }
+		 
+	 function playMP4(url)
+	 {
+	 //  set_captions("vod",title);
+	   playHTML5(url);
+	 }
+		 
+	 function gen_flv_vod_url(host,app,stream,ver,token)
+	 {
+	     var url  = "http://"  + host + "/sps/" + app + "/" + stream + ".flv?ver=" + ver;
+	     if(token!="")
+	     {
+	         url = url + "&token=" + token;
+	     }
+	     return url;
+	 }
+	 
+	 function gen_mp4_url(host,app,stream,ver,token)
+	 {
+	     //var   url= "http://" + host + "/media/mp4/" + app + "/" + stream + "/" + stream;
+	     var   url= "http://" + host + "/mp4/" + app + "/" + stream + "/" + stream;
+	     if(ver>=0)
+	     {
+	        url = url + "_v" + ver;
+	     }
+	     url    = url  + ".mp4";
+	     if(token!="")
+	     {
+	         url = url + "?token=" + token;
+	     }else{
+	     	url = url + "?token=";
+	     }
+	     return url;
+	 }
+	 
+	 function gen_hls_url(host,app,stream,ver,token)
+	 {
+	 	var d = new Date();
+	 	var url  = "http://"  + host + "/m3u8/" + app + "/" + stream + ".m3u8?from=mgr";
+	 	if(ver!=null)
+	 	{
+	 	   url = url + "&ver=" + ver;
+	 	}
+	 	if(token!="")
+	     {
+	         url = url + "&token=" + token;
+	     }
+	 	
+	 	return url;
+	 }
+	 
+	 function InitDoc()
+	 {
+		 
+	    var app    = "<?php echo $app;?>";
+	    var stream = "<?php echo $stream;?>";
+	    var live   = '0';
+	    var host   = '223.105.0.225';
+	    var port   = '18080';
+	    var ver = -1;
+	    var format = "<?php echo $format;?>";
+	    var token="";
+
+	     var  uid     = "";
+	     if(uid=="" || uid==null)
+	     {
+	  	   uid     = ntv_uuid(16,16);
+	     }
+	    
+	    if(app==null || stream==null)
+	    {
+	 	    fxplayer.innerHTML= "<font color=\"#FFFFFF\">Load stream error!</font>";
+	 	    return;
+	    }
+
+	    if(port==null || port=="")
+	    {
+	        port = "1935";
+	    }
+	    
+	    if((host==null) || (host == ""))
+	    {
+	        	host  = document.location.host;
+	 	}
+	 	if((ver==null) || (ver == ""))
+	 	{
+	         ver="-1";
+	     }
+	 	if(format==null)
+	 	{
+	 	     format="flv";
+	 	}
+	 	   
+	    if(live=="live")
+	    {
+	 	 if(isPC){
+	 	     if(format=="flv")
+	 	   	 {
+	 	   	    url  = gen_rtmp_live_url(host,app,stream,token,port);
+	 	   	 	url  = url + "&live=1&uid=" + uid + "&sid=" + uid; 
+	 	   	    playLive(url,tl);
+	 	   	 }
+	 	   	 else if(format=="hls")
+	 	   	 {
+	 	   	    url = gen_hls_url(host,app,stream,null,token);
+	 	   	 	url  = url +  "&live=1&uid=" + uid + "&sid=" + uid;
+	 	   	    playHLS(url,tl);
+	 	   	 }else if(format == "rtsp"){
+	 	   		 url = gen_rtsp_live_url(host, app, stream, token, port);
+	 	   		play_rtsp(url, tl);
+	 	   	 }
+	 	 }else{
+	    	    url = gen_hls_url(host,app,stream,null,token);
+	    	 	url  = url +  "&live=1&uid=" + uid + "&sid=" + uid;
+	    	    playHLS(url,tl);		 
+	 	 }
+	    }
+	    else
+	    {      
+	 	  // alert("flv:" + superFLV + "; html5:" + superHTML5);
+	 	   url = "<?php echo $url;?>";
+	 	   if(isPC){
+	 		   if(format == "flv"){
+	 		       playVod(url);
+	 	   		}else if(format == "mp4"){ 
+	 		      // playMP4(url);
+	 	   			playVod(url);
+	 		   }else{
+	 			   url = gen_hls_url(host,app,stream,ver,token);
+	 			   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 		       playHLS(url);
+	 		   }
+	 	   }else{
+	 		   url = gen_mp4_url(host,app,stream,ver,token);
+	 		   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 	       playMP4(url);
+	 	   }
+
+	 	   /*
+	       if(format=="flv")
+	       {
+	          url = gen_flv_vod_url(host,app,stream,ver,token);
+	          playVod(url,tl);
+	       }
+	       else if(format=="mp4")
+	       {
+	           url = gen_mp4_url(host,app,stream,ver,token);
+	           playMP4(url,tl);
+	       }
+	       else if(format=="hls")
+	       {
+	           url = gen_hls_url(host,app,stream,ver,token);
+	           playHLS(url,tl); 
+	       }
+	 	   */
+	    }
+	    window.focus();
+	 }
+	 
+	 function close_player()
+	 {
+	 	 if(playbyjw)
+	 	 {
+	 	    jwplayer().stop();
+	 	 }
+	 }
+</script>
+<style> 
+body{ text-align:center} 
+.div{ margin:0 auto;} 
+/* css注释：为了观察效果设置宽度 边框 高度等样式 */ 
+</style> 
+
+</head>
+<body onLoad="InitDoc()" onUnload="close_player()">
+<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+  <tr>
+    <td colspan="10" class="table_title">
+    	<span class="fr" style="cursor:pointer;" onclick="javascript:history.back(-1);">返回</span>
+    </td>
+  </tr>
+  <div>"{$url}"</div>
+  <tr>
+  	<td class="div">
+		<div class="div" id="fxplayer">Loading the player...</div>
+	</td>
+   </tr>
+</table>
+</body>
+</html>

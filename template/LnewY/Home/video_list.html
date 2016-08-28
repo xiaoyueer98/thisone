@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<title>{$webtitle}</title>
+<link href="/template/LnewY/css/Common.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/channel.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/channel-list.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/LnewY/js/jquery.min.js"></script>
+<script type="text/javascript" src="/template/LnewY/js/Common.js"></script>
+</head>
+
+<body>
+<include file="header" />
+<div class="wrap w960">
+  <div class="maxBox lb mb10">
+    <div class="filter_select_con">
+      <div class="filter_select_con_th"><a href="http://list.yiyi.cc/" target="_self" class="resetBtn">重置条件</a> <span class="sNum">
+        <h1></h1>
+        </span> <span class="sMark">影片索引</span> <span class="filter_select_con_hot"><!--
+				<a href="" target="_blank" style="color:red;">看绝招！</a>
+				--> 
+        </span></div>
+      <div class="filter_select_con_tb clearfix">
+        <dl class="p2">
+        
+         <if condition="$stypetagcount gt 0">
+          <dt><a href="{:getstypetaglink($cid,0)}" <if condition="($m_cid eq 0)">class="on3"</if>>类型</a><em>|</em></dt>
+          <dd>
+                    <gxcms name="menu" ids="'.$pid.'">
+                    <gxfor name="menu.son" id="menuson"> <a href="{:gettypelink($menuson['id'])}" <eq name="cid" value="$menuson.id">class="cur"</eq> >{$menuson.cname}</a></gxfor>
+                    </gxcms>
+          </dd>
+          
+        </dl>
+        </if>
+        
+        <dl class="p1">
+          <dt><a target="_self" href="{:getstypetaglink($cid,0)}" <if condition="($m_cid eq 0)">class="cur"</if>>标签</a><em>|</em></dt>
+          <dd>
+                    <volist name="stypetag" id="item">
+                        <a href="{:getstypetaglink($cid,$item['m_cid'])}" target="_self" <if condition="($m_cid eq $item['m_cid'])">class="cur"</if>>{$item.m_name}</a><em>|</em>
+                    </volist>
+          </dd>
+        </dl>
+        <dl class="p3">
+          <dd>
+          {:getarealist('cur',$cid)}
+          </dd>
+           
+           
+        </dl>
+        <dl class="p4">
+          <dd>
+          {:getyearlistnew('cur',9,$cid)}
+         </dd>
+        </dl>
+        <dl class="p8">
+          <dd>
+                    <a href="{:getwbfurl($cid,2)}" <if condition="($letter eq '')">class="cur"</if>>全部</a>
+                    {:get_letter_url($cid,$letter,'video','cur')}</p>
+   			</dd>
+        </dl>
+        
+        
+      </div>
+    </div>
+  </div>
+  <div class="maxBox lb">
+    <div class="cntBar fa-left">
+      <div class="sideRow">
+        <div class="box mb10">
+          <div class="caption fa-clear">
+            <h3 class="hide-self fa-left">{$cname}最近更新</h3>
+            <span></span> </div>
+          <div class="content">
+            <ul class="ul-top">
+              <gxcms name="video" cid="'.$cid.'" limit="14" order="addtime desc">
+                <li><a href="{$video.showurl}">{$video.title|get_replace_html=0,14}<!--<em>BD</em>--></a><span><strong>{$video.addtime|get_color_date='m-d',###,'#999'}</strong></span></li>
+              </gxcms>
+            </ul>
+          </div>
+        </div>
+        <div class="box">
+          <div class="caption fa-clear">
+            <h3 class="hide-self fa-left">{$cname}推荐榜</h3>
+            <span><!--<a target="_blank" href="/film9/">更多</a>--></span> </div>
+          <div class="content">
+            <ul class="ul-top">
+              <gxcms name="video" cid="'.$cid.'" limit="14" order="score desc">
+                <li><a href="{$video.showurl}">{$video.title|get_replace_html=0,14}<!--<em>BD</em>--></a><span><strong>{$video.score}</strong></span></li>
+              </gxcms>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cntBox fa-right">
+      <div class="conBox">
+        <div class="box">
+          <div class="caption bigCaption channel-title fa-clear">
+            <h2 class="hide-self fa-left">{$cname}</h2>
+            <div class="list_px fa-right">
+              <label>类型：</label>
+              <a href="/film3/" class="on">更新</a> <a href="/film3_top/">点击</a> <a href="/film3_letter/">字母</a> </div>
+          </div>
+          <div class="channel-content">
+            <ul>
+              <gxlist name="video" cid="'.$cid.'" limit="14" order="'.$order.'">
+                <li onmousemove="this.className='cbg'" onmouseout="this.className=''" class=""> <a href="{$video.readurl}" title="{$video.title}" class="ah" ><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}">
+                  <label class="bg">&nbsp;</label>
+                  <label class="time">
+                    <if condition="$video.serial gt 0">更新至{$video.serial}
+                      <else />
+                      完结</if>
+                  </label>
+                  </a>
+                  <h2><a href="{$video.readurl}">{$video.title}</a></h2>
+                  <p><b>主演：</b>{$video.actor|get_replace_html=0,10|get_actor_url}</p>
+                  <p><b>地区：</b>{$video.area}<em>年份：{$video.year}</em></p>
+                  <p><b>语言：</b>英语发音 中文字幕</p>
+                  <p><b>时间：</b>{$video.addtime|get_color_date='m-d',###,'red'}</p>
+                  <p class="xb"><a href="{$video.readurl}" class="xq bg"></a><a href="{$video.readurl}" class="bf bg"></a></p>
+                </li>
+              </gxlist>
+            </ul>
+          </div>
+          <div class="page"><span>{$pages}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="footer" />
+</div>
+<!--wapper 结束-->
+</body>
+</html>

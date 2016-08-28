@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的评论-{$webname}</title>
+<link rel="stylesheet" type="text/css" href="{$tplpath}style.css?v1.0.10"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}yiku.css"/>
+
+<script type="text/javascript" src="{$webpath}views/js/jquery.js"></script>
+<script type="text/javascript" src="{$webpath}views/js/system.js"></script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>   
+</head>
+<body>
+<div class="width1000">
+<include file="header" />
+	<div class="sub_breadcrumb_nav"></div>
+    <div class="sub_main">
+      <form action="web_dpu.xhtml" method="post" name="resForm"
+				id="resForm" autocomplete="off">
+		<div class="sub_main_title">个人中心</div>
+    	<div class="sub_content pad_tb user_show">
+	    	<div class="user_left">
+				<include file="user_left" />
+			</div>
+			<div class="user">
+			    <h3><span style="float:right">共{$count_video}条直播</span>我的直播</h3> 
+			    <gt name="count_video" value="0">
+				    <gxfor name="list_video" id="gxcms">
+				    <ul style="margin-bottom:10px; clear:both">
+				    <li>直播名称：<span style="font-size:12px;color:#333">{$gxcms.title}</span></li>
+				    <li style="color:#999999">直播信息：
+				    	<span style="font-size:12px">开始时间： {$gxcms.starttime|date='Y-m-d H:i:s',###}</span> 
+				    	<span style="font-size:12px">结束时间：{$gxcms.endtime|date='Y-m-d H:i:s',###}</span>  
+				    	<span style="font-size:12px">
+				    		<eq name="gxcms.isexpired" value="0">[<font color="red">已过期</font>]
+				    		<else />
+				    			<eq name="gxcms.isexpired" value="2">[<font color="blue">未开始</font>]
+				    			<else />
+				    				[<font color="green">未开始</font>]
+				    			</eq>
+				    		</eq>
+				    	</span>
+				    </li>
+				    </ul> 
+				    </gxfor> 
+				<else />
+			    	<ul class="pages"><notempty name="list_comment"><div class="comm-pager">{$pages}</div><else />没有直播。</notempty></ul>
+			    </gt>
+			</div>
+		</div>
+	</form>	
+  </div> 
+</div>
+<include file="footer" />
+</body>
+</html>

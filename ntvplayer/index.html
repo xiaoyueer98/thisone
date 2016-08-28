@@ -1,0 +1,135 @@
+
+<html>
+
+<head>
+<title>player</title>
+
+<!-- 
+Player usage£º
+	1. include the following js into your web page.
+	2. put a <div> element named "ntvplayer" into your web page, the video will show on this div.
+	3. call "play" function to play a video.  
+		play(width,height,media_url,stream_type);
+		if you play a liveshow stream, the stream_type parameter should be "live", else set it to be "".
+-->
+<script type="text/javascript" src="./ntvplayer/lib/swfobject.js"></script>
+<script type="text/javascript"
+	src="./ntvplayer/lib/ParsedQueryString.js"></script>
+<script type="text/javascript" src="./ntvplayer/lib/debug.js"></script>
+<script type="text/javascript" src="./ntvplayer.js"></script>
+<script type="text/javascript">
+
+	//Demo:
+	function TestPlayer()
+	{
+		var media_url = "http://mediapm.edgesuite.net/osmf/content/test/manifest-files/dynamic_Streaming.f4m";
+	  	var width  = 400;  //document.body.clientWidth - 20;
+		var height = 300;  //document.body.clientHeight- 20;
+		var stream_type = "";
+		playVod(width,height,media_url,stream_type);
+	}
+
+    function InitDoc()
+    {
+	   m_host = document.location.host;
+	   m_host = m_host.replace(":8080","");
+	   m_host = m_host.replace(":80","");
+	   form1.source_rtmp.value ="rtmp://"  + m_host + "/liveshow/live";
+	   form1.source_flv.value ="http://"  + m_host + "/sps/liveshow/live.flv";
+	   form1.source_m3u.value ="http://"  + m_host + "/m3u8/liveshow/live.m3u8";
+    }
+    
+    function playVod(url)
+    {
+    	var h = 360;
+    	var w = 480;
+    	if(form1.display.value == 16)
+    	{
+    		h = 360;
+    		w = 640;
+    	}
+		play(w,h,url,"");
+
+    	playing_url.innerHTML ="<font size=2 color=#0000FF>" + url + "</font>";
+    }
+    
+    function playLive(url)
+    {
+    	var h = 360;
+    	var w = 480;
+    	if(form1.display.value == 16)
+    	{
+    		h = 360;
+    		w = 640;
+    	}
+		play(w,h,url,"live");
+
+    	playing_url.innerHTML ="<font size=2 color=#0000FF>" + url + "</font>";
+ }
+
+ function playIt(url) {
+     location.href = url;
+ }
+</script>
+
+</head>
+
+<body onload="InitDoc()">
+
+<table border="0" width="100%">
+	<tr>
+		<td align="center">
+
+		<div id="ntvplayer">Loading the player ...</div>
+
+		<form id="form1" name="form1" action="--WEBBOT-SELF--" method="POST">
+		<!--webbot bot="SaveResults" U-File="fpweb:///_private/form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+		<table border="0" width="100%" height="109">
+			<tr>
+				<td width="443" align="right" height="26"></td>
+				<td height="26" id="playing_url"></td>
+			</tr>
+			<tr>
+				<td width="443" align="right" height="26"><font size="5">display:</font></td>
+				<td height="26"><select size="1" name="display">
+					<option selected value="4">4:3</option>
+					<option value="16">16:9</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td width="443" align="right" height="28"><font size="5">rtmp:</font></td>
+				<td height="28"><input type="text" name="source_rtmp" size="58"><input
+					type="button" value=" play " name="B1"
+					onclick="playLive(form1.source_rtmp.value);"></td>
+			</tr>
+			<tr>
+				<td width="443" align="right" height="27"><font size="5">hls
+				flash:</font></td>
+				<td height="27"><input type="text" name="source_flv" size="58"><input
+					type="button" value=" play " name="B2"
+					onclick="playVod(form1.source_flv.value);"></td>
+			</tr>
+			<tr>
+				<td width="443" align="right"><font size="5">hls m3u8:</font></td>
+				<td><input type="text" name="source_m3u" size="58"><input
+					type="button" value=" play " name="B3"
+					onclick="playIt(form1.source_m3u.value);"></td>
+			</tr>
+			<tr>
+				<td width="443" align="right"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td width="443" align="right"></td>
+				<td></td>
+			</tr>
+		</table>
+		</form>
+
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

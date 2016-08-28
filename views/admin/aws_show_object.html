@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+	$sClient = get_aws_client();
+
+	if($isdelete === 1){
+		$sClient->delete_object($bucketname, $filename);
+	}
+	$ObjectsListResponse = $sClient->list_objects($bucketname);
+	$Objects = $ObjectsListResponse->body->Contents;
+?>
+<head>
+<title>用户管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js"></script>
+
+<script type='text/JavaScript'>
+function do_delete(bucket, name){
+	var url = "?s=Admin/Aws/Deleteobject/bucket/" + bucket + "/filename/" + name;
+	if(confirm("您确定要删除这条视频吗?!")==true){
+		 location.href = url;
+	}
+}
+</script>
+</head>
+<body>
+<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+<form action="?s=Admin/User/Show" method="post" id="gxform" name="gxform">
+<tr class="table_title">
+	<td colspan="12">桶：{$bucketname}
+		<span class="fr">
+	   		<span style="cursor:pointer;" onclick="javascript:history.back(-1);">返回</span>
+	   	</span>		
+	</td>
+</tr> 
+<tr class="list_head ct">
+  <td >Key</td>
+  <td>大小</td>
+  <td width="100">最后 更新时间</td>  
+  <td width="180">操作</td>
+</tr>
+<?php
+		foreach ($Objects as $Object) {
+			$key = $Object->Key;
+			$url = $sClient->get_object_url($bucketname, $key);
+		?>
+		<tr class="tr ct">
+			<td><?php echo $key ;?></td>
+			<td><?php echo $Object->Size ;?></td>
+			<td><?php echo $Object->LastModified ;?></td>
+			<td>
+				<a href="?s=Admin/Aws/Transcode/bucket/{$bucketname}/filename/{$key}" title="点击进行转码" class="operator_success">转码</a> &nbsp;|&nbsp;
+				<a href="?s=Admin/Aws/Play/bucket/{$bucketname}/filename/{$key}" title="点击进行播放" class="operator_success">播放</a> &nbsp;|&nbsp;
+				<a href="javascript:do_delete('<?php echo $bucketname;?>', '<?php echo $key;?>')" title="点击删除视频" class="operator_danger">删除</a>
+			</td>
+		</tr>
+<?php
+		}
+?>
+<tr class="tr pages"><td colspan="12">{$listpages}</td></tr>
+<tr style="border:#FF0000 solid 0px;">
+	<td colspan="10"><input type="button" value="上传文件" class="bginput" onClick="window.location ='?s=Admin/Aws/Upload/bucket/{$bucketname}';" /></td>
+</tr>
+</form>
+</table>
+<include file="footer" />
+</body>
+</html>

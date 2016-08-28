@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>方讯--用户注册</title>
+<meta name="keywords" content="方讯" />
+<meta name="description" content="方讯" />
+<jsp:include page="../webpage/jq_css.jsp" ></jsp:include>
+<link rel="stylesheet" type="text/css" href="{$tplpath}style.css?v1.0.5"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}yiku.css"/>
+
+<script type="text/javascript" src="{$webpath}views/js/jquery.js"></script>
+<script type="text/javascript" src="{$webpath}views/js/system.js"></script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
+
+ <?php 
+ session_start();                                   //用于在$_SESSION中获取验证码的值
+?>
+
+<script type="text/javascript">
+	// 增加手机号验证
+	$(document).ready(function() {
+	});
+	
+	var res="0";
+	var bool="0";
+	function getNumber(o){
+		var mobilePhone = document.getElementById("mobilePhone").value;
+		var code = document.getElementById("imgVerifyCode").value;
+		if (code != "") {
+			var mo = /^[\u4e00-\u9fa5]+$/;
+			if (!mo.test(code)) {
+                alert("请填写图片中正确的汉字");
+                changeImg();
+				return false;
+            }
+		} else {
+			alert("请输入图形验证码");
+			changeImg();
+			return false;
+		}		
+
+		var bool="0";
+		if(checkmobile()){
+			bool="1";
+		}
+		if(res=="1"&&bool=="1"){
+			$.ajax({
+				type : "post",
+				url : "web_getCodeNew.xhtml",
+				dataType : "json",
+				data : {
+					'mobilePhone' : mobilePhone,
+					'code' : code
+				},
+				async : true,
+				success : function(data) {
+					if(data){
+						if(data[0] == "200"){
+							bool = "1";
+							document.getElementById("send").innerHTML="验证码信息已发送到"+mobilePhone+"请查收";
+							time(o);							
+						}else if(data[0] == "-1"){
+							alert("图形验证码不正确，请重新输入");
+					//		time(o);
+							bool="0"
+							changeImg();
+							return false;							
+						}else if(data[0] == "-2"){
+							alert("这个手机号今天已经超过请求次数，请明天再试");
+						//	time(o);
+							bool="0"
+							changeImg();
+							return false;								
+						}else{
+							alert("验证码发送失败，请确认手机号码的正确或稍后再试");
+						//	time(o);
+							bool="0"
+							changeImg();							
+							return false;							
+						}	
+					}else{
+						alert("验证码发送失败，请确认手机号码的正确或稍后再试");
+					//	time(o);
+						bool="0"
+						changeImg();
+						return false;						
+					}
+					
+					/*
+					if (data && data[0] == "200") {
+						bool="1";
+						document.getElementById("send").innerHTML="验证码信息已发送到"+mobilePhone+"请查收";
+						time(o);
+					} else {
+						alert("验证码发送失败，请确认手机号码的正确或稍后再试");
+						time(o);
+						bool="0"
+						return false;
+					}
+					*/
+				},
+				buttons : $("#button"),
+				error : function(jqXHR, textStatus, errorThrown) {
+					///alert("服务器没有返回数据，可能服务器忙，请重试");
+				},
+				onError : "",
+				onWait : ""
+			});
+		}
+	}
+	
+	/**
+	 * 验证手机号码
+	 */
+	function checkmobile(){
+		var mobilePhone = document.getElementById("mobilePhone").value;
+		if (mobilePhone != "") {
+			var mo = /^1[3|4|5|8][0-9]{9}?$/;
+			if (!mo.test(mobilePhone)) {
+                alert("请填写正确的手机号码");
+				return false;
+            }
+		} else {
+			alert("请输入手机号码");
+			return false;
+		}
+		$.ajax({
+			type : "post",
+			url : "web_isRegMobile.xhtml",
+			dataType : "json",
+			data : {
+				'mobile' : mobilePhone
+			},
+			async : true,
+			success : function(data) {
+				if (data && data[0] == "1") {
+					res="1";
+					return true
+				} else {
+					alert("该手机号码已绑定，请直接登录");
+					res="0";
+					 ///document.getElementById("mobilePhone").focus();
+					return false;
+				}
+			},
+			buttons : $("#button"),
+			error : function(jqXHR, textStatus, errorThrown) {
+				///alert("服务器没有返回数据，可能服务器忙，请重试");
+			},
+			onError : "",
+			onWait : ""
+		})
+		return true
+	}
+	
+	/**
+	 * 到下一步
+	 */
+	function nexttr(){
+		var mobilePhone = document.getElementById("mobilePhone").value;
+		
+		if (!checkmobile()) {
+			return false;
+		}
+		
+		if((verifyCode!="") && (imgVerifyCode != "")){
+			$.ajax({
+				type : "post",
+				url : "web_exeCode.xhtml",
+				dataType : "json",
+				data : {
+					'mobilePhone' : mobilePhone
+				},
+				async : true,
+				success : function(data) {
+					if (data && data[0] == "200") {
+						res="1";
+						document.forms["resForm"].submit();
+						return true;
+					} else {
+						res="0";
+						alert("短信验证码输入有误,请确认");
+						return false;
+					}
+				},
+				buttons : $("#button"),
+				error : function(jqXHR, textStatus, errorThrown) {
+					///alert("服务器没有返回数据，可能服务器忙，请重试");
+				},
+				onError : "",
+				onWait : ""
+			})
+		}
+	}
+	
+	/**
+	*  注册
+	 **/ 
+	 function check(){
+		 var username = document.getElementById("user_name");
+		 var password = document.getElementById("password");
+		 var verifycode = document.getElementById("verifycode");
+		 var email = document.getElementById("email");
+		
+		 if((username.value == null) || (username.value == "")){
+			 alert("用户名不能为空");
+			// username.fouce();
+			 return false;
+		 }
+		 
+		 if((password.value == null) || (password.value == "")){
+			 alert("密码不能为空")
+			// password.fouce();
+			 return false;
+		 }
+		 
+		 if((verifycode.value == null) || (verifycode.value == "")){
+			 alert("请输入图片验证码");
+			 return false;
+		 }
+		 
+		 if((email.value == null) || (email.value == "")){
+			 alert("请输入邮箱");
+			 return false;
+		 }
+		 return true;
+	}
+	 
+	 
+	//点击换一张验证码
+	function changeImg() {
+
+		var imgSrc = document.getElementById("imageCode");
+	    var src = imgSrc.src; 
+	    var newSrc = chgUrl(src);
+	    imgSrc.src = newSrc;  
+	}
+	
+	//时间戳   
+	//为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳   
+	function chgUrl(url) {
+		var timestamp = (new Date()).valueOf();
+		url = url + "/timestamp/" + timestamp;   
+		return url;
+	}
+</script>
+</head>
+
+<body>
+<include file="header" />
+<div class="width1000">
+	<div class="sub_breadcrumb_nav">
+    	
+    </div>
+    <div class="sub_main">
+    	<div class="sub_main_title">用户注册</div>
+    	<form action="?s=Login/Register_do/webpath{$webpath}" method="post" name="resForm"
+				id="resForm" autocomplete="off" onsubmit="return check()">
+    	<div class="sub_content pad_tb">
+        	<div class="form546" style="margin-top:20px;">
+            	<ul>
+                	<li>
+                    	<div class="form546_title"><span class="fc_red">*</span>用户名：</div>
+                        <div class="lfloat">
+                        	<input type="text" id="user_name" name="user_name" class="radius5 width416" onblur="checkmobile()"/>
+                        </div>
+                        <div class="clra"></div>
+                        <div class="form546_ts" id="tip">用户名必须以6-20位的字母，数字或下划线组成</div>
+                        <div class="verify_div">
+                        	<div id="mobilePhoneTip" ></div>
+                        </div>
+                    </li>
+                	<li>
+                    	<div class="form546_title"><span class="fc_red">*</span>密&nbsp;&nbsp;码：</div>
+                        <div class="lfloat">
+                        	<input type="password" id="password" name="password" class="radius5 width416" />
+                        </div>
+                        <div class="clra"></div>
+                        <div class="form546_ts" id="tip">密码请使用4_16位字母数字或下划线组成</div>
+                        <div class="verify_div">
+                        	<div id="mobilePhoneTip" ></div>
+                        </div>
+                    </li>       
+               		<li>
+                    	<div class="form546_title"><span class="fc_red">*</span>邮&nbsp;&nbsp;箱：</div>
+                        <div class="lfloat">
+                        	<input type="text" id="email" name="email" class="width416 radius5" />
+                        </div>
+                        <div class="clra"></div>
+                        <div class="form546_ts" id="tip">邮箱用来找回密码并且作为登陆账号</div>
+                        <div class="verify_div">
+                        	<div id="mobilePhoneTip" ></div>
+                        </div>
+                    </li>                                  
+                	<li>
+                    	<div class="form546_title"><span class="fc_red">*</span>图片验证码：</div>
+                        <div class="upload_img3 mtop5">
+                        	<div class="rupload5">
+	                        	<input type="text" id="verifycode" name="verifycode" class="radius5" />
+								<img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/>   
+							</div> 
+	                        <div class="clra"></div>
+	                        <div class="form546_ts" id="tip">请填写图片中的字母</div>
+	                        <div class="verify_div">
+	                        	<div id="mobilePhoneTip" ></div>
+	                        </div>							                	
+                        </div>
+                    </li>     
+                </ul>
+            </div>
+            
+            <div class="line1_div tlc">
+            	<input type="submit" value="注册" class="green_btn1 radius5" onclick="check()"/>
+            </div>
+            <div class="clra"></div>      
+            <div class="have_user">已有帐号，<a href="?s=Login/Login">点此登录</a></div>
+        </div>
+        </form>
+    </div>
+    <include file="footer" />
+</div>
+
+</body>
+</html>

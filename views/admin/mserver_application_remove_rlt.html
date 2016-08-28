@@ -1,0 +1,14 @@
+<?php
+include '../auth/authorize.php';
+include "application_client_func.php";
+
+$app  = @$_REQUEST["app"];
+
+$ret  = remove_application($app);
+if($ret===TRUE)
+{
+	header("Location: applications.php?from=remove&rlt=ok");
+}
+
+header("Location: applications.php?from=remove&rlt=error");
+?>

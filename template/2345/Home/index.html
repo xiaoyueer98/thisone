@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<link href="/template/2345/css/global.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/video.common.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/2345/js/xquery2.20.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/libnew.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/common.min.js"></script>
+<script type="text/javascript" src="/template/default/js/jquery.js"></script>
+<script type="text/javascript" src="/template/2345/js/topFuc.130115.js"></script>
+<script type="text/javascript">
+var ie6Load=false;
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<script type="text/javascript" src="/template/2345/js/xtop.nav.min.js"></script>
+<include file="header" />
+
+<div class="main">
+	<div class="row">
+        <div class="videoFocus clearfix m10" id="videoFocus">
+            <a href="javascript:void(000);" onclick="return false;" target="_self" id="videoFocus_Left_Btn" class="pngMap btnLeft"></a>
+            <div id="videoFocus_Con" class="videoFocusPicCon">
+                <div id="focusA" style="width:9999px">
+					<div id='focus'>
+                    <ul>
+                    
+                    	<gxcms name="slide" fid="1" order="oid asc">
+                       	 <li>
+                       		<div class="pngMap focusPic">
+                       			<img src="{$slide.picurl}" width="168" height="224" alt="{$slide.title}">
+                       			<i class="pngMap picHoverBg"><a href="{$slide.link}" target="_blank"></a></i>
+                     		</div>
+                       		<span class="sTit">
+	                       		<a href="{$slide.link}" target="_blank" title="{$slide.title}">
+	                       			{$slide.title}
+	                       		</a>
+                       		</span>
+                       	</li>
+                        </gxcms>
+                        
+                      </ul>
+					</div>
+                    
+                    
+                    
+                </div>
+            </div>
+            <a href="javascript:void(111);" onclick="return false;" target="_self" id="videoFocus_Right_Btn" class="pngMap btnRight"></a>
+        </div>
+	</div>
+    
+    <!-- movie start -->
+    <div class="mod_z m10 clearfix">
+    	<div class="col_a">
+        	<div class="mod_a" id="slideA">
+            	<div class="th_a"><a href="{:get_channel_name(1,'showurl')}" target="_blank" class="aMark" title="好看的电影" id="movie"><span class="sMark">电影</span></a><a href="{:get_channel_name(1,'showurl')}" class="aMore">更多>></a>
+            	<p class="pTabList" id="slideA_Tab">
+                
+          <a rel="nofollow" href="javascript:void(10.1);" target="_self" class="selected" >最新</a><i></i>
+          <gxcms name="menu" ids="1">
+            <gxfor name="menu.son" id="menuson"> <a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></gxfor>
+          </gxcms>
+            	  </p>
+            	</div>
+                <div class="tb_a">
+                	<div id="slideA_Con">
+                    <div>
+                    	                    	<div class="slideCon" name="movie_tab_content" id="movie_tab_content_5" >
+                        <ul class="ul_picTxtA ulPic_widthA clearfix">
+                        	         
+                                <gxcms name="video" cid="1" limit="15" order="addtime desc">               	                           
+                                <li>
+                                <div class="pic">
+                                    <img src="{$video.picurl}" width="110" height="147" loadsrc="{$video.picurl}" alt="{$video.title}">
+                                    <i class="iTxt"><i class="iTxtBg"></i><span class="sTime"><em class="left"></em><em class="right">{$video.year}</em></span></i>
+                                    <i class="pngMap picHoverBg"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}"></a></i>
+                                </div>
+                                <span class="sName"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></span>
+                                <span class="sDes">{$video.actor}</span>
+                            </li>
+                            </gxcms>
+                            
+                                                  </ul>
+                                                  
+                        <ul class="ul_txtA ulTxt_widthA clearfix">
+                        <gxcms name="video" limit="15,10" order="addtime desc">  
+                        	                        		                    	<li><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></li>
+                         </gxcms>                                                           
+
+                    	                    	  </ul>
+                    	</div>
+                        
+                      </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col_b">
+        	<div class="mod_c">
+            	<div class="th_c"><span class="sMark">电影分类</span></div>
+                <div class="tb_c">
+                	<dl class="videoSortList clearfix">
+                		                    	<dt>按类型</dt>
+                        <dd>
+                        
+                <?php
+                 $dystypetag = gettypetag(1);
+                ?>
+                <volist name="dystypetag" id="item">
+                        <span><a rel="nofollow" href="{:getstypetaglink(1,$item['m_cid'])}" target="_blank">{$item.m_name}</a></span>  
+                </volist> 
+                        
+                        
+                        
+                                                                                                                
+                      </dd>
+                                  
+                                            	<dt>按地区</dt>
+                        <dd>
+                        
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/内地" target="_blank">内地</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/香港" target="_blank">香港</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/台湾" target="_blank">台湾</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/韩国" target="_blank">韩国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/美国" target="_blank">美国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/泰国" target="_blank">泰国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/日本" target="_blank">日本</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/其他" target="_blank">其他</a></span> 
+
+
+                      </dd>
+                                            	<dt>按年代</dt>
+                        <dd>
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2013" target="_blank">2013</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2012" target="_blank">2012</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2011" target="_blank">2011</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2010" target="_blank">2010</a></span> 
+                      </dd>
+                                            	<dt>按明星</dt>
+                        <dd>
+                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/舒淇" target="_blank">舒淇</a></span>
+                        	                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/赵奕欢" target="_blank">赵奕欢</a></span>
+                        	                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/刘德华" target="_blank">刘德华</a></span>
+                        	                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/成龙" target="_blank">成龙</a></span>
+                      </dd>
+                  </dl>
+                </div>
+                <div class="th_c"><span class="sMark"><a href="/index.php?s=top10">电影排行榜</a></span><a href="/index.php?s=top10" class="aMore" rel="nofollow" rel="nofollow">更多排行>></a></div>
+                <div class="tb_c">
+                	<ul class="ul_rank ulTxt_widthB clearfix">
+                    <gxcms name="video" cid="1" limit="15" order="hits desc">
+                	 <li><i <if condition="$i lt 4">class="iFirst"</if>>{$i}</i><a rel="nofollow" href="{$video.showurl}" target="_blank" title="{$video.title}">{$video.title|get_replace_html=0,14}</a><span class="sScore"><em>{$video.hits}</em></span></li>
+                  	</gxcms>
+                    </ul>                              	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                        </ul>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="mod_bottom"></div>
+    <!-- movie end -->
+    <!-- 广告ad start -->
+    <div class="ekucmsad">
+        {:get_cms_ads('inde_960_90')}
+	</div>
+    <!-- 广告ad end -->
+    
+    <!-- tv start -->
+    <div class="mod_z m5 clearfix">
+    	<div class="col_a">
+        	<div class="mod_a" id="slideB">
+            	<div class="th_a">
+            		<a href="{:get_channel_name(2,'showurl')}" target="_blank" class="aMark" title="好看的电视剧" id="tv">
+            			<span class="sMark">电视剧</span>
+            		</a>
+            		<a href="{:get_channel_name(2,'showurl')}" class="aMore">更多>></a>
+            		<p class="pTabList" id="slideB_Tab">
+                    
+          <a rel="nofollow" href="javascript:void(10.1);" target="_self" class="selected" >最新</a><i></i>
+          <gxcms name="menu" ids="2">
+            <gxfor name="menu.son" id="menuson"> <a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></gxfor>
+          </gxcms>
+                    
+                    
+           		  </p>
+            	</div>
+                <div class="tb_a">
+                	<div id="slideB_Con">
+                    <div>
+                    	                        <div class="slideCon" id="tv_tab_content_1" name="tv_tab_content" >
+                            <ul class="ul_picTxtA ulPic_widthA clearfix">
+
+
+                                <gxcms name="video" cid="2" limit="15" order="addtime desc">               	                           
+                                <li>
+                                <div class="pic">
+                                    <img src="{$video.picurl}" width="110" height="147" loadsrc="{$video.picurl}" alt="{$video.title}">
+                                    <i class="iTxt"><i class="iTxtBg"></i><span class="sTime"><em class="right"><if condition="$video.serial gt 0">更新至{$video.serial}集
+                        <else />
+                        完结</if></em></span></i>
+                                    <i class="pngMap picHoverBg"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}"></a></i>
+                                </div>
+                                <span class="sName"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></span>
+                                <span class="sDes">{$video.actor}</span>
+                            </li>
+                            </gxcms>
+
+
+
+                                               	  </ul>
+                            <ul class="ul_txtA ulTxt_widthA clearfix">
+                            
+                        <gxcms name="video" cid="2" limit="15,10" order="addtime desc">  
+                        	                        		                    	<li><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></li>
+                         </gxcms>                                                           
+                            
+                            
+                                                  </ul>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col_b">
+        	<div class="mod_c">
+            	<div class="th_c"><span class="sMark">电视剧分类</span></div>
+                <div class="tb_c">
+                	<dl class="videoSortList clearfix">
+                    	                    	<dt>按类型</dt>
+                        <dd>
+                <?php
+                 $dystypetag = gettypetag(2);
+                ?>
+                <volist name="dystypetag" id="item">
+                        <span><a rel="nofollow" href="{:getstypetaglink(1,$item['m_cid'])}" target="_blank">{$item.m_name}</a></span>  
+                </volist> 
+                      </dd>
+                                            	<dt>按地区</dt>
+                        <dd>
+                        
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/内地" target="_blank">内地</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/香港" target="_blank">香港</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/台湾" target="_blank">台湾</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/韩国" target="_blank">韩国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/美国" target="_blank">美国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/泰国" target="_blank">泰国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/日本" target="_blank">日本</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/其他" target="_blank">其他</a></span> 
+                        
+                      </dd>
+                                            	<dt>按年代</dt>
+                        <dd>
+                        
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2013" target="_blank">2013</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2012" target="_blank">2012</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2011" target="_blank">2011</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2010" target="_blank">2010</a></span> 
+                        
+                      </dd>
+                                            	<dt>按明星</dt>
+                        <dd>
+                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/张根硕" target="_blank">张根硕</a></span>
+                        	                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/陈浩民" target="_blank">陈浩民</a></span>
+                        	                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/杨幂" target="_blank">杨幂</a></span>
+                        	                        	                        	                        	<span><a rel="nofollow" href="/index.php?s=video/search/actor/唐嫣" target="_blank">唐嫣</a></span>
+                      </dd>
+                  </dl>
+                </div>
+                <div class="th_c"><span class="sMark"><a href="/index.php?s=top10">电视剧排行榜</a></span><a href="/index.php?s=top10" class="aMore" rel="nofollow">更多排行>></a></div>
+                <div class="tb_c">
+                	<ul class="ul_rank ulTxt_widthB clearfix">
+                        <gxcms name="video" cid="2" limit="15" order="hits desc">
+                         <li><i <if condition="$i lt 4">class="iFirst"</if>>{$i}</i><a rel="nofollow" href="{$video.showurl}" target="_blank" title="{$video.title}">{$video.title|get_replace_html=0,14}</a><span class="sScore"><em>{$video.hits}</em></span></li>
+                        </gxcms>
+                  	</ul>                               	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bottom"></div>
+    <!-- tv end -->
+    
+    <!-- subjects start -->
+    <div class="mod_d m5">
+    	<div class="th_d">
+        	<span class="sMark">影视专题</span>
+        	<span class="right">
+            <gxcms name="special" limit="7" order="hits desc">
+                <a  href="{$special.readurl}" target="_blank">{$special.title}</a>
+            </gxcms>
+         		<a href="/index.php?s=special/lists" class="aMore" rel="nofollow">更多专题>></a>
+        	</span>
+        </div>
+        <div class="tb_d" id="slideF_Con">
+        	<ul class="ul_picA ulPic_widthC clearfix">
+            
+            <gxcms name="special" limit="8" order="addtime desc">
+        		<li ><a  href="{$special.readurl}" target="_blank"><img src="{$special.logo}" loadsrc="{$special.logo}" width="168" height="90">{$special.title}</a></li>
+            </gxcms>
+            
+          
+          </ul>
+        </div>
+    </div>
+    <div class="mod_bottom"></div>
+    <div class="mod_z m5 clearfix">
+    	<div class="col_a">
+        	<div class="mod_a" id="slideC">
+            	<div class="th_a"><a href="{:get_channel_name(3,'showurl')}" target="_blank" class="aMark" title="好看的动漫"><span class="sMark" id="comic">动漫</span></a><a href="{:get_channel_name(3,'showurl')}" class="aMore">更多>></a>
+            	</div>
+                <div class="tb_a">
+                	<div id="slideC_Con">
+                    <div>
+                    	                        <div class="slideCon" id="comic_tab_content_42" name="comic_tab_content" >
+                        <ul class="ul_picTxtA ulPic_widthA clearfix" >
+                                       					                           
+                                                                                   
+                                <gxcms name="video" cid="3" limit="15" order="addtime desc">               	                           
+                                <li>
+                                <div class="pic">
+                                    <img src="{$video.picurl}" width="110" height="147" loadsrc="{$video.picurl}" alt="{$video.title}">
+                                    <i class="iTxt"><i class="iTxtBg"></i><span class="sTime"><em class="right"><if condition="$video.serial gt 0">更新至{$video.serial}集
+                        <else />
+                        完结</if></em></span></i>
+                                    <i class="pngMap picHoverBg"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}"></a></i>
+                                </div>
+                                <span class="sName"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></span>
+                                <span class="sDes">{$video.actor}</span>
+                            </li>
+                            </gxcms>
+                            
+                            
+                            
+                                       					           					                            <li>
+       					                          </ul>
+                        </div>
+                        
+                        
+                      </div>
+                    </div>
+
+                    <div class="mod_b paddingB" id="slideF">
+                        <div class="tb_b" id="slideG_Con">
+                        	<div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col_b">
+        	<div class="mod_c">
+            	<div class="th_c"><span class="sMark">动漫分类</span></div>
+                <div class="tb_c">
+                	<dl class="videoSortList clearfix">
+                    	                    	<dt>按类型</dt>
+                        <dd>
+                        
+                <?php
+                 $dystypetag = gettypetag(3);
+                ?>
+                <volist name="dystypetag" id="item">
+                        <span><a rel="nofollow" href="{:getstypetaglink(1,$item['m_cid'])}" target="_blank">{$item.m_name}</a></span>  
+                </volist> 
+                        
+                        
+                        
+                      </dd>
+                                            	<dt>按地区</dt>
+                        <dd>
+                        
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/内地" target="_blank">内地</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/香港" target="_blank">香港</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/台湾" target="_blank">台湾</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/韩国" target="_blank">韩国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/美国" target="_blank">美国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/泰国" target="_blank">泰国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/日本" target="_blank">日本</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/其他" target="_blank">其他</a></span> 
+                        
+                        
+                        
+                      </dd>
+                                            	<dt>按年代</dt>
+                        <dd>
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2013" target="_blank">2013</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2012" target="_blank">2012</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2011" target="_blank">2011</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2010" target="_blank">2010</a></span> 
+                      </dd>
+                  </dl>
+                </div>
+                <div class="th_c paddingC"><span class="sMark"><a href="/index.php?s=top10">动漫排行榜</a></span><a href="/index.php?s=top10" class="aMore" rel="nofollow">更多排行>></a></div>
+                <div class="tb_c">
+                	<ul class="ul_rank ulTxt_widthB clearfix">
+                        <gxcms name="video" cid="3" limit="15" order="hits desc">
+                         <li><i <if condition="$i lt 4">class="iFirst"</if>>{$i}</i><a rel="nofollow" href="{$video.showurl}" target="_blank" title="{$video.title}">{$video.title|get_replace_html=0,14}</a><span class="sScore"><em>{$video.hits}</em></span></li>
+                        </gxcms>
+                    </ul>               		                    	                		                    	                		                    	                		                    	                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bottom"></div>
+	<!-- comic end -->    
+    
+    <div class="ekucmsad">
+        {:get_cms_ads('inde_960_90_2')}
+	</div>
+    <!-- 广告ad end -->
+    
+    <!-- banner2 start -->
+    <!-- <div class="ivy1000"><img src="/images/upload/file/c48b1399943d4c43c002f98c9a13d318.jpg" width="1000" height="90"></div> -->
+    <!-- banner2 end -->
+    
+    <!-- variety start -->
+    <div class="mod_z m10 clearfix">
+    	<div class="col_a">
+        	<div class="mod_a" id="slideD">
+            	<div class="th_a"><a href="{:get_channel_name(4,'showurl')}" target="_blank" class="aMark" title="好看的娱乐节目" id="variety"><span class="sMark">综艺</span></a><a href="{:get_channel_name(4,'showurl')}" class="aMore" rel="nofollw">更多>></a>
+           		</div>
+                <div class="tb_a">
+                	<div id="slideD_Con">
+                    <div>
+                    	                		<div class="slideCon" id="variety_tab_content_20" name="variety_tab_content" >
+                        <ul class="ul_picTxtA ulPic_widthA clearfix">
+                                <gxcms name="video" cid="4" limit="10" order="addtime desc">               	                           
+                                <li>
+                                <div class="pic">
+                                    <img src="{$video.picurl}" width="110" height="147" loadsrc="{$video.picurl}" alt="{$video.title}">
+                                    <i class="iTxt"><i class="iTxtBg"></i><span class="sTime"><em class="right"><if condition="$video.serial gt 0">更新至{$video.serial}期
+                        <else />
+                        完结</if></em></span></i>
+                                    <i class="pngMap picHoverBg"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}"></a></i>
+                                </div>
+                                <span class="sName"><a rel="nofollow" href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title}</a></span>
+                                <span class="sDes">{$video.actor}</span>
+                            </li>
+                            </gxcms>
+						                          </ul>
+                                                  
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col_b">
+        	<div class="mod_c">
+            	<div class="th_c"><span class="sMark">热门综艺</span></div>
+                <div class="tb_c">
+                	<p class="pHotLabel clearfix">
+                        <gxcms name="video" cid="4" limit="10" order="score desc">
+                			<a href="{$video.showurl}" target="_blank">{$video.title|get_replace_html=0,8}</a>
+                        </gxcms>
+                    
+                    
+               	  </p>
+                </div>
+                <div class="th_c"><span class="sMark"><a href="/index.php?s=top10">综艺排行榜</a></span></div>
+                <div class="tb_c">
+                	<ul class="ul_rank ulTxt_widthB clearfix">
+                        <gxcms name="video" cid="4" limit="10" order="hits desc">
+                         <li><i <if condition="$i lt 4">class="iFirst"</if>>{$i}</i><a rel="nofollow" href="{$video.showurl}" target="_blank" title="{$video.title}">{$video.title|get_replace_html=0,14}</a><span class="sScore"><em>{$video.hits}</em></span></li>
+                        </gxcms>
+                    </ul>
+                  	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                    	                                        </ul>
+                </div>
+            </div>
+            
+            <!-- <div class="ivy208"><a href=""><img src="" width="208" height="60"></a></div> -->
+        </div> 
+    </div>
+    <div class="mod_bottom"></div>
+    <!-- variety end -->  
+<style>
+.yq{ width:998px; height:auto; border:1px #CDCDCD solid; overflow:hidden; margin-top:10px; background-color:#FFF;}
+.bg1{ background:url(images/bg4.jpg) repeat-x; width:956px; height:auto; margin-left:1px; margin-top:1px; overflow:hidden;}
+.yq h1{ width:auto; height:24px; line-height:24px; font-size:14px; padding-left:18px; padding-top:5px;}
+.yq1{ width:996px; height:auto; line-height:24px; padding-left:2px; padding-bottom:10px; padding-top:3px;}
+.yq1 a{ margin-left:15px; color:#245fb3;}
+.yq1 a:hover{ text-decoration:underline;}
+
+</style>  
+  
+    <div class="yq">
+   	<div class="bg1">
+    	<h1>友情链接</h1>
+        <div class="yq1">
+        <gxcms name="link" limit="100" order="type asc,oid desc">
+        	<a href="{$link.url}" target="_blank">{$link.title|get_replace_html=0,8}</a>
+       </gxcms>
+       <div class="clear"></div>
+        </div>
+    </div>
+    </div>    
+    
+</div>
+
+
+<include file="footer" />
+
+
+
+
+<script type="text/javascript" src="/template/2345/js/default.min.js?v=14"></script>
+
+</body>
+</html>

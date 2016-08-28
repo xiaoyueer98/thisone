@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>群组管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js"></script>
+</head>
+<body>
+<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+<form action="?s=Admin/Videoplaywhitelist/Add" method="post" id="gxform" name="gxform">
+
+<input type="hidden" name="id" id="id" value="{$id}" />
+<input type="hidden" name="tid" id="tid" value="{$tid}" />
+<input type="hidden" name="title" id="title" value="{$title}" />
+<input type="hidden" name="cid" id="cid" value="{$cid}" />
+<input type="hidden" name="channel_id" id="channel_id" value="{$channel_id}" />
+<input type="hidden" name="actor" id="actor" value="{$actor}" />
+<input type="hidden" name="inputer" id="inputer" value="{$inputer}" />
+<input type="hidden" name="starttime" id="starttime" value="{$starttime}" />
+<input type="hidden" name="endtime" id="endtime" value="{$endtime}" />
+<input type="hidden" name="picurl" id="picurl" value="{$picurl}" />
+<input type="hidden" name="content" id="content" value="{$content}" />
+<input type="hidden" name="title" id="title" value="{$title}" />
+<input type="hidden" name="channel_mcid" value="{$channel_mcid}" />
+
+<tr class="table_title">
+	<td colspan="12">添加可观看群组 
+		<span class="fr">  
+		<!--  
+	   		<a href="?s=Admin/Videopushwhitelist/Show/vid/{$vid}/tid/{$tid}" class="no">返回</a>
+	   	-->
+	   	<input type="submit" value="返回" class="bginput" onclick="gxform.action='?s=Admin/Videopushwhitelist/Show';" />
+	   	</span>		
+	</td>
+</tr>
+<tr class="tr">
+<td colspan="11">搜索用户&nbsp;<input onFocus="this.value=''" type="text" name="kd" id="kd" size="35" maxlength="50" value="{$kd|urldecode|default='可搜索(用户名,email)'}" style="color:#999;"> <input type="submit" value="搜索" class="bginput"/></td>
+</tr>  
+<tr class="list_head ct">
+  <td width="60">ID</td>
+  <td >用户名称</td>
+  <td width="100">注册时间</td>
+  <td width="80">状态</td>
+</tr>
+<volist name="list_user" id="gxcms">
+<tr class="tr ct">
+  <td align="left"><input name="ids[]" type="checkbox" value="{$gxcms.id}" class="noborder">{$gxcms.id}</td>
+  <td align="left">{$gxcms.username|htmlspecialchars}</td>
+  <td style="padding:0px">{$gxcms.jointime|date='Y-m-d',###}</td>
+  <td style="padding:0px"><eq name="gxcms['status']" value="1">正常<else />锁定</eq></td>
+</tr>
+</volist> 
+<tr class="tr pages"><td colspan="12">{$listpages}</td></tr>
+<tr class="tr">
+	<td colspan="12">
+		<input type="button" id="checkall" value="全/反选" class="bginput"> 
+		<input type="submit" value="批量添加" onClick="gxform.action='?s=Admin/Videopushwhitelist/Addo';" class="bginput"/>
+	</td>
+</tr> 
+</form>
+</table>
+<include file="footer" />
+</body>
+</html>

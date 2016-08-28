@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>乐见--用户注册</title>
+<meta name="keywords" content="乐见" />
+<meta name="description" content="乐见" />
+<jsp:include page="../webpage/jq_css.jsp" ></jsp:include>
+<link rel="stylesheet" type="text/css" href="../webpage/css/form.css"/>
+<link type="text/css" rel="stylesheet" href="../uploadify/uploadify.css" />
+<script type="text/javascript" src="../webpage/js/validator/formValidator.js"></script>
+<script type="text/javascript" src="../webpage/js/validator/formValidatorRegex.js"></script>
+<script type="text/javascript" src="../uploadify/swfobject.js"></script>
+<script type="text/javascript" src="../uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<link rel="stylesheet" href="../editor/themes/default/default.css" />
+
+</head>
+
+<body>
+<jsp:include page="../webpage/top.jsp" ></jsp:include>
+
+<div class="width1000">
+	<div class="sub_breadcrumb_nav">
+    	<i class="fa fa-home"></i>当前位置：<a href="#">用户注册</a>
+    </div>
+    <div class="sub_main">
+    <form action="web_dr.xhtml" method="post" name="resForm"
+				id="resForm" autocomplete="off">
+    	<div class="sub_main_title">用户注册</div>
+    	<div class="sub_content pad_tb">
+        	<div class="form550">
+            	<ul>
+                	<li>
+                    	<div class="form550_title"><span class="fc_red">*</span>昵称：</div>
+                        <div class="lfloat">
+                        	<input type="text" class="width450 radius5" name="un" id="un"/>
+                        	<input
+							type="hidden" id="mobilePhone" name="mobilePhone" value="${mobilePhone}"/>
+                        </div>
+                        <div class="clra"></div>
+                        <div class="verify_div1" style="margin-left:92px;">
+                        	<div id="unTip" ></div>
+                        </div>
+                    </li>
+                    <li>
+                    	<div class="form550_title"><span class="fc_red">*</span>密码：</div>
+                        <div class="lfloat">
+                        	<input type="text" class="width450 radius5" name="ls" id="ls" /> 	
+                        </div>
+                        <div class="clra"></div>
+                        <div class="verify_div1" style="margin-left:92px;">
+                        	<div id="lsTip" ></div>
+                        </div>
+                    </li>
+                    <li>
+                    	<div class="form550_title">性别：</div>
+                        <div class="lfloat">
+                        	<select class="form550_select radius5" name="us">
+                                <option value="1">男</option>
+                                <option value="0">女</option>
+                            </select>
+                        </div>
+                        <div class="clra"></div>
+                        <div class="verify_div">&nbsp;</div>
+                    </li>
+                    <li>
+                    	<div class="form550_title">年龄：</div>
+                        <div class="lfloat">
+                        	<input type="text" id="age" class="width450 radius5" name="age"/>
+                        </div>
+                        <div class="clra"></div>
+                        <div class="verify_div">&nbsp;</div>
+                    </li>
+                    <li>
+                    	<div class="form550_title"><span class="fc_red">*</span>用户头像：</div>
+                        <div class="upload_img2 mtop5">
+                        	<img src="../webpage/images/no_img/128.jpg" height="128px" width="128px" id="img"/>
+                            <div class="rupload2">	
+                            <input type="text" id="fileName"  class="radius5_l"  style="background-color:#FFF;border-right:none;width:209px;"/>
+							<input type="file" name="uploadify" id="uploadify" class="upload_btn1 radius5_r" />
+							<div id="fileQueue" class="test1"></div> 
+							<input id="attach" name="attach" type="" class="radius5_l"  style="display:none;background-color:#FFF;border-right:none;width:209px;" />
+							<input type="hidden" id="attachName" name="attachName" class="radius5_l"  style="background-color:#FFF;border-right:none;width:209px;"/>
+							<!--  -->
+                                <div class="clr upload_img1_ts2 fc_grey8">
+                                	图片格式：仅支持JPG、JPEG、PNG格式（100KB以下）<br />图片尺寸：128x128像素以内
+                                </div>
+                                <div class="verify_div">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="clra"></div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="line1_div tlc">
+            	<input type="button" value="完成注册" class="green_btn1 radius5" onclick="sub()"/>
+            </div>
+            <div class="clra"></div>
+                
+            <div class="have_user">已有帐号，<a href="#">点此登录</a></div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<jsp:include page="../webpage/bottom.jsp" ></jsp:include>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.formValidator.initConfig({  validatorGroup: "1",formID: "resForm", onError: function () {} });
+	$("#un").formValidator({ validatorGroup: "1", onShow: "2—32个字符可用中文、字母、数字、下划线",onFocus:"2—32个字符可用中文、字母、数字、下划线",onCorrect: "ok" }).inputValidator({min:2,max:32,onError:"2—32个字符可用中文、字母、数字、下划线"}).regexValidator( {
+                        regExp : "^[\u4e00-\u9fa5_a-zA-Z0-9]+$",onError : "只能包含中文、字母、数字、下划线"});
+	$("#ls").formValidator({
+			validatorGroup : "1",
+			onShow : "6—20个英文字母或数字",
+			onFocus : "6—20个英文字母或数字",
+			onCorrect : "ok"
+		}).inputValidator({
+			min : 6,
+			max : 20,
+			onError : "6—20个英文字母或数字"
+		}).regexValidator({
+			regExp : "([a-zA-Z0-9]){6,20}$",
+			onError : "只能填写字母或数字"
+		});
+});
+$("#uploadify").uploadify(
+		{
+			
+			'uploader' : '../uploadify/uploadify.swf?var='
+					+ (new Date()).getTime(),
+			'script' : '../FileUpload.shtml?needRename=true',
+			'cancelImg' : '../uploadify/cancel.png',
+			'folder' : '/user',
+			'queueID' : 'fileQueue',
+			'auto' : true,
+			'method' : 'GET',
+			'multi' : false,
+			'sizeLimit' : 1024 * 100,
+			'fileDesc' : '*.jpg;*.png;*.jpeg',//
+			'fileExt' : '*.jpg;*.png;*.jpeg',//设置 需要过滤的文件后缀名
+			'height' : 38,
+			'width' : 82,
+			'simUploadLimit' : 1,
+			'buttonImg' : '../uploadify/upload_btn.png',//浏览按钮的背景图片
+			'wmode' : 'transparent',//设置该项为transparent 可以使浏览按钮的flash背景文件透明，并且flash文件会被置为页面的最高层   
+			onComplete : function(event, queueID, fileObj, response, data) {
+				var obj = eval('(' + response + ')');
+				$("#attach").val(obj.file);
+				$("#attachName").val(obj.alias);
+				$("#img").attr("src","../FileLook.shtml?path="+obj.file);
+			},
+			onSelect : function(event, queueID, fileObj) {
+
+				/* if ($("#attach").val() == "") {
+					$("#attach").val(fileObj.name);
+				} else {
+					var attpath = $("#attach").val() + "," + fileObj.name;
+					$("#attach").val(attpath);
+				} */
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + " 上传失败");
+				controlButtonStatus(0);
+				$('#uploadify').uploadifyCancel(queueID);
+			}
+		}
+	);
+function sub(){
+	if (!$.formValidator.pageIsValid("1")) {
+			return;
+	}
+	var age=document.getElementById("age").value;
+	var attach=document.getElementById("attach").value;
+	if(age!=""){
+		if(checknumber(age)){
+			alert("年龄只能为整数");
+			return false;
+		}
+		if(parseInt(age)>999){
+			alert("年龄不能大于999");
+			return false;
+		}
+	}
+	if(attach==""){
+		alert("请上传用户头像");
+		return false;
+	}
+	document.getElementById("ls").value=doEncode(document.getElementById("ls").value)
+	//upCss("btn","1");
+	document.forms["resForm"].submit();
+}
+
+function checknumber(String) { 
+		var Letters = "1234567890";
+		var i;
+		var c;
+		for( i = 0; i < String.length; i ++ ) {
+			c = String.charAt( i );
+			if (Letters.indexOf( c ) ==-1) {
+				return true;
+			}
+		}
+		return false;
+	}
+</script>
+</html>

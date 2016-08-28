@@ -1,0 +1,26 @@
+/*分集剧情*/
+.diversityPlot { padding:20px;}
+.sUpdateTips { background:url(/template/2345/images/synopsisMap.png) -586px -239px no-repeat; padding-left:20px; height:20px; line-height:20px; color:#999; display:block}
+.dramaChoice { font-size:13px; line-height:20px; padding:7px 0 0 0}
+.dramaChoice dt { width:68px; float:left; color:#666; height:25px; overflow:hidden}
+.dramaChoice dd { float:left; width:637px; display:inline; margin-top:-3px}
+
+.dramaChoice dd span { width:53px; float:left; line-height:24px; height:24px; overflow:hidden; word-break:break-all; white-space:nowrap;}
+.dramaChoice dd span a { padding:2px 3px}
+.dramaChoice dd span a.cur { background:#539dda; color:#fff}
+.dramaChoice dd span a:hover.cur { color:#fff; text-decoration:none}
+.dramaChoice dd span.end { width:auto; min-width:80px}
+
+
+/*集数*/
+.pNumList { border-top:1px solid #eaeaea; background:#f7f7f7; padding:7px 0 13px 40px}
+.pNumList a { background:url(/template/2345/images/synopsisMap.png) -101px 0 no-repeat; height:28px; width:58px; text-align:center; line-height:28px; color:#666; float:left; margin:10px 4px 0 0; display:inline; text-align:center;}
+.pNumList a:hover { text-decoration:none; background-position:-101px -29px; color:#333}
+.pNumList a.cur { background-position:-101px -58px; color:#fff}
+.pNumList a:hover.cur { color:#fff}
+.pNumList .hasWatched { position:relative}
+.pNumList .iWatched { background:url(/template/2345/images/synopsisMap.png) -160px 0 no-repeat; width:40px; height:16px; overflow:hidden; position:absolute; left:29px; top:-11px; z-index:10}
+
+.actorDiversityPlot .pTit { height:30px; background:url(/template/2345/images/synopsisRepeatMap.png) 0 -63px repeat-x; line-height:30px; width:100%}
+.actorDiversityPlot .pTit span { float:left; height:30px; background:#fff; padding:0 10px; margin-left:38px; display:inline; font-size:14px; font-weight:700; color:#666}
+.actorDiversityPlot .diversityPlot { padding-top:0}

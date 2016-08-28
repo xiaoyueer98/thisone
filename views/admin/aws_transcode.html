@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+	$src_id = randomkeys(16);
+?>
+<head>
+<title>aws 转码</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css?v=1.0.2'>
+
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js?v1.0.4"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		setInterval("startRequest()",1000);
+	});
+	
+	var  tsetup = 0;
+	function start(){
+		tsetup = 1;
+	  	$.ajax({
+			type:'get',
+			url:'?s=Admin/Aws/downloading/bucket/{$bucketname}/filename/{$filename}',
+			success:function(html){
+				
+			}
+		});
+	}
+	
+	function transcode(){
+	  	$.ajax({
+			type:'get',
+			url:'?s=Admin/Aws/transcode_do/filename/{$filename}/src_id/{$src_id}',
+			success:function(html){
+				
+			}
+		});		
+	} 
+	
+	function uploading(){
+	  	$.ajax({
+			type:'get',
+			url:'?s=Admin/Aws/uploading/bucket/{$bucketname}/filename/{$filename}/src_id/{$src_id}/is_transcoded/1',
+			success:function(html){
+				
+			}
+		});			
+	}
+	
+	function startRequest()
+	{
+		
+		if(tsetup == 1){
+			document.getElementById("aws_download").innerHTML = "正在下载文件，请稍等......";
+		  	$.ajax({
+				type:'get',
+				url:'?s=Admin/Aws/Get_download_percent',
+				success:function(data){
+					var d = eval('('+data+')');
+					var n = d.data;
+					if(n != 100){
+						document.getElementById("aws_download").innerHTML = n + "%";
+					}else{
+						tsetup = 2;
+						document.getElementById("aws_download").innerHTML = "文件下载完成";
+						transcode();
+					}
+					
+				}
+			});			
+		}else if(tsetup == 2){
+		  	$.ajax({
+				type:'get',
+				url:'?s=Admin/Aws/Get_transcode_percent/src_id/{$src_id}',
+				success:function(data){
+					var obj = eval('('+data+')');
+					var n = obj.data.progress;
+					var dur = obj.data.duration;
+					var st = obj.data.status;
+					if(st == 1){
+						if(n != "100%"){
+							document.getElementById("aws_transcode").innerHTML = n + "    耗时：" + dur;
+						}else{
+							tsetup = 3;
+							document.getElementById("aws_transcode").innerHTML = "转码完成, 总耗时：" + dur;
+							uploading();
+						}
+					}else{
+						document.getElementById("aws_transcode").innerHTML = "没获取到转码进度信息, 转码正在进行...";
+						if(n == "100%"){
+							tsetup = 3;
+							document.getElementById("aws_transcode").innerHTML = "转码完成";
+							uploading();							
+						}
+					}
+					
+				}
+			});			
+		}else if(tsetup == 3){
+			document.getElementById("aws_upload").innerHTML = "正在上传转码后的文件，请稍等...";
+		  	$.ajax({
+				type:'get',
+				url:'?s=Admin/Aws/Get_upload_percent',
+				success:function(data){
+					var obj = eval('('+data+')');
+					var n = obj.data.percent;
+					var type = obj.data.type;
+					
+					if(type != "done"){
+						document.getElementById("aws_upload").innerHTML = "正在上传" + type + "文件，请稍等...";
+					}else{
+						document.getElementById("aws_upload").innerHTML = "文件上传完成";
+						tsetup = 4;
+					}
+					
+				}
+			});			
+		}
+	}
+	
+	function transcode_config(){
+		var url = "?s=Admin/Config/Conf/id/aws/filename/{$filename}";
+		location.href = url;
+	}
+</script>
+
+</head>
+<body>
+<div style="clear:both;">
+<table width="98%" border="0" cellpadding="5" cellspacing="1" class="table" >
+  <tr>
+    <td colspan="10" class="table_title">
+    	<span class="fl">云存储  转码</span> 
+	   	<span class="fr" style="cursor:pointer;" onclick="start()">开始转码</span>
+	   	<span class="fr" style="cursor:pointer;" onclick="transcode_config()">转码设置</span>
+    </td>
+  </tr>
+  <!-- there are live streams -->	
+  <tr>
+    <td colspan="10" class="table_title">
+    	<span class="fl">第一步       下载</span> 
+    </td>
+  </tr>
+  <tr align="center">
+    <td width="200" id="aws_download"></td>
+  </tr>
+    
+	<!-- there are vod streams -->	
+  <tr >
+    <td colspan="10" class="table_title">
+    	<span class="fl">第二步    转码</span> 
+    </td>
+  </tr>
+  </tr>
+  <tr align="center">
+    <td width="200" id="aws_transcode"></td>
+  </tr>
+		
+		
+  <tr >
+    <td colspan="10" class="table_title">
+    	<span class="fl">第三步   上传</span> 
+    </td>
+  </tr>
+  </tr>
+  <tr align="center">
+    <td width="200" id="aws_upload"></td>
+  </tr>											 				  
+</table>
+<include file="footer" />
+
+</body>
+</html>

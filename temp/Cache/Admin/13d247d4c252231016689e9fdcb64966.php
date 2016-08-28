@@ -1,0 +1,166 @@
+<?php if (!defined('THINK_PATH')) exit();?>﻿
+
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js"></script>
+<script language="javascript" type="text/javascript" charset="utf-8" src="./views/editor/kindeditor.js"></script>
+<script language="javascript" type="text/javascript" charset="utf-8" src="./views/editor/lang/zh_CN.js"></script>
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<!-- 
+<?php
+	if($pageno<=0) 
+		$pageno=1;
+	$nodeList = get_streams($cid, $count, $pageno, $force_update);
+	if($count>0)
+	{
+		$pagecount = ceil(floatval($count)/100.0);
+	}
+?>
+ -->
+ 
+<script type="text/javascript"> 
+
+var mystreams = new Array();
+var stream = new Array();
+
+$(function() {
+	  $("#ckAll").click(function() {
+	    $("input[name='sub']").prop("checked", this.checked);
+	    	var valArr = new Array; 
+	        $("input[name='sub']").each(function(i){ 
+	            if(this.checked) {
+	            	valArr[i] = $(this).val();
+	            } ; 
+	        }); 
+	        var vals = valArr.join(','); 
+	        $("input[name='ids']").prop("value", vals);
+	  });
+	  
+	  $("input[name='sub']").click(function() {
+	    var $subs = $("input[name='sub']");
+	    $("#ckAll").prop("checked" , $subs.length == $subs.filter(":checked").length ? true :false);
+	    var valArr = new Array; 
+	        $("input[name='sub']").each(function(i){ 
+	        	if(this.checked) {
+	            	valArr[i] = $(this).val();
+	           	} 
+	        }); 
+	        var vals = valArr.join(',');
+	        $("input[name='ids']").prop("value", vals);
+	  });
+});
+
+function put_video(){ 
+	// 得到checkbox数组 
+	var elements = document.getElementsByName("ids[]"); 
+	var str = ""; 
+	var i = 0, j = 0;
+	var table=document.getElementById("streamtab");
+	var playurl = new Array();
+	var streams = new Array();
+	
+	// 取得所选择的角色 
+	for(var i=0; i<elements.length; i++){ 
+		if(elements[i].checked){ 
+			playurl[j] = table.rows[i+1].cells[5].innerHTML;
+			streams[j] = table.rows[i+1].cells[1].innerHTML;
+			j++;
+		} 
+	} 
+	
+	parent.getVideo(playurl, streams);
+} 
+
+function clean_video(){
+	parent.cleanVideo();
+}
+</script> 
+ 
+<table width="98%" border="0" cellpadding="5" cellspacing="1" class="table" id="streamtab">
+    <tr align="center" class="list_head">
+      <td width="50">编号</td>
+      <td width="80">视频名</td>
+      <td width="80">类型</td>
+      <td width="80">添加时间</td>
+      <td width="60">时长</td>
+    </tr>
+    
+  <!--  
+	<?php
+		$stream = "";
+		$active = "unknown";
+		$mtime  = "";
+		$paras  = "";
+		if($nodeList===FALSE)
+		{
+			goto ENDMS;
+		}
+		load_app_tags($cid,TRUE);
+		$index = 0;
+	for ($i = 0; $i < $nodeList->length; $i++)
+	{
+		$sub_node = $nodeList->item($i);
+		$stream   = $sub_node->getAttribute('stream');
+		$active   = $sub_node->getAttribute('active');
+		$mtime    = $sub_node->getAttribute('modifytime');
+		$type     = $sub_node->getAttribute('type');
+		$duration = $sub_node->getAttribute('duration');
+		$durtext  = get_duration_readable($duration);
+		$mtime    = get_time_readable($mtime);
+		$seq      = $sub_node->getAttribute('seq');
+		$formats  = $sub_node->getAttribute('formats');
+		//$playurl =  'http://192.168.10.187/sps/'.$cid.'/'.$stream.'.flv';
+		$playurl =  '|||'.$cid.'|'.$stream.'|flv|vod|';
+		 
+		$tag      = get_stream_tag($cid,$stream,-1);
+		$tag_url  = "stream_set_tag.php?application=$cid&stream=$stream&ver=-1";
+		 
+		$playtext = "";
+		$VERs     = "";
+		$bgcolor  = '#C0C0C0';
+		$paras    = "ns=$cid&id=$stream&live=0&title=$tag";
+
+		if($type!="tv")
+		{
+			$VERs = "<a href='stream_vers.php?application=$cid&stream=$stream&format=flv' class='btn btn-primary  btn-xs'>Versions</a>";
+		}
+		
+		$delpara = "application=$cid&stream=$stream&ver=ALL";
+	?>
+	
+	<tr class="tr" align="center" onmouseover="this.style.backgroundColor='#E6FBDB';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+		<td align="left"><input name='ids[]' id="ids" type='checkbox' value='<?php echo ($index); ?>' class="noborder" >
+          <?php echo $index++;?></td>	
+		<td>
+			<?php
+				echo $name;
+			?>
+		</td>
+		<td><?php echo $type;?></td>
+		<td><?php echo $mtime;?></td>
+		<td><?php echo $durtext;?></td>
+		<td style="display:none;"><?php echo $playurl;?></td>
+		<td style="display:none;"><?php echo $stream; ?></td>
+	</tr>
+	<?php
+	}
+	ENDMS:
+	?>	   
+-->
+	<?php if(is_array($stream_array)): $k = 0; $__LIST__ = $stream_array;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$gxcms): ++$k;$mod = ($k % 2 )?><tr class="tr" align="center" onmouseover="this.style.backgroundColor='#E6FBDB';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+		<td align="left"><input name='ids[]' id="ids" type='checkbox' value='<?php echo ($index); ?>' class="noborder" ><?php echo ($k); ?></td>	
+		<td><?php echo ($gxcms["name"]); ?></td>	
+		<td><?php echo ($gxcms["type"]); ?></td>
+		<td><?php echo ($gxcms["mtime"]); ?></td>
+		<td><?php echo ($gxcms["durtext"]); ?></td>
+		<td style="display:none;"><?php echo ($gxcms["playurl"]); ?></td>
+		<td style="display:none;"><?php echo ($gxcms["stream"]); ?></td>
+		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+	<tr class="tr">
+      <td colspan="10"><input type="button" id="checkall" value="全/反选" class="bginput">
+        &nbsp;&nbsp;
+        <input type="button" value="批量添加" class="bginput" onClick="put_video();" />
+        &nbsp;&nbsp;
+        <input type="button" value="全部清除" class="bginput" onClick="clean_video();" />        
+      </td>
+    </tr>
+</table>

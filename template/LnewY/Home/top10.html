@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$ckeywords}{$keywords}">
+<meta name="description" content="{$cdescription}{$description}">
+<link href="/template/LnewY/css/Common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/LnewY/js/jquery.min.js"></script>
+<script type="text/javascript" src="/template/LnewY/js/Common.js"></script>
+<style>
+.top_table{ margin-top:20px;}
+.top_table td{padding:6px; background-color:#FFFFFF; font-size:14px; font-family:Verdana, 微软雅黑}
+.top_table th{padding:6px; background-color:#E8E8E8; font-size:20px; font-family:"微软雅黑"}
+.top_table a{color:#33C;}
+</style>
+<script language="javascript">var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}';</script>
+</head>
+
+<body>
+<include file="header" />
+<!--wapper 开始-->
+<div class="weizhi w960">
+
+<gxcms name="menu"><eq name="menu.mid" value="1">   
+        
+<div class="maxBox mb10" id="hot-focus" style="margin-top:10px;">
+		<div class="box hotTop">
+			<div class="title"><h3>{:get_channel_name($menu['id'])}总人气排行榜</h3>
+			</div>
+			<div class="hotVideo">
+				<ul class="txt-list">
+				 <gxcms name="video" cid="'.$menu['id'].'" limit="20" order="hits desc" key="ii">
+				<li>
+					<span>{$ii}.</span>
+					<a href="{$video.readurl}" title="{$video.title}">{$video.title|get_replace_html=0,15}</a>
+				</li>
+				</gxcms>
+				
+				</ul>
+			</div>
+		</div>
+	</div>        
+        
+        
+        
+        
+        
+        
+        
+</eq></gxcms>    
+<script type="text/javascript" src="{$webpath}views/js/jquery.js"></script>
+<script type="text/javascript" src="{$webpath}views/js/system.js"></script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
+<include file="footer" />
+</div>
+</body>
+</html>

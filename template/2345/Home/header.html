@@ -1,0 +1,54 @@
+<div class="header" id="fheader">
+  <div class="headerNav">
+    <div class="left"> <a target="_self" href="{$webpath}" 
+      <if condition="$model eq 'index'">class="headerNavSelected"</if>
+      >首页</a><i></i>
+      <gxcms name="menu"> <a onfocus="this.blur();" href="{$menu.showurl}" 
+        <if condition="($menu['id'] eq $cid) or ($menu['id'] eq $pid)">class="headerNavSelected"</if>
+        >{$menu.cname}</a><i></i> </gxcms>
+    </div>
+    <div class="right">
+      <p class="pLinks"> <a target="_self" href="/index.php?s=Guestbook">我要求片</a><i></i> <a target="_self" href="/index.php?s=Tv">电视直播</a><i></i> <a target="_self" href="/index.php?s=special/lists">影视专题</a><i></i> </p>
+    </div>
+  </div>
+  <div class="headerContent clearfix">
+    <div class="left">
+      <div class="headerLogo"><a href="{$weburl}" target="_self"><img src="/template/2345/images/logo.png" width="210" height="57" title="{$webname}" alt="{$webname}"></a><span>目前共有<em>{$allMovieCount}</em>部影片</span> </div>
+      <div class="headerSearch">
+        <form action="/index.php?s=video/search/" method="post" >
+          <div class="searchForm clearfix" >
+            <input class="searchInput" id="wd" name="wd" type="text" value="{$keyword}" autocomplete="off" style="color:#999;">
+            <input type="submit" value="" class="searchSubmit" >
+          </div>
+          <p class="searchHotWords" > {$hotkey} </p>
+        </form>
+      </div>
+    </div>
+    
+    
+    
+    <div class="right">
+    
+      <div class="headerHistory" id="headerHistory">
+      <i></i><span class="spanB"><a href="/index.php?s=top10" target="_blank">影视排行榜</a></span><i></i>
+      
+      <a href="javascript:void(0);" onclick="fnToggleRecord();return false;" class="headerHistoryBtn" id="headerHistoryBtn">观看记录</a>
+        <div class="clear"></div>
+        
+        <div class="historyContent" id="historyContent" style="display:none;">
+          <div id="historyClose" class="historyClose" style="display:none;"><a href="javascript:void(0);" onclick="fnTrunRecord();return false;">清空记录</a>|<a href="" class="historyCloseBtn" onclick="fnCloseRecord();return false;">关闭</a></div>
+          
+          <div class="historyList" id="historyList">
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    
+    
+    
+    
+  </div>
+</div>

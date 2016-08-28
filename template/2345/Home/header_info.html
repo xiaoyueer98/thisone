@@ -1,0 +1,23 @@
+<div class="header" id="fheader" style="height:37px;">
+  <div class="headerNav">
+  
+    <div class="left">
+    
+         <a target="_self" href="{$webpath}" <if condition="$model eq 'index'">class="headerNavSelected"</if>>首页</a><i></i>
+            <gxcms name="menu">
+            <a onfocus="this.blur();" href="{$menu.showurl}" <if condition="($menu['id'] eq $cid) or ($menu['id'] eq $pid)">class="headerNavSelected"</if>>{$menu.cname}</a><i></i>
+            </gxcms>
+    
+    
+    
+    </div>
+    
+    <div class="right">
+      <p class="pLinks">
+      <a target="_self" href="/index.php?s=Tv">电视直播</a>
+      <i></i>
+      <a target="_self" href="/index.php?s=special/lists">影视专题</a><i></i>
+      </p>
+      </div>
+  </div>
+</div>

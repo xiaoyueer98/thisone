@@ -1,0 +1,120 @@
+body { background:#f5f5f5}
+
+font { position:absolute; z-index:100}
+
+.main { width:1000px; margin:0 auto; padding-bottom:20px;}
+.main a { color:#2a78b4}
+.main a:hover { color:#f30}
+
+.paddingA { padding:0 25px 0 20px}
+.paddingB { padding:20px 25px 0 20px}
+.paddingC { padding-top:7px}
+
+.ulTxt_widthA { padding:16px 0 19px 6px}
+.ulTxt_widthA li { float:left; width:104px; display:inline; margin:0 17px 0 14px}
+
+.ulTxt_widthB li { width:208px; float:left}
+
+.ulTxt_widthC { padding-top:14px}
+.ulTxt_widthC li { width:222px; float:left}
+
+.ulTxt_widthD { padding:15px 0  0 20px}
+.ulTxt_widthD li { width:222px; float:left}
+.ulTxt_widthD li a { margin-right:5px}
+
+.ulPic_widthA { padding:5px 0 0 6px}
+.ulPic_widthA li { width:114px; float:left; margin:15px 19px 1px 15px; display:inline}
+.ulPic_widthA .pic { width:114px; height:151px;}
+.ulPic_widthA .pic .iTxtBg { width:110px;}
+.ulPic_widthA .pic .sTime { width:100px}
+
+.ulPic_widthB {}
+.ulPic_widthB li { width:110px; float:left; margin:12px 33px 0 0; display:inline}
+.ulPic_widthB li.right { float:right; margin-right:0}
+.ulPic_widthB .pic { height:76px}
+.ulPic_widthB .pic .iTxtBg { width:110px;}
+
+.ulPic_widthC li { width:168px; overflow:hidden}
+.ulPic_widthC li.right { padding:0; float:right}
+
+.picHoverBg,.videoFocus .focusPic,.videoFocus a.btnLeft,.videoFocus a.btnRight { background:url(/template/2345/images/transparentMap120913.png) 0 0 no-repeat;}
+
+/*焦点图*/
+.videoFocus { background:url(/template/2345/images/indexMap.png) 0 -6px no-repeat; height:285px; overflow:hidden; z-index:20} /*position:relative; */
+.videoFocus a.btnLeft,.videoFocus a.btnRight { width:22px; height:41px; margin-top:113px; display:inline;}
+.videoFocus a.btnLeft { background-position:0 -67px; float:left; margin-left:7px; margin-right:3px}
+.videoFocus a:hover.btnLeft { background-position:-23px -67px;}
+.videoFocus a.btnRight { background-position:-46px -67px; float:right; margin-right:8px}
+.videoFocus a:hover.btnRight { background-position:-69px -67px;}
+.videoFocus .videoFocusPicCon { width:935px; float:left; overflow:hidden; padding-top:11px; position:relative;}
+.videoFocus #focus { position:relative;}
+.videoFocus li { width:184px; float:left; text-align:center; padding:0 2px 0 1px}
+.videoFocus .focusPic { background-position:-234px 0; width:170px; height:226px; padding:7px; display:block; position:relative; cursor:pointer; overflow:hidden}
+.videoFocus .focusPic .videoStyleLogo { position:absolute; top:3px; left:3px; z-index:15}
+.videoFocus .focusPic img { border:1px solid #777; position:relative; z-index:11; float:left}
+.videoFocus .picHoverBg { background-position:-419px 0;width:168px; height:224px; margin:-225px 0 0 1px; position:relative; z-index:10; float:left; display:inline;}
+.videoFocus .picHoverBg a { width:168px; height:224px; display:block}
+.videoFocus .focusPicHover img { border:1px solid #0c0c0c; z-index:9}
+.videoFocus .sTit { padding-top:3px; display:block}
+.videoFocus .sTit a{ font-weight:700; color:#fff; font-size:14px}
+.videoFocus .sTit a:hover { color:#f30}
+
+/*影视名站*/
+.popularSite { background:url(/template/2345/images/indexMap.png) 0 -291px no-repeat; height:36px; overflow:hidden; line-height:36px; color:#666;}
+.popularSite .sTit { float:left; width:104px; text-align:center; font-size:14px; font-weight:700; color:#fff; padding-right:15px}
+.popularSite a { color:#fff; float:left; display:inline}
+.popularSite i { float:left; background:url(/template/2345/images/indexRepeatMap.png) -3px -70px no-repeat; width:1px; overflow:hidden; height:13px; margin:12px 10px 0 10px}
+.popularSite a:hover { color:#f30}
+.popularSite a.aMore { float:right; margin:8px 8px 0 0; background:url(/template/2345/images/indexMap.png) 0 -356px no-repeat; width:58px; height:20px; line-height:20px; text-align:center}
+.popularSite a:hover.aMore { background-position:-59px -356px; color:#fff; text-decoration:none}
+
+/*团购*/
+.buyTickets { background:url(/template/2345/images/indexMap.png) 0 -328px no-repeat; width:704px; height:24px; padding-top:3px; line-height:24px; margin:9px 0 0 20px; overflow:hidden}
+.buyTickets .sTit { width:77px; padding-left:27px; float:left; font-weight:700; color:#fff; font-size:13px}
+.buyTickets a { margin:0 16px; color:#333}
+.buyTickets a:hover { color:#f30}
+
+/*分类*/
+.videoSortList { padding-bottom:7px}
+.videoSortList dt { color:#999; clear:both; padding-bottom:3px; font-size:12px}
+.videoSortList dd { padding-bottom:6px; float:left}
+.videoSortList dd span { width:55px; float:left; font-size:14px; line-height:24px; height:24px; overflow:hidden}
+
+/*卫视热播*/
+.satelliteTV { padding-left:20px}
+.satelliteTV .sTit { font-weight:700; display:block; font-size:14px; padding-bottom:6px}
+.satelliteTV dl { width:155px; float:left;}
+.satelliteTV dd { font-size:13px; color:#999; line-height:22px; height:22px; overflow:hidden}
+.satelliteTV dt { font-size:14px; height:18px; line-height:18px; padding:3px 0}
+.satelliteTV dt img {float:left; margin-right:5px; display:inline;}
+.satelliteTV .iLine { float:left; background:url(/template/2345/images/indexRepeatMap.png) -9px -70px no-repeat; width:1px; height:75px; margin:0 15px; display:inline; overflow:hidden}
+
+/*即将上线*/
+.noticeReport { background:#f5f5f5; margin:2px 25px 0 20px; padding:4px 7px; font-size:13px; line-height:20px; border:1px solid #eee}
+.noticeReport dt { width:70px; float:left; font-weight:700; overflow:hidden}
+.noticeReport dd { width:610px; float:left;}
+.noticeReport dd span { width:152px; float:left; height:20px; overflow:hidden; color:#999}
+
+/*热门综艺*/
+.pHotLabel { height:120px; overflow:hidden; line-height:24px; font-size:13px; margin-bottom:10px}
+.pHotLabel a { margin-right:22px; line-height:24px;word-wrap:break-word; height:24px; display:inline-block; white-space:nowrap}
+
+/*右侧浮动窗*/
+#rightMenu{width:60px; height:218px; margin-left:1010px; background:url(/template/2345/images/indexMap.png) 0 -377px no-repeat; position:fixed; padding-top:22px; _position:absolute}
+#rightMenu a { width:60px; height:41px; margin-bottom:1px; text-align:center; line-height:41px; font-weight:700; font-size:14px; color:#fff; float:left; display:inline}
+#rightMenu a:hover { color:#fff; text-decoration:none; background:#7e7e7e}
+#rightMenu a.backTop { height:50px; margin:0;}
+#rightMenu a:hover.backTop { background:url(/template/2345/images/indexMap.png) -61px -377px no-repeat;}
+
+/*友情链接*/
+.friend_links { width:1000px; text-align:left; margin:0 auto; font-size:13px;}
+.friend_links h4 { color:#000; line-height:24px; border-top:1px solid #EBEBEB; padding-top:5px; font-weight:100}
+.friend_links p { padding:0; margin:0; display:block}
+.friend_links .friendLinkCon { height:24px; line-height:24px; overflow:hidden}
+.friend_links a { color:#999; margin-right:20px}
+.friend_links a:hover { color:#e60000}
+
+.tuangouHotWords a { margin-right:35px}
+.tuangouHotWords .last { margin-right:0}
+
+.ekucmsad{width:1000px; text-align:center;}

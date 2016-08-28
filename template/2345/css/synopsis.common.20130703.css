@@ -1,0 +1,214 @@
+@charset "utf-8";
+body { background:#f5f5f5}
+
+.sheader { margin-bottom:0px;}
+
+.main { background:url(/template/2345/images/mainRepeatBg.jpg) 0 0 repeat-x; min-width:1000px; padding:26px 0 0 0}
+.main a { color:#2a78b2}
+.main a:hover { color:#f30}
+.width1000 { width:1000px; margin:0 auto; min-width:1000px; background:#fff url(/template/2345/images/topBg.png) 0 0 no-repeat;}
+
+.ivy200 { width:200px; margin:0 auto}
+.ivy200 #right_frame_ad { height:275px; width:200px;}
+.ivy960 { width:960px; margin:0 auto}
+.ivy1000 { width:1000px; margin:0 auto}
+.ivy1000 #bottom_frame_ad { width:1000px; height:90px;}
+
+.col_a { width:750px; float:left}
+.col_b { width:250px; float:right}
+
+/*遮罩层*/
+.maskLayer { background:#000;opacity:0.5;filter:alpha(opacity=50); width:100%; height:100%; position:absolute; top:0; left:0; z-index:500; display:none}
+
+.mt10 { margin-top:10px}
+
+a.aPlayBtn { background:url(/template/2345/images/synopsisMap.png) 0 -131px no-repeat; width:112px; height:29px; display:block; overflow:hidden}
+a:hover.aPlayBtn { background-position:-113px -131px;}
+a.aCommentBtn { background:url(/template/2345/images/synopsisMap.png) 0 -161px no-repeat;width:134px; height:29px; display:block; overflow:hidden}
+a:hover.aCommentBtn { background-position:-135px -161px}
+
+a.setIndexBtn { background:url(/template/2345/images/synopsisMap.png) -587px -150px no-repeat; height:20px; line-height:20px; overflow:hidden; display:block; padding:0 0 0 14px}
+a.aWindowDownBtn { background:url(/template/2345/images/synopsisMap.png) -590px -179px no-repeat; height:20px; line-height:20px; overflow:hidden; display:block; padding:0 0 0 14px}
+
+.ul_txtA li { background:url(/template/2345/images/synopsisMap.png) -597px -199px no-repeat; padding-left:9px; height:22px; overflow:hidden; line-height:22px}
+.ul_txtA a { color:#666}
+
+.conList { background:url(/template/2345/images/conRepeatBg.jpg) 0 0 repeat-y;}
+.conBottom { background:url(/template/2345/images/conBottomBg.png) 0 0 no-repeat; height:5px; overflow:hidden;}
+
+/*作品介绍*/
+.topIntro { border-right:1px solid #f3f3f3; height:123px}
+.topIntro .pic { float:left; background:url(/template/2345/images/synopsisMap.png) 0 0 no-repeat; width:90px; height:120px; padding:5px; margin:-17px 0 0 10px; display:inline; position:relative; z-index:20}
+.topIntro .pic .iPlayBtnBg { background:url/template/2345/images/playBtnPngBg.png) center center no-repeat; width:90px; height:120px; position:absolute; top:5px; left:-9999px;}
+.topIntro .pic .iPlayBtnBg a { width:90px; height:120px; display:block}
+.topIntro .picHover .iPlayBtnBg { left:5px;}
+.topIntro .txt { padding:5px 0 0 10px; float:left; width:620px;}
+.topIntro .txt p,.topIntro .tit { height:30px; line-height:30px; padding:0 0 10px 0}
+.topIntro .tit h1 { display:inline;font-size:16px;}
+.topIntro .tit .sScore { font-size:14px; color:#999; padding-left:12px;}
+.topIntro .tit .sScore em { color:#f60; font-size:22px; font-family:\5FAE\8F6F\96C5\9ED1,\9ED1\4F53,\5B8B\4F53}
+.topIntro a.aPlayBtn,.topIntro a.aCommentBtn { float:left; margin-right:10px; display:inline}
+.topIntro a.aCommentBtn { margin-right:0px;}
+.topIntro .pBtn span { float:right; height:30px; overflow:hidden; color:#999; width:333px; padding-right:20px}
+.topIntro .pBtn span a { margin-right:8px;}
+
+/*相关新闻*/
+.topNews { height:113px; padding:10px 0 0 0}
+.topNews .aPic { margin-left:15px; height:20px; overflow:hidden}
+.topNews .aPic img { vertical-align:top}
+.topNews .topNewsList { padding:6px 0 5px 16px; width:230px; height:44px; overflow:hidden}
+.topNews .topNewsListCon { height:44px; overflow:hidden}
+.topNews .ul_txtA em { color:#f60}
+.topNews p { height:28px; border-bottom:2px solid #D2D2D2; overflow:hidden; background:#f7f7f7; padding:8px 0 0 0}
+.topNews p a { float:left; display:inline; margin-left:16px}
+.topNews p a.aWindowDownBtn { margin-left:35px}
+
+.topNewsPic { padding:6px 0 7px 16px; width:220px; height:42px; overflow:hidden}
+.topNewsPic img { vertical-align:top}
+
+/*标签列表*/
+.tabList { background:url(/template/2345/images/synopsisRepeatMap.png) 0 0 repeat-x; height:32px; padding:0 0 0 121px; margin-top:-32px; position:relative; z-index:10; *margin-top:-33px; _margin-top:-32px;}
+.tabList span { float:left; border:1px solid #c7dff3; border-bottom:0 none; height:29px; cursor:pointer; width:120px; background:#fff; font-size:14px; margin-left:-1px;}
+.tabList span a { display:block; padding:0 0 0 40px; border:1px solid #fff; height:27px; line-height:28px; overflow:hidden; width:78px; color:#333;}
+.tabList a:hover { color:#333; text-decoration:none;border-color:#f9fbfd;}
+.tabList a.plotBtn { background:#f3f7fa url(/template/2345/images/synopsisMap.png) -568px 8px no-repeat;}
+.tabList a.actorBtn { background:#f3f7fa url(/template/2345/images/synopsisMap.png) -564px -21px no-repeat; padding-left:44px; width:74px}
+.tabList a:hover.plotBtn { background:#f9fbfd url(/template/2345/images/synopsisMap.png) -568px 8px no-repeat;}
+.tabList a:hover.actorBtn { background:#f9fbfd url(/template/2345/images/synopsisMap.png) -564px -21px no-repeat;}
+.tabList .cur { height:31px}
+.tabList .cur a { height:29px;}
+.tabList .cur a.plotBtn { background:#fff url(/template/2345/images/synopsisMap.png) -568px 8px no-repeat;}
+.tabList .cur a.actorBtn { background:#fff url(/template/2345/images/synopsisMap.png) -564px -21px no-repeat;}
+.tabList .cur a:hover.plotBtn { background:#fff url(/template/2345/images/synopsisMap.png) -568px 8px no-repeat;}
+.tabList .cur a:hover.actorBtn { background:#fff url(/template/2345/images/synopsisMap.png) -564px -21px no-repeat;}
+
+/*分享*/
+.shareCon { padding:15px 0 0 0}
+.shareCon h2 { font-size:16px; font-weight:700; line-height:30px; height:30px; float:left}
+.shareCon .emShare { color:#999; float:left; line-height:28px; padding:0 0 0 10px}
+.shareCon #bdshare { padding:2px 0 0 0; float:right}
+.shareCon .bds_tools a { padding-top:5px; height:17px}
+#bdshare a, #bdshare_s a, #bdshare_pop a { color:#666}
+.shareCon #bdshare a:hover,.shareCon #bdshare_s a:hover,.shareCon #bdshare_pop a:hover { color:#f30; text-decoration:underline}
+
+/*剧情文字*/
+.paragraphCon { font-size:16px; line-height:34px;}
+.paragraphCon p { text-indent:2em; padding:5px 0;}
+.paragraphCon a { border-bottom:1px dotted #2a78b3; color:#2a78b3; font-weight:700}
+.paragraphCon a:hover { color:#f30;border-bottom:1px dotted #f30; text-decoration:none;}
+
+/*翻页*/
+.pPage { padding:10px 0}
+.pPage span { float:left; line-height:32px;}
+.pPage .sPrev { padding-left:150px;}
+.pPage .sNext { padding-left:45px;}
+.pPage span em { float:left; font-size:12px; padding:0 10px; color:#999; font-family:\5B8B\4F53}
+.pPage a { float:left; background:url(/template/2345/images/synopsisMap.png) 0 0 no-repeat; height:32px; color:#333; font-size:16px}
+.pPage a:hover { text-decoration:none; color:#666}
+.pPage a#aPrev,.pPage a.aPrev { background-position:0 -191px; padding-left:27px; width:67px;}
+.pPage a#aNext,.pPage a.aNext { background-position:-95px -191px; padding-left:17px; width:77px}
+.pPage a:hover#aPrev,.pPage a:hover.aPrev { background-position:0 -224px;}
+.pPage a:hover#aNext,.pPage a:hover.aNext { background-position:-95px -224px;}
+.pPage a.noHover,.pPage a:hover.noHover { color:#999}
+.pPage a:hover#aPrev.noHover { background-position:0 -191px;}
+.pPage a:hover#aNext.noHover { background-position:-95px -191px;}
+
+.pPlay { line-height:30px; padding:30px 0}
+.pPlay span  { float:left; padding-right:12px; font-weight:700; font-size:14px}
+.pPlay a { float:left}
+
+/*演员名单介绍*/
+.actorIntor { padding:20px 30px;}
+.actorList { width:690px; overflow:hidden}
+.actorList dl,.actorList dt,.actorList dd { width:700px;}
+.actorList p { width:172px; border-right:1px solid #e3e3e3; float:left; overflow:hidden}
+.actorList dt { background:#f0f0f0; color:#8a8a8a; height:27px;}
+.actorList dt p { border-bottom:1px solid #fff; height:26px; line-height:26px}
+.actorList dd p { border-bottom:1px solid #f6f6f6; font-size:14px; line-height:31px; height:31px}
+.actorList dd span { height:31px;}
+.actorList .sRoleName { padding-left:10px; width:66px; overflow:hidden; float:left}
+.actorList .sActorName { padding-left:10px; width:85px; overflow:hidden; float:left}
+.actorList .cur { background:#f2f5f7; font-weight:700}
+
+/*演员信息介绍*/
+.actorPicTxt { padding:25px 0 0 0}
+.actorPicTxt .pic { width:120px; float:left; min-height:20px; line-height:20px}
+.actorPicTxt .pic img { vertical-align:top}
+.actorPicTxt .txt { width:550px; float:right; font-size:16px}
+.actorPicTxt .txt .actorName { padding-bottom:10px; font-weight:700}
+.actorPicTxt .txt .actorName em { color:#999; padding:0 10px; font-family:\5B8B\4F53; font-weight:100;}
+.actorPicTxt .txt .sTit { font-size:14px; color:#999; line-height:22px; height:22px; overflow:hidden; display:block; padding:20px 0 0 0;}
+.actorPicTxt .txt p { line-height:32px;}
+.actorPicTxt .txt p a { border-bottom:1px dotted #2a78b2}
+.actorPicTxt .txt p a:hover { text-decoration:none;border-bottom:1px dotted #f30}
+.actorPicTxtA .txt { width:100%}
+.actorPicTxtA .pic { display:none}
+.actorPicTxt .actorIntro .pic { padding-top:50px}
+
+/*作品列表*/
+.ulWorkList li { height:32px; line-height:32px; overflow:hidden}
+.ulWorkList li span { font-family:\5B8B\4F53; overflow:hidden; height:32px; line-height:32px;}
+.ulWorkList li .sRoleName { color:#999}
+.ulWorkList li .sRoleName em { color:#333}
+.ulWorkList li .sRoleName a { color:#2a78b2}
+.ulWorkList li .sRoleName a:hover { color:#f30}
+
+/*最新推荐*/
+.newsRecommend { padding:18px 0 0 20px; width:210px;}
+.newsRecommend dt { background:url(/template/2345/images/synopsisMap.png) -590px -116px no-repeat; font-size:16px; line-height:30px; height:30px; font-weight:700; padding:0 0 0 15px}
+.newsRecommend .sTit { border-bottom:2px solid #ededed; line-height:22px; height:22px; text-align:right; overflow:hidden; display:block; color:#999}
+.newsRecommend .sTit em { float:left}
+.newsRecommend li { margin:3px 0 0 0;line-height:24px; font-size:13px; height:24px; overflow:hidden; text-align:left;}
+.newsRecommend li.liHover { background:#efefef}
+.newsRecommend li .sNum,.newsRecommend li .sActorName { float:right; color:#666; width:53px; text-align:right; overflow:hidden}
+.newsRecommend li .sNum a,.newsRecommend li .sNum a:hover,.newsRecommend li .sActorName a,.newsRecommend li .sActorName a:hover { color:#666}
+.newsRecommend li .sActorName { width:72px}
+
+.ul_rank a { float:left}
+.ul_rank i { float:left; width:16px; height:16px; line-height:16px; text-align:center; color:#fff; font-weight:700; display:inline; margin:4px 5px 0 0;font-family:Arial; background:url(/template/2345/images/commonMap.png) -51px 0 no-repeat;}
+.ul_rank i.iFirst { background-position:0 0}
+.ul_rank i.iSecond { background-position:-17px 0}
+.ul_rank i.iThird { background-position:-34px 0}
+.ul_rank li a { width:136px; overflow:hidden; height:24px; line-height:24px;}
+.ul_rank li .sNum a { float:none; width:auto}
+
+/*底部列表*/
+.detail_bottom_index { border:1px solid #dbdbdb; margin:10px auto; width:998px; padding:5px 0}
+.detail_bottom_index dl { float:left;} 
+.detail_bottom_index .detail_index_movie { width:385px; padding-left:10px}
+.detail_bottom_index .detail_index_movie a { margin:0 15px 0 20px}
+.detail_bottom_index .detail_index_tv { width:325px}
+.detail_bottom_index .detail_index_cartoon { width:270px;}
+.detail_bottom_index dt { display:block; font-size:14px; font-weight:700; padding-left:20px; line-height:24px; height:24px; color:#666}
+.detail_bottom_index dt a { color:#666}
+.detail_bottom_index dt a:hover { color:#f30}
+.detail_bottom_index .detail_index_movie dt a { margin:0;}
+.detail_bottom_index dd a { display:inline-block; font-size:12px; line-height:18px; color:#666; margin:0 20px}
+.detail_bottom_index dd a:hover { color:#f30}
+
+/*意见反馈*/
+a.feedBackBtn { background:url(/template/2345/images/synopsisMap.png) -201px 0 no-repeat; height:81px; width:25px; position:fixed; _position:absolute; left:50%; margin-left:225px; top:190px}
+a:hover.feedBackBtn { background-position:-227px 0;}
+
+/*调查弹窗*/
+.popPngMap { background:url(/template/2345/images/popPngMap.png) 0 0 repeat-y;}
+.popWin { width:634px; position:relative; margin-left:-300px; left:50%; position:fixed; _position:absolute; display:inline; z-index:510; display:none}
+.popWin .sMask { font-family:\5FAE\8F6F\96C5\9ED1,\9ED1\4F53,\5B8B\4F53; font-size:17px; display:block; line-height:30px; height:30px}
+.popWin .sTips { color:#999; line-height:22px; height:22px; display:block}
+.popWin i { display:block; line-height:0; font-size:0}
+.popWin i.iPopWinTop { background-position:0 0; height:16px;}
+.popWin i.iPopWinBottom { background-position:0 -17px; height:16px}
+.popWin .popWinCon { width:574px; overflow:hidden; padding:15px 25px 15px 35px; background:url(/template/2345/images/popPngConBg.png) 0 0 repeat-y}
+.popWin a.popSubmitBtn { width:120px; height:40px; background:url(/template/2345/images/popMap.png) 0 0 no-repeat; display:block; line-height:9999px; text-indent:-9999px; overflow:hidden; margin:20px auto 0}
+.popWin a:hover.popSubmitBtn { background-position:0 -41px;}
+.popWin .popClose { background-position:-1270px 0; height:48px; width:48px; display:block; position:absolute; right:-24px; top:-24px}
+
+.popWin .textForm { width:566px; margin-top:12px}
+.popWin .textForm .pTextArea { background:url(/template/2345/images/popMap.png) -121px 0 no-repeat; padding:10px; height:91px; width:546px; overflow:hidden}
+.popWin .pTextArea .errorTextarea { border:0 none; line-height:22px; color:#999;  font-size:14px; width:546px; height:90px; background:#f9f9f9; overflow-y:auto}
+
+.popWin .checkSuccess img { display:block; margin:0 auto; padding:30px 0 15px}
+.popWin .checkSuccess p { padding:0 0 50px 0; text-align:center}
+.popWin .checkSuccess p span { padding:0 25px;}
+.popWin .checkSuccess p a { color:#1f6caa; font-size:14px}
+.popWin .checkSuccess p a:hover { color:#f30}

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>用户中心设置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript">
+$(document).ready(function(){
+	$("#user_pay_0").click(function(){
+		$("#listpay").hide();
+	});
+	$("#user_pay_1").click(function(){
+		$("#listpay").show();
+	});
+	<eq name="user_pay" value="1">$("#listpay").show();</eq>	
+});
+
+function loadpara()
+{
+	//hls;flv;mp4;jpeg_big;jpeg_lit
+
+	var hls      = <?php echo is_instr($dvr_format,"hls");?>;
+	var flash    = <?php echo is_instr($dvr_format,"flv");?>;
+	var mp4      = <?php echo is_instr($dvr_format,"mp4");?>;
+	var jpegb    = <?php echo is_instr($dvr_format,"jpeg_big");?>;
+	var jpegl    = <?php echo is_instr($dvr_format,"jpeg_lit");?>;
+
+	document.all.hls.checked     = hls; 
+	document.all.flash.checked   = flash; 
+	document.all.mp4.checked     = mp4;
+	document.all.jpegb.checked   = jpegb;
+	document.all.jpegl.checked   = jpegl;
+}
+
+</script>
+</head>
+<body onload="loadpara()">
+<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+<form action="?s=Admin/Config/Updatedvr" method="post" id="gxform">
+<tr class="table_title"><td colspan="2">DVR设置：</td></tr>    
+ <tr class="ji">
+  <td class="left">DVR状态</td>
+  <td>
+  	<input type="radio" class="radio" name="con[dvr_status]" value="1" 
+  		<eq name="dvr_status" value="1">checked="checked"</eq>/>开启
+  	<input type="radio" class="radio" name="con[dvr_status]" value="0" 
+  		<eq name="dvr_status" value="0">checked="checked"</eq>/>关闭
+  </td>
+</tr> 
+<tr class="ji">
+  <td class="left">保存路径</td>
+  <td><input type="text" name="con[dvr_path]" value="{$dvr_path}" maxlength="256" size="50">*</input></td>
+</tr> 
+<tr class="tr">
+  <td class="left">电视流</td>
+  <td><input type="text" name="con[dvr_tv]" value="{$dvr_tv}" maxlength="256" size="50"></input></td>
+</tr>    
+<tr class="tr">
+  <td class="left">DVR格式</td>
+  <td>
+    <input type="checkbox" name="flash" id="flash" value="1" checked > Flash*
+    <input type="checkbox" name="hls" id="hls" value="1" checked > HLS *
+    <input type="checkbox" name="mp4" id="mp4" value="1"> MP4
+    <input type="checkbox" name="jpegb" id="jpegb" value="1"> Jpeg-Big
+    <input type="checkbox" name="jpegl" id="jpegl" value="1"> Jpeg-Lit 
+  </td>
+</tr>      
+
+<tr class="tr">
+  <td colspan="2"><input type="hidden" name="setting_sub" value="true">
+    <input class="bginput" type="submit" name="submit" value="提交">
+    <input class="bginput" type="reset" name="Input" value="重置" >
+  </td>
+</tr>
+</form>
+</table>
+<include file="footer" />
+</body>
+</html>

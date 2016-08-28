@@ -1,0 +1,45 @@
+<html>
+<head>
+<script type="text/javascript" src="/jw/jwplayer.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="../js/jquery.js"></script>
+</head>
+<body>
+
+<div id="myElement">Loading the player...</div>
+
+<script type="text/javascript">
+
+function getUrlParam(name) 
+{ 
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
+	var r = window.location.search.substr(1).match(reg); 
+	
+	if (r != null) 
+	{
+		return unescape(r[2]);
+	}
+	else
+	{
+		return null; 
+	}
+} 
+
+var format = getUrlParam("format");
+var id = getUrlParam("id");
+var ns = getUrlParam('ns');
+var live   = getUrlParam("live");
+var host   = getUrlParam("host");
+var ver = getUrlParam("ver");
+
+var url  = "http://218.241.196.196/sps/shortmovie/IMG_0018_baofeng4ia71y.flv";
+alert("sssurl:" + url)
+jwplayer("myElement").setup({
+    file:url,
+    autostart: true,
+    height: 360,
+    width: 640
+});
+
+</script>
+</body>
+</html>

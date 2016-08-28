@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<title>{$webtitle}</title>
+<link href="/template/LnewY/css/Common.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/channel.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/LnewY/js/jquery.min.js"></script>
+<script type="text/javascript" src="/template/LnewY/js/Common.js"></script>
+</head>
+
+<body>
+<include file="header" />
+
+
+<div class="wrap w960">
+		<include file="lll" />
+	<div class="maxBox lb mb10">
+		<div class="cntBox fa-left">
+			<div class="conBox">
+				
+				
+		
+        
+        
+        		
+	<gxcms name="menu" ids="'.$id.'">	
+    	<gxfor name="menu.son" id="menuson"> 		
+<div class="box">
+					<div class="caption bigCaption fa-clear">
+						<h2 class="hide-self fa-left">{$menuson.cname}</h2>
+						<span>
+							<a target="_blank" href="{$menuson.showurl}">更多</a>
+						</span>
+					</div>
+					<div class="content">
+						<ul class="pic-list">
+							
+                            <gxcms name="video" cid="'.$menuson['id'].'" limit="0,5" order="addtime desc">
+							<li>
+								<a class="play-pic" href="{$video.readurl}" title="{$video.title}">
+									<img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}" style="display: block; ">
+									<span class="play-icon">&nbsp;</span>
+									<label class="bg">&nbsp;</label>
+									<label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}<else />完结</if></label>
+								</a>
+								<p>
+									<a href="{$video.readurl}" title="{$video.title}">{$video.title}</a>
+								</p>
+								<p class="txt">{$video.intro}</p>
+							</li>
+                            </gxcms>
+							
+                            
+							
+						</ul>
+						<ul class="new-list">
+						<gxcms name="video" cid="'.$menuson['id'].'" limit="5,15" order="addtime desc">
+							<li><a target="_blank" href="{$video.readurl}" title="{$video.title}">{$video.title}</a></li>
+						</gxcms>
+						</ul>
+					</div>
+				</div>
+              </gxfor>  
+  </gxcms>              
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+			</div>
+		</div>
+		<div class="cntBar fa-right">
+			<div class="sideRow">
+				
+                
+                
+                
+                
+	<gxcms name="menu" ids="'.$id.'">	
+    	<gxfor name="menu.son" id="menuson"> 		
+				<div class="box">
+					<div class="caption fa-clear">
+						<h3 class="hide-self fa-left">{$menuson.cname}排行</h3><span>
+						<a target="_blank" href="{$menuson.showurl}">更多</a></span>
+					</div>
+					<div class="content">
+						<ul class="ul-top">
+                        <gxcms name="video" cid="'.$menuson['id'].'" limit="10" order="score desc">
+							<li><span><strong>{$video.score}分</strong></span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a></li>
+                        </gxcms>
+						</ul>
+					</div>
+				</div>
+                
+              </gxfor>  
+  </gxcms>              
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+			</div>
+		</div>
+	</div>
+			<include file="bom" />
+</div>
+
+
+<include file="footer" />   
+</div>
+<!--wapper 结束-->
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>方讯--信息完善</title>
+<meta name="keywords" content="方讯" />
+<meta name="description" content="方讯" />
+<jsp:include page="../webpage/jq_css.jsp" ></jsp:include>
+<link rel="stylesheet" type="text/css" href="../webpage/css/form.css"/>
+<link type="text/css" rel="stylesheet" href="../uploadify/uploadify.css" />
+<script type="text/javascript" src="../webpage/js/validator/formValidator.js"></script>
+<script type="text/javascript" src="../webpage/js/validator/formValidatorRegex.js"></script>
+<script type="text/javascript" src="../uploadify/swfobject.js"></script>
+<script type="text/javascript" src="../uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<link rel="stylesheet" href="../editor/themes/default/default.css" />
+<script type="text/javascript" src="../webpage/citypicker/jock-citypicker-2.0.min.js"></script>
+<link type="text/css" rel="stylesheet" href="../webpage/citypicker/jock-citypicker-2.0.min.css" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+});
+</script>
+</head>
+
+<body>
+<jsp:include page="../webpage/top.jsp" ></jsp:include>
+
+<div class="width1000">
+	<div class="sub_breadcrumb_nav">
+    	<i class="fa fa-home"></i>当前位置：<a href="#">信息完善</a>
+    </div>
+    <div class="sub_main">
+      <form action="web_dpu.xhtml" method="post" name="resForm"
+				id="resForm" autocomplete="off">
+    	<div class="sub_main_title">信息完善</div>
+    	<div class="sub_content pad_tb">
+        	<div class="form550">
+            	<ul>
+                	<li class="pad_b2">
+                    	<div class="form550_title">乐见号：</div>
+                        <div class="lfloat lejian_num">${user.id}</div>
+                        <div class="clra"></div>
+                    </li>
+                	<li>
+                    	<div class="form550_title"><span class="fc_red">*</span>昵称：</div>
+                        <div class="lfloat">
+                        	<input type="text" id="un" name="un" class="width450 radius5" value="${user.name}"/>
+                        	<input type="hidden" class="radius5_l"  name="ui" style="background-color:#FFF;" value="${user.id}"/>
+                        </div>
+                        <div class="clra"></div>
+                        <div class="form550_ts">可以使用中文、字母、数字、下划线</div>
+                        <div class="verify_div">&nbsp;</div>
+                    </li>
+                    <li>
+                    	<div class="form550_title"><span class="fc_red">*</span>性别：</div>
+                        <div class="lfloat">
+                          <select class="form550_select radius5" name="us">
+                        	<s:if test="user.sex==1">
+                        		<option value="1" selected="selected">男</option>
+                                <option value="0">女</option>
+                            </s:if>
+                            <s:else>
+                                <option value="1">男</option>
+                                <option value="0" selected="selected">女</option>
+                            </s:else>
+                          </select>
+                        </div>
+                        <div class="clra"></div>
+                        <div class="verify_div">&nbsp;</div>
+                    </li>
+                    <li>
+                    	<div class="form550_title"><span class="fc_red">*</span>用户头像：</div>
+                        <div class="upload_img2 mtop5">
+                        	<img src="../FileUpLook.shtml?path=${user.face}" height="128px" width="128px" id="img"/>
+                            <div class="rupload2">
+                            	<input type="text" class="radius5_l" id="fileName"   disabled="disabled" style="background-color:#FFF;border-right:none;width:209px;" />
+                                <input type="file" name="uploadify" id="uploadify" class="upload_btn1 radius5_r" />
+								<div id="fileQueue" class="test1"></div> 
+                                <input id="attach" name="attach" type="hidden"  class="radius5_l"  style="background-color:#FFF;border-right:none;width:209px;" />
+								<input type="hidden" id="attachName" name="attachName" class="radius5_l"  style="background-color:#FFF;border-right:none;width:209px;"/>
+                                <div class="clr upload_img1_ts2 fc_grey8">
+                                	图片格式：仅支持JPG、JPEG、PNG格式（100KB以下）<br />图片尺寸：128x128像素以内
+                                </div>
+                                <div class="verify_div">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="clra"></div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="line1_div tlc">
+            	<input type="button" value="确定" class="green_btn1 radius5" onclick="sub()"/>
+            </div>
+            <div class="clra"></div>
+                
+            <div class="have_user">已有帐号，<a href="#">点此登录</a></div>
+        </div>
+      </form>
+    </div>
+</div>
+
+<jsp:include page="../webpage/bottom.jsp" ></jsp:include>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.formValidator.initConfig({  validatorGroup: "1",formID: "resForm", onError: function () {} });
+	$("#un").formValidator({ validatorGroup: "1", onShow: "2—32个字符可用中文、字母、数字、下划线",onFocus:"2—32个字符可用中文、字母、数字、下划线",onCorrect: "ok" }).inputValidator({min:2,max:32,onError:"2—32个字符可用中文、字母、数字、下划线"}).regexValidator( {
+                        regExp : "^[\u4e00-\u9fa5_a-zA-Z0-9]+$",onError : "只能包含中文、字母、数字、下划线"});
+	
+});
+$("#uploadify").uploadify(
+		{
+			
+			'uploader' : '../uploadify/uploadify.swf?var='
+					+ (new Date()).getTime(),
+			'script' : '../FileUpload.shtml?needRename=true',
+			'cancelImg' : '../uploadify/cancel.png',
+			'folder' : '/user',
+			'queueID' : 'fileQueue',
+			'auto' : true,
+			'method' : 'GET',
+			'multi' : false,
+			'sizeLimit' : 1024 * 100,
+			'fileDesc' : '*.jpg;*.png;*.jpeg',//
+			'fileExt' : '*.jpg;*.png;*.jpeg',//设置 需要过滤的文件后缀名
+			'height' : 38,
+			'width' : 82,
+			'simUploadLimit' : 1,
+			'buttonImg' : '../uploadify/upload_btn.png',//浏览按钮的背景图片
+			'wmode' : 'transparent',//设置该项为transparent 可以使浏览按钮的flash背景文件透明，并且flash文件会被置为页面的最高层   
+			onComplete : function(event, queueID, fileObj, response, data) {
+				var obj = eval('(' + response + ')');
+				$("#attach").val(obj.file);
+				$("#attachName").val(obj.alias);
+				$("#img").attr("src","../FileLook.shtml?path="+obj.file);
+			},
+			onSelect : function(event, queueID, fileObj) {
+				$("#fileName").val(fileObj.name);
+				/* if ($("#attach").val() == "") {
+					
+				} else {
+					var attpath = $("#attach").val() + "," + fileObj.name;
+					$("#attach").val(attpath);
+				} */
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + " 上传失败");
+				controlButtonStatus(0);
+				$('#uploadify').uploadifyCancel(queueID);
+			}
+		}
+	);
+function sub(){
+	if (!$.formValidator.pageIsValid("1")) {
+			return;
+	}
+	document.forms["resForm"].submit();
+}
+
+function upp(){
+	document.forms[0].action="web_cp.xhtml";
+	document.forms[0].submit();
+}
+function phonechange(){
+	
+	document.forms[0].action="web_changeMobile.xhtml";
+	document.forms[0].submit();
+}
+function phoneadd(){	
+	document.forms[0].action="web_tbiding.xhtml";
+	document.forms[0].submit();
+}
+
+function checknumber(String) { 
+		var Letters = "1234567890";
+		var i;
+		var c;
+		for( i = 0; i < String.length; i ++ ) {
+			c = String.charAt( i );
+			if (Letters.indexOf( c ) ==-1) {
+				return true;
+			}
+		}
+		return false;
+	}
+</script>
+</body>
+</html>

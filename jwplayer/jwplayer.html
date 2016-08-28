@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="../views/js/jquery.js"></script>
+<script type="text/javascript" src="../jwplayer/jwplayer.js"></script>
+<script type="text/javascript" src="/video/js/ntv_utils.js"></script>
+<script type="text/javascript">jwplayer.key="38uAPADVt3eQaliBV2/DIi2ia+QhrVz0lhwLMg==";</script>
+
+<script type="text/javascript">
+var fls = flashChecker();
+var mylive = false;
+if(fls.f){
+	   superFLV = 1;
+}else{
+	   superFLV = 0;
+}
+
+isPC = IsPC();
+
+function IsPC()  
+{  
+     var userAgentInfo = navigator.userAgent;  
+     var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");  
+     var flag = true;  
+     for (var v = 0; v < Agents.length; v++) {  
+         if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
+     }  
+     return flag;  
+}
+
+function flashChecker() {
+    var hasFlash = 0; //是否安装了flash
+    var flashVersion = 0; //flash版本
+    if (document.all) {
+      var swf = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+      if (swf) {
+        hasFlash = 1;
+        VSwf = swf.GetVariable("$version");
+        flashVersion = parseInt(VSwf.split(" ")[1].split(",")[0]);
+      }
+    } else {
+      if (navigator.plugins && navigator.plugins.length > 0) {
+        var swf = navigator.plugins["Shockwave Flash"];
+        if (swf) {
+          hasFlash = 1;
+          var words = swf.description.split(" ");
+          for (var i = 0; i < words.length; ++i) {
+            if (isNaN(parseInt(words[i]))) continue;
+            flashVersion = parseInt(words[i]);
+          }
+        }
+      }
+    }
+    return { f: hasFlash, v: flashVersion };
+  }
+  
+function play_flv(w,h,url,livemode)
+{
+	
+    var autoplay = true;            //is_autoplay();
+	     var usejw    = true;            //is_jwplayer();
+	    // set_captions(livemode,tl);
+	     if(usejw && livemode!="live")
+	     {
+	     		jwplayer('fxplayer').setup({
+		        file:   url,
+		        image:  'jwplayer.jpg',
+		        width:  w,
+		        height: h,
+		        autostart: autoplay,
+		        logo: {
+		    		file: '/video/views/images/player_logo.png',
+		    		link: ''
+		    	},		    
+		    	abouttext: "关于方讯",
+		    	aboutlink: "",		    	
+		        //aspectratio: '16:9',
+		        startparam: 'start'
+		     });
+		     playbyjw = true;
+	    }
+	    else
+	    {
+	    	//play(w,h,url,livemode,autoplay);
+	    	jwplayer('fxplayer').setup({
+		        file:   url,
+		        image:  'jwplayer.jpg',
+		        width:  w,
+		        height: h,		    	
+		        autostart: autoplay,
+		        logo: {
+		    		file: '/video/views/images/player_logo.png',
+		    		link: ''
+		    	},		    
+		    	abouttext: "关于方讯",
+		    	aboutlink: ""		        
+		     });
+		     playbyjw = true;
+	    }  
+}
+
+function play_flv10(w,h,url,livemode)
+{
+	
+    var autoplay = true;            //is_autoplay();
+	     var usejw    = true;            //is_jwplayer();
+	    // set_captions(livemode,tl);
+	     if(usejw && livemode!="live")
+	     {
+	     		jwplayer('last10').setup({
+		        file:   url,
+		        image:  'jwplayer/jwplayer.jpg',
+		        width:  w,
+		        height: h,
+		        autostart: autoplay,
+		        logo: {
+		    		file: '/video/views/images/player_logo.png',
+		    		link: ''
+		    	},		    
+		    	abouttext: "关于方讯",
+		    	aboutlink: "",		    	
+		        //aspectratio: '16:9',
+		        startparam: 'start'
+		     });
+		     playbyjw = true;
+	    }
+	    else
+	    {
+	    	//play(w,h,url,livemode,autoplay);
+	    	jwplayer('last10').setup({
+		        file:   url,
+		        image:  'jwplayer/jwplayer.jpg',
+		        width:  w,
+		        height: h,		    	
+		        autostart: autoplay,
+		        logo: {
+		    		file: '/video/views/images/player_logo.png',
+		    		link: ''
+		    	},		    
+		    	abouttext: "关于方讯",
+		    	aboutlink: ""		        
+		     });
+		     playbyjw = true;
+	    }  
+}
+  
+function close_player()
+{
+	 if(playbyjw)
+	 {
+	    jwplayer().stop();
+	 }
+}
+
+function playVod(url)
+{
+	var h = 360;
+	var w = 640;
+   play_flv(w,h,url,"");
+}
+
+function playLive(url)
+{
+	var h = 360;
+	var w = 640;
+	play_flv(w,h,url,"live");
+}
+
+function playHTML5(url)
+{
+	var text = "<video src=\"" + url + "\" controls=\"controls\" autoplay=\"autoplay\" width=\"640px\" height=\"360px\">";  //
+		    text = text + "<font color='#FFFFFF'>您的浏览器不支持   HTML5 !</font>";
+	    text = text + "</video>";
+
+	    var doc = "<body bgcolor=\"#000000\">" + 
+	              "<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" height=\"100%\" >" +
+	    	      "<tr>" +
+	    		  "<td align=\"center\">"  + 
+	    		  text +
+	    		  "</td></tr></table></body>";
+	    
+	fxplayer.innerHTML = text;
+	    //document.write(text);
+}
+
+
+function playVod10(url)
+{
+	var h = 360;
+	var w = 640;
+   play_flv10(w,h,url,"");
+}
+
+function playHTML510(url)
+{
+	var text = "<video src=\"" + url + "\" controls=\"controls\" autoplay=\"autoplay\" width=\"640px\" height=\"360px\">";  //
+		    text = text + "<font color='#FFFFFF'>您的浏览器不支持   HTML5 !</font>";
+	    text = text + "</video>";
+
+	    var doc = "<body bgcolor=\"#000000\">" + 
+	              "<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" height=\"100%\" >" +
+	    	      "<tr>" +
+	    		  "<td align=\"center\">"  + 
+	    		  text +
+	    		  "</td></tr></table></body>";
+	    
+	    last10.innerHTML = text;
+	    //document.write(text);
+}
+
+function playHLS10(url) {
+	  // set_captions("vod",title);
+	   //location.href = url;
+	   playHTML510(url);
+}
+
+function playMP410(url)
+{
+//  set_captions("vod",title);
+  playHTML510(url);
+}
+
+function playHLS(url) {
+	  // set_captions("vod",title);
+	   //location.href = url;
+	   playHTML5(url);
+}
+		 
+ function playMP4(url)
+ {
+ //  set_captions("vod",title);
+   playHTML5(url);
+ }
+	 
+ function gen_flv_vod_url(host,app,stream,ver,token)
+ {
+     var url  = "http://"  + host + "/sps/" + app + "/" + stream + ".flv?ver=" + ver;
+     if(token!="")
+     {
+         url = url + "&token=" + token;
+     }
+     return url;
+ }
+ 
+ function gen_mp4_url(host,app,stream,ver,token)
+ {
+     //var   url= "http://" + host + "/media/mp4/" + app + "/" + stream + "/" + stream;
+     var   url= "http://" + host + "/mp4/" + app + "/" + stream + "/" + stream;
+     if(ver>=0)
+     {
+        url = url + "_v" + ver;
+     }
+     url    = url  + ".mp4";
+     if(token!="")
+     {
+         url = url + "?token=" + token;
+     }else{
+     	url = url + "?token=";
+     }
+     return url;
+ }
+ 
+ function gen_hls_url(host,app,stream,ver,token)
+ {
+ 	var d = new Date();
+ 	var url  = "http://"  + host + "/m3u8/" + app + "/" + stream + ".m3u8?from=mgr";
+ 	if(ver!=null)
+ 	{
+ 	   url = url + "&ver=" + ver;
+ 	}
+ 	if(token!="")
+     {
+         url = url + "&token=" + token;
+     }
+ 	
+ 	return url;
+ }
+
+ function gen_rtmp_live_url(host,app,stream,token,port)
+ {
+     var url   = "rtmp://"  + host + ":" + port + "/" + app + "/" + stream;
+ 		var npos = host.indexOf(":");
+ 		if(npos>0)
+ 		{
+ 			url = "rtmp://"  + host.substr(0,npos) + "/" + app + "/" + stream;
+ 		}
+
+     if(token!="")
+     {
+         url = url + "?token=" + token;
+     }
+     else{
+     	url = url + "?token=";
+     }
+     return url;
+ }
+	 
+	 function InitDoc()
+	 {
+		 
+	    var app    = 'liveshow';
+	    var stream = 'fanson';
+	    var live   = 'live';
+	    var host   = '';
+	    var port   = '';
+	    var ver = -1;
+	    var format = "flv";
+	    var token="";
+
+	     var  uid     = "";
+	     if(uid=="" || uid==null)
+	     {
+	  	   uid     = ntv_uuid(16,16);
+	     }
+	    
+	    if(app==null || stream==null)
+	    {
+	 	    fxplayer.innerHTML= "<font color=\"#FFFFFF\">Load stream error!</font>";
+	 	    return;
+	    }
+
+	    if(port==null || port=="")
+	    {
+	        port = "1935";
+	    }
+	    
+	    if((host==null) || (host == ""))
+	    {
+	        	host  = document.location.host;
+	 	}
+	 	if((ver==null) || (ver == ""))
+	 	{
+	         ver="-1";
+	     }
+	 	if(format==null)
+	 	{
+	 	     format="flv";
+	 	}
+
+	    if(live=="live")
+	    {
+	 	 if(isPC){
+	 	     if(format=="flv")
+	 	   	 {
+	 	   	    url  = gen_rtmp_live_url(host,app,stream,token,port);
+	 	   	 	url  = url + "&live=1&uid=" + uid + "&sid=" + uid; 
+	 	   	    playLive(url);
+	 	   	 }
+	 	   	 else if(format=="hls")
+	 	   	 {
+	 	   	    url = gen_hls_url(host,app,stream,null,token);
+	 	   	 	url  = url +  "&live=1&uid=" + uid + "&sid=" + uid;
+	 	   	    playHLS(url,tl);
+	 	   	 }else if(format == "rtsp"){
+	 	   		 url = gen_rtsp_live_url(host, app, stream, token, port);
+	 	   		play_rtsp(url, tl);
+	 	   	 }
+	 	 }else{
+	    	    url = gen_hls_url(host,app,stream,null,token);
+	    	 	url  = url +  "&live=1&uid=" + uid + "&sid=" + uid;
+	    	    playHLS(url,tl);		 
+	 	 }
+	    }
+	    else
+	    {      
+	 	   if(isPC){
+	 		   if(superFLV == 1){
+	 			   url = gen_flv_vod_url(host,app,stream,ver,token);
+	 			   url  = url + "&uid=" + uid + "&sid=" + uid; 
+	 		       playVod(url);
+	 	   		}else if(superHTML5 == 1){
+	 			   url = gen_mp4_url(host,app,stream,ver,token);
+	 			   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 		       playMP4(url);
+	 		   }else{
+	 			   url = gen_hls_url(host,app,stream,ver,token);
+	 			   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 		       playHLS(url);
+	 		   }
+	 	   }else{
+	 		   url = gen_mp4_url(host,app,stream,ver,token);
+	 		   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 	       playMP4(url);
+	 	   }
+
+	 	   /*
+	       if(format=="flv")
+	       {
+	          url = gen_flv_vod_url(host,app,stream,ver,token);
+	          playVod(url,tl);
+	       }
+	       else if(format=="mp4")
+	       {
+	           url = gen_mp4_url(host,app,stream,ver,token);
+	           playMP4(url,tl);
+	       }
+	       else if(format=="hls")
+	       {
+	           url = gen_hls_url(host,app,stream,ver,token);
+	           playHLS(url,tl); 
+	       }
+	 	   */
+	    }
+	    
+	    setInterval("startRequest()", 1000);   
+	    window.focus();
+	 }
+	 
+	 function close_player()
+	 {
+	 	 if(playbyjw)
+	 	 {
+	 	    jwplayer().stop();
+	 	 }
+	 }
+	 
+	 function startRequest(){
+			$.ajax({
+				  type: 'get',
+				  url: "?s=Admin/Mserver/GetActiveStreams/app/liveshow/stream/fanson",
+				  success:function(data){
+	
+				}
+			});	 
+	 }
+	 
+	 function last_ten_seconds(){
+	 	   if(isPC){
+	 		   if(superFLV == 1){
+	 			   url = gen_flv_vod_url(host,app,stream,ver,token);
+	 			   url  = url + "&uid=" + uid + "&sid=" + uid; 
+	 		       playVod10(url);
+	 	   		}else if(superHTML5 == 1){
+	 			   url = gen_mp4_url(host,app,stream,ver,token);
+	 			   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 		       playMP410(url);
+	 		   }else{
+	 			   url = gen_hls_url(host,app,stream,ver,token);
+	 			   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 		       playHLS10(url);
+	 		   }
+	 	   }else{
+	 		   url = gen_mp4_url(host,app,stream,ver,token);
+	 		   url  = url + "&uid=" + uid + "&sid=" + uid;  
+	 	       playMP410(url);
+	 	   }
+	 }
+</script>
+
+<style>
+.div-inline{float:left;margin-left: 20px;}
+.div-inline .h3{text-align: center;}
+</style>
+</head>
+<body onLoad="InitDoc()" onUnload="close_player()">
+<div id='videolive' class="div-inline">
+	<h3>实时直播</h3>
+	<div id="fxplayer">Loading the player...</div>
+</div>
+<div class="div-inline">
+	<h3 >最后10秒</h3>
+	<div id="last10" >Loading the player...</div>
+	<a href="video?s=Admin/Mserver/GetActiveStreams/app/liveshow/stream/fanson">点我试试</a>
+</div>
+</body>
+</html>

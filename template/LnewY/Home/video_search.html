@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<link href="/template/LnewY/css/Common.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/channel.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/channel-list.css" rel="stylesheet" type="text/css" />
+<link href="/images/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/LnewY/js/jquery.min.js"></script>
+<script type="text/javascript" src="/template/LnewY/js/Common.js" charset="gb2312"></script>
+</head>
+<body>
+<include file="header" />
+<div class="wrap w960">
+<div class="maxBox lb">
+  <div class="cntBox">
+    <div class="conBox">
+      <div class="box">
+        <div class="caption bigCaption channel-title fa-clear">
+          <h2 class="hide-self fa-left">共找到 {$count}条 "<FOnt color="#FF0000">{$keyword}</FOnt>"相关的视频</h2>
+        </div>
+        <div class="channel-content">
+          <ul>
+            <gxsearch name="video" limit="20">
+              <li onmousemove="this.className='cbg'" onmouseout="this.className=''" class=""> <a href="{$video.readurl}" title="{$video.title}" class="ah"><img src="{$video.picurl}" alt="{$video.title}"></a>
+                <h2><a href="{$video.readurl}">{$video.title}</a></h2>
+                <p><b>主演：</b><a href="/?keyword=%e5%93%80%e6%9c%a8%e6%b6%95" id="a-gbook">哀木涕</a> <a href="/?keyword=%e5%82%bb%e9%a6%92" id="a-gbook">傻馒</a> <a href="/?keyword=%e5%8a%a3%e4%ba%ba" id="a-gbook">劣人</a> <a href="/?keyword=%e5%91%86%e8%b4%bc" id="a-gbook">呆贼</a> </p>
+                <p><b>地区：</b>大陆<em>年份：2013</em></p>
+                <p><b>语言：</b>普通话发音 中文字幕</p>
+                <p><b>导演：</b><a href="/?keyword=%e6%a0%b8%e6%a1%83" id="a-gbook">核桃</a> </p>
+                <p><b>时间：</b>05-31</p>
+                <!--<p class="Tips">"2013年5月31日更新12集"</p> -->
+                <p class="xb"><a href="http://www.yiyi.cc/film7/28406/" target="_blank" class="xq bg"></a><a href="http://www.yiyi.cc/film7/28406/28406_1_1.html" target="_blank" class="bf bg"></a></p>
+              </li>
+            </gxsearch>
+          </ul>
+        </div>
+        <div class="page">
+          <div class='p_btns'> {$pages} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--网站底部-->
+<div class="foot"> 
+  <!--
+	<p class="footermenu">
+	<a href="#">关于一一</a> |
+	<a href="#">服务条款</a> |
+	<a href="http://adver.qq.com/" rel="nofollow" target="_blank">广告服务</a> |
+	<a href="http://hr.tencent.com/" rel="nofollow" target="_blank">腾讯招聘</a> |
+	<a href="http://service.qq.com/" rel="nofollow" target="_blank">客服中心</a> |
+	<a href="http://www.qq.com/map/" rel="nofollow" target="_blank">网站导航</a>
+	</p>-->
+  <p class="copyrighten">本网站内容收集于互联网，一一影院不承担任何由于内容的合法性及健康性所引起的争议和法律责任。 欢迎大家对网站内容侵犯版权等不合法和不健康行为进行监督和举报。</p>
+  <p class="copyrightzh">闽ICP备10009355号-1 联系我们： yiyikk1983@gamil.com Copyright &copy; 2005-2011 http://www.yiyi.cc [一一影院] <script src='http://w.cnzz.com/c.php?id=30028445&l=3' language='JavaScript' charset='gb2312'></script></p>
+</div>
+<script src="http://www.yiyi.cc/template/LnewY/js/jquery.autocomplete.js" language="JavaScript" charset="gb2312"></script> 
+<!-- Baidu Button BEGIN --> 
+<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;mini=1&amp;pos=left&amp;uid=396027" ></script> 
+<script type="text/javascript" id="bdshell_js"></script> 
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = " http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+</script> 
+<!-- Baidu Button END --> 
+
+<script language="javascript" src="/js/lang.js"></script>
+</body>
+</html>

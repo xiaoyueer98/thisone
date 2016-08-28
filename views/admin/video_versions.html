@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>影视列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<link rel='stylesheet' type='text/css' href='./views/css/dialog.css'>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/dialog.js"></script>
+</head>
+<body>
+<table width="98%" border="0" cellpadding="5" cellspacing="1" class="table">
+  <tr>
+    <td colspan="10" class="table_title">
+    	
+    	<span class="fr">&nbsp;&nbsp;&nbsp;&nbsp;<a href="?s=Admin/Video/Show">返回</a></span>
+    </td>
+  </tr>
+  <form action="?s=Admin/Video/Show/keyword" method="post" id="gxform" name="gxform">
+      <input type="hidden" value="{$gxcms.id}"name="id"/>
+    <!--<tr class="tr">
+      <td colspan="10"><span style="float:left">
+        <label>搜索视频：&nbsp;&nbsp;</label>
+        <select id="selectFilter" onChange="self.location.href='?s=Admin/Video/Show/cid/'+this.value+''">
+          <option value="">所有分类</option>
+          <volist name="list_channel_video" id="gxcms"><option value="{$gxcms.id}" 
+            <eq name="gxcms.id" value="$cid">selected</eq>
+            >{$gxcms.cname}
+            </option>
+            <volist name="gxcms['son']" id="gxcms"><option value="{$gxcms.id}" 
+              <eq name="gxcms.id" value="$cid">selected</eq>
+              >├ {$gxcms.cname}
+              </option>
+            </volist>
+          </volist>
+        </select>
+        </span>&nbsp;&nbsp;
+        <input name="keyword" type="text" id="keyword" size="20" value="{$keyword|htmlspecialchars}">
+        &nbsp;&nbsp;
+        <input type="submit" value="搜 索" class="bginput" title="输入关键字搜索视频" onKeyDown="diableReturn(event)"/>
+        &nbsp;&nbsp;
+        <select name="starget" id="starget"  onChange="self.location.href='?s=Admin/Video/Show/starget/'+this.value+''">
+          <option value="">按星级查询</option>
+          <volist name="starlist" id="gxcmsstar"> <option value="{$key}"  
+            <eq name="key" value="$starget">selected</eq>
+            >{$gxcmsstar}
+            </option>
+          </volist>
+        </select></td>
+    </tr>-->
+    <tr align="center" class="list_head">
+      <td width="70">版本编号</td>
+      <td style="text-align:center;width:200px">流名称</td>
+      <td width="80">虚拟直播</td>
+      <td width="50">标签</td>
+      <td width="110">创建时间</td>
+      <td width="90">时长</td>
+      <td width="90">大小</td>
+      <td width="140">播放</td>
+      <td width="100">操作</td>
+    </tr>
+
+
+    <volist name="vers" id="gxcms">
+      <tr class="tr" align="center" onmouseover="this.style.backgroundColor='#E6FBDB';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+        <td align="left">
+            <input name='ids[]' type='checkbox' value='{$gxcms.id}' class="noborder" checked="checked">
+          {$gxcms.ver}</td>
+        <td align="left" style="color:#999">{$gxcms.stream}</td>
+        <td class="td">V</td>
+        <td class="td">T</td>
+        <td style="padding:0px">{$gxcms.stime}</td>
+        <td class="td">{$gxcms.durtext}</td>
+        <td class="td">{$gxcms.sizetext}</td>
+        <td class="td"><a href="?s=Home/Video/play/id/{$gxcms.id}/ver/{$gxcms.ver}/format/flv/transmit/transmit" target="_blank">flash</a>&nbsp;&nbsp;&nbsp;<a href="?s=Home/Video/play/id/{$gxcms.id}/ver/{$gxcms.ver}/format/mp4/transmit/transmit"target="_blank">MP4</a>&nbsp;&nbsp;&nbsp;<a href="?s=Home/Video/play/id/{$gxcms.id}/ver/{$gxcms.ver}/format/hls/transmit/transmit"target="_blank">hls</a></td>
+        <td class="td">
+            <a href="?s=Admin/Video/Delver/id/{$gxcms.id}/ver/{$gxcms.ver}/stream/{$gxcms.stream}/app/{$app}" onClick="return confirm('确定删除该视频吗?')" title="点击删除视频">删除</a>
+        </td>
+      </tr>
+    </volist>
+
+
+
+    <tr class="tr">
+      <td colspan="10" class="pages">{$listpages}</td>
+    </tr>
+    <tr class="tr">
+      <td colspan="10">
+          <input type="button" id="checkall" value="全/反选" class="bginput">
+        &nbsp;&nbsp;
+       <!-- <input type="submit" value="批量审核" class="bginput" onClick="gxform.action='?s=Admin/Video/Statusall/sid/1';" />
+        &nbsp;&nbsp;
+        <input type="submit" value="取消审核" class="bginput" onClick="gxform.action='?s=Admin/Video/Statusall/sid/0';" />
+        &nbsp;&nbsp;-->
+        <input type="submit" value="批量删除" onClick="if(confirm('删除后将无法还原,确定要删除吗?')){gxform.action='?s=Admin/Video/Delall';}else{return false}" class="bginput"/>
+       <!-- &nbsp;&nbsp;<input type="button" value="批量生成" id="createhtml" name="Videoid" class="bginput"
+        <neq name="Think.config.url_html" value="1">disabled</neq>
+        />&nbsp;&nbsp;
+        <input type="button" id="changecid" name="changecid" class="bginput" value="批量移动"/>-->
+        <span style="display:none" id="changeciddiv">
+        <select name="changecid">
+          <option value="">选择目标分类</option>
+          <volist name="list_channel_video" id="gxcms">
+            <option value="{$gxcms.id}" >{$gxcms.cname}</option>
+            <volist name="gxcms['son']" id="gxcms">
+              <option value="{$gxcms.id}" >├ {$gxcms.cname}</option>
+            </volist>
+          </volist>
+        </select>
+        <input type="submit" class="bginput" value="确定转移" onClick="gxform.action='?s=Admin/Video/Changecid';"/>
+        </span>
+        <!--<input type="button" id="changetomid" name="changetomid" class="bginput" value="批量至多分类"/>-->
+        </td>
+    </tr>
+  </form>
+</table>
+<!--连载框 -->
+<div id="msg_tbc" class="tbc-block"></div>
+<!--浮动层 --> 
+<include file="dialog" />
+<style>
+#dia_title{height:25px;line-height:25px}.jqmWindow{height:300px;width:500px;}
+</style>
+<script language="JavaScript" type="text/javascript">
+function showhtml(id){
+	$.get('?s=Admin/Html/Videoid/ids/'+id,null,function(data){
+		$("#html_"+id).html('<font color=#ff0000>'+data+'</font>');
+		window.setTimeout(function(){
+			$("#html_"+id).html('');
+		},1000);
+	});
+}
+//ajax请求:选择星级控制
+var sendStar = function(videoid,star,obj){
+	$.ajax({
+		  type: 'get',
+		  url: "?s=Admin/Video/Stars/id/"+videoid+"/sid/"+star,
+		  data: videoid,
+		  success:function(){
+			var collect = obj.parentNode.children;
+			for(var i=0;i<collect.length;i++)
+			{
+				if(star<=i)
+				{
+					collect[i].className = 'star-0';
+				}else{
+					collect[i].className = 'star-1';
+				}
+			}
+		}
+	});
+}
+//ajax请求:弹出设置连载信息浮动层;
+var ToBContinue = function(id){
+	var offset = $("#isser"+id).offset();
+	var top = offset.top+55;
+	var left = offset.left-260;
+	var serial = $("#serial_"+id).html();
+	var html = '连载至第 <input id="tbc_serial" value="'+serial+'" type="text" size="5" style="text-align:center" title="完结请填写0" maxlength="25"/> 集 <input type="button" class="bginput" onClick="submitVideoState('+id+')" value="确定" style="cursor:pointer" /> <input type="button" class="bginput" onClick="closeTBC();" value="取消" style="cursor:pointer" />';
+	$('#msg_tbc').css({left:left,top:top});
+	$('#msg_tbc').html(html);
+	$('#msg_tbc').show(1,function(){
+		$('#msg_tbc').animate({
+			"top": "-=50px",
+			"opacity": 1
+		});
+	});	
+}
+//信息浮动层:(确认后)>改变连载图标并且在视频名称后面提示连载信息');
+var submitVideoState = function(videoid){
+	var serial = $('#tbc_serial').val();
+	$.ajax({
+		type : "post",
+		url : "?s=Admin/Video/Serial",
+		data: "id="+videoid+"&sid="+serial,
+		success:function($string){
+			closeTBC();
+			if(serial=='0'||serial=='') {
+				$('#serial_'+videoid).html('');
+				$("#isser"+videoid+'>img').attr('src','./views/images/admin/icon_02.gif');
+			}else{
+				$('#serial_'+videoid).html(serial);
+				$("#isser"+videoid+'>img').attr('src','./views/images/admin/icon_01.gif');				
+			}
+		}		
+	});
+}
+//信息浮动层:(取消后，浮动层消失);
+var closeTBC = function(id){
+	$('#msg_tbc').animate({
+		"top": "-=50px",
+		"opacity": 0
+	});
+}
+</script> 
+<include file="footer" />
+</body>
+</html>

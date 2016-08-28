@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>方讯--个人中心</title>
+<meta name="keywords" content="方讯" />
+<meta name="description" content="方讯" />
+<link rel="stylesheet" type="text/css" href="{$tplpath}style.css?v1.0.10"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+<link rel="stylesheet" type="text/css" href="{$tplpath}yiku.css"/>
+
+<script type="text/javascript" src="{$webpath}views/js/jquery.js"></script>
+<script type="text/javascript" src="{$webpath}views/js/system.js"></script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script> 
+
+</head>
+<body>
+<div class="width1000">
+<include file="header" />
+	<div class="sub_breadcrumb_nav">
+    </div>
+    <div class="sub_main">
+      <form action="web_dpu.xhtml" method="post" name="resForm"
+				id="resForm" autocomplete="off">
+    	<div class="sub_main_title">个人中心</div>
+    	<div class="sub_content pad_tb user_show">
+			<div class="user_left">
+				<include file="user_left" />
+			</div>
+        	<div class="user">
+            	<ul class="readright">
+  					<li class="pad_b2">
+                    	<div class="form550_title">账号：</div>
+                        <div class="lfloat lejian_num">{$username|htmlspecialchars}</div>
+                        <div class="clra"></div>
+                    </li> 
+  					<li class="pad_b2">
+                    	<div class="form550_title">邮箱：</div>
+                        <div class="lfloat lejian_num">{$email|htmlspecialchars}</div>
+                        <div class="clra"></div>
+                    </li>
+  					<li class="pad_b2">
+                    	<div class="form550_title">用户积分：</div>
+                        <div class="lfloat lejian_num">{$money}</div>
+                        <div class="clra"></div>
+                    </li>
+  					<li class="pad_b2">
+                    	<div class="form550_title">消费模式：</div>
+                        <div class="lfloat lejian_num"><span style="font-weight:bold;color:red"><eq name="pay" value="1">包月<else />扣点 (<a href="?s=User/Changepay">我要包月</a>)</eq></span></div>
+                        <div class="clra"></div>
+                    </li>
+  					<li class="pad_b2">
+                    	<div class="form550_title">用户状态：</div>
+                        <div class="lfloat lejian_num"><eq name="status" value="1">正常<else /><font color="red">锁定</font></eq></div>
+                        <div class="clra"></div>
+                    </li>
+  					<li class="pad_b2">
+                    	<div class="form550_title">最近登录：</div>
+                        <div class="lfloat lejian_num">{$logtime|date='Y-m-d H:i:s',###}</div>
+                        <div class="clra"></div>
+                    </li>  
+  					<li class="pad_b2">
+                    	<div class="form550_title">登录IP：</div>
+                        <div class="lfloat lejian_num">{$logip}</div>
+                        <div class="clra"></div>
+                    </li>                                                        
+                </ul>
+            </div>
+            <div class="clra"></div>
+        </div>
+        </form>
+    </div>   
+</div>
+<include file="footer" />
+</body>
+</html>

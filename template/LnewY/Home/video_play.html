@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$ckeywords}{$keywords}">
+<meta name="description" content="{$cdescription}{$description}">
+<link href="/template/LnewY/css/Common.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/channel.css" rel="stylesheet" type="text/css" />
+<link href="/template/LnewY/css/content.css" rel="stylesheet" type="text/css" />
+<script language="javascript">var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}';</script>
+<script type="text/javascript" src="/template/LnewY/js/jquery.min.js"></script>
+<script type="text/javascript" src="/template/LnewY/js/Common.js"></script>
+
+<script>
+$(document).ready(function(){
+	var name='{$title}';
+    var num='{$playname}';
+	var url=window.location.href;
+    CheckAdd(name,'gxhis',url,num)
+	
+	});
+
+</script>
+</head>
+
+<body>
+<include file="header" />
+<div class="weizhi w960">
+  <div class="fa-left">当前位置：{$navtitle} {$playname}</div>
+  <div class="fa-right"><a href="javascript:void(0);" class="lighter" id="lighter" style="">关灯</a> <a href="/gbook.asp">留言求片</a></div>
+</div>
+</div>
+<div class="PlayBody">
+  <div class="play">
+    <div class="pl" style="text-align: center; margin:auto;">
+      <div class="player" id="player">{$player}</div>
+    </div>
+    
+  </div>
+</div>
+<div class="wrap w960">{:get_cms_ads('inde_960_90')}</div>
+
+<div class="wrap w960">
+
+<div class="maxBox"> 
+    
+    <!--百度影音-->
+    <volist name="ppplay" id="video">
+      <div class="box Video-list">
+        <div class="play-list b mb">
+          <div class="title">
+            <h3><span class="p_{{$video.playname}}"></span>{$video.playername} <span class="tips">( <a href="http://dl.p2sp.baidu.com/BaiduPlayer/un2/BaiduPlayerNetSetup_100820182.exe
+
+" target="_blank">点击下载百度影音播放器(2013年03月25号最新高速版）</a> )</span></h3>
+            <span class="pa order hascoll"> 排序：<a id="desc_1" class="desc" href="javascript:void(0);" onclick="desc(1,1,this)">降序</a> <em>|</em> <a id="asc_1" href="javascript:void(0);" class="asc asc_on" onclick="desc(0,1,this)">升序</a> </span> </div>
+          <div id="play_1">
+            <ul>
+              <volist name="video['son']" id="ppvodson" key='ii'>
+                <li> <a target='_blank' title='{$ppvodson.playname}' href='{$ppvodson.playurl}'>{$ppvodson.playname}</a></li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </volist>
+  </div>
+
+
+  <div class="maxBox"> 
+    
+    
+  <div class="maxBox mb10">
+    <div class="box BigBox">
+      <div class="title">
+        <h3>圣斗士星矢Ω(欧米伽)评论：</h3>
+      </div>
+      <div class="introduction"> 
+        <!-- UY BEGIN -->
+        <div id="uyan_frame"></div>
+        <script type="text/javascript">
+				var uyan_config = {'du':'www.yiyi.cc','su':'22466'};
+				</script> 
+        <script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1713760" async=""></script> 
+        <!-- UY END --> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<include file="footer" />
+</body>
+</html>

@@ -1,0 +1,57 @@
+/*电影播放列表*/
+.moviePlayList { padding-top:30px; position:relative}
+.moviePlayList .playBtnCon { float:left; position:relative; z-index:40; width:161px}
+.moviePlayList .playBtnCon .aPlayBtn { width:161px; height:49px; display:block; background:url(/template/2345/images/playBtnMap.png) -162px 0 no-repeat;}
+.moviePlayList .playBtnCon .playBtnConMore { position:absolute; top:0; left:0;}
+.moviePlayList .playBtnCon .aPlayBtnA { width:158px; height:45px; background:url(/template/2345/images/playBtnMap.png) -162px -50px no-repeat; display:block;}
+.moviePlayList .playBtnCon a.aTxt { width:137px; height:45px; line-height:44px; overflow:hidden; background:url(/template/2345/images/playBtnMap.png) -162px -96px no-repeat; display:block; font-size:14px; padding-left:21px; color:#1f6caa}
+.moviePlayList .playBtnCon a:hover.aTxt { color:#fd5151;background-position:-162px -142px}
+.moviePlayList .playBtnConMore { display:block; width:0; height:0;overflow:hidden}
+.moviePlayList .playBtnConMore .txt { width:282px; height:54px; position:absolute;left:157px; top:38px; overflow:hidden; background-position:0 -219px; z-index:50}
+.moviePlayList .playBtnConMore .txt p {  padding:6px 0 0 10px; text-align:center; width:272px; height:48px; color:#666; line-height:20px; z-index:50; position:absolute; top:0; left:0; font-size:12px}
+.moviePlayList .playBtnConMore p span { display:block}
+.moviePlayList .playBtnConMore .sTit { color:#930}
+.moviePlayList .playBtnCon a.adPlayBtn { background-position:-162px -188px}
+.moviePlayList .playBtnCon a:hover.adPlayBtn { background-position:-162px -238px}
+
+/*电影预告片*/
+.moviePlayList .playBtnConTrailer .aPlayBtn { background-position:0 0}
+.moviePlayList .playBtnConTrailer .aPlayBtnA { background-position:0 -50px}
+.moviePlayList .playBtnConTrailer a.aTxt { background-position:0 -96px; color:#060;}
+.moviePlayList .playBtnConTrailer a:hover.aTxt { background-position:0 -142px}
+.moviePlayList .playBtnConTrailer a.adPlayBtn { background-position:0 -188px}
+.moviePlayList .playBtnConTrailer a:hover.adPlayBtn { background-position:0 -238px}
+
+.moviePlayList .playBtnConHover .playBtnConMore { width:auto; height:auto; overflow:visible}
+
+/*电影播放源*/
+.moviePlaySource { width:585px; position:absolute; left:165px; top:30px;}
+.moviePlaySource ul { height:24px; line-height:24px; overflow:hidden; padding:0 6px 0 15px; width:564px; float:left; margin-top:11px;}
+.moviePlaySource li { float:left; padding-right:20px; line-height:24px; height:24px; zoom:1;white-space:nowrap;}
+.moviePlaySource li img { padding:3px 0 5px; display:inline;}
+.moviePlaySource li em { display:block; margin:-24px 0 0 0; padding-left:19px}
+.moviePlaySource li a { color:#333; cursor:pointer;}
+.moviePlaySource li a:hover { color:#f30}
+.moviePlaySource .iArrowMore { position:absolute; right:16px; top:19px; clear:both}
+.moviePlaySourceShort .iArrowMore { display:none}
+.moviePlaySourceMore ul { border-bottom:1px solid #fff; border-right:1px solid #fff; border-top:1px solid #dcdcdc; border-left:1px solid #dcdcdc; background:#f2f2f2; padding:0 5px 10px 14px; position:absolute; top:0; left:0; height:auto; margin:0; margin-top:10px}
+.moviePlaySourceMore .iArrowMore { display:none}
+
+.ulPic_widthA { padding:5px 0; height:177px; overflow:hidden; float:left}
+.ulPic_widthA li { width:114px; float:left; display:inline; overflow:hidden; margin-right:36px}
+.ulPic_widthA .pic { width:114px; height:151px;}
+.ulPic_widthA .pic .sTime { width:100px}
+
+.movieTxtIntro { line-height:22px; padding-top:10px; text-indent:2em}
+.movieTxtIntro a { font-family:\5B8B\4F53}
+.movieTxtIntroAll { height:440px; overflow-y:scroll}
+
+/*电影评论播放按钮*/
+.movieCommentList { padding-bottom:35px}
+.movieCommentList .moviePlayList { padding-top:10px; float:none;}
+
+/*在线购票*/
+a.buyTicketBtn { background:url(/template/2345/images/buyTicketBtn.png) 0 0 no-repeat; width:132px; height:47px; float:left; margin-right:10px; display:inline}
+a:hover.buyTicketBtn { background-position:-133px 0;}
+.moviePlaySourceStyleA { width:443px; left:307px;}
+.moviePlaySourceStyleA ul { width:422px;}

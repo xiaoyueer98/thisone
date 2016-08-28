@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle} </title>
+<meta name="keywords" content="{$ckeywords}{$keywords}">
+<meta name="description" content="{$cdescription}{$description}">
+<link href="/template/2345/css/global.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/video.common.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/index.css?v=2013051301" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/special.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<include file="header" />
+
+
+
+<div class="banner" style="height:auto; background-color:#303030;width:100%; margin-top:0px; text-align:center; margin:auto;">
+
+	<div style="margin-top:10px; margin-bottom:10px; padding-top:5px; padding-bottom:5px;"><img src="{$banner}" alt="{$title}" width="1000"/></div>
+    
+</div>
+
+
+
+<div class="main" style="margin:auto; width:1000px; margin-top:10px;">
+	
+    
+    
+    
+<div class="wapper">
+
+<div class="box">
+
+
+
+	
+
+	<!---当前位置 开始--->
+
+	<div class="dq">
+
+    	<span>当前位置：</span><a href="/">首页</a> &gt; <a href="/special/" >专题</a> &gt;<span> {$title}</span>
+    </div>
+
+    <!---当前位置 结束--->
+
+
+
+
+
+
+
+
+
+	<div class="list">
+
+    
+
+    	<div class="right_special">
+
+        
+
+        
+
+                <div class="right1_special" >
+
+                <div class="right2-1_special">
+
+                	<span><b style="color:#0078bc; font-size:14px;">{$title}</b></span>
+
+                </div>
+
+                
+
+                <ul class="right_special"> 
+
+
+					<gxcms name="video" ids="'.$mids.'" limit="100">
+                	 <li style="height:200px;">
+                    	<a href="{$video.readurl}" target="_blank" class="img_special" style="width:120px; height:171px;"><img src="{$video.picurl}" alt="{$video.title}" onerror="this.src='/views/images/nophoto.jpg'" width="120" height="171" /></a>
+                        <a class="title_special" href="{$video.readurl}" target="_blank" title="" style="width:120px;">{$video.title}</a>
+                    </li>
+                    </gxcms>
+                    
+
+                </ul>
+
+                <div class="clear"></div>
+
+                <!---pag 开始--->
+
+                
+                <!---pag 结束--->
+
+                <div class="clear"></div>
+
+            </div>        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        </div>
+
+        
+
+    </div>
+
+
+
+
+
+    
+
+  </div>
+
+  
+
+    <div class="clear" style="height:15px;"></div>
+    
+    
+    
+
+
+    
+</div>
+
+</div>
+
+
+<include file="footer" />
+
+
+
+
+
+</body>
+</html>

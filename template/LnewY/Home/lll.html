@@ -1,0 +1,40 @@
+<div class="select_list"> <span class="select_list_sTit select_list_sTV"></span>
+  <dl class="select_list_style">
+    <dt><span>按类型</span></dt>
+    <dd  style="height:70px; overflow:hidden"> 
+    <?php
+    $stypetag = gettypetag(2);
+    ?>
+    <volist name="stypetag" id="item">
+    <a href="{:getstypetaglink(2,$item['m_cid'])}" target="_blank">{$item.m_name}</a>
+    </volist> 
+     </dd>
+  </dl>
+  <dl class="select_list_address">
+    <dt><span>按地区</span></dt>
+    <dd  style="height:70px; overflow:hidden"> 
+    {:getarealist('cur',2)}
+      </dd>
+  </dl>
+  <dl class="select_list_year">
+    <dt><span>按年代</span></dt>
+    <dd style="height:70px; overflow:hidden">
+    {:getyearlistnew('cur',9,2)}
+    </dd>
+  </dl>
+  <dl class="select_list_star" name="mingxing" id="mingxing" style="display: block; ">
+    <dt><span>荧幕明星</span><em>(热)</em><a href="javascript:Rmingxing(0);" name="change_star" id="change_star" class="star_changeBtn" target="_self">换一换</a></dt>
+    <dd> </dd>
+    <script language="javascript" type="text/javascript">Rmingxing(0);</script>
+  </dl>
+  <dl class="people_all_watch">
+    <dt><span>推荐专题：</span></dt>
+    <dd>
+    
+    <gxcms name="special" limit="3" order="addtime desc">
+    <span><a href="{$special.readurl}" target="_blank">{$special.title}</a></span>
+    </gxcms>
+    
+    </dd>
+  </dl>
+</div>

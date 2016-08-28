@@ -1,0 +1,419 @@
+body { background:#f5f5f5;}
+
+.main { width:1000px; margin:0 auto; position:relative}
+.main a { color:#2a78b3}
+.main a:hover { color:#f30}
+
+.m2 { margin-top:2px}
+.m5 { margin-top:5px}
+.m8 { margin-top:8px}
+.m10 { margin-top:10px}
+.m15 { margin-top:15px}
+.m20 { margin-top:20px}
+
+.detailPngMap { background:url(/template/2345/images/detailPngMap1113.png) 0 0 no-repeat;}
+.iArrowMore { background:url(/template/2345/images/detailMap.png) -288px -131px no-repeat; width:12px; height:7px; display:block; overflow:hidden}
+
+.main .iLine { background:url(/template/2345/images/detailRepeatMap.png) 0 -340px repeat-x; height:2px; line-height:0px; font-size:0; display:block}
+.main .BehaviorCheck { font-size:14px; font-family:\5B8B\4F53;}
+.main .aMore { font-family:\5B8B\4F53}
+.main .iNew { background:url(/template/2345/images/detailMap.png) -282px -18px no-repeat; width:18px; height:14px; display:block}
+.main a.submitBtn { background:url(/template/2345/images/detailMap.png) 0 -33px no-repeat; width:82px; height:30px; display:block; text-indent:-9999px; line-height:9999px; overflow:hidden}
+.main a:hover.submitBtn { background-position:-83px -33px}
+.main a.submitNoneBtn,.main a:hover.submitNoneBtn { background:url(/template/2345/images/detailMap.png?20130402) -201px -285px no-repeat; width:82px; height:30px; display:block; text-indent:-9999px; line-height:9999px; overflow:hidden}
+
+.styleBtn { float:left; vertical-align:middle}
+a:hover.styleBtn { text-decoration:none; cursor:pointer;}
+.styleBtn em { background:url(/template/2345/images/detailRepeatMap.png) 0 0 repeat-x; float:left;}
+.styleBtn i { width:10px; background:url(/template/2345/images/detailRepeatMap.png) 0 0 no-repeat; float:left}
+
+.styleBtnA { height:26px; line-height:26px; font-size:14px;}
+.styleBtnA i { height:26px}
+.styleBtnA em { background-position:0 -201px; height:26px}
+.styleBtnA .iLeft { background-position:0 -174px}
+.styleBtnA .iRight { background-position:0 -228px}
+
+.styleBtnB { height:24px; line-height:24px;}
+.styleBtnB i { height:24px}
+.styleBtnB em { background-position:0 -124px; height:24px}
+.styleBtnB .iLeft { background-position:0 -99px}
+.styleBtnB .iRight { background-position:0 -149px}
+
+.styleBtnC { height:32px; line-height:32px;}
+.styleBtnC i { height:32px}
+.styleBtnC em { background-position:0 -66px; height:32px}
+.styleBtnC .iRight { background-position:0 -33px}
+
+.col_a { width:200px; float:left}
+.col_b { width:750px; float:right}
+
+.ivy190 { width:190px; margin:0 auto; overflow:hidden; padding-top:10px;}
+.ivy200 { width:200px; margin:0 auto; overflow:hidden; padding-top:10px}
+.ivy960 { width:960px; margin:0 auto; overflow:hidden; padding-top:10px}
+
+.mod_a { border:1px solid #d6d6d6}
+.mod_a .th_a { height:28px; background:url(/template/2345/images/detailRepeatMap.png) 0 -311px repeat-x; border-top:1px solid #fff; border-right:1px solid #fff; border-bottom:1px solid #eee; line-height:28px}
+.mod_a .sMark { float:left; padding-left:10px; font-size:14px; font-weight:700; color:#333;}
+.mod_a .aMore { float:right; margin-right:10px; display:inline;}
+
+.mod_b .th_b { height:24px; padding:5px 0; line-height:24px}
+.mod_b .sMark { font-size:14px; font-weight:700; font-family:\5B8B\4F53}
+
+.mod_c { padding-left:2px}
+.mod_c a { padding:1px 21px; line-height:24px; height:24px; position:relative; margin-left:-2px; z-index:10; float:left; font-weight:700; font-size:14px}
+.mod_c a.cur { border-bottom:1px solid #fff; border-right:1px solid #fff; border-top:1px solid #dcdcdc; border-left:1px solid #dcdcdc; padding:0 20px; background:#eaeaea; color:#333}
+.mod_c a:hover.cur { text-decoration:none; color:#333}
+.mod_c a:hover { color:#f30}
+.mod_c .iLine { background-position:0 -343px; height:20px; width:2px; float:left; margin-left:-2px; position:relative; z-index:5; display:inline; margin-top:3px}
+
+.mod_c .ourCommentTab { position:relative; float:left;}
+.mod_c .ourCommentTab .pTips { position:absolute; left:72px; top:-22px; height:26px; line-height:22px; font-size:12px; z-index:20;}
+.mod_c .ourCommentTab .pTips span { background:url(/template/2345/images/detailMap.png) left -347px no-repeat; float:left; height:22px; padding:0 0 4px 8px; color:#960; font-family:\5B8B\4F53; white-space:nowrap}
+.mod_c .ourCommentTab .pTips i { background:url(/template/2345/images/detailMap.png) right -347px no-repeat; width:5px; height:26px; position:absolute; right:-5px; top:0}
+
+.mod_d .th_d { padding:5px 8px; line-height:22px; border-top:1px solid #ddd; background:#eee; overflow:hidden; clear:both}
+.mod_d .th_d span { color:#000; padding:0 9px 0 7px; background:url(/template/2345/images/lineBgA.png) right 5px no-repeat; display:inline-block}
+.mod_d .th_d em { color:#666; padding-left:6px; background:#eee; display:inline-block}
+.mod_d .th_d .sEnd { background:none; padding:0 7px}
+
+.ul_txtA li { background:url(/template/2345/images/lineBg.png) 0 bottom repeat-x; line-height:22px; float:left; width:100%; text-align:right}
+.ul_txtA .bottomLine { background:url(/template/2345/images/lineBg.png) 0 bottom repeat-x;}
+.ul_txtA .liSelected { background:url(/template/2345/images/yellowbar.gif) 0 0 repeat;}
+.ul_txtA .liSelected p { background:url(/template/2345/images/yellowbar2.gif?v=20130503) 0 0 no-repeat;}
+.ul_txtA li p { text-align:left; float:left; color:#666}
+.ul_txtA li .sTime { color:#999; padding-right:2px}
+
+.ul_picA img { vertical-align:top; display:block}
+.ul_picA a { border:1px solid #ddd; background:#fff; padding:1px; display:block;}
+.ul_picA a:hover { border:2px solid #FF6701; padding:0;}
+
+.ul_picTxtA { width:100%;}
+.ul_picTxtA li { text-align:center; line-height:20px}
+.ul_picTxtA img { padding:1px; border:1px solid #dfdfdf; display:inline; position:relative; z-index:9; background:#fff; float:left; vertical-align:top;}
+.ul_picTxtA .pic { position:relative; width:114px; height:151px; overflow:hidden}
+.ul_picTxtA .pic .iTxt { height:20px; color:#fff; position:absolute; z-index:10; display:block; left:2px; bottom:2px; _bottom:1px; background-position:0 -195px; width:110px}
+.ul_picTxtA .iTxt .sTime { padding:0 5px; position:absolute; top:0; left:0; text-align:center; width:100px}
+.ul_picTxtA .iTxt .eScore { color:#f90}
+.ul_picTxtA .pic .picHoverBg { height:147px; width:110px; position:absolute; z-index:12; cursor:pointer;top:9999px; left:-9999px; background-position:-512px 0}
+.ul_picTxtA .picHoverBg a { display:block; width:110px; height:147px}
+.ul_picTxtA span { display:block; height:20px; overflow:hidden;} 
+.ul_picTxtA .sName { font-size:14px; font-weight:700; padding-top:6px; cursor:pointer}
+.ul_picTxtA .sDes { color:#999; font-size:13px;}
+.ul_picTxtA .picHover img { padding:0; border:2px solid #ff6701;}
+.ul_picTxtA .picHover .pic { text-decoration:none}
+.ul_picTxtA .picHover .picHoverBg { top:2px; left:2px}
+.ul_picTxtA .picHover a:hover { text-decoration:none}
+.ul_picTxtA .liRight { float:right; margin-right:0px}
+
+.ul_picTxtB li { line-height:18px}
+.ul_picTxtB .pic { zoom:1; position:relative; width:139px; height:94px; overflow:hidden}
+.ul_picTxtB img { padding:1px; border:1px solid #dfdfdf; display:inline; position:relative; z-index:9; background:#fff; vertical-align:top;}
+.ul_picTxtB .sTxt { background-position:0 -195px; line-height:20px; height:20px; padding:0 5px; position:absolute; z-index:10; color:#fff; width:125px; bottom:2px; left:2px; _bottom:1px;}
+.ul_picTxtB .picHoverBg { background-position:-346px -85px; width:135px; height:90px; position:absolute; z-index:12; cursor:pointer; left:-9999px;}
+.ul_picTxtB .picHoverBg a { display:block; width:135px; height:90px}
+.ul_picTxtB .sTit { padding-top:5px; display:block; height:40px; overflow:hidden}
+.ul_picTxtB .picHover img { padding:0; border:2px solid #ff6701;}
+.ul_picTxtB .liRight { margin-right:0px}
+.ul_picTxtB .picHover .picHoverBg { top:2px; left:2px;}
+
+.tabList { background:#fff}
+.tabList .tabLabel { background:#f5f5f5 url(/template/2345/images/detailRepeatMap.png) 0 -365px repeat-x; line-height:22px; height:23px; padding:3px 3px 0 6px; overflow:hidden; zoom:1}
+.tabList .tabLabel a { float:left; height:22px; padding:1px 1px 0; color:#000; width:47px; text-align:center; margin-left:-2px; display:inline; position:relative; z-index:10; overflow:hidden; zoom:1}
+.tabList .tabLabel a.cur { border:1px solid #d6d6d6; border-bottom:none; font-weight:700; color:#000; background:#fff; padding:0}
+.tabList .tabLabel a:hover { color:#f30;}
+.tabList .tabLabel .iLine { background-position:0 -343px; height:21px; width:2px; float:left; margin-left:-2px; position:relative; z-index:5; display:inline}
+.tabList .tabCon { padding:10px}
+
+.ul_rank li { line-height:26px; font-size:13px; height:26px; overflow:hidden; text-align:right;}
+.ul_rank a { float:left}
+.ul_rank i { float:left; width:16px; height:16px; line-height:16px; text-align:center; color:#fff; font-weight:700; display:inline; margin:5px 5px 0 0;font-family:Arial; background:url(/template/2345/images/detailMap.png) -145px -125px no-repeat;}
+.ul_rank i.iFirst { background-position:-94px -125px}
+.ul_rank i.iSecond { background-position:-111px -125px}
+.ul_rank i.iThird { background-position:-128px -125px}
+.ul_rank .sScore { color:#999}
+.ul_rank .sScore em { color:#f60;}
+.ul_rank .sUpdataNum { color:#999}
+.ul_rank .sName { width:90px; float:left; overflow:hidden; text-align:left}
+
+/*海报*/
+.detailPicIntro { padding:15px 0 20px}
+.detailPicIntro .pic { border:1px solid #ddd; padding:1px; width:195px; position:relative; background:#fff; height:260px; overflow:hidden}
+.detailPicIntro .pic img { position:relative; z-index:9; display:inline}
+.detailPicIntro .playBtn { width:195px; height:260px; position:absolute; z-index:12; background-position:-316px 0; cursor:pointer; top:9999px; left:-9999px}
+.detailPicIntro .playBtn a { display:block; width:195px; height:260px}
+.detailPicIntro .pNum { background-position:0 -194px; height:24px; line-height:24px; text-align:center; font-size:14px; color:#fff; margin:-24px 0 0 0; position:relative; z-index:10; width:195px; zoom:1; overflow:hidden}
+.detailPicIntro .txt { line-height:32px;}
+.detailPicIntro .txt .sTit { color:#999;}
+.detailPicIntro .sChannel,.detailPicIntro .sData,.detailPicIntro .sTime,.detailPicIntro .sStyle,.detailPicIntro .sAddress { margin:-32px 0 0 0; display:block; line-height:22px; word-break:break-all; padding:5px 0 0 40px}
+.detailPicIntro .sData,.detailPicIntro .sTime { padding-left:65px}
+.detailPicIntro .sData em,.detailPicIntro .sTime em { display:block}
+.detailPicIntro .sChannel em { width:78px; float:left; overflow:hidden; height:22px}
+.detailPicIntro .iHigh { background:url(/template/2345/images/detailMap.png) -60px -177px no-repeat; width:53px; height:53px; position:absolute; top:1px; left:1px; z-index:11;}
+.detailPicIntro .iTrailer { background:url(/template/2345/images/detailMap.png) 0 -210px no-repeat; width:59px; height:20px; z-index:11; bottom:2px; right:1px; position:absolute}
+.detailPicIntro .picHover .playBtn{ top:1px; left:1px;}
+
+/*迅雷下载*/
+a.thunderDownLoadBtn { background:url(/template/2345/images/detailMap.png) 0 -285px no-repeat; width:200px; height:20px; display:block; margin:5px auto 0; text-align:center; line-height:22px; padding:5px 0; overflow:hidden}
+a:hover.thunderDownLoadBtn { background-position:0 -316px; text-decoration:none}
+a.thunderDownLoadBtn i { background:url(/template/2345/images/detailMap.png) -286px -144px no-repeat; display:block; height:13px; width:14px; cursor:pointer; position:absolute; left:0; top:4px}
+a.thunderDownLoadBtn span { display:inline-block; line-height:24px; position:relative; padding-left:20px; cursor:pointer}
+a.thunderDownLoad { width:200px; height:33px; margin:5px auto 0; display:none}
+
+/*文字简介*/
+.detailTxtIntro { padding-top:10px; position:relative; z-index:50}
+.detailTxtIntro .titleName { font-size:14px; color:#999; padding-bottom:15px; line-height:34px}
+.detailTxtIntro .titleName .sName { font-family:\5FAE\8F6F\96C5\9ED1,\9ED1\4F53,\5B8B\4F53; font-size:28px; color:#333; line-height:34px; float:left; height:34px; overflow:hidden; padding-right:8px}
+.detailTxtIntro .titleName .sName a { color:#333}
+.detailTxtIntro .titleName .sName a:hover { color:#f30; text-decoration:underline}
+.detailTxtIntro .titleName .sAnotherName { float:left; overflow:hidden; line-height:38px; height:34px;}
+.detailTxtIntro .titleName .sScore { float:left; overflow:hidden; padding-left:2px; line-height:42px; height:34px}
+.detailTxtIntro .titleName .sScore em { color:#f60; font-family:Arial; font-size:28px; line-height:34px; float:left;}
+.detailTxtIntro .titleName .tuanTicket { float:left; font-size:13px; font-family:\5B8B\4F53; padding:0 0 0 10px; height:34px; overflow:hidden}
+.detailTxtIntro .titleName .tuanTicket a { color:#f60; text-decoration:underline; line-height:40px;}
+.detailTxtIntro .titleName .tuanTicket a:hover { color:#f30}
+.detailTxtIntro .titleName .styleBtn { color:#666; display:inline; margin:7px 0 0 5px}
+.detailTxtIntro .titleName a:hover.styleBtn { color:#f30}
+.detailTxtIntro .titleName .styleBtnMargin { margin-left:0}
+.detailTxtIntro .titleName .styleBtn em { padding:0 2px}
+.detailTxtIntro .smallTitleName .sName { font-size:20px;}
+.detailTxtIntro .smallTitleName { padding-right:0px}
+.detailTxtIntro a.topQuickCommentBtn { background:url(/template/2345/images/detailMap.png) 0 -231px no-repeat; width:66px; height:26px; float:left}
+.detailTxtIntro a:hover.topQuickCommentBtn { background-position:0 -258px}
+.detailTxtIntro a.topCollectionBtn { background:url(/template/2345/images/detailMap.png) -67px -231px no-repeat; width:56px; height:26px; float:left; color:#666; line-height:26px; text-align:center; margin-left:5px; display:inline}
+.detailTxtIntro a:hover.topCollectionBtn { background-position:-67px -258px; color:#666; text-decoration:none}
+.detailTxtIntro .titleName .doubanScore { float:left; overflow:hidden; padding-left:2px; line-height:42px; height:34px}
+.detailTxtIntro .titleName .doubanScore span { float:left}
+.detailTxtIntro .titleName .doubanScore a { color:#f60; font-family:Arial; font-size:28px; line-height:34px; float:left;}
+.detailTxtIntro .titleName .doubanScore a:hover { color:#f60;}
+
+.detailTxtIntro .sRightBtn { float:right; position:relative; z-index:50; padding-top:7px}
+.detailTxtIntro dl { line-height:24px;}
+.detailTxtIntro .pb0 { padding-bottom:0px}
+.detailTxtIntro dt { float:left; width:42px; color:#999; padding:5px 0 0 0; clear:both}
+.detailTxtIntro dd { float:left; width:708px; padding:5px 0 0 0;}
+.detailTxtIntro dd a,.detailTxtIntro dd span { margin-right:20px; display:inline-block}
+.detailTxtIntro dd .styleBtn { margin:0 7px 5px 0; display:inline-block; float:none}
+.detailTxtIntro dd p { position:relative; display:block; zoom:1}
+.detailTxtIntro p .showMoreBtn { font-family:\5B8B\4F53; margin-right:0;}
+.detailTxtIntro .belongTo { border-bottom:1px solid #fff; border-right:1px solid #fff; border-top:1px solid #dcdcdc; border-left:1px solid #dcdcdc; line-height:18px; padding:3px 0 3px 10px; background:#f2f2f2; display:inline-block; overflow:hidden; float:left;}
+.detailTxtIntro .belongToAll { width:738px}
+.detailTxtIntro .belongTo .sTit { display:block}
+.detailTxtIntro .belongTo p { margin-top:-18px; padding-left:60px; display:inline; float:left;}
+.detailTxtIntro .belongTo p a { margin-right:15px; display:inline-block}
+
+.detailTxtIntro .detailTxtLeft { float:left; width:615px}
+.detailTxtIntro .detailTxtLeft dd { width:573px; color:#999}
+.detailTxtIntro .detailTxtLeft .belongToAll { width:528px}
+.detailTxtIntro .ivy190 { float:right; }
+
+.playNumCon { padding-top:5px}
+.playNumCon .numList { position:relative; z-index:45}
+.playNumCon .styleBtn a { position:relative; font-family:Arial}
+.playNumCon .styleBtn span.noLink { color:#999; position:relative; font-family:Arial; float:left}
+.playNumCon .iPlayed { background:url(/template/2345/images/detailMap.png) -261px 0 no-repeat; width:39px; height:17px; display:block; position:absolute; top:-9px; left:0}
+
+/*集数标签列表*/
+.numTabList { width:750px; overflow:hidden; padding-bottom:5px}
+.numTabListCon { width:760px; float:left}
+.numTabList a { width:92px; height:28px; border-top:1px solid #d9d9d9; border-bottom:1px solid #fff; line-height:28px; background:#eee; float:left; font-family:Arial; margin:5px 2px 0 0; display:inline; text-align:center; color:#2a78b3; font-size:13px}
+.numTabList a:hover,.numTabList a.cur { background:#d5e7f2; border-bottom:1px solid #d5e7f2; border-top:1px solid #9ec8e7; text-decoration:none; color:#2a78b3}
+.numTabList a.cur,.numTabList a:hover.cur { font-weight:700;}
+
+/*集数列表*/
+.numList a,.numList span { background:url(/template/2345/images/detailMap.png) 0 0 no-repeat; width:66px; height:32px; line-height:32px; text-align:center; font-size:14px; color:#333; position:relative; z-index:50}
+.numList span { color:#999;}
+.numList a.cur,.numList a:hover { background-position:-67px 0; text-decoration:none; color:#333}
+.numList a.cur { font-weight:700}
+.numList .iPlayed { top:-11px; left:15px}
+.numList .allBtn { display:block; background:url(/template/2345/images/detailMap.png) -245px -58px no-repeat; text-align:left; padding-left:14px}
+
+/*搜狗推广*/
+.ivySogo { background:url(/template/2345/images/detailRepeatMap.png) 0 -255px repeat-x; height:55px; overflow:hidden; border-right:1px solid #eed8c4; margin-top:20px}
+.ivySogo .sTit { background:url(/template/2345/images/detailMap.png) 0 -64px no-repeat; width:30px; height:55px; float:left}
+.ivySogo .pIframe { float:left; width:709px; overflow:hidden; height:50px; padding:5px 0 0 9px}
+
+/*百度推广*/
+.ivyBaidu { background:url(/template/2345/images/detailRepeatMap.png) 0 -255px repeat-x; height:55px; overflow:hidden; border-right:1px solid #eed8c4; margin-top:20px}
+.ivyBaidu .sTit { background:url(/template/2345/images/detailMap.png) 0 -64px no-repeat; width:30px; height:55px; float:left}
+.ivyBaidu .iframeCon { float:left; width:709px; overflow:hidden; height:47px; padding:8px 0 0 9px}
+
+/*影片相关信息*/
+.plotAbout { padding-top:20px}
+.plotAboutCon { display:none}
+.diversityTab { line-height:22px; padding:10px 0}
+.diversityTab span { width:86px; float:left; text-align:center}
+.diversityTab a.cur { font-weight:700; color:#333}
+.diversityTab a:hover.cur { text-decoration:none; color:#333; cursor:default}
+.diversityTab .iLine { background-position:-3px -343px; height:14px; width:1px; float:left; display:inline; margin:4px 10px 0}
+.diversityCon dt { background:#eee url(/template/2345/images/detailMap.png) -275px -33px no-repeat; padding-left:28px; line-height:28px; height:28px; font-size:13px}
+.diversityCon dt a span { font-weight:700}
+.diversityCon dt span { padding-right:10px}
+.diversityCon dt em { padding:0 0 0 5px}
+.diversityCon dd { line-height:22px; padding:15px 0}
+.diversityCon dd a.showMore { background:url(/template/2345/images/detailMap.png) right -88px no-repeat; padding-right:7px}
+.diversityCon dd a:hover.showMore { background-position:right -102px}
+
+/*演员表*/
+.actorNameList { font-size:14px; line-height:24px; padding:10px 0}
+.actorNameList span { padding:0 10px}
+.actorNameList .sArtistName { padding:0 10px 0 0}
+
+/*剧照*/
+.actorPic { padding:15px 0 10px;}
+.actorPic li { width:104px; float:left; margin-right:25px; display:inline; height:104px; overflow:hidden}
+.actorPic li.liRight { float:right; margin-right:0}
+
+/*影视相关内容*/
+.plotAbout .pMore { text-align:right; font-family:\5B8B\4F53; line-height:18px;}
+.plotAbout .pSource { color:#999;}
+
+/*评论*/
+.commentList { padding-top:20px}
+.commentForm { background:#fbfbfb url(/template/2345/images/shadowBg.png) 0 bottom repeat-x; padding-bottom:8px}
+.commentFormBg { border:1px solid #e8e8e8; padding:10px 0 20px 15px; border-bottom:0 none}
+.commentForm .pTit { font-size:14px; line-height:22px; padding-bottom:11px}
+.commentForm .pTit .sName { font-weight:700}
+.commentForm .conmmentArea { border:1px solid #bbb; padding:5px; line-height:22px; width:706px; height:60px; overflow-y:scroll; font-size:13px}
+.commentForm .submitBtn { margin-top:10px; float:left}
+.commentList .commentCon { display:none}
+.commentList .commentCon .pMore { font-size:14px; text-align:right; padding:10px 0; font-family:\5B8B\4F53}
+.commentList .commentCon .sConmmentTips { color:#999; line-height:30px; float:left; height:30px; padding:10px 0 0 10px}
+
+/*2345评论*/
+.commentOurs { padding:4px 0 6px}
+.commentOurs .ul_txtA p { float:left; width:643px; text-align:left; padding:14px 0 14px 10px; color:#333; word-wrap:break-word}
+.commentOurs .ul_txtA .sTime { line-height:30px; padding:10px 0; float:right; position:relative}
+
+/*奇谈评论*/
+.commentQiyi dl { padding:10px 0}
+.commentQiyi dt { text-align:right; height:28px; line-height:28px; background:url(/template/2345/images/lineBg.png) 0 bottom repeat-x}
+.commentQiyi dt { color:#999}
+.commentQiyi dt .sName { float:left; color:#333; padding-right:10px}
+.commentQiyi dt .sStar,.commentQiyi dt .sStar em { float:left; background:url(/template/2345/images/detailMap.png) -94px -142px no-repeat; width:59px; height:9px; margin-top:9px; display:inline; line-height:9px; overflow:hidden}
+.commentQiyi dt .sStar em { background-position:-94px -152px; width:50%; margin-top:0}
+.commentQiyi dt .sTime { padding:0 5px}
+.commentQiyi dd { line-height:22px; padding:10px 0 20px}
+.commentQiyi dd a { font-family:\5B8B\4F53}
+
+/*豆瓣评论*/
+.commentDouBan dt { height:28px; line-height:28px; background:#eee; padding-left:3px; margin-top:15px}
+.commentDouBan dd { line-height:22px}
+.commentDouBan .pTxt { color:#666; padding:10px 0 5px}
+.commentDouBan .pIntro { font-size:12px; color:#999;}
+.commentDouBan .pIntro .sTime { padding-left:10px}
+.commentDouBan .pMore { border-top:1px dashed #ddd}
+
+/*快评*/
+.quickComment { width:315px; height:193px; display:block; position:absolute; right:0px; top:35px; z-index:80;}
+.quickCommentArea { width:278px; height:75px; border:1px solid #c8c8c8; margin:24px 0 0 10px; padding:5px; font-size:13px; line-height:22px; float:left}
+.quickComment a.submitBtn { margin:0 0 0 110px; float:left; display:inline}
+.quickComment a.closeBtn { font-size:14px; color:#2a78b4; text-decoration:underline; float:left; display:inline; margin:5px 0 0 20px}
+.quickComment a:hover.closeBtn { color:#f30}
+
+/*快评数*/
+.quickCommentNum { position:absolute; left:0; top:35px; z-index:80}
+.quickCommentNum .iArrow { background:url(/template/2345/images/detailMap.png) -251px 0 no-repeat; width:9px; height:5px; position:absolute; left:29px; top:0; z-index:105}
+.quickCommentNum p { height:22px; line-height:22px; padding-top:4px; float:left; position:relative; z-index:101; font-size:12px}
+.quickCommentNum p i { background:url(/template/2345/images/detailRepeatMap.png) 0 0 no-repeat; width:10px; float:left; height:22px; position:absolute; top:4px}
+.quickCommentNum p em {  background:url(/template/2345/images/detailRepeatMap.png) 0 -415px repeat-x; float:left; color:#960; margin:0 0 0 10px; display:inline; white-space:nowrap}
+.quickCommentNum p .iLeft { background-position:0 -392px; left:0;}
+.quickCommentNum p .iRight { background-position:0 -438px; right:-10px}
+.quickCommentNum a { text-decoration:underline}
+
+/*验证码*/
+.verificationCodeCon { height:24px; font-size:13px; padding:10px 0 0 0}
+.quickComment .verificationCodeCon { width:280px; float:left; display:inline; padding:7px 0 7px 10px}
+.verificationCodeCon .verificationCodeInput { height:22px; border:1px solid #c8c8c8; width:100px; color:#999; padding:0 3px; float:left; line-height:22px}
+.verificationCodeCon .emCodeImg { width:50px; padding-left:5px; float:left; height:24px}
+.verificationCodeCon .emCodeImg img { vertical-align:top}
+.verificationCodeCon a.changeBtn { float:left; line-height:24px; margin-left:5px; color:#2a78b3; text-decoration:underline}
+.verificationCodeCon a:hover.changeBtn { color:#f30}
+
+/*底部列表*/
+.detail_bottom_index { border:1px solid #dbdbdb; margin:10px auto; width:998px; padding:5px 0}
+.detail_bottom_index dl { float:left;} 
+.detail_bottom_index .detail_index_movie { width:385px; padding-left:10px}
+.detail_bottom_index .detail_index_movie a { margin:0 15px 0 20px}
+.detail_bottom_index .detail_index_tv { width:325px}
+.detail_bottom_index .detail_index_cartoon { width:270px;}
+.detail_bottom_index dt { display:block; font-size:14px; font-weight:700; padding-left:20px; line-height:24px; height:24px; color:#666}
+.detail_bottom_index dt a { color:#666}
+.detail_bottom_index dt a:hover { color:#f30}
+.detail_bottom_index .detail_index_movie dt a { margin:0;}
+.detail_bottom_index dd a { display:inline-block; font-size:12px; line-height:18px; color:#666; margin:0 20px}
+.detail_bottom_index dd a:hover { color:#f30}
+
+/*右侧浮动层*/
+.rightScroll { width:47px; position:fixed; _position:absolute; font-size:12px; margin-left:1010px;}
+.rightScroll a.getErrorBtn { background:url(/template/2345/images/detailMap.png) -31px -64px no-repeat; width:46px; height:60px; display:block;}
+.rightScroll a:hover.getErrorBtn { background-position:-78px -64px}
+.rightScroll .shareList { background:url(/template/2345/images/detailMap.png) -166px 0 no-repeat; height:178px;}
+.rightScroll .shareList .sTit { text-align:center; display:block; color:#999; padding-top:5px}
+.rightScroll #bdshare { width:44px; padding-left:3px}
+.rightScroll #bdshare a { float:none; display:block;}
+.rightScroll a.goTop { background:url(/template/2345/images/detailMap.png) 0 -125px no-repeat; height:46px; display:none}
+.rightScroll a:hover.goTop { background-position:-47px -125px;}
+
+/*遮罩层*/
+.maskLayer { background:#000;opacity:0.5;filter:alpha(opacity=50); width:100%; height:100%; position:absolute; top:0; left:0; z-index:500; display:none}
+
+/*调查弹窗*/
+.popPngMap { background:url(/template/2345/images/popPngMap.png) 0 0 repeat-y;}
+.popWin { width:634px; position:relative; margin-left:-300px; left:50%; position:fixed; _position:absolute; display:inline}
+.popWin i { display:block; line-height:0; font-size:0}
+.popWin i.iPopWinTop { background-position:0 0; height:16px;}
+.popWin i.iPopWinBottom { background-position:0 -17px; height:16px}
+.popWin .popWinCon { width:574px; overflow:hidden; padding:15px 25px 15px 35px; background:url(/template/2345/images/popPngConBg.png) 0 0 repeat-y}
+.popWin a.popSubmitBtn { width:120px; height:40px; background:url(/template/2345/images/popMap.png) 0 0 no-repeat; display:block; line-height:9999px; text-indent:-9999px; overflow:hidden; margin:20px auto 0}
+.popWin a:hover.popSubmitBtn { background-position:0 -41px;}
+.popWin .popClose { background-position:-1270px 0; height:48px; width:48px; display:block; position:absolute; right:-24px; top:-24px}
+
+.popWin .errorReportTab { padding-top:15px}
+.popWin .errorReportTab a { line-height:32px; float:left; font-size:14px; color:#333; margin-right:10px; display:inline; padding-bottom:6px; cursor:pointer}
+.popWin .errorReportTab a:hover { text-decoration:none}
+.popWin .errorReportTab em { float:left; height:32px; background:#efefef; cursor:pointer}
+.popWin .errorBtn { background:url(/template/2345/images/popMap.png) 0 0 no-repeat; width:10px; height:32px; float:left}
+.popWin .errorBtnLeft { background-position:-22px -82px}
+.popWin .errorBtnRight { background-position:-33px -82px}
+.popWin .errorReportTab a.cur { background:url(/template/2345/popArrow.png) center bottom no-repeat;}
+.popWin .errorReportTab a.cur,.popWin .errorReportTab a.hover { color:#fff;}
+.popWin .errorReportTab a.cur .errorBtnLeft,.popWin .errorReportTab a.hover .errorBtnLeft { background-position:0 -82px}
+.popWin .errorReportTab a.cur .errorBtnRight,.popWin .errorReportTab a.hover .errorBtnRight { background-position:-11px -82px}
+.popWin .errorReportTab a.cur em,.popWin .errorReportTab a.hover em { background:#2e8cc9}
+
+.popWin .errorReportCon { display:none}
+.popWin .errorReportCon .sTit { font-size:14px; padding:15px 0 10px; display:block}
+.popWin .videoCheckBox li { padding-right:20px; display:inline; float:left; height:18px; overflow:hidden}
+.popWin .videoCheckBox .checkbox { float:left; line-height:14px; height:14px; margin-top:2px; width:14px; overflow:hidden}
+.popWin .videoCheckBox img { float:left; padding:0 5px}
+.popWin .videoCheckBox em { float:left;}
+.popWin .textForm { width:566px; margin-top:12px}
+.popWin .textForm .pTextArea { background:url(/template/2345/images/popMap.png) -121px 0 no-repeat; padding:10px; height:91px; width:546px; overflow:hidden}
+.popWin .pTextArea .errorTextarea { border:0 none; line-height:22px; color:#999;  font-size:14px; width:546px; height:90px; background:#f9f9f9; overflow-y:auto}
+.popWin .errorInput { line-height:22px; border:none; color:#999; background:url(/template/2345/images/popMap.png) -121px -112px no-repeat; height:21px; padding:10px; width:546px; overflow:hidden; font-size:14px}
+.popWin .mailInput { width:381px; height:21px; background:url(/template/2345/images/popMap.png) -121px -154px no-repeat; padding:10px; line-height:22px; overflow:hidden; border:none; color:#999; font-size:14px}
+.popWin .pEmail em { padding-left:10px; font-size:14px; line-height:40px; color:#999}
+
+.popWin .checkSuccess img { display:block; margin:0 auto; padding:30px 0 15px}
+.popWin .checkSuccess p { padding:0 0 50px 0; text-align:center}
+.popWin .checkSuccess p span { padding:0 25px;}
+.popWin .checkSuccess p a { color:#1f6caa; font-size:14px}
+.popWin .checkSuccess p a:hover { color:#f30}
+
+.browserTxt { padding-bottom:10px}
+.browserTxt a.browserBtn { background:url(/template/2345/browserTxtBg.png) 0 0 no-repeat; height:30px; display:block; line-height:30px; padding-left:37px; font-weight:700; font-size:14px; color:#fff}
+.browserTxt a:hover.browserBtn { color:#fff; text-decoration:none; background-position:0 -31px}
+.browserTxt span { display:block; color:#666; text-align:center; padding-top:5px}
+
+/*相关短视频*/
+.aboutShortVideo { background:#f1f1f1; padding:10px 0 10px 19px; margin-top:20px; border:1px solid #DCDCDC}
+.aboutShortVideo .AdvertisementTips a { color:#f60;}
+.aboutShortVideo .AdvertisementTips a:hover { color:#f30;}
+.aboutShortVideo .shortVideoMore { float:right; font-family:\5B8B\4F53; display:inline; margin:10px 20px 0 0}
+
+.ulPic_widthB li { width:139px; float:left; display:inline; overflow:hidden; margin:10px 52px 0 0}
+.ulPic_widthB .pic { width:139px; height:94px}
+
+.pLoadTipsWord { height:20px; line-height:20px; overflow:hidden}
+.pLoadTipsWord img { float:left; padding:2px 5px 0 0}
+.pLoadTipsWord span { float:left; height:20px; line-height:20px}

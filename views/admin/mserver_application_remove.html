@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>REMOVE APP!</title>
+<?php
+$app      = @$_REQUEST["app"];
+?>
+</head>
+<script type="text/javascript">
+function do_remove()
+{
+	location.href = "application_remove_rlt.html?app=<?php echo $app;?>";
+}
+</script>
+<body>
+
+<p align="center"></p>
+<p align="center"></p>
+<p align="center"><font color="#FF0000"><b><span style="font-size: 16pt">
+CAUTION:</span></b></font></p>
+<p align="center"><font color="#FF0000" style="font-size: 12pt"><b>Are
+you sure to remove this application "<?php echo $app;?>"?</b></font></p>
+<p align="center"><font color="#FF0000" style="font-size: 12pt"><b>All
+files and infomations in this application will be removed!</b></font></p>
+<p align="center"></p>
+<p align="center"><a href="applications.php"><span
+	style="font-size: 18pt">NO</span></a><span style="font-size: 16pt">&nbsp;&nbsp;
+</span><span style="font-size: 12pt"><a target="_self"
+	href="javascript:do_remove()">YES</a></span></p>
+<p align="center"></p>
+
+</body>
+
+</html>

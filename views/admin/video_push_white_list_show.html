@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>群组管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js"></script>
+</head>
+<body>
+<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+<form action="?s=Admin/Group/Show" method="post" id="gxform" name="gxform">
+
+<input type="hidden" name="id" id="id" value="{$id}" />
+<input type="hidden" name="tid" id="tid" value="{$tid}" />
+<input type="hidden" name="title" id="title" value="{$title}" />
+<input type="hidden" name="cid" id="cid" value="{$cid}" />
+<input type="hidden" name="channel_id" id="channel_id" value="{$channel_id}" />
+<input type="hidden" name="actor" id="actor" value="{$actor}" />
+<input type="hidden" name="inputer" id="inputer" value="{$inputer}" />
+<input type="hidden" name="starttime" id="starttime" value="{$starttime}" />
+<input type="hidden" name="endtime" id="endtime" value="{$endtime}" />
+<input type="hidden" name="picurl" id="picurl" value="{$picurl}" />
+<input type="hidden" name="content" id="content" value="{$content}" />
+<input type="hidden" name="title" id="title" value="{$title}" />
+<input type="hidden" name="channel_mcid" value="{$channel_mcid}" />
+
+<tr class="table_title">
+	<td colspan="12">可推流用户 
+		<span class="fr">  
+			<!--  
+	   		<a href="?s=Admin/Video/Add/type/live/type/live/id/{$vid}/tid/{$tid}" class="no">返回</a>
+	   		-->
+	   		<input type="submit" value="返回" class="bginput" onclick="gxform.action='?s=Admin/Videopushwhitelist/Returnvideo';" />
+	   	</span>		
+	</td>
+</tr>
+<tr class="tr">
+<td colspan="11">搜索用户&nbsp;<input onFocus="this.value=''" type="text" name="keyword" id="keyword" size="35" maxlength="50" value="{$keyword|urldecode|default='可搜索(用户名,email)'}" style="color:#999;"> <input type="submit" value="搜索" class="bginput"/></td>
+</tr>  
+<tr class="list_head ct">
+  <td width="60">ID</td>
+  <td >用户名称</td>
+  <td width="100">注册时间</td>
+  <td width="80">状态</td>     
+</tr>
+<volist name="list_user" id="gxcms">
+<tr class="tr ct">
+  <td align="left"><input name="ids[]" type="checkbox" value="{$gxcms.id}" class="noborder">{$gxcms.id}</td>
+  <td align="left">{$gxcms.username|htmlspecialchars}</td>
+  <td style="padding:0px">{$gxcms.jointime|date='Y-m-d',###}</td>
+  <td style="padding:0px"><eq name="gxcms['status']" value="1"><a href="?s=Admin/Group/Status/id/{$gxcms.id}/sid/0" title="点击将该群拉为黑名单">正常</a><else /><a href="?s=Admin/Group/Status/id/{$gxcms.id}/sid/1" title="点击将该群设为正常群组"><font color="red">锁定</font></a></eq></td>
+  <!--  
+  <td style="padding:0px">
+  	<a href="?s=Admin/Videopushwhitelist/Del/id/{$gxcms.id}/vid/{$vid}/tid/{$tid}" title="点击删除群组" class="operator_danger" onClick="return confirm('禁止该组成员观看此直播?')">删除</a>
+  </td>
+  -->
+</tr>
+</volist> 
+<tr class="tr pages"><td colspan="12">{$listpages}</td></tr>
+<tr class="tr">
+	<td colspan="12">
+		<input type="button" id="checkall" value="全/反选" class="bginput"> 
+		<input type="submit" value="批量删除" onClick="if(confirm('删除后将无法还原,确定要删除吗?')){gxform.action='?s=Admin/Videopushwhitelist/Delall';}else{return false;}" class="bginput"/>
+		<input type="submit" value="添加推流" onClick="gxform.action='?s=Admin/Videopushwhitelist/Add/';" class="bginput"/>
+	</td>
+</tr> 
+</form>
+</table>
+<include file="footer" />
+</body>
+</html>

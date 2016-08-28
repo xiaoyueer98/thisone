@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>修改用户资料-{$webname}</title>
+    <link rel="stylesheet" type="text/css" href="{$tplpath}style.css?v1.0.10"/>
+    <link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+    <link rel="stylesheet" type="text/css" href="{$tplpath}yiku.css"/>
+
+    <script type="text/javascript" src="{$webpath}views/js/jquery.js"></script>
+    <script type="text/javascript" src="{$webpath}views/js/system.js"></script>
+    <script type="text/javascript" src="{$tplpath}yiku.js"></script>
+   <!-- <script>
+
+        $(function(){
+            //alert("bbbb");
+          $(".bginput").click(function(){
+              //alert($(".lx2").val());
+              $(".lx1").attr("value",'');
+              $(" .lx2").attr("value",'');
+              //alert($(" .lx1").val(""));
+          });
+        })
+
+    </script>-->
+
+   <script >
+        function myclick(){
+            $obju= document.getElementById("username");
+            $obje= document.getElementById("email");
+            $obju.value = "";
+            $obje.value = "";
+        }
+    </script>
+</head>
+<body>
+<div class="width1000">
+    <include file="header" />
+    <div class="sub_breadcrumb_nav"></div>
+    <div class="sub_main">
+        <form action="index.php?s=User/Update" method="post" id="gxform">
+            <input name="id" type="hidden" value="{$id}" />
+            <div class="sub_main_title">个人中心</div>
+            <div class="sub_content pad_tb user_show">
+                <div class="user_left">
+                    <include file="user_left" />
+                </div>
+                <div class="user">
+                    <h3>修改资料</h3>
+
+                    <ul style="line-height:30px"><form action="index.php?s=User/Update" method="post" >
+
+                        <input name="id" type="hidden" value="{$id}" />
+                        <!--<li>用户帐号：{$username}</li>-->
+
+
+                        <li>用户帐号：<input  name="username" id="username" type="text" value="{$username}" maxlength="12"></li>
+
+                        <li>Q Q 邮箱：<input  name="email" id="email"type="text" value="{$email}"/></li>
+                        <li>原始密码：<input  name="olduserpwd1" type="password"value=""/><span style="color: red ;margin-left: 12px;">必填</span>
+                        </li>
+                        <li>新的密码：<input name="userpwd" type="password" /><span style="color: red ;margin-left: 12px;">必填</span> </li>
+                        <li>确认密码：<input name="reuserpwd" type="password" /><span style="color: red;margin-left: 12px;">必填</span> </li>
+                        <!-- <li>密保问题：<input name="question" type="text" value="{$question|htmlspecialchars}" maxlength="20"/></li>
+                         <li>密保答案：<input name="answer" type="text" value="{$answer|htmlspecialchars}" maxlength="20"/></li>-->
+                        <li style="padding-top:10px"><input  name="submit" type="submit" value="更 新" />
+                            <input class="bginput" name="input" type="button" value="重 填" onclick="myclick();" />
+                            <!--<a href="index.php?s=User/Reset">重 填</a>-->
+
+                    </form></ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<include file="footer" />
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<link href="/template/2345/css/global.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/video.common.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/tv.index.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/template/2345/js/xquery2.20.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/libnew.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/common.min.js"></script>
+<script type="text/javascript" src="/template/default/js/jquery.js"></script>
+<script type="text/javascript" src="/template/2345/js/topFuc.130115.js"></script>
+<script>
+function change_star_random(id)
+{
+	var random = parseInt(Math.random()*(5));
+	for(var i=0;i<=4;i++)
+	{
+		if (random == i)
+		{
+			$('#mingxing_'+i).show();
+		}else{
+			$('#mingxing_'+i).hide();
+		}
+	}
+}
+
+
+</script>
+</head>
+
+<body>
+<include file="header" />
+<div class="main">
+  <div class="showHistory" id="showHistory" style="display:none;"><span class="sLine"></span><a href="javascript:;" target="_self" class="showHistoryBtn" id="showHistoryBtn"></a></div>
+  <div class="select_list m5"> <span class="select_list_sTit" style="background:url(/template/2345/images/{$cid}.png) 0 0 no-repeat;"> </span>
+    <dl class="select_list_style">
+      <dt><span>按类型</span></dt>
+      <dd>
+        <?php
+                 $dystypetag = gettypetag($cid);
+                ?>
+        <volist name="dystypetag" id="item">
+        <if condition="$i lt 13">
+         <a rel="nofollow" href="{:getstypetaglink($cid,$item['m_cid'])}" target="_blank">{$item.m_name}</a> 
+         </if>
+        </volist>
+      </dd>
+    </dl>
+    <dl class="select_list_address">
+      <dt><span>按地区</span></dt>
+      <dd> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/内地" target="_blank">内地</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/香港" target="_blank">香港</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/台湾" target="_blank">台湾</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/韩国" target="_blank">韩国</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/美国" target="_blank">美国</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/泰国" target="_blank">泰国</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/日本" target="_blank">日本</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/英国" target="_blank">英国</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/area/其他" target="_blank">其他</a> </dd>
+    </dl>
+    <dl class="select_list_year">
+      <dt><span>按年代</span></dt>
+      <dd> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/year/2013" target="_blank">2013</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/year/2012" target="_blank">2012</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/year/2011" target="_blank">2011</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/year/2010" target="_blank">2010</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/year/1">00年代</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/year/2">90年代</a> <a href="/index.php?s=video/lists/id/{$cid}/order/addtime/year/3">80年代</a> </dd>
+    </dl>
+    <script type="text/javascript">
+        var random = parseInt(Math.random()*(5));
+        </script>
+    <dl class="select_list_star" name="mingxing" id="mingxing_0" style="display:none;">
+      <dt><span>推荐好明星</span><em>(潮男)</em><a href="javascript:void(0);" name="change_star" id="change_star_0"  onClick="change_star_random(0);" class="star_changeBtn" target="_self" rel="nofollow">换一换</a></dt>
+      <dd>
+      
+      <span><a href="/index.php?s=video/search/actor/张根硕" target="_blank" title="张根硕">张根硕</a></span>
+      <span><a href="/index.php?s=video/search/actor/佟大为" target="_blank" title="佟大为">佟大为</a></span>
+      <span><a href="/index.php?s=video/search/actor/刘恺威" target="_blank" title="刘恺威">刘恺威</a></span>
+      <span><a href="/index.php?s=video/search/actor/贾乃亮" target="_blank" title="贾乃亮">贾乃亮</a></span>
+      <span><a href="/index.php?s=video/search/actor/朴施厚" target="_blank" title="朴施厚">朴施厚</a></span>
+      <span><a href="/index.php?s=video/search/actor/霍建华" target="_blank" title="霍建华">霍建华</a></span>
+      <span><a href="/index.php?s=video/search/actor/王祖蓝" target="_blank" title="王祖蓝">王祖蓝</a></span>
+      <span><a href="/index.php?s=video/search/actor/朴有天" target="_blank" title="朴有天">朴有天</a></span>
+      <span><a href="/index.php?s=video/search/actor/梁朝伟" target="_blank" title="梁朝伟">梁朝伟</a></span>
+      </dd>
+    </dl>
+    <dl class="select_list_star" name="mingxing" id="mingxing_1" style="display:none;">
+      <dt><span>推荐好明星</span><em>(美眉)</em><a href="javascript:void(0);" name="change_star" id="change_star_1" onClick="change_star_random(1);" class="star_changeBtn" target="_self" rel="nofollow">换一换</a></dt>
+      <dd>
+      
+      <span><a href="/index.php?s=video/search/actor/吴映洁" target="_blank" title="吴映洁">吴映洁</a></span>
+      <span><a href="/index.php?s=video/search/actor/朴信惠" target="_blank" title="朴信惠">朴信惠</a></span>
+      <span><a href="/index.php?s=video/search/actor/杨幂" target="_blank" title="杨幂">杨幂</a></span>
+      <span><a href="/index.php?s=video/search/actor/秦岚" target="_blank" title="秦岚">秦岚</a></span>
+      <span><a href="/index.php?s=video/search/actor/唐嫣" target="_blank" title="唐嫣">唐嫣</a></span>
+      <span><a href="/index.php?s=video/search/actor/戚薇" target="_blank" title="戚薇">戚薇</a></span>
+      <span><a href="/index.php?s=video/search/actor/范冰冰" target="_blank" title="范冰冰">范冰冰</a></span>
+      <span><a href="/index.php?s=video/search/actor/熊乃瑾" target="_blank" title="熊乃瑾">熊乃瑾</a></span>
+      <span><a href="/index.php?s=video/search/actor/张柏芝" target="_blank" title="张柏芝">张柏芝</a></span>
+      
+      </dd>
+    </dl>
+    <dl class="select_list_star" name="mingxing" id="mingxing_2" style="display:none;">
+      <dt><span>推荐好明星</span><em>(大叔)</em><a href="javascript:void(0);" name="change_star" id="change_star_2" onClick="change_star_random(2);" class="star_changeBtn" target="_self" rel="nofollow">换一换</a></dt>
+      <dd>
+      
+      	<span><a href="/index.php?s=video/search/actor/林峰" target="_blank" title="林峰">林峰</a></span>
+        <span><a href="/index.php?s=video/search/actor/邱泽" target="_blank" title="邱泽">邱泽</a></span>
+        <span><a href="/index.php?s=video/search/actor/孙红雷" target="_blank" title="孙红雷">孙红雷</a></span>
+        <span><a href="/index.php?s=video/search/actor/范伟" target="_blank" title="范伟">范伟</a></span>
+        <span><a href="/index.php?s=video/search/actor/陈建斌" target="_blank" title="陈建斌">陈建斌</a></span>
+        <span><a href="/index.php?s=video/search/actor/林志颖" target="_blank" title="林志颖">林志颖</a></span>
+        <span><a href="/index.php?s=video/search/actor/张国立" target="_blank" title="张国立">张国立</a></span>
+        <span><a href="/index.php?s=video/search/actor/王志文" target="_blank" title="王志文">王志文</a></span>
+        <span><a href="/index.php?s=video/search/actor/苏有朋" target="_blank" title="苏有朋">苏有朋</a></span>
+        
+        </dd>
+    </dl>
+    <dl class="select_list_star" name="mingxing" id="mingxing_3" style="display:none;">
+      <dt><span>推荐好明星</span><em>(熟女)</em><a href="javascript:void(0);" name="change_star" onClick="change_star_random(3);" id="change_star_3" class="star_changeBtn" target="_self" rel="nofollow">换一换</a></dt>
+      <dd>
+      <span><a href="/index.php?s=video/search/actor/袁莉" target="_blank" title="袁莉">袁莉</a></span>
+      <span><a href="/index.php?s=video/search/actor/马伊琍" target="_blank" title="马伊琍">马伊琍</a></span>
+      <span><a href="/index.php?s=video/search/actor/林心如" target="_blank" title="林心如">林心如</a></span>
+      <span><a href="/index.php?s=video/search/actor/穆婷婷" target="_blank" title="穆婷婷">穆婷婷</a></span>
+      <span><a href="/index.php?s=video/search/actor/苍井空" target="_blank" title="苍井空">苍井空</a></span>
+      <span><a href="/index.php?s=video/search/actor/赵丽颖" target="_blank" title="赵丽颖">赵丽颖</a></span>
+      <span><a href="/index.php?s=video/search/actor/秦海璐" target="_blank" title="秦海璐">秦海璐</a></span>
+      <span><a href="/index.php?s=video/search/actor/薛凯琪" target="_blank" title="薛凯琪">薛凯琪</a></span>
+      <span><a href="/index.php?s=video/search/actor/李英爱" target="_blank" title="李英爱">李英爱</a></span>
+      
+      </dd>
+    </dl>
+    <dl class="select_list_star" name="mingxing" id="mingxing_4" style="display:none;">
+      <dt><span>推荐好明星</span><em>(实力)</em><a href="javascript:void(0);" name="change_star" onClick="change_star_random(4);" id="change_star_4" class="star_changeBtn" target="_self" rel="nofollow">换一换</a></dt>
+      <dd>
+          <span><a href="/index.php?s=video/search/actor/胡歌" target="_blank" title="胡歌">胡歌</a></span>
+          <span><a href="/index.php?s=video/search/actor/钟汉良" target="_blank" title="钟汉良">钟汉良</a></span>
+          <span><a href="/index.php?s=video/search/actor/王茜" target="_blank" title="王茜">王茜</a></span>
+          <span><a href="/index.php?s=video/search/actor/潘虹" target="_blank" title="潘虹">潘虹</a></span>
+          <span><a href="/index.php?s=video/search/actor/陈道明" target="_blank" title="陈道明">陈道明</a></span>
+          <span><a href="/index.php?s=video/search/actor/杜淳" target="_blank" title="杜淳">杜淳</a></span>
+          <span><a href="/index.php?s=video/search/actor/刘晓庆" target="_blank" title="刘晓庆">刘晓庆</a></span>
+          <span><a href="/index.php?s=video/search/actor/王姬" target="_blank" title="王姬">王姬</a></span>
+          <span><a href="/index.php?s=video/search/actor/刘德华" target="_blank" title="王姬">刘德华</a></span>
+      </dd>
+    </dl>
+    <script type="text/javascript">
+        	Fn.NAME('mingxing').each(function(o,i){
+        		if(i==random){
+        			id='mingxing_'+i
+        			Fn(id).show();
+        		}
+        	})
+        </script>
+    <dl class="people_all_watch">
+      <dt><span>大家都在看</span></dt>
+      <dd> 
+            <gxcms name="special" limit="3" order="addtime desc">
+            <span><a href="{$special.readurl}" target="_blank">{$special.title}</a></span>
+            </gxcms>
+        </dd>
+    </dl>
+  </div>
+  <div class="clear"></div>
+  
+  <!--start-->
+  
+  <gxcms name="menu" ids="'.$id.'">
+    <gxfor name="menu.son" id="menuson">
+      <div class="mod_y m5 clearfix">
+        <div class="col_a">
+          <div class="mod_a">
+            <div class="th_a clearfix"><span class="sMark"><a href="{$menuson.showurl}">{$menuson.cname}</a></span> <a href="{$menuson.showurl}" target="_blank" class="aMore" rel="nofollow">更多>></a>
+              <p class="pLinkList"> </p>
+            </div>
+            <div class="tb_a" id="slideA_Con">
+              <ul class="ul_picTxtA ulPic_widthA clearfix" name="lihover" id="content_3">
+                <gxcms name="video" cid="'.$menuson['id'].'" limit="10" ids="" order="addtime desc">
+                  <li>
+                    <div class="pic"> 
+                    
+                    <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img width="110" height="147" alt="{$video.title}" loadsrc="{$video.picurl}" src="{$video.picurl}"></a> <i class="iTxt"> <i class="iTxtBg"></i> <span class="sTime"><em class="left">
+                      <if condition="$video.serial gt 0">更新至{$video.serial}
+                        <else />
+                        完结</if>
+                      </em><em class="right"><em class="eScore">{$video.score}</em>分</em></span> </i>  <i class="pngMap picHoverBg"><a title="{$video.title}" target="_blank" href="{$video.readurl}"></a></i> </div>
+                    <span class="sName"><a title="{$video.title}" target="_blank" href="{$video.readurl}">{$video.title}</a></span> <span class="sDes">{$video.actor}</span> </li>
+                </gxcms>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col_b">
+          <div class="mod_g">
+            <div class="th_g"><span class="sMark"><a href="/index.php?s=top10" target="_blank">{$menuson.cname}热播榜</a></span><a class="aMore" href="/index.php?s=top10" target="_blank" rel="nofollow">更多>></a><span class="sDes">百看不厌的{$menuson.cname}</span></div>
+            <div class="tb_g">
+              <ul class="ul_rank ulTxt_widthB clearfix">
+              <gxcms name="video" cid="'.$menuson['id'].'" limit="15" order="hits desc">
+                <li><i <if condition="$i lt 4">class="iFirst"</if>>{$i}</i><a title="{$video.title}" target="_blank" href="{$video.readurl}">{$video.title}</a><span class="sScore">{$video.hits}</span></li>
+              </gxcms>
+              </ul>
+              
+              <!-- 广告大图 --><!-- 明星 --> 
+              
+              <!-- 文字 --> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </gxfor>
+  </gxcms>
+  
+  <!--end--> 
+  
+</div>
+<include file="footer" />
+
+</body>
+</html>

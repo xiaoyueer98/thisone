@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>用户管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css'>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js?v=1.0.1"></script>
+</head>
+<body>
+<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+<form action="?s=Admin/User/Show" method="post" id="gxform" name="gxform">
+<tr class="table_title">
+	<td colspan="12">用户管理 
+		<span class="fr"><a href="?s=Admin/Video/Add/type/live" class="no">返回</a></span>
+	</td>
+</tr>
+<tr>
+	<td width="48%">
+	<table width="100%" border="0" cellpadding="4" cellspacing="1" class="table fl">	
+			<tr class="tr">
+				<td colspan="11">搜索用户&nbsp;
+					<input onFocus="this.value=''" type="text" name="keyword" id="keyword" size="35" maxlength="50" value="{$keyword|urldecode|default='可搜索(用户呢称,用户邮箱)'}" style="color:#999;"> <input type="submit" value="搜索" class="bginput"/>
+					<span style="margin-left: 20px;color:#f00;font-weight: bold;">授权用户</span>
+				</td>
+			</tr>  
+			<tr class="list_head ct">
+			  <td width="60">ID</td>
+			  <td >用户名称</td>
+			</tr>
+			<volist name="list_user" id="gxcms">
+			<tr class="tr ct">
+			  <eq name="gxcms.id" value="1">
+			  <td align="left"><input name="ids[]" type="checkbox" value="{$gxcms.id}" class="noborder" disabled>{$gxcms.id}</td>
+			  <else />
+			  <td align="left"><input name="ids[]" type="checkbox" value="{$gxcms.id}" class="noborder">{$gxcms.id}</td>
+			  </eq>
+			  <td align="left">{$gxcms.username|htmlspecialchars}</td>
+			</tr>
+			</volist> 
+			<tr class="tr pages"><td colspan="12">{$listpages}</td></tr>
+			<tr class="tr">
+				<td colspan="12">
+					<input type="button" id="checkall" value="全/反选" class="bginput"> 
+					<input type="submit" value="保存" onClick="if(confirm('删除后将无法还原,确定要删除吗?')){gxform.action='?s=Admin/User/Delall';}else{return false;}" class="bginput"/>
+				</td>
+			</tr>
+			
+	</table>
+	</td>
+	<td>
+		<div style="margin-bottom: 5px;">
+			<input type="button" value=">>>"/>
+		</div>
+		<div style="margin-top: 5px;">
+			<input type="button" value="<<<" />
+		</div>
+	</td>
+	<td width="48%">
+	<table width="100%" border="0" cellpadding="4" cellspacing="1" class="table fr">	
+			<tr class="tr">
+				<td colspan="11">搜索用户&nbsp;
+					<input onFocus="this.value=''" type="text" name="keyword" id="keyword" size="35" maxlength="50" value="{$keyword|urldecode|default='可搜索(用户呢称,用户邮箱)'}" style="color:#999;"> <input type="submit" value="搜索" class="bginput"/>
+					<span style="margin-left: 20px;color:#f00;font-weight: bold;">未授权用户</span>
+				</td>
+			</tr>  
+			<tr class="list_head ct">
+			  <td width="60">ID</td>
+			  <td >用户名称</td>
+			</tr>
+			<volist name="list_user" id="gxcms">
+				<tr class="tr ct" >
+				  <eq name="gxcms.id" value="1">
+				  <td align="left"><input name="ids2[]" type="checkbox" value="{$gxcms.id}" class="noborder" disabled>{$gxcms.id}</td>
+				  <else />
+				  <td align="left"><input name="ids2[]" type="checkbox" value="{$gxcms.id}" class="noborder">{$gxcms.id}</td>
+				  </eq>
+				  <td align="left">{$gxcms.username|htmlspecialchars}</td>
+				</tr>
+			</volist> 
+			<tr class="tr pages"><td colspan="12">{$listpages}</td></tr>
+			<tr class="tr">
+				<td colspan="12">
+					<input type="button" id="checkall2" value="全/反选" class="bginput"> 
+					<input type="submit" value="保存" onClick="if(confirm('删除后将无法还原,确定要删除吗?')){gxform.action='?s=Admin/User/Delall';}else{return false;}" class="bginput"/>
+				</td>
+			</tr>		
+	</table>
+	</td>
+</tr> 
+</form>
+</table>
+<include file="footer" />
+</body>
+</html>

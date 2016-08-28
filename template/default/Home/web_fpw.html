@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+    <jsp:include page="../webpage/jq_css.jsp" ></jsp:include>
+    <link rel="stylesheet" type="text/css" href="{$tplpath}style.css?v1.0.5"/>
+    <link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+    <link rel="stylesheet" type="text/css" href="{$tplpath}yiku.css"/>
+
+    <script type="text/javascript" src="{$webpath}views/js/jquery.js"></script>
+    <script type="text/javascript" src="{$webpath}views/js/system.js"></script>
+    <script type="text/javascript" src="{$tplpath}yiku.js"></script>
+</head>
+<script type="text/javascript">
+    function check() {
+        alert(111111111);
+    }
+</script>
+<body>
+<form name="pwd" method="post" action="?s=Login/sendpwd">
+    请输入您的的邮箱：<input type="text"name="email"onblur="check()">
+    <input type="submit"name="submit" value="点击获取密码">
+    <div>我们会把验证码发送至您的邮箱请查收</div>
+</form>
+</body>
+</html>

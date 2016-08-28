@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<meta name="description" content="{$cdescription}{$description}">
+<link rel="stylesheet" type="text/css" href="{$tplpath}pub.css"/>
+<link href="/template/2345/css/global.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/detail.common.css" rel="stylesheet" type="text/css" />
+<link href="/template/2345/css/movieDetail.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/2345/js/xquery2.20.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/libnew.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/common.min.js"></script>
+<script type="text/javascript" src="/template/2345/js/detail.min.js"></script>
+<style>
+/*--详情--*/
+.dq{ width:938px; height:28px; border:1px #ececec solid; overflow:hidden; margin-top:10px; color:#666; line-height:28px; padding:0px 10px;}
+.dq a{ margin-left:6px; margin-right:6px;}
+.dq a:hover{ text-decoration:underline; color:#F00;}
+
+</style>
+</head>
+<body>
+<include file="header" />
+
+	<div style="width:100%; background-color:#FFF; height:550px;">
+            <div class="main clearfix">
+            	
+    <div class="dq" style="height:auto;">
+    <form action="{$webpath}index.php?s=Guestbook/Insert" method="post" name="guestbook" id="guestbook">
+    	<table width="100%" border="0" cellpadding="5" cellspacing="1">
+        	<tr><td><strong>我也说两句</strong></td>
+       	    </tr>
+        	<tr>
+        	  <td><textarea style="width:100%;" id="content" name="content" rows="5" onfocus="if(this.value=='分享您的看法吧，最多200个字。'){this.value='';};this.select();" onblur="if(this.value==''){this.value='分享您的看法吧，最多200个字。';};" class="txt_in" maxlength="200"></textarea></td>
+       	  </tr>
+        	<tr>
+        	  <td><button type="submit" class="sub_btn" name="submit" id="submitCommBtn" ><span>发表留言</span></button></td>
+       	  </tr>
+        </table>
+    </form>
+    </div>
+
+
+
+    <div class="dq" style="height:auto;">
+    <gxfor name="list_guestbook" id="guestbook">
+  <table width="100%" border="0" cellpadding="5" cellspacing="1">
+    <tr>
+      <td style="background-color:#EFEFEF"><span class="time">第 {$guestbook.floor} 楼<strong>的{$guestbook.username|htmlspecialchars|remove_xss}</strong> 在 {$guestbook.addtime|get_color_date='Y-m-d H:i',###,'#333'} 写道：</span></td>
+    </tr>
+    <tr>
+      <td>{$guestbook.content|htmlspecialchars|remove_xss}</td>
+    </tr>
+    <tr>
+      <td>站长回复：{$guestbook.recontent}</td>
+    </tr>
+  </table>
+    </gxfor>
+    
+    
+    <gt name="count" value="10"><div class="pages">{$pages}</div></gt>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+    </div>
+<include file="footer" />
+</body>
+</html>
+<!-- cache created at 2013-04-16 07:21 --><!-- cache created at 2013-07-25 07:13 -->
+

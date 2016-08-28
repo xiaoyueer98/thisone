@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>方讯--用户信息</title>
+<meta name="keywords" content="方讯" />
+<meta name="description" content="方讯" />
+<jsp:include page="../webpage/jq_css.jsp" ></jsp:include>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var c = document.getElementById("city_id");
+
+	var fn2 = function(city){
+		c.value = city;
+	};
+	c.onclick = function(){
+		citypicker.show({
+			left : document.getElementById("city_id").offsetLeft,
+			top  : document.getElementById("city_id").offsetTop+39,
+			selected : fn2
+		});
+	};
+	
+});
+</script>
+</head>
+
+<body>
+<jsp:include page="../webpage/top.jsp" ></jsp:include>
+
+<div class="width1000">
+	<div class="sub_breadcrumb_nav">
+    	<i class="fa fa-home"></i>当前位置：<a href="#">用户信息</a>
+    </div>
+    <div class="sub_main pad_b2">
+    	<div class="sub_main_title">用户信息</div>
+    	<div class="sub_content pad_tb2">
+        	<div class="user_info_l">
+            	<img src="../FileUpLook.shtml?path=${userInfo.face}" width="128px" height="128px" />
+                <div class="user_info_nickname auto_row">${userInfo.name}</div>
+            </div>
+            <div class="user_info_r">
+            	<div class="user_info_title">基本信息</div>
+                <div class="user_info_content">
+                	<span>乐见号：${userInfo.id}</span><br />
+                    <span>性别： <s:if test="#user.sex==1">
+                        		男
+                             </s:if>
+                             <s:else>
+                                	女
+                             </s:else></span>
+                             <span class="mleft30">年龄：${userInfo.age}</span>
+                             <s:if test="#userInfo.zone!='' || #userInfo.zone!='null'">
+                             		<span class="mleft30">地区：${userInfo.zone}</span>
+                             </s:if>
+                             <s:else>
+                             		<span class="mleft30">地区：没填写</span>
+                             </s:else>
+                </div>
+                <div class="user_info_title">个人签名</div>
+                <div class="user_info_content auto_row">
+                	<s:if test="#userInfo.sign!='' || #userInfo.sign!='null'">
+             				${userInfo.sign}
+             			</s:if>
+             			<s:else>
+             				没填写
+             			</s:else>
+                </div>
+            </div>
+            <div class="clra"></div>
+        </div>
+        
+<!--         <div class="pad_tb tlc">
+        	<input class="grey_btn2 radius5" type="text" onclick="back()" value="返回" />
+        </div> -->
+    </div>
+</div>
+
+<jsp:include page="../webpage/bottom.jsp" ></jsp:include>
+</body>
+</html>

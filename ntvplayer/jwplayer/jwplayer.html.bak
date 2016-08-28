@@ -1,0 +1,19 @@
+<html>
+<head>
+<script type="text/javascript" src="./jwplayer.js"></script>
+</head>
+
+<body>
+<div id="jwplayer">Loading..</div>
+
+<script type="text/javascript">
+jwplayer("jwplayer").setup({
+	url: "http://192.168.10.187/sps/vod/stream/FILE0106174.flv",
+	height: 360,
+	image: "./jwplayer.jpg",
+	width: 640,
+	//primary: "flash"
+});
+</script>
+</body>
+</html>

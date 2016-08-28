@@ -1,0 +1,39 @@
+.latest-focus{padding: 5px 0;background: black;overflow: hidden;margin-bottom: 5px;}
+.latest-focus a, .latest-focus a:hover {font-family: "Microsoft YaHei",tahoma,arial,san-serif;color: white;text-decoration: none;}
+.latest-focus .focusTop{background: #171717;width: 960px;overflow: hidden;clear: both;zoom: 1;margin: 0 auto;z-index: 100;position: relative;}
+.latest-focus .focus-fl {height: 310px;width: 750px;position: relative;overflow: hidden;clear: both;zoom: 1;}
+.latest-focus .focus-fl ul{height:310px; position:absolute;}
+.latest-focus .focus-fl ul li {float:left; width:750px; height:310px; overflow:hidden; position:relative; background:#000;}
+.latest-focus .focus-fl ul li  span{display: none;}
+.latest-focus .focus-fl img {height: 310px;width: 750px;}
+.latest-focus .bg {display: block;position: absolute;bottom: 0;left: 0;width: 750px;height: 60px;background: black;opacity: .7;filter: alpha(opacity=70);}
+.latest-focus .focus-fr {position: absolute;left: 754px;bottom: 0;height: 310px;width: 205px;line-height: 20px;}
+.latest-focus .focus-fr .info_list {height: 310px;position: relative;}
+.latest-focus .focus-fr .info_list ul {position: absolute;left: 12px;top: 0;padding-top: 5px;width: 185px;height: 200px;color: #C8C8C8;}
+.latest-focus .focus-fr .info_list ul .gaoqing1,.latest-focus .focus-fr .info_list ul .gaoqing2 {position: absolute;right: -9px;top: 0;width: 77px;height: 76px;background: url(../images/more.png) 1px -61px no-repeat;}
+.latest-focus .focus-fr .info_list ul .gaoqing2{background-position:1px -140px;}
+.latest-focus .focus-fr .info_list ul .title {z-index: 10;left: 60px;color:white;font-size: 22px;line-height: 30px;}
+.latest-focus .focus-fr .info_list ul .last {font-size: 14px;color: white;width: 185px;overflow: hidden;height: 20px;}
+.latest-focus .focus-fr .info_list ul .tips {padding: 2px 0 13px;height: 20px;}
+.latest-focus .focus-fr .info_list ul .introduce{text-indent: 2em;width: 185px;overflow: hidden;height: 100px;}
+.latest-focus .focus-fr .info_list ul .actor{width: 185px;overflow: hidden;height: 20px;}
+.latest-focus .focus-fr .info_list ul li i{color: white;}
+.latest-focus .focus-fr .info_list .play {left: 35px;bottom: 18px;width: 133px;height: 42px;line-height: 42px;text-indent: 45px;font-size: 18px;background: #26a8ff url(../images/more.png) 7px 6px no-repeat;position: absolute;display: block;}
+.latest-focus .focus-fr .info_list .play a {display: block;width: 100%;height: 100%;position: relative;z-index: 100;}
+
+.latest-focus .control {width: 750px;position: absolute;bottom: 5px;left: 0;height: 55px;}
+.latest-focus .control .no_next, .latest-focus .control .no_prev {background-position: 0 2px;opacity: .8;filter: alpha(opacity=80);}
+.latest-focus .control .next {left: 5px;}
+.latest-focus .control .prev {right: 5px;background-position: -50px -217px;}
+.latest-focus .control .no_prev{background-position:-35px -217px;}
+.latest-focus .next, .latest-focus .prev {display: block;position: absolute;top: 18px;height: 24px;width: 15px;background: url(../images/more.png) -35px -217px no-repeat;cursor: pointer;opacity: .9;filter: alpha(opacity=90);}
+.latest-focus .control .btns {position: absolute;left: 30px;top: 0;width: 690px;height: 55px;overflow: hidden;}
+.latest-focus .control .btns ul {position: relative;top: 5px; width: 700px; left: 0px;}
+.latest-focus .control .btns ul li {float: left;margin-right: 10px;width: 90px;height: 50px;_display: inline;position: relative;}
+.latest-focus .control .btns  img{width:88px;height:48px;border:1px solid #333;opacity:.8;filter:alpha(opacity=80)}
+.latest-focus .control .btns .current img{width:86px;height:46px;border:2px solid #26a8ff;opacity:1;filter:alpha(opacity=100)}
+.latest-focus .control .btns .current i{display:block;position:absolute;z-index:10px;left:42px;top:-5px;width:10px;height:5px;overflow:hidden;background:url(../images/more.png) -0px -248px no-repeat}
+
+.new-list {width: 656px;margin: 0 15px;padding: 5px 0 4px 0;overflow: hidden;clear: both;zoom: 1;border-top: 1px solid #EEE;}
+.new-list li {width: 131px;overflow: hidden;float: left;height: 27px;line-height: 27px;text-indent: 17px;background: url(../images/a-lang.gif) 3px 6px no-repeat;}
+.maxBox .box{border: 1px solid lightGrey;margin-bottom: 5px;}

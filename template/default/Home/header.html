@@ -1,0 +1,192 @@
+<?php
+	$username = $_SESSION['force_user'];
+?>
+
+<script language="javascript">
+var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}'; var username='{$username}';
+
+function fxsearch()
+{
+	var wd = document.getElementById('wd').value;
+	var url = '{:getsearchurl();}';
+	window.location = url+'wd/'+wd;
+}
+function changeImg() {
+    var imgSrc = document.getElementById("imageCode");
+    var src = imgSrc.src;
+    var newSrc = chgUrl(src);
+    imgSrc.src = newSrc;
+}
+
+//时间戳
+//为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
+function chgUrl(url) {
+    var timestamp = (new Date()).valueOf();
+    url = url + "/timestamp/" + timestamp;
+    return url;
+}
+function login(){
+	var url = "?s=Login/Login";
+	window.location = url;
+}
+
+function register(){
+	var url = "?s=Login/Register";
+	window.location = url;
+}
+
+function usercenter(){
+	var url = "?s=User/Fusershow";
+	window.location = url;
+}
+</script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
+<!--头部 开始-->
+<div class="top">
+	<a href="{$webpath}" class="logo"><img src="/video/template/default/images/logo1.png"></a>
+    <!--搜索 开始-->
+	<div class="ss">
+    	<div class="ss1 fix">
+        	<form id="searchForm" name="searchForm" method="post" action="{:getsearchurl();}">
+            
+            <input id="wd" name="wd"  autocomplete="off"type="text" {$keyword|default='请输入关键字'} />
+            <a href="javascript:void(0);" onclick="fxsearch();">
+            </a>
+            </form>
+        </div>
+        <div class="ss2">
+            {$hotkey}
+        </div>
+    </div>
+    <!--搜索 结束-->
+   <!--  <a href="{$webpath}index.php?s=top10" class="ph"></a> -->
+    <div class="top1">
+    	 <if condition="$username eq ''">
+    	   
+	    	<a href="javascript:void(0)" id="login_btn">登录</a><a href="javascript:void(0)" id="reg_btn" >注册</a>
+	    <!-- 	<a href="javascript:login()" id="login_btn">登录</a><a href="javascript:register()" id="reg_btn" >注册</a>  -->
+	    	 <!--  
+	        <a href="{$webpath}index.php?s=Guestbook" style="color:#F00">我要求片</a>|
+	        -->
+	     <else />	
+	     
+	     	<a href="javascript:void(0);" class="top1-1" id="user_old_list_a" onblur="this.blur();">{$username}</a>
+	     	<div class="jilu" id="user_old_list">
+	        	<span class="jilu1"></span>
+	            <div class="jilu3" id="user_old_list_content">
+	                <a href="javascript:usercenter()" class="jilu1-2"><span class="jilu3-1">个人中心</span></a>
+	                <a href="?s=Login/Logout" class="jilu1-2"><span class="jilu3-1">退出登录</span></a>
+	            </div>
+	            <span class="jilu2"></span>
+        	</div>
+	     </if>
+        <a href="javascript:void(0);" class="top1-1" id="play_old_list_a" onblur="this.blur();">观看记录</a>
+    	<!--观看记录 开始-->
+        <div class="jilu" id="play_old_list">
+        	<span class="jilu1"></span>
+            <div class="jilu3" id="play_old_list_content">
+                
+                <div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>
+            </div>
+            <span class="jilu2"></span>
+        </div>
+        <!--观看记录 结束-->
+        
+    </div>
+</div>
+<div class="lines"></div>
+<!--头部 结束-->
+<!--导航 开始-->
+<div class="nav">
+	<div class="nav1">
+		<ul class="nav1-1">
+            <li><a href="{$webpath}" <if condition="$model eq 'index'">class="on"</if>>首页</a></li>
+            
+            <gxcms name="menu">
+            <li><a onfocus="this.blur();" href="{$menu.showurl}" <if condition="($menu['id'] eq $cid) or ($menu['id'] eq $pid)">class="on"</if>>{$menu.cname}</a></li>
+            
+            </gxcms>
+            <!--  
+            <a href="{:getspecialurl();}">专题</a>
+            <a href="/index.php?s=tv">直播</a>
+            -->
+		</ul>
+		<!--  
+        <p class="nav1-2">
+        
+        <gxcms name="self" cid='9' limit="4">
+                <a href="{$self.link}"target="_blank" style="color:{$self.color}">{$self.title}</a>
+        </gxcms>    
+            
+        </p>
+        -->
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(e){
+    /*------------登录注册页面-------------*/
+    $("#login_btn").click(function(){
+        $(".login_and_register").show();
+        $(".login_and_register .register_con").hide();
+        $(".login_and_register .login_con").show();
+    });
+    $("#reg_btn").click(function(){
+        $(".login_and_register").show();
+        $(".login_and_register .register_con").show();
+        $(".login_and_register .login_con").hide();
+    });
+    $(".backpswd_btn_con .register_btn").click(function(){
+        $(".login_and_register").show();
+        $(".login_and_register .register_con").show();
+        $(".login_and_register .login_con").hide();
+    });
+    $(".login_and_register .close").click(function(){
+        $(".login_and_register").hide();
+    });
+})
+</script>
+<!--导航 结束-->
+<div class="login_and_register">
+    <div class="header fix">
+        <span class="logo fl_l"><img src="/video/template/default/images/logo2.png"></span>
+        <a class="fl_r close" href="javascript:void(0)"></a>
+    </div>
+    <div class="login_con">
+        <form action="?s=Login/ajaxcheck" method="post">
+            <ul>
+                <li class="error"><p>账号或密码错误</p></li>
+                <li><input id="username" name="username" type="text" placeholder="用户名"/></li>
+                <li><input id="userpwd" name="userpwd" type="password" placeholder="密码"/></li>
+                <li class="fix">
+                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
+                    <img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/>
+                </li>
+            </ul>
+            <div class="backpswd_btn_con fix">
+                <a href="" class="register_btn fl_l">还没账号，点此注册</a>
+                <a href="?s=Login/fog_pwd" class="backpswd_btn2 fl_r">忘记密码</a>
+            </div>
+            <input type="submit" class="submit_btn" name="submit" value="登录" />
+        </form>
+    </div>
+    <div class="register_con disun">
+        <form action="?s=Login/Register_do" method="post">
+            <ul>
+                <li class="error"><p>账号或密码错误</p></li>
+                <li><input id="user_name" name="user_name" type="text" placeholder="用户名"/></li>
+                <li><input id="password" name="password" type="password" placeholder="密码"/></li>
+                <li><input id="email" name="email" type="text" placeholder="邮箱"/></li>
+                <li class="fix">
+                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
+                    <img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/>
+                </li>
+            </ul>
+            <div class="xieyi fix">
+                <span class="checked"></span>
+                <p>我已阅读并同意相关服务条款</p>
+            </div>
+            <input type="submit" class="submit_btn" value="注册" id="submit" />
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,184 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="refresh" content="10">
+<title>串流</title> 
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/jquery.js"></script>
+<script language="JavaScript" charset="utf-8" type="text/javascript" src="./views/js/admin_all.js"></script>
+<script language="javascript" type="text/javascript" charset="utf-8" src="./views/editor/kindeditor.js"></script>
+<script language="javascript" type="text/javascript" charset="utf-8" src="./views/editor/lang/zh_CN.js"></script>
+<link rel='stylesheet' type='text/css' href='./views/css/admin_style.css?v=1.0.2'>
+
+<script type="text/javascript">
+	$(function() {
+	
+	});
+	
+}
+</script>
+
+<?php
+function get_stream_status_color($status)
+{
+	if($status===1)
+	{
+		return '#00FF00';
+	}
+	else
+	{
+		return '#C0C0C0';
+	}
+}
+
+function get_stream_status_string($status)
+{
+	if($status===1)
+	{
+		return "<font color='#0000FF'>运行中</font>";
+	}
+	else if($status===0)
+	{
+		return "<font color='#808080'>已停止</font>";
+	}
+	else
+	{
+		return "<font color='#FF0000'>错误!</font>";
+	}
+}
+
+function write_array_data($key,$info)
+{
+	if($info==null)
+	{
+		return "";
+	}
+
+	if(@$info[$key]==null || @$info[$key]=="")
+	{
+		return "";
+	}
+	else
+	{
+		return $info[$key];
+	}
+}
+
+function write_check_status_string($key,$info)
+{
+	if($info==null)
+	{
+		return "不转码";
+	}
+
+	if(@$info[$key]=="on" || @$info[$key]=="ON")
+	{
+		return "转码";
+	}
+	else
+	{
+		return "不转码";
+	}
+}
+
+function get_des_url($array)
+{
+	if($array['to_host']=="localhost")
+	{
+		$url = "rtmp://localhost/" . $array['application'] . "/" .  $array['stream'] ;
+	}
+	else
+	{
+		$url = "rtmp://" . $array['to_server']  . "/" . $array['application'] . "/" .  $array['stream'] ;
+
+	}
+	return urldecode($url);
+}
+?>
+</head> 
+<body>
+<div style="clear:both;">
+<table width="98%" border="0" cellpadding="5" cellspacing="1" class="table">
+  <tr>
+    <td colspan="10" class="table_title">
+    	<span class="fl">串流管理</span> 
+    </td>
+  </tr>
+  
+<form action="?s=Admin/Video/Show/keyword" method="post" id="gxform" name="gxform">
+    <tr align="center" class="list_head">
+      <td width="50">名称</td>
+      <td width="80">源</td>
+      <td width="80">转码</td>
+      <td width="80">目标</td>
+      <td width="60">状态</td>
+      <td width="60">操作</td>
+    </tr>
+	<?php
+		$count_ac = 0;
+		foreach ($streams as $stream_info)
+		{
+			$status  = intval(@$stream_info['status']);
+		?>
+		<tr class="tr" align="center" onmouseover="this.style.backgroundColor='#E6FBDB';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+			<td><?php echo urldecode($stream_info['name']);?></td>	
+			<td><?php echo urldecode($stream_info['source_url']);?></td>
+			<td><?php echo write_check_status_string('use_transcode',$stream_info);?></td>
+			<td><?php echo get_des_url($stream_info);?></td>
+			<td bgcolor="<?php echo get_stream_status_color($status);?>"><?php echo get_stream_status_string($status);?></td>
+			<td align="center" width="17%">
+				<?php 
+					if($status)
+					{
+						$count_ac++;
+				?> 
+					<!--  
+					<a href="?s=Admin/Mserver/DoOperate/Operater/detail/Id/<?php echo $stream_info['id'];?>" class="operator_success">详情</a>&nbsp;|&nbsp;
+					-->
+					<a href="?s=Admin/Mserver/DoOperate/Operater/stop/Id/<?php echo $stream_info['id'];?>" class="operator_danger">停止</a>
+					<!--  
+					<a href="add_stream.php?action=view&id=<?php echo $stream_info['id'];?>" class="btn btn-success btn-xs">详情</a>&nbsp;|&nbsp;
+					<a href="javascript:do_operate('stop','<?php echo $stream_info['id'];?>')" class="btn btn-danger btn-xs">停止</a>
+					-->
+				<?php
+					}else
+					{
+				?> 
+				<a href="?s=Admin/Mserver/DoOperate/Operater/start/Id/<?php echo $stream_info['id'];?>" class="operator_success">开始</a>&nbsp;
+				<a href="?s=Admin/Mserver/DoOperate/Operater/edit/Id/<?php echo $stream_info['id'];?>" class="operator_success">编辑</a>&nbsp;|&nbsp;
+				<a href="?s=Admin/Mserver/DoOperate/Operater/delete/Id/<?php echo $stream_info['id'];?>" class="operator_danger">删除</a>				
+				<!--  
+				<a href="javascript:do_operate('start','<?php echo $stream_info['id'];?>')" class="operator_success">开始</a>&nbsp;
+				<a href="add_stream.php?action=edit&id=<?php echo $stream_info['id'];?>" class="operator_success">编辑</a>&nbsp;|&nbsp;
+				<a href="javascript:do_operate('delete','<?php echo $stream_info['id'];?>')" class="operator_danger">删除</a>
+				-->
+			</td>	
+			<?php
+			}
+			?>		
+		</tr>
+	<?php
+	}
+	?>
+	</form>
+	<tr class="tr">
+      <td colspan="10"><input type="button" id="addstreaming" value="添加" class="bginput" onClick="window.location.href='?s=Admin/Mserver/AddStreaming'">
+        &nbsp;&nbsp;
+        <input type="button" value="刷新" class="bginput" onClick="location.reload();" />
+    	</td>
+    </tr>
+</table>
+</div>
+<style>
+#footer, #footer a:link, #footer a:visited {
+	clear:both;
+	color:#0072e3;
+	font:12px/1.5 Arial;
+	margin-top:10px;
+	text-align:center;
+	white-space:nowrap;
+}
+</style>
+<div id="footer">程序版本：<?php echo C("cms_var");?>&nbsp;&nbsp;&nbsp;&nbsp;Copyright © 2015-2016 All rights reserved</div>
+</body>
+</html>

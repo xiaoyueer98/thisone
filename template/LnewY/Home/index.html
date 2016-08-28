@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webtitle}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow">
+<link href="/template/LnewY/css/Common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/LnewY/js/jquery.min.js"></script>
+<script type="text/javascript" src="/template/LnewY/js/Common.js"></script>
+<meta property="qc:admins" content="036257777761111633" />
+</head>
+<body>
+<include file="header" />
+<div class="wrap w960"><script src="/ad/960-90.js"></script></div>
+<div class="wrap w960">
+<div class="maxBox mb10 mt5" id="latest-focus">
+  <div class="latest-tab">
+    <ul>
+      <li id="latest1" onmouseover="setTab(1);" class="active">热门影片推荐</li>
+      <li id="latest2" onmouseover="setTab(2);" class="">最新电视剧</li>
+      <li id="latest3" onmouseover="setTab(3);" class="">最新电影</li>
+      <li id="latest4" onmouseover="setTab(4);" class="">最新动漫</li>
+      <li id="latest5" onmouseover="setTab(5);" class="">最新综艺</li>
+    </ul>
+  </div>
+  <SCRIPT language="javascript" type="text/javascript">function setTab(index) {for (var i=1;i<=5;i++){document.getElementById("latest"+i).className ="";document.getElementById("latest"+index).className ="active";document.getElementById("con_latest_"+i).style.display="none";}document.getElementById ("con_latest_"+index).style.display  ="block";}</SCRIPT>
+  <div class="box box-blue-bold">
+    <div id="con_latest_1" class="hot-latest active" style="display: block; ">
+
+      <ol class="pic-list">
+      
+		<gxcms name="video" limit="7" order="score desc">      	
+        <li> <a class="play-pic" href="{$video.readurl}" title="{$video.title}"> <img src="{$video.picurl}" alt="{$video.title}">
+          <label class="bg">&nbsp;</label>
+          <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}集<else />完结</if></label>
+          </a>
+          <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+        </li>
+        </gxcms>
+        
+      </ol>
+      <!-- // pic-list End -->
+      <ul class="txt-list">
+      <gxcms name="video" limit="7,12" order="score desc">      	
+        <li> <span>{$video.addtime|get_color_date='m-d',###,'#0060A5'}</span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> / <a class="gray" href="{$video.readurl}"><if condition="$video.serial gt 0">{$video.serial}集<else />完结</if></a> </li>
+      </gxcms> 
+      </ul>
+      <!-- // txt-list End --> 
+
+
+    </div>
+    <div id="con_latest_2" class="fa-hide" style="display: none; ">
+      <ol class="pic-list">
+      
+		<gxcms name="video" cid="2" limit="7" order="addtime desc">      	
+        <li> <a class="play-pic" href="{$video.readurl}" title="{$video.title}"> <img src="{$video.picurl}" alt="{$video.title}">
+          <label class="bg">&nbsp;</label>
+          <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}集<else />完结</if></label>
+          </a>
+          <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+        </li>
+        </gxcms>
+        
+      </ol>
+      <!-- // pic-list End -->
+      <ul class="txt-list">
+      <gxcms name="video" cid="2" limit="7,12" order="addtime desc">      	
+        <li> <span>{$video.addtime|get_color_date='m-d',###,'#0060A5'}</span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> / <a class="gray" href="{$video.readurl}"><if condition="$video.serial gt 0">{$video.serial}集<else />完结</if></a> </li>
+      </gxcms> 
+      </ul>
+      <!-- // txt-list End --> 
+    </div>
+    <div id="con_latest_3" class="fa-hide" style="display: none; ">
+
+      <ol class="pic-list">
+      
+		<gxcms name="video" cid="1" limit="7" order="addtime desc">      	
+        <li> <a class="play-pic" href="{$video.readurl}" title="{$video.title}"> <img src="{$video.picurl}" alt="{$video.title}">
+          <label class="bg">&nbsp;</label>
+          <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}集<else />完结</if></label>
+          </a>
+          <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+        </li>
+        </gxcms>
+        
+      </ol>
+      <!-- // pic-list End -->
+      <ul class="txt-list">
+      <gxcms name="video" cid="1" limit="7,12" order="addtime desc">      	
+        <li> <span>{$video.addtime|get_color_date='m-d',###,'#0060A5'}</span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> / <a class="gray" href="{$video.readurl}"><if condition="$video.serial gt 0">{$video.serial}集<else />完结</if></a> </li>
+      </gxcms> 
+      </ul>
+      <!-- // txt-list End --> 
+
+
+    </div>
+    <div id="con_latest_4" class="fa-hide" style="display: none; ">
+    
+      <ol class="pic-list">
+      
+		<gxcms name="video" cid="3" limit="7" order="addtime desc">      	
+        <li> <a class="play-pic" href="{$video.readurl}" title="{$video.title}"> <img src="{$video.picurl}" alt="{$video.title}">
+          <label class="bg">&nbsp;</label>
+          <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}集<else />完结</if></label>
+          </a>
+          <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+        </li>
+        </gxcms>
+        
+      </ol>
+      <!-- // pic-list End -->
+      <ul class="txt-list">
+      <gxcms name="video" cid="3" limit="7,12" order="addtime desc">      	
+        <li> <span>{$video.addtime|get_color_date='m-d',###,'#0060A5'}</span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> / <a class="gray" href="{$video.readurl}"><if condition="$video.serial gt 0">{$video.serial}集<else />完结</if></a> </li>
+      </gxcms> 
+      </ul>
+      <!-- // txt-list End --> 
+    
+    
+    </div>
+    <div id="con_latest_5" class="fa-hide" style="display: none; ">
+    
+      <ol class="pic-list">
+      
+		<gxcms name="video" cid="4" limit="7" order="addtime desc">      	
+        <li> <a class="play-pic" href="{$video.readurl}" title="{$video.title}"> <img src="{$video.picurl}" alt="{$video.title}">
+          <label class="bg">&nbsp;</label>
+          <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}<else />完结</if></label>
+          </a>
+          <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+        </li>
+        </gxcms>
+        
+      </ol>
+      <!-- // pic-list End -->
+      <ul class="txt-list">
+      <gxcms name="video" cid="4" limit="7,12" order="addtime desc">      	
+        <li> <span>{$video.addtime|get_color_date='m-d',###,'#0060A5'}</span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> / <a class="gray" href="{$video.readurl}"><if condition="$video.serial gt 0">{$video.serial}<else />完结</if></a> </li>
+      </gxcms> 
+      </ul>
+      <!-- // txt-list End --> 
+
+    </div>
+  </div>
+</div>
+<include file="lll" />
+<div class="maxBox">{:get_cms_ads('inde_960_90')}</div>
+<!-- 电视 --> 
+<a name="TV"></a>
+<div class="maxBox mb10" id="tv">
+  <div class="box ui-yiyi fa-clear">
+    <label class="videoIco"></label>
+    <div class="conBox ui-tab fa-left">
+      <div class="caption fa-clear">
+        <h2 class="hide-txt"></h2>
+        <p class="tv-link">
+          <gxcms name="menu" ids="2">
+            <gxfor name="menu.son" id="menuson"> <a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></gxfor>
+          </gxcms>
+          </p>
+      </div>
+      <div class="content">
+        <div class="ui-tab-item  fa-clear">
+          <div class="sideRow fa-left">
+          
+          <gxcms name="self" cid='10' limit="1">
+            <div class="ui-focus"> <a class="play-pic" href="{$self.link}"><img src="{$self.picurl}" alt="" style="display: block; ">
+              <label class="bg">&nbsp;</label>
+              <label class="time">{$self.title}</label>
+              </a>
+              <ul class="ui-focus-text">
+                <li><strong>主演：</strong>{$self.content1}</li>
+                <li style="height:1px; font-size:1px; line-height:1px; margin-top:10px; margin-bottom:10px; background-color:#EFEFEF;"></li>
+                <li class="desc" style="font-size:12px; line-height:22px; height:90px;"><strong>简介：</strong>{$self.content}</li>
+              </ul>
+            </div>
+         	</gxcms>   
+            
+            <gxcms name="self" cid='12' limit="3">
+            <div style="width:260px; height:100px; background-color:#FFF; margin-top:10px;">
+            	<a href="{$self.link}"><img src="{$self.picurl}" alt="{$self.title}" style="border:0px;" /></a>
+            </div>
+            </gxcms>
+            
+            
+            <!-- // ui-focus End -->
+            
+            <!-- // ui-synch End --></div>
+          <div class="pic-list pic-list-focus">
+            <ul>
+              <gxcms name="video" cid="2" limit="9" order="score desc">
+                <li> <a class="play-pic" href="{$video.readurl}"> <img src="{$video.picurl}" style="display: block; "> <span class="play-icon">&nbsp;</span>
+                  <label class="bg">&nbsp;</label>
+                  <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}
+                      <else />
+                      完结</if></label>
+                  </a>
+                  <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+                  <p class="txt">{$video.actor|get_replace_html=0,10|get_actor_url}</p>
+                </li>
+              </gxcms>
+            </ul>
+          </div>
+          <!-- // pic-list End --> 
+        </div>
+        <!-- // ui-tab-item End -->
+        
+      </div>
+    </div>
+    <!-- // conBox End -->
+    <div class="sideBar fa-right">
+      <div class="ui-top-tab">
+        <div class="caption fa-clear">
+          <h3><a href="http://list.yiyi.cc/">电视剧最新更新</a></h3>
+        </div>
+        <div class="content">
+          <ul class="ul-top">
+            <gxcms name="video" cid="2" limit="10" order="score desc">
+              <li><span><strong>{$video.addtime|get_color_date='m-d',###,'#666'}</strong></span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a></li>
+            </gxcms>
+          </ul>
+        </div>
+      </div>
+      <!-- // topBox End -->
+      
+      <div class="ui-sort">
+        <div class="caption">
+          <h3> <a href="#">电视剧类型</a> </h3>
+        </div>
+        <div class="tb_c">
+        
+        
+        
+        
+          <dl class="videoSortList clearfix">
+            <dt>按类型</dt>
+            <dd>
+    <volist name="stypetag" id="item">
+            <span><a href="{:getstypetaglink(2,$item['m_cid'])}" target="_blank">{$item.m_name}</a></span>  
+    </volist> 
+            </dd>
+            
+            
+            <dt>按地区</dt>
+            <dd> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/内地" target="_blank">内地</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/香港" target="_blank">香港</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/台湾" target="_blank">台湾</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/韩国" target="_blank">韩国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/美国" target="_blank">美国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/泰国" target="_blank">泰国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/日本" target="_blank">日本</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/area/其他" target="_blank">其他</a></span> 
+            
+             </dd>
+            <dt>按年代</dt>
+            <dd>
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2013" target="_blank">2013</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2012" target="_blank">2012</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2011" target="_blank">2011</a></span> 
+            <span><a href="/index.php?s=video/lists/id/2/order/addtime/year/2010" target="_blank">2010</a></span> 
+             </dd>
+            <dt>按明星</dt>
+            <dd> <span><a href="/index.php?s=video/search/wd/张嘉译" target="_blank">张嘉译</a></span> 
+            <span><a href="/index.php?s=video/search/wd/赵本山" target="_blank">赵本山</a></span> 
+            <span><a href="/index.php?s=video/search/wd/吴京" target="_blank">吴京</a></span> 
+            <span><a href="/index.php?s=video/search/wd/杨幂" target="_blank">杨幂</a></span> 
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <!-- // ui-sort End --> 
+    </div>
+  </div>
+</div>
+<!-- 电影 -->
+<div class="maxBox mb10" id="Movie">
+  <div class="box ui-yiyi fa-clear">
+    <label class="videoIco"></label>
+    <div class="conBox ui-tab fa-left">
+      <div class="caption fa-clear">
+        <h2 class="hide-txt"> </h2>
+        <p class="tv-link">
+          <gxcms name="menu" ids="1">
+            <gxfor name="menu.son" id="menuson"> <a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></gxfor>
+          </gxcms>
+        </p>
+      </div>
+      <div class="content">
+        <div class="ui-tab-item fa-clear">
+          <div class="sideRow fa-left">
+          <gxcms name="self" cid='11' limit="1">
+            <div class="ui-focus"> <a class="play-pic" href="{$self.link}"><img src="{$self.picurl}" alt="{$self.title}" style="display: block; ">
+              <label class="bg">&nbsp;</label>
+              <label class="time">{$self.title}</label>
+              </a>
+              <ul class="ui-focus-text">
+                <li><strong>主演：</strong>{$self.content1}</li>
+                <li style="height:1px; font-size:1px; line-height:1px; margin-top:10px; margin-bottom:10px; background-color:#EFEFEF;"></li>
+                <li class="desc"><strong>简介：</strong>{$self.content}</li>
+              </ul>
+            </div>
+            </gxcms>
+            
+            <gxcms name="self" cid='13' limit="3">
+            <div style="width:260px; height:100px; background-color:#FFF; margin-top:10px;">
+            <a href="{$self.link}"><img src="{$self.picurl}" alt="{$self.title}" style="border:0px;" /></a>
+            </div>
+            </gxcms>
+            
+            <!-- // ui-synch End --></div>
+          <div class="pic-list pic-list-focus">
+            <ul>
+              <gxcms name="video" cid="1" limit="9" order="score desc">
+                <li> <a class="play-pic" href="{$video.readurl}"> <img src="{$video.picurl}" style="display: block; "> <span class="play-icon">&nbsp;</span>
+                  <label class="bg">&nbsp;</label>
+                  <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}
+                      <else />
+                      完结</if></label>
+                  </a>
+                  <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+                  <p class="txt">讲述由20世纪80年代至今大时代下三个年轻人</p>
+                </li>
+              </gxcms>
+            </ul>
+          </div>
+          <!-- // pic-list End --> 
+        </div>
+      </div>
+    </div>
+    <!-- // conBox End -->
+    <div class="sideBar fa-right">
+      <div class="ui-top-tab">
+        <div class="caption fa-clear">
+          <h3><a href="#">电影排行榜</a></h3>
+        </div>
+        <div class="content">
+          <ul class="ul-top">
+            <gxcms name="video" cid="1" limit="10" order="score desc">
+              <li><span><strong>{$video.score} 分</strong></span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a></li>
+            </gxcms>
+          </ul>
+        </div>
+      </div>
+      <!-- // topBox End -->
+      
+      <div class="ui-sort">
+        <div class="caption">
+          <h3> <a href="#">电影类型</a> </h3>
+        </div>
+        <div class="tb_c">
+          <dl class="videoSortList clearfix">
+            <dt>按类型</dt>
+            <dd>
+            <?php
+             $dystypetag = gettypetag(1);
+            ?>
+                <volist name="dystypetag" id="item">
+                        <span><a href="{:getstypetaglink(1,$item['m_cid'])}" target="_blank">{$item.m_name}</a></span>  
+                </volist> 
+            </dd>
+            
+            <dt>按地区</dt>
+            <dd> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/内地" target="_blank">内地</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/香港" target="_blank">香港</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/台湾" target="_blank">台湾</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/韩国" target="_blank">韩国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/美国" target="_blank">美国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/泰国" target="_blank">泰国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/日本" target="_blank">日本</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/area/其他" target="_blank">其他</a></span> 
+            
+            </dd>
+            <dt>按年代</dt>
+            <dd> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2013" target="_blank">2013</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2012" target="_blank">2012</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2011" target="_blank">2011</a></span> 
+            <span><a href="/index.php?s=video/lists/id/1/order/addtime/year/2010" target="_blank">2010</a></span> 
+            </dd>
+            <dt>按明星</dt>
+            <dd> <span><a href="/index.php?s=video/search/wd/甄子丹" target="_blank">甄子丹</a></span> 
+            <span><a href="/index.php?s=video/search/wd/成龙" target="_blank">成龙</a></span> 
+            <span><a href="/index.php?s=video/search/wd/范冰冰" target="_blank">范冰冰</a></span> 
+            <span><a href="/index.php?s=video/search/wd/周星驰" target="_blank">周星驰</a></span> 
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <!-- // ui-sort End --> 
+    </div>
+  </div>
+</div>
+<!-- 动漫 --> 
+<a name="cartoonm" id="cartoonm"></a>
+<div class="maxBox mb10" id="Cartoon">
+  <div class="box ui-yiyi fa-clear">
+    <label class="videoIco"></label>
+    <div class="conBox ui-tab fa-left">
+      <div class="caption fa-clear">
+        <h2 class="hide-txt"></h2>
+        <p class="tv-link"><!--A链接--></p>
+      </div>
+      <div class="content">
+        <div class="ui-tab-item fa-clear">
+          <ol class="pic-list pic-list-focus">
+            <gxcms name="video" cid="3" limit="15" order="addtime desc">
+              <li style=" height:202px;"> <a class="play-pic" href="{$video.readurl}"> <img src="{$video.picurl}" style="display: block; "> <span class="play-icon">&nbsp;</span>
+                <label class="bg">&nbsp;</label>
+                <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}
+                      <else />
+                      完结</if></label>
+                </a>
+                <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+              </li>
+            </gxcms>
+          </ol>
+          <!-- // pic-list End --> 
+        </div>
+        <!-- // ui-tab-item End -->
+      </div>
+    </div>
+    <!-- // conBox End -->
+    <div class="sideBar fa-right">
+      <div class="ui-top-tab">
+        <div class="caption fa-clear">
+          <h3><a href="#">动漫排行榜</a></h3>
+        </div>
+        <div class="content">
+          <ul class="ul-top">
+            <gxcms name="video" cid="3" limit="10" order="score desc">
+              <li><span><strong>{$video.addtime|get_color_date="m-d",###,'#666'}</strong></span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a></li>
+            </gxcms>
+          </ul>
+        </div>
+      </div>
+      <!-- // topBox End -->
+      
+      <div class="ui-sort">
+        <div class="caption">
+          <h3> <a href="#">动漫类型</a> </h3>
+        </div>
+        <div class="tb_c">
+          <dl class="videoSortList clearfix">
+            <dt>按类型</dt>
+            <dd>
+            <?php
+             $dystypetag = gettypetag(3);
+            ?>
+                <volist name="dystypetag" id="item">
+                        <span><a href="{:getstypetaglink(1,$item['m_cid'])}" target="_blank">{$item.m_name}</a></span>  
+                </volist> 
+            </dd>
+            
+            <dt>按地区</dt>
+            <dd> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/内地" target="_blank">内地</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/香港" target="_blank">香港</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/台湾" target="_blank">台湾</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/韩国" target="_blank">韩国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/美国" target="_blank">美国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/泰国" target="_blank">泰国</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/日本" target="_blank">日本</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/area/其他" target="_blank">其他</a></span> 
+            </dd>
+            <dt>按年代</dt>
+            <dd> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2013" target="_blank">2013</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2012" target="_blank">2012</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2011" target="_blank">2011</a></span> 
+            <span><a href="/index.php?s=video/lists/id/3/order/addtime/year/2010" target="_blank">2010</a></span> 
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <!-- // ui-sort End --> 
+    </div>
+  </div>
+</div>
+<!-- 综艺节目 --> 
+<a name="variety" id="varietym"></a>
+<div class="maxBox mb10" id="Variety">
+<div class="box ui-yiyi fa-clear">
+<label class="videoIco"></label>
+<div class="conBox ui-tab fa-left">
+  <div class="caption fa-clear">
+    <h2 class="hide-txt"></h2>
+    <p class="tv-link"> </p>
+  </div>
+  <div class="content">
+    <div class="ui-tab-item  fa-clear">
+      <ol class="pic-list pic-list-focus">
+        <gxcms name="video" cid="4" limit="15" order="addtime desc">
+          <li style="height:202px;"> <a class="play-pic" href="{$video.readurl}"> <img src="{$video.picurl}" style="display: block; "> <span class="play-icon">&nbsp;</span>
+            <label class="bg">&nbsp;</label>
+            <label class="time"><if condition="$video.serial gt 0">更新至{$video.serial}
+                      <else />
+                      完结</if></label>
+            </a>
+            <p> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a> </p>
+          </li>
+        </gxcms>
+      </ol>
+      <!-- // pic-list End --> 
+    </div>
+    <!-- // ui-tab-item End -->
+    <div class="mod_b paddingA">
+    </div>
+  </div>
+</div>
+<!-- // conBox End -->
+<div class="sideBar fa-right">
+<div class="ui-top-tab">
+  <div class="caption fa-clear">
+    <h3><a href="#">综艺最新更新</a></h3>
+  </div>
+  <div class="content">
+    <ul class="ul-top">
+    
+            <gxcms name="video" cid="4" limit="20" order="score desc">
+              <li><span><strong>{$video.addtime|get_color_date="m-d",###,'#666'}</strong></span> <a href="{$video.readurl}" title="{$video.title}">{$video.title}</a></li>
+            </gxcms>
+    
+    </ul>
+  </div>
+</div>
+<!-- // topBox End -->
+
+<!-- // ui-sort End -->
+</div>
+</div>
+</div>
+
+
+
+
+<include file="bom" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="IndexLink">
+  <div class="mod_cooperation">
+    <center>
+      {:get_cms_ads('inde_960_90_2')}
+    </center>
+    <h2 class="mod_tit">合作伙伴</h2>
+    <div class="mod_cont">
+      <ul>
+      <gxcms name="link" limit="100" order="type asc,oid desc">
+        <li><a href="{$link.url}" target="_blank">{$link.title|get_replace_html=0,8}</a></li>
+      </gxcms>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- 浮动 -->
+<div class="rightMenu" style="display: block; position: fixed; top: 340px; " id="rightMenu"> <a href="/?s=video/lists/id/1.html" target="_self">电影</a> <a href="/?s=video/lists/id/2.html" target="_self">电视剧</a> <a href="/?s=video/lists/id/3.html" target="_self">动漫</a> <a href="/?s=video/lists/id/4.html" target="_self">综艺</a> <a href="javascript:window.scrollTo(0, 0);" target="_self" class="backTop"></a>
+  <div class="fa-clear"></div>
+</div>
+<script type="text/javascript" src="/template/LnewY/js/SiteEnd.js"></script>
+</div>
+<include file="footer" />
+</body>
+</html>
