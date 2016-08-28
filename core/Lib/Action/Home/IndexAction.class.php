@@ -1,6 +1,7 @@
 <?php
 class IndexAction extends HomeAction{
     public function index(){
+        echo 22;die;
 		$lock = RUNTIME_PATH.'Install/install.lock';
 		if (!is_file($lock)) {
 			$this->assign("jumpUrl",C('cms_admin').'?s=Admin/Install');
