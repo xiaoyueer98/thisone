@@ -35,18 +35,22 @@
 a:hover{
 	color: #333333;
 }
-.head_con a{
+.head_con>a{
 	display: block;
 	height: 15px;
 }
-.head_con .r a.denglu{
+.head_con .r>a.denglu{
 	background: url(../../images/newimages/icon02.png) no-repeat left center;
 }
-.head_con .r a.zhuce{
+.head_con .r>a.zhuce{
 	background: url(../../images/newimages/icon03.png) no-repeat left center;
 }
-.head_con .r a.jilu{
+.head_con .r>a.jilu{
 	background: url(../../images/newimages/icon04.png) no-repeat right center;
+}
+.head_con .r .username_con{
+	position: relative;
+	width: 116px;
 }
 .head_con .r a#username{
 	width: 116px;
@@ -55,14 +59,15 @@ a:hover{
 	white-space:nowrap; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
+	float: left;
 }
 .head_con .head_list{
 	width:200px;
-	position: absolute;
-	top: 30px;
+	float: left;
+	margin-top: 10px;
 	background: #fff;
 	box-shadow: 0 0 3px #bbbbbb;
-	left: 45px;
+	left:0;
 	border-radius: 5px;
 	display: none;
 }

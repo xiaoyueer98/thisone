@@ -1,8 +1,8 @@
 $(document).ready(function(){
-	$("#username").mouseenter(function(){
+	$(".username_con").mouseenter(function(){
 		$(".head_con .head_list").show();
 	});
-	$("#username").mouseleave(function(){
+	$(".username_con").mouseleave(function(){
 		$(".head_con .head_list").hide();
 	});
 })
