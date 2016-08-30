@@ -10,108 +10,26 @@
     <script src="{$webpath}views/js/newjs/script.js"></script>
 </head>
 <body>
-<div class="header ">
-    <div class="head_con fix">
-        <div class="logo fl_l">
-            <img src="{$webpath}views/images/newimages/logo.png" alt="">
-        </div>
-        <div class="search bd margin_auto margin_t5 padding_l_r15 margin_t5">
-            <input type="text" class="fl_l" placeholder="搜索关键字">
-            <span class="fl_l"></span>
-        </div>
-        <div class="r fl_r">
-            <a class="fl_l margin_l20 font_blue padding_l20 denglu" href="">登录</a>
-            <div class="fl_l margin_l20 font_blue padding_l20 username_con">
-                <a class="fl_l  font_blue " id="username" href="">francis_fh@163.com</a>
-                <ul class="head_list">
-                    <li><a href="">个人中心</a></li>
-                    <li><a href="">退出登录</a></li>
-                </ul>
-            </div>
-            <a class="fl_l margin_l20 font_blue padding_l20 zhuce" href="">注册</a>
-            <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="">观看记录</a>
-
-        </div>
-
-    </div>
-    <span class="line2 margin_t30"></span>
-</div>
-<div class="login_and_register">
-    <div class="header fix">
-        <span class="logo fl_l"><img src="/video/template/default/images/logo2.png"></span>
-        <a class="fl_r close" href="javascript:void(0)"></a>
-    </div>
-    <div class="login_con">
-        <form action="?s=Login/ajaxcheck" method="post">
-            <ul>
-                <li class="error"><p>账号或密码错误</p></li>
-                <li><input id="username" name="username" type="text" placeholder="用户名"/></li>
-                <li><input id="userpwd" name="userpwd" type="password" placeholder="密码"/></li>
-                <li class="fix">
-                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
-                    <span><img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/></span>
-                </li>
-            </ul>
-            <div class="backpswd_btn_con fix">
-                <a href="" class="register_btn fl_l">还没账号，点此注册</a>
-                <a href="?s=Login/fog_pwd" class="backpswd_btn2 fl_r">忘记密码</a>
-            </div>
-            <input type="submit" class="submit_btn" name="submit" value="登录" />
-        </form>
-    </div>
-    <div class="register_con disun">
-        <form action="?s=Login/Register_do" method="post">
-            <ul>
-                <li class="error"><p>账号或密码错误</p></li>
-                <li><input id="user_name" name="user_name" type="text" placeholder="用户名"/></li>
-                <li><input id="password" name="password" type="password" placeholder="密码"/></li>
-                <li><input id="email" name="email" type="text" placeholder="邮箱"/></li>
-                <li class="fix">
-                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
-                    <img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/>
-                </li>
-            </ul>
-            <div class="xieyi fix">
-                <span class="checked"></span>
-                <p>我已阅读并同意相关服务条款</p>
-            </div>
-            <input type="submit" class="submit_btn" value="注册" id="submit" />
-        </form>
-    </div>
-</div>
+<include file="header" />
+<!--导航 开始-->
 <div class="nav padding_t20 margin_t20">
     <ul class="fix margin_auto">
-        <a href=""><li class="fix"><b>首页</b><span></span></li></a>
-        <a href=""><li class="fix"><b>视频直播</b><span></span></li></a>
-        <a href=""><li class="fix"><b>视频点播</b><span></span></li></a>
-        <a href=""><li class="fix"><b>网络电视</b><span></span></li></a>
-        <a href=""><li class="fix"><b>网络电台</b><span></span></li></a>
-        <a href=""><li class="fix"><b>网络监控</b><span></span></li></a>
-        <a href=""><li class="fix"><b>归档视屏</b></li></a>
+        <a href="{$webpath}"><li class="fix"><b>首页</b><span></span></li></a>
+        <gxcms name="menu">
+        <a href="{$menu.showurl}"><li class="fix"><b>{$menu.cname}</b><span></span></li></a>
+        </gxcms>
     </ul>
 </div>
+<!--导航结束-->
 <div class="back_color">
 <div class="banner">
     <div class="box">
         <div class="container">
+            <gxcms name="slide" fid="1" order="oid asc">
             <div class="img_con">
-                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
+                <a href="{$slide.link}"><img src="{$slide.picurl}" alt="{$slide.title}"></a>
             </div>
-            <div class="img_con">
-                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
-            </div>
-            <div class="img_con">
-                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
-            </div>
-            <div class="img_con">
-                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
-            </div>
-            <div class="img_con">
-                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
-            </div>
-            <div class="img_con">
-                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
-            </div>
+            </gxcms>
         </div>
         <div class="navs">
             <div class="navBtn">
@@ -130,97 +48,55 @@
 
                 <div class="list_con fix">
                     <ul class="fix">
+                        <gxcms name="video" cid='1,2,3,4,5,6' limit="10" order="addtime desc">
+                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
                             <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
+                            <b>{$video.title|get_replace_html=0,8}</b>
+                            <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
-                        <li class="fix">
-                            <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
-                        <li class="fix">
-                            <span>2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
-                        <li class="fix">
-                            <span>2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
-                        <li class="fix">
-                            <span>2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
+                        </a>
+                        </gxcms>
                     </ul>
                     <ul class="fix">
+                        <gxcms name="video" cid='1' limit="10" order="addtime desc">
+                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
                             <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
+                            <b>{$video.title|get_replace_html=0,8}</b>
+                            <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
-                        <li class="fix">
-                            <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
-                        <li class="fix">
-                            <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
-                        <li class="fix">
-                            <span>2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
-                        <li class="fix">
-                            <span>2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
+                        </a>
+                        </gxcms>
                     </ul>
                     <ul class="fix">
+                        <gxcms name="video" cid='2' limit="10" order="addtime desc">
+                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
                             <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
+                            <b>{$video.title|get_replace_html=0,8}</b>
+                            <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
-                        <li class="fix">
-                            <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
-                        <li class="fix">
-                            <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
+                        </a>
+                        </gxcms>
                     </ul>
                     <ul class="fix">
+                        <gxcms name="video" cid='3' limit="10" order="addtime desc">
+                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
                             <span class="m">2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
+                            <b>{$video.title|get_replace_html=0,8}</b>
+                            <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
-                        <li class="fix">
-                            <span>2</span>
-                            <b>香港市委</b>
-                            <em>08-02</em>
-                        </li>
+                        </a>
+                        </gxcms>
                     </ul>
                 </div>
             </div>
             <ul class="nav_list">
-                <li class="active"></li>
+                <gxcms name="slide" fid="1" order="oid asc">
                 <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                </gxcms>
             </ul>
         </div>
     </div>
@@ -232,22 +108,13 @@
 </div>
 <div class="content margin_auto">
 <ul class="con1 fix">
-    <li>
-        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
-        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
-    </li>
-    <li>
-        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
-        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
-    </li>
-    <li>
-        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
-        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
-    </li>
-    <li class="lastli">
-        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
-        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
-    </li>
+
+    <gxcms name="self" cid='5' limit="5">
+        <li <if condition="$i eq 4"> class="lastli" <else /></if>>
+            <a href="{$self.link}"><img src="{$self.picurl}" alt="{$self.title}"  ></a>
+            <p><span class="fl_l"><a href="{$self.link}">{$self.title}</a></span><span class="fl_r"><a href="{$self.link}">{$self.content1}</a></span></p>
+        </li>
+    </gxcms>
 </ul>
 <div class="con2 fix shipinzhibo">
     <div class="con_l fl_l">
@@ -258,118 +125,54 @@
                 <label>LIVE VIDEO</label>
             </div>
             <div class="fl_r head_r margin_t18">
-                <p class="bd_btm">MORE>></p>
+                <a href="{:get_channel_name(1,'showurl')}" target="_blank" class="mor"><p class="bd_btm">MORE>></p></a>
                 <ul class="con_l_nav fl_r fix">
-                    <li class="fl_l margin_l10 m">活动直播</li>
-                    <li class="fl_l margin_l10">手机直播</li>
-                    <li class="fl_l margin_l10">PAD直播</li>
+                    <gxcms name="menu" ids="1">
+                    <gxfor name="menu.son" id="menuson"><a href="{$menuson.showurl}" target="_blank"><li <if condition="$i eq 1"> class="fl_l margin_l10 m" <else />class="fl_l margin_l10"</if>>{$menuson.cname}</li></a></gxfor>
+                    </gxcms>
                 </ul>
             </div>
         </div>
         <div class="ul_list">
+
             <ul class="con_btm fix dis_block">
+                <gxcms name="video" cid="1" limit="6" order="addtime desc">
                 <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                    <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'"  src="{$video.picurl}" alt="{$video.title}"></a>
+                    <p class="fix margin_t10">
+                        <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
+                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                    </p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+                </gxcms>
+                <!--<gxcms name="video" cid="1" limit="10" order="addtime desc">-->
+                    <!--<li>-->
+                        <!--<a href="{$video.readurl}" target="_blank" title="{$video.title}" class="img"><img  onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}" /></a>-->
+                        <!--<a href="{$video.readurl}" target="_blank" class="title">{$video.title|get_replace_html=0,10}</a>-->
+                        <!--<p>{$video.actor|get_replace_html=0,10|get_actor_url}</p>-->
+                    <!--</li>-->
+                <!--</gxcms>-->
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播1</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播1</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
         </div>
 
@@ -379,52 +182,16 @@
             <h6>热门直播</h6>
             <b>HOT VIDEO</b>
         </div>
+
         <ul class="con_r_list">
+            <gxcms name="video" cid="1" limit="10" order="hits desc">
             <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
+                <span <if condition="$i lt 4"> class="m" </if>>{$i}</span>
+                <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
+                <em>{$video.hits}</em>
             </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
+            </gxcms>
+
         </ul>
     </div>
 </div>
@@ -434,176 +201,64 @@
         <div class="con_head">
             <div class="fl_l fi">
                 <i class="icon"></i>
-                <h5 class="font24">视频点播</h5>
+                <h5 class="font24">{:get_channel_name(2)}</h5>
                 <label>LIVE VIDEO</label>
             </div>
             <div class="fl_r head_r margin_t18">
-                <p class="bd_btm">MORE>></p>
+                <p class="bd_btm"><a href="{:get_channel_name(2,'showurl')}" target="_blank">MORE>></a></p>
                 <ul class="con_l_nav fl_r fix">
-                    <li class="fl_l margin_l10 m">活动直播</li>
-                    <li class="fl_l margin_l10">手机直播</li>
-                    <li class="fl_l margin_l10">PAD直播</li>
+                    <gxcms name="menu" ids="2">
+                    <gxfor name="menu.son" id="menuson"><a href="{$menuson.showurl}" target="_blank"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>>{$menuson.cname}</li></a></gxfor>
+                    </gxcms>
                 </ul>
+
             </div>
         </div>
         <div class="ul_list">
             <ul class="con_btm fix dis_block">
+                <gxcms name="video" cid="2" limit="10" order="addtime desc">
                 <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                    <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}"></a>
+                    <p class="fix margin_t10">
+                        <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
+                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+                </gxcms>
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-            </ul>
-        </div>
+
     </div>
     <div class="con_r fl_r">
         <div class="con_r_head">
-            <h6>热门直播</h6>
+            <h6>热门点播榜</h6>
             <b>HOT VIDEO</b>
         </div>
         <ul class="con_r_list">
+            <gxcms name="video" cid="2" limit="10" order="hits desc">
             <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
+                <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
+                <em>{$video.hits}</em>
             </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
+            </gxcms>
         </ul>
     </div>
 </div>
@@ -613,176 +268,68 @@
         <div class="con_head">
             <div class="fl_l fi">
                 <i class="icon"></i>
-                <h5 class="font24">网络电视</h5>
+                <h5 class="font24">{:get_channel_name(3)}</h5>
                 <label>LIVE VIDEO</label>
             </div>
             <div class="fl_r head_r margin_t18">
-                <p class="bd_btm">MORE>></p>
+                <a href="{:get_channel_name(3,'showurl')}" target="_blank"><p class="bd_btm">MORE>></p></a>
                 <ul class="con_l_nav fl_r fix">
-                    <li class="fl_l margin_l10 m">活动直播</li>
-                    <li class="fl_l margin_l10">手机直播</li>
-                    <li class="fl_l margin_l10">PAD直播</li>
+                    <gxcms name="menu" ids="3">
+                        <gxfor name="menu.son" id="menuson"><a href="{$menuson.showurl}" target="_blank"><li class="fl_l margin_l10 m">{$menuson.cname}</li></a></gxfor>
+                    </gxcms>
                 </ul>
             </div>
         </div>
         <div class="ul_list">
             <ul class="con_btm fix dis_block">
+                <gxcms name="video" cid="3" limit="5" order="addtime desc">
                 <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                    <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                        <img  onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}" />
+                    </a>
+                    <p class="fix margin_t10">
+                        <a href="{$video.readurl}" target="_blank" class="title"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
+                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                    </p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+                </gxcms>
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
             <ul class="con_btm fix">
                 <li class="fl_l margin_b25">
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-                </li>
+
             </ul>
         </div>
     </div>
     <div class="con_r fl_r">
         <div class="con_r_head">
-            <h6>热门直播</h6>
+            <h6>电视热播网</h6>
             <b>HOT VIDEO</b>
         </div>
         <ul class="con_r_list">
+            <gxcms name="video" cid="3" limit="10" order="hits desc">
             <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
+                <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                <b><a href="{$video.readurl}" target="_blank">{$video.title}</a></b>
+                <em>{$video.hits}</em>
             </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
-            <li class="fix">
-                <span class="m">2</span>
-                <b>香港市委</b>
-                <em>08-02</em>
-            </li>
+            </gxcms>
         </ul>
     </div>
 </div>
