@@ -85,12 +85,22 @@ a:hover{
 	padding: 0 10px;
 }
 
-
+.mask{
+	width:100%;
+	height: 100%;
+	position: fixed;
+	background: #333333;
+	filter:alpha(opacity=50);  
+	-moz-opacity:0.5;  
+	-khtml-opacity: 0.5;  
+	opacity: 0.5;  
+	z-index: 80;
+}
 /*------------登录注册------------*/
 .login_and_register{
 	width: 398px;
 	padding: 30px 35px 78px 40px;
-	background:url("images/pic5.png") no-repeat 0 0;
+	background:url("../../images/newimages/pic5(1).png") no-repeat 0 0;
 	
 	position: fixed;
 	top: 35px;
@@ -115,15 +125,18 @@ a:hover{
 	display: block;
 	width: 14px;
 	height: 14px;
-	background: url("images/icon004.png") no-repeat center;
+	background: url("../../images/newimages/icon004.png") no-repeat center;
 	margin-top: 8px;
 }
 .login_and_register form{
 	display: block;
 }
-.login_and_register .login_con,.login_and_register .register_con{
+.login_and_register .login_con{
 	margin-top: 78px;
 
+}
+.login_and_register .register_con{
+	margin-top: 55px;
 }
 .login_and_register .submit_btn{
 	display: block;
@@ -151,19 +164,32 @@ a:hover{
 	padding-right: 10px;
 	width: 340px;
 }
-.login_and_register li input#user{
-	background:url("images/user_icon01.png") no-repeat 10px center;
+.login_and_register li input#username{
+	background:url("../../images/newimages/user_icon01.png") no-repeat 10px center;
 }
-.login_and_register li input#pswd{
-	background:url("images/pswd_icon01.png") no-repeat 10px center;
+.login_and_register li input#userpwd{
+	background:url("../../images/newimages/pswd_icon01.png") no-repeat 10px center;
+}
+.login_and_register li input#user_name{
+	background:url("../../images/newimages/user_icon01.png") no-repeat 10px center;
+}
+.login_and_register li input#password{
+	background:url("../../images/newimages/pswd_icon01.png") no-repeat 10px center;
+}
+.login_and_register li input#email{
+	background:url("../../images/newimages/email_icon.png") no-repeat 10px center;
 }
 .login_and_register li input#verifycode{
 	padding-left: 10px;
 	width:223px;
+	background:none;
 }
 .login_and_register li span{
 	width:133px;
 	height: 45px;
+}
+.login_and_register li span img{
+	width:100%;
 }
 .backpswd_btn_con{
 	margin-top: 95px;
@@ -177,7 +203,7 @@ a:hover{
 
 
 .login_and_register .xieyi{
-	margin-top: 95px;
+	margin-top: 60px;
 }
 .login_and_register .xieyi span{
 	display: block;
@@ -185,9 +211,10 @@ a:hover{
 	height: 11px;
 	border:1px #aaaaaa solid;
 	float: left;
+	margin-top: 2px;
 }
 .login_and_register .xieyi span.m{
-	background: url(images/icon005.png) no-repeat center;
+	background: url(../../images/newimages/icon005.png) no-repeat center;
 	background-size: 100%:;
 }
 .login_and_register .xieyi p{
@@ -479,6 +506,7 @@ a:hover{
 }
 .content .con1 li img{
 	border:none;
+	width:100%;
 }
 .content .con1 li.lastli{
 	margin-right: 0;
@@ -540,6 +568,12 @@ a:hover{
 }
 .con_l .ul_list ul li{
 	margin-right: 26px;
+	width: 276px;
+	height: 168px;
+	overflow: hidden;
+}
+.con_l .ul_list ul li img{
+	width: 100%;
 }
 .con2 .con_head{
 	height: 90px;
