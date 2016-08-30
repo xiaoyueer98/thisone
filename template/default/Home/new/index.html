@@ -216,12 +216,13 @@
         </div>
         <div class="ul_list">
             <ul class="con_btm fix dis_block">
-                <gxcms name="video" cid="2" limit="10" order="addtime desc">
+                <gxcms name="video" cid="2" limit="6" order="addtime desc">
                 <li class="fl_l margin_b25">
                     <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}"></a>
                     <p class="fix margin_t10">
                         <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
-                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label></p>
+                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                    </p>
                 </li>
                 </gxcms>
             </ul>
@@ -244,7 +245,8 @@
                     <img src="{$webpath}views/images/newimages/pic3.png" alt="">
                     <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
                 </li>
-
+            </ul>
+            </div>
     </div>
     <div class="con_r fl_r">
         <div class="con_r_head">
