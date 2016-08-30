@@ -2,6 +2,7 @@
 	$username = $_SESSION['force_user'];
 ?>
 <script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
+<script src="{$webpath}views/js/newjs/script.js"></script>
 <script language="javascript">
     var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}'; var username='{$username}';
 
@@ -84,7 +85,7 @@
                 <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0)">观看记录</a>
             <else />
                 <div class="fl_l margin_l20 font_blue padding_l20 username_con">
-                    <a class="fl_l  font_blue " id="username" href="">{$username}</a>
+                    <a class="fl_l  font_blue " id="username" href="javascript:void(0)">{$username}</a>
                     <ul class="head_list">
                         <li><a href="javascript:usercenter()">个人中心</a></li>
                         <li><a href="?s=Login/Logout">退出登录</a></li>
