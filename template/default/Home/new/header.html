@@ -1,6 +1,7 @@
 <?php
 	$username = $_SESSION['force_user'];
 ?>
+<script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
 <script language="javascript">
     var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}'; var username='{$username}';
 
@@ -40,8 +41,32 @@
     }
 </script>
 <script type="text/javascript" src="{$tplpath}yiku.js"></script>
-
-<div class="header ">
+<script type="text/javascript">
+    $(document).ready(function(e){
+        /*------------登录注册页面-------------*/
+        $("#login_btn").click(function(){
+            $(".login_and_register").show();
+            $(".login_and_register .register_con").hide();
+            $(".login_and_register .login_con").show();
+        });
+        $("#reg_btn").click(function(){
+            $(".login_and_register").show();
+            $(".login_and_register .register_con").show();
+            $(".login_and_register .login_con").hide();
+        });
+        $(".backpswd_btn_con .register_btn").click(function(){
+            $(".login_and_register").show();
+            $(".login_and_register .register_con").show();
+            $(".login_and_register .login_con").hide();
+        });
+        $(".login_and_register .close").click(function(){
+            $(".login_and_register").hide();
+        });
+    })
+</script>
+<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/reset.css">
+<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/style.css">
+<div class="header">
     <div class="head_con fix">
         <div class="logo fl_l" onclick="location.href={$webpath}">
             <img src="{$webpath}views/images/newimages/logo.png" alt="">
@@ -54,15 +79,15 @@
         </div>
         <div class="r fl_r">
             <if condition="$username eq ''">
-                <a class="fl_l margin_l20 font_blue padding_l20 denglu" href="">登录</a>
-                <a class="fl_l margin_l20 font_blue padding_l20 zhuce" href="">注册</a>
-                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="">观看记录</a>
+                <a class="fl_l margin_l20 font_blue padding_l20 denglu" href="javascript:void(0)" id="login_btn">登录</a>
+                <a class="fl_l margin_l20 font_blue padding_l20 zhuce" href="javascript:void(0)" id="reg_btn">注册</a>
+                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0)">观看记录</a>
             <else />
                 <div class="fl_l margin_l20 font_blue padding_l20 username_con">
-                    <a class="fl_l  font_blue " id="username" href="">francis_fh@163.com</a>
+                    <a class="fl_l  font_blue " id="username" href="">{$username}</a>
                     <ul class="head_list">
-                        <li><a href="">个人中心</a></li>
-                        <li><a href="">退出登录</a></li>
+                        <li><a href="javascript:usercenter()">个人中心</a></li>
+                        <li><a href="?s=Login/Logout">退出登录</a></li>
                     </ul>
                 </div>
                 <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="">观看记录</a>
@@ -72,4 +97,49 @@
 
     </div>
     <span class="line2 margin_t30"></span>
+</div>
+
+<!--登陆注册页面-->
+<div class="login_and_register" style="display: none;">
+    <div class="headers fix">
+        <span class="logo fl_l"><img src="/video/template/default/images/logo2.png"></span>
+        <a class="fl_r close" href="javascript:void(0)"></a>
+    </div>
+    <div class="login_con">
+        <form action="?s=Login/ajaxcheck" method="post">
+            <ul>
+                <li class="error" style="display: none;"><p>账号或密码错误</p></li>
+                <li><input id="username" name="username" type="text" placeholder="用户名"/></li>
+                <li><input id="userpwd" name="userpwd" type="password" placeholder="密码"/></li>
+                <li class="fix">
+                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
+                    <span class="fl_r"><img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/></span>
+                </li>
+            </ul>
+            <div class="backpswd_btn_con fix">
+                <a href="javascript:void(0)" class="register_btn fl_l">还没账号，点此注册</a>
+                <a href="?s=Login/fog_pwd" class="backpswd_btn2 fl_r">忘记密码</a>
+            </div>
+            <input type="submit" class="submit_btn" name="submit" value="登录" />
+        </form>
+    </div>
+    <div class="register_con disun">
+        <form action="?s=Login/Register_do" method="post">
+            <ul>
+                <li class="error" style="display: none;"><p>账号或密码错误</p></li>
+                <li><input id="user_name" name="user_name" type="text" placeholder="用户名"/></li>
+                <li><input id="password" name="password" type="password" placeholder="密码"/></li>
+                <li><input id="email" name="email" type="text" placeholder="邮箱"/></li>
+                <li class="fix">
+                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
+                    <span class="fl_r"><img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/></span>
+                </li>
+            </ul>
+            <div class="xieyi fix">
+                <span class="checked" id="xieyiChecked"></span>
+                <p>我已阅读并同意相关服务条款</p>
+            </div>
+            <input type="submit" class="submit_btn" value="注册" id="submit" />
+        </form>
+    </div>
 </div>

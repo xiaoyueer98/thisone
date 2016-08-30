@@ -12,7 +12,8 @@ class IndexAction extends HomeAction{
 		$this->assign('index_hdp_show',C('index_hdp_show'));
 		$this->assign('model','index');	
 		$this->assign('webtitle',C('web_name'));
-		$this->display('index');
+//		$this->display('index');
+        $this->display('new/index');
     }
 }
 ?>

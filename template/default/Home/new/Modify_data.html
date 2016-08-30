@@ -12,22 +12,7 @@
 </head>
 <body>
 <div class="box ma0">
-    <div class="header w1180">
-        <ul class="headlist h55">
-            <li class="logo">
-                <img src="{$webpath}views/images/newimages/pages/LOGO-A.png" alt="logo">
-            </li>
-            <li class="search">
-                <input type="text" placeholder="搜索关键字">
-                <button class="svg_icon svg_icon_search"></button>
-            </li>
-            <li class="information fr">
-                <a class="Sign_in" href="javascript:;"><i></i>登录</a>
-                <a class="register" href="javascript:;"><i></i>注册</a>
-                <a class="Record" href="javascript:;">观看记录 <i></i></a>
-            </li>
-        </ul>
-    </div>
+    <include file="header" />
     <div class="contents">
         <div class="center pdt20 clearfix w1180">
             <ul class="nav">
@@ -37,33 +22,7 @@
                 <li>个人中心</li>
             </ul>
             <div class="col mt45">
-                <div class="col_left fl">
-                    <div class="left_top">
-                        <span class="Head_portrait">
-                            <img src="{$webpath}views/images/newimages/pages/touxiang.png" alt="user">
-                        </span>
-                        <div class="user_information">
-                            <h5 class="mb30">Garden one <span></span></h5>
-                            <h6>用户状态 <span>正常</span></h6>
-                            <h6>5674384@123.com</h6>
-                            <h6>最近登录：<i>2016-8-25</i></h6>
-                        </div>
-                    </div>
-                    <div class="left_center">
-                        <ul class="list">
-                            <li><i class="list1"></i> <a href="javascript:;">我的关注</a></li>
-                            <li><i class="list2"></i> <a href="javascript:;">我的直播</a></li>
-                            <li><i class="list3"></i> <a href="javascript:;">我的点播</a></li>
-                            <li><i class="list4"></i> <a class="current" href="javascript:;">设置资料</a></li>
-                            <li><i class="list5"></i> <a href="javascript:;">修改密码</a></li>
-                        </ul>
-
-                    </div>
-                    <div class="left_bottom pdb26">
-                        <button><span>+</span>创建直播</button>
-                        <button><span>+</span>创建点播</button>
-                    </div>
-                </div>
+                <include file="user_center_left" />
                 <div class="col_right fr">
                     <div class="right_top pd30">
                         <h3>修改资料</h3> <h4 class="fz12 fwbold">MOFIFY DATA</h4>

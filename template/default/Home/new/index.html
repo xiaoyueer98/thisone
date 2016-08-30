@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/reset.css">
-    <link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/style.css">
-    <script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
     <script src="{$webpath}views/js/newjs/lunbotu.js"></script>
     <script src="{$webpath}views/js/newjs/script.js"></script>
 </head>
@@ -51,7 +48,7 @@
                         <gxcms name="video" cid='1,2,3,4,5,6' limit="10" order="addtime desc">
                         <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
-                            <span class="m">2</span>
+                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                             <b>{$video.title|get_replace_html=0,8}</b>
                             <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
@@ -62,7 +59,7 @@
                         <gxcms name="video" cid='1' limit="10" order="addtime desc">
                         <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
-                            <span class="m">2</span>
+                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                             <b>{$video.title|get_replace_html=0,8}</b>
                             <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
@@ -73,7 +70,7 @@
                         <gxcms name="video" cid='2' limit="10" order="addtime desc">
                         <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
-                            <span class="m">2</span>
+                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                             <b>{$video.title|get_replace_html=0,8}</b>
                             <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
@@ -84,7 +81,7 @@
                         <gxcms name="video" cid='3' limit="10" order="addtime desc">
                         <a href="{$video.readurl}" target="_blank" title="{$video.title}">
                         <li class="fix">
-                            <span class="m">2</span>
+                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                             <b>{$video.title|get_replace_html=0,8}</b>
                             <em>{$video.addtime|get_color_date='m-d',###}</em>
                         </li>
@@ -186,12 +183,11 @@
         <ul class="con_r_list">
             <gxcms name="video" cid="1" limit="10" order="hits desc">
             <li class="fix">
-                <span <if condition="$i lt 4"> class="m" </if>>{$i}</span>
+                <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                 <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
                 <em>{$video.hits}</em>
             </li>
             </gxcms>
-
         </ul>
     </div>
 </div>
@@ -336,39 +332,7 @@
     </div>
 </div>
 </div>
-
-<div class="footer">
-    <div class="footer_t fix">
-        <dl class="fix fl_l">
-            <dt><img src="{$webpath}views/images/newimages/footer_logo.png" alt=""></dt>
-            <dd>
-                <b>方讯科技</b>
-                <p>
-                    <a href="">首页</a>
-                    <a href="">视频直播</a>
-                    <a href="">视频点播</a>
-                    <a href="">网络电视</a>
-                    <a href="">网络电台</a>
-                    <a href="">网络监控</a>
-                    <a href="">网络视频</a>
-                </p>
-            </dd>
-        </dl>
-        <dl class="fix fl_r dl2">
-            <dd>
-                <b>友情链接</b>
-                <p>
-                    <a href="">防汛技术官网</a>
-                    <a href="">防汛网</a>
-                    <a href="">防汛视频管理系统</a>
-                    <a href="">防汛影视系统</a>
-                </p>
-            </dd>
-        </dl>
-    </div>
-    <span class="line2"></span>
-    <p>本系统版权归北京方讯科技有限公司所有 <br>Copyright © 2011 - 2016 方讯CMS 多媒体管理系统 Some Rights Reserved</p>
-</div>
+<include file="footer" />
 </div>
 
 </body>
