@@ -29,7 +29,7 @@
     float: right;
     background: url("../../images/newimages/icon/icons.png") 0 0 no-repeat;
 }
-.search input{
+/*.search input{
     position: absolute;
     width: 245px;
     height: 37px;
@@ -38,7 +38,7 @@
     font-size: 13px;
     margin-left: 19px;
     outline:none;
-}
+}*/
 .Sign_in i,.register i,.Record i{
     width: 15px;
     height: 15px;
@@ -260,7 +260,7 @@
     width: 380px;
     height: 45px;
     display: block;
-    margin: 55px auto 416px;
+    margin: 55px auto 0;
     font-size: 16px;
     color: #3b3636;
     background-color: steelblue;
@@ -323,7 +323,7 @@
     width: 380px;
     height: 45px;
     display: block;
-    margin: 55px auto 333px;
+    margin: 55px auto 0;
     font-size: 16px;
     color: #3b3636;
     background-color: steelblue;
