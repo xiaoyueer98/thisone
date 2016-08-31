@@ -643,11 +643,14 @@ a:hover{
 	height: 14px;
 	line-height: 14px;
 	text-align: center;
-	border:1px #e65526 solid;
+	border:1px #aaaaaa solid;
 	border-radius: 2px;
 	margin-top: 8px;
 	float: left;
 	margin-left: 3px;
+}
+.con_r_list span.m{
+	border:1px #e65526 solid;
 }
 .con_r_list b{
 	line-height: 30px;
