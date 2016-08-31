@@ -744,6 +744,9 @@ a:hover{
 .footer .footer_t dl dt img{
 	width: 100%;
 }
+.footer .footer_t dl b{
+	font-size: 18px;
+}
 .footer .footer_t dl dd p{
 	margin-top: 10px;
 }
@@ -757,7 +760,7 @@ a:hover{
 
 .footer>p{
 	text-align: center;
-
+	line-height: 25px;
 }
 .line2{
 	display: block;

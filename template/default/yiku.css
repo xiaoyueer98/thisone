@@ -2319,7 +2319,7 @@ em{
 .login_and_register li input#pswd{
 	background:url("images/pswd_icon01.png") no-repeat 10px center;
 }
-.login_and_register li input#vCode{
+.login_and_register li input#verifycode{
 	padding-left: 10px;
 	width:223px;
 }
