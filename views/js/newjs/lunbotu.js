@@ -92,10 +92,8 @@ window.onload = function(){
 
 
     /*-------------------------------------*/
-    $(".con_l_nav li").click(function(){
+    $(".con_l_nav li").mousemove(function(){
         $(this).addClass("m").siblings().removeClass("m");
-        var index = $(this).index();
-        $(this).parents(".con_head").next().find("ul").eq(index).show().siblings().hide();
     })
 
     /*-------------------------------------*/

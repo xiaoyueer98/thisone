@@ -117,14 +117,14 @@
         <div class="con_head">
             <div class="fl_l fi">
                 <i class="icon"></i>
-                <h5 class="font24">视频直播</h5>
+                <h5 class="font24">{:get_channel_name(1)}</h5>
                 <label>LIVE VIDEO</label>
             </div>
             <div class="fl_r head_r margin_t18">
                 <a href="{:get_channel_name(1,'showurl')}" target="_blank" class="mor"><p class="bd_btm">MORE>></p></a>
                 <ul class="con_l_nav fl_r fix">
                     <gxcms name="menu" ids="1">
-                    <gxfor name="menu.son" id="menuson"><a href="{$menuson.showurl}" target="_blank"><li <if condition="$i eq 1"> class="fl_l margin_l10 m" <else />class="fl_l margin_l10"</if>>{$menuson.cname}</li></a></gxfor>
+                    <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1"> class="fl_l margin_l10 m" <else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
                     </gxcms>
                 </ul>
             </div>
@@ -141,34 +141,6 @@
                     </p>
                 </li>
                 </gxcms>
-                <!--<gxcms name="video" cid="1" limit="10" order="addtime desc">-->
-                    <!--<li>-->
-                        <!--<a href="{$video.readurl}" target="_blank" title="{$video.title}" class="img"><img  onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}" /></a>-->
-                        <!--<a href="{$video.readurl}" target="_blank" class="title">{$video.title|get_replace_html=0,10}</a>-->
-                        <!--<p>{$video.actor|get_replace_html=0,10|get_actor_url}</p>-->
-                    <!--</li>-->
-                <!--</gxcms>-->
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播1</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播1</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
             </ul>
         </div>
 
@@ -203,7 +175,7 @@
                 <p class="bd_btm"><a href="{:get_channel_name(2,'showurl')}" target="_blank">MORE>></a></p>
                 <ul class="con_l_nav fl_r fix">
                     <gxcms name="menu" ids="2">
-                    <gxfor name="menu.son" id="menuson"><a href="{$menuson.showurl}" target="_blank"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>>{$menuson.cname}</li></a></gxfor>
+                    <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
                     </gxcms>
                 </ul>
 
@@ -220,26 +192,6 @@
                     </p>
                 </li>
                 </gxcms>
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
             </ul>
             </div>
     </div>
@@ -268,11 +220,11 @@
                 <h5 class="font24">{:get_channel_name(3)}</h5>
                 <label>LIVE VIDEO</label>
             </div>
-            <div class="fl_r head_r margin_t18">
+            <div class="fl_r head_r ">
                 <a href="{:get_channel_name(3,'showurl')}" target="_blank"><p class="bd_btm">MORE>></p></a>
                 <ul class="con_l_nav fl_r fix">
                     <gxcms name="menu" ids="3">
-                        <gxfor name="menu.son" id="menuson"><a href="{$menuson.showurl}" target="_blank"><li class="fl_l margin_l10 m">{$menuson.cname}</li></a></gxfor>
+                        <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
                     </gxcms>
                 </ul>
             </div>
@@ -290,27 +242,6 @@
                     </p>
                 </li>
                 </gxcms>
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
-            </ul>
-            <ul class="con_btm fix">
-                <li class="fl_l margin_b25">
-                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
-                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-                </li>
-
             </ul>
         </div>
     </div>
