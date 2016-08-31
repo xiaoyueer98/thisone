@@ -620,6 +620,7 @@ a:hover{
 }
 .con_r{
 	width:250px;
+	margin-top: 20px;
 }
 .con_r_head{
 	border-bottom: 1px #ccc solid;
@@ -738,9 +739,13 @@ a:hover{
 .footer .footer_t dl a{
 	margin-right: 20px;
 	float: left;
+	margin-bottom: 10px;
 }
 .footer .footer_t dl dt img{
 	width: 100%;
+}
+.footer .footer_t dl b{
+	font-size: 18px;
 }
 .footer .footer_t dl dd p{
 	margin-top: 10px;
@@ -755,7 +760,7 @@ a:hover{
 
 .footer>p{
 	text-align: center;
-
+	line-height: 25px;
 }
 .line2{
 	display: block;
