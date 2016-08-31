@@ -24,8 +24,8 @@ class UserAction extends HomeAction{
     public function fusershow(){
         $user = $this->checklogin();
         $this->assign($user);
-        $this->display('user_center');
-//        $this->display('new/Personal_Center');
+//        $this->display('user_center');
+        $this->display('new/Personal_Center');
     }   
     
     //前台用户登录
@@ -280,8 +280,8 @@ class UserAction extends HomeAction{
 		$this->assign("username",$username);
         $this->assign("email",$email);
         file_put_contents('log.txt', "edit ssssssssss email:$email \n", FILE_APPEND);
-		$this->display('edit');
-//        $this->display('new/Modify_data');
+//		$this->display('edit');
+        $this->display('new/Modify_data');
     }
 	//用户观看记录
     public function views(){
@@ -477,7 +477,8 @@ class UserAction extends HomeAction{
         $this->assign('pages',$listpages['listpages']);
         $this->assign('list_video',$listvideo);
         $this->assign('count_video',$video_count);
-        $this->display('vod_history');
+//        $this->display('vod_history');
+        $this->display('new/Personal_Center');
     }
     
     public function livehistory(){
