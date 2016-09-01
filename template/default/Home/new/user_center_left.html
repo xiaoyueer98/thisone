@@ -19,24 +19,24 @@
     </div>
     <div class="left_center">
         <ul class="list">
-            <li><i class="list1"></i> <a href="?s=User/Fusershow">我的关注</a></li>
-            <li><i class="list2"></i> <a href="?s=User/Mylive">我的直播</a></li>
-            <li><i class="list3"></i> <a href="javascript:;">我的点播</a></li>
+            <li><i class="list1"></i> <a href="?s=User/Vodhistory">我的关注</a></li>
+            <li><i class="list2"></i> <a href="?s=User/Personal_my/type/live">我的直播</a></li>
+            <li><i class="list3"></i> <a href="?s=User/Personal_my/type/vod">我的点播</a></li>
             <li><i class="list4"></i> <a href="?s=User/Edit">设置资料</a></li>
             <!--<li><i class="list5"></i> <a href="javascript:;">修改密码</a></li>-->
         </ul>
 
     </div>
     <div class="left_bottom pdb26">
-        <button><span>+</span>创建直播</button>
-        <button><span>+</span>创建点播</button>
+        <button onclick="javascript:location.href='?s=/Test/index/tpl/Create_live'"><span>+</span>创建直播</button>
+        <button onclick="javascript:location.href='?s=/Test/index/tpl/Create_demand'"><span>+</span>创建点播</button>
     </div>
 </div>
 <script>
     geturl();
     function geturl()
     {
-        if(location.href.indexOf("Fusershow") !== -1) $(".list li a").eq(0).addClass("current");
+        if(location.href.indexOf("Vodhistory") !== -1) $(".list li a").eq(0).addClass("current");
         else if(location.href.indexOf("Mylive") !== -1)  $(".list li a").eq(1).addClass("current");
         else if(location.href.indexOf("Fusershow") !== -1)  $(".list li a").eq(2).addClass("current");
         else if(location.href.indexOf("Edit") !== -1)  $(".list li a").eq(3).addClass("current");
