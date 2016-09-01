@@ -22,25 +22,28 @@
                         <hr/>
                     </div>
                     <div>
-                        <form class="accounts mt45">
+                        <form class="accounts mt45" action="index.php?s=User/Update" method="post">
                             <div class="user_name">
                                 <span></span>
-                                <input type="text" placeholder="用户名">
+                                <input name="username" id="username" type="text" placeholder="用户名" value="{$username}">
                             </div>
                             <div class="email mb55">
                                 <span></span>
-                                <input type="text" placeholder="邮箱">
+                                <input name="email" id="email"type="text" value="{$email}" placeholder="邮箱">
                             </div>
-                            <button>提交</button>
-                        </form>
-                    </div>
-                    
-                    <div>
-                        <form class="acconts mt45">
-                            <input type="text" class="Old_password" placeholder="旧密码">
-                            <input type="text" class="New_password" placeholder="新密码">
-                            <input type="text" class="Confirm_password" placeholder="确认密码">
-                            <button class="mt65">提交</button>
+                            <div class="Old_password">
+                                <span></span>
+                                <input name="olduserpwd1" type="password" placeholder="邮箱">
+                            </div>
+                            <div class="New_password">
+                                <span></span>
+                                <input name="userpwd" type="password" placeholder="邮箱">
+                            </div>
+                            <div class="Confirm_password">
+                                <span></span>
+                                <input name="reuserpwd" type="password" placeholder="邮箱">
+                            </div>
+                            <button name="submit">提交</button>
                         </form>
                     </div>
                     
