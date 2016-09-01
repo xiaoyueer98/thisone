@@ -280,7 +280,7 @@ class LoginAction extends CmsAction
 
     public function fog_pwd()
     {
-        $this->display('web_fpw');
+        $this->display('new/backPaswd');
     }
 
     public function sendpwd()

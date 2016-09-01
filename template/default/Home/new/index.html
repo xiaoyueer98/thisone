@@ -12,7 +12,7 @@
     <ul class="fix margin_auto">
         <a href="{$webpath}"><li class="fix"><b>首页</b><span></span></li></a>
         <gxcms name="menu">
-        <a href="{$menu.showurl}"><li class="fix"><b>{$menu.cname}</b><span></span></li></a>
+            <a href="{$menu.showurl}"><li class="fix"><b>{$menu.cname}</b><span></span></li></a>
         </gxcms>
     </ul>
 </div>
@@ -22,9 +22,9 @@
     <div class="box">
         <div class="container">
             <gxcms name="slide" fid="1" order="oid asc">
-            <div class="img_con">
-                <a href="{$slide.link}"><img src="{$slide.picurl}" alt="{$slide.title}"></a>
-            </div>
+                <div class="img_con">
+                    <a href="{$slide.link}"><img src="{$slide.picurl}" alt="{$slide.title}"></a>
+                </div>
             </gxcms>
         </div>
         <div class="navs">
@@ -45,53 +45,53 @@
                 <div class="list_con fix">
                     <ul class="fix">
                         <gxcms name="video" cid='1,2,3,4,5,6' limit="10" order="addtime desc">
-                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
-                        <li class="fix">
-                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                            <b>{$video.title|get_replace_html=0,8}</b>
-                            <em>{$video.addtime|get_color_date='m-d',###}</em>
-                        </li>
-                        </a>
+                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                                <li class="fix">
+                                    <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                                    <b>{$video.title|get_replace_html=0,8}</b>
+                                    <em>{$video.addtime|get_color_date='m-d',###}</em>
+                                </li>
+                            </a>
                         </gxcms>
                     </ul>
                     <ul class="fix">
                         <gxcms name="video" cid='1' limit="10" order="addtime desc">
-                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
-                        <li class="fix">
-                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                            <b>{$video.title|get_replace_html=0,8}</b>
-                            <em>{$video.addtime|get_color_date='m-d',###}</em>
-                        </li>
-                        </a>
+                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                                <li class="fix">
+                                    <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                                    <b>{$video.title|get_replace_html=0,8}</b>
+                                    <em>{$video.addtime|get_color_date='m-d',###}</em>
+                                </li>
+                            </a>
                         </gxcms>
                     </ul>
                     <ul class="fix">
                         <gxcms name="video" cid='2' limit="10" order="addtime desc">
-                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
-                        <li class="fix">
-                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                            <b>{$video.title|get_replace_html=0,8}</b>
-                            <em>{$video.addtime|get_color_date='m-d',###}</em>
-                        </li>
-                        </a>
+                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                                <li class="fix">
+                                    <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                                    <b>{$video.title|get_replace_html=0,8}</b>
+                                    <em>{$video.addtime|get_color_date='m-d',###}</em>
+                                </li>
+                            </a>
                         </gxcms>
                     </ul>
                     <ul class="fix">
                         <gxcms name="video" cid='3' limit="10" order="addtime desc">
-                        <a href="{$video.readurl}" target="_blank" title="{$video.title}">
-                        <li class="fix">
-                            <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                            <b>{$video.title|get_replace_html=0,8}</b>
-                            <em>{$video.addtime|get_color_date='m-d',###}</em>
-                        </li>
-                        </a>
+                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                                <li class="fix">
+                                    <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                                    <b>{$video.title|get_replace_html=0,8}</b>
+                                    <em>{$video.addtime|get_color_date='m-d',###}</em>
+                                </li>
+                            </a>
                         </gxcms>
                     </ul>
                 </div>
             </div>
             <ul class="nav_list">
                 <gxcms name="slide" fid="1" order="oid asc">
-                <li></li>
+                    <li></li>
                 </gxcms>
             </ul>
         </div>
@@ -103,164 +103,164 @@
     <span><img src="{$webpath}views/images/newimages/pic1.png" alt=""></span>
 </div>
 <div class="content margin_auto">
-<ul class="con1 fix">
+    <ul class="con1 fix">
 
-    <gxcms name="self" cid='5' limit="5">
-        <li <if condition="$i eq 4"> class="lastli" <else /></if>>
+        <gxcms name="self" cid='5' limit="5">
+            <li <if condition="$i eq 4"> class="lastli" <else /></if>>
             <a href="{$self.link}"><img src="{$self.picurl}" alt="{$self.title}"  ></a>
             <p><span class="fl_l"><a href="{$self.link}">{$self.title}</a></span><span class="fl_r"><a href="{$self.link}">{$self.content1}</a></span></p>
-        </li>
-    </gxcms>
-</ul>
-<div class="con2 fix shipinzhibo">
-    <div class="con_l fl_l">
-        <div class="con_head">
-            <div class="fl_l fi">
-                <i class="icon"></i>
-                <h5 class="font24">{:get_channel_name(1)}</h5>
-                <label>LIVE VIDEO</label>
-            </div>
-            <div class="fl_r head_r margin_t18">
-                <a href="{:get_channel_name(1,'showurl')}" target="_blank" class="mor"><p class="bd_btm">MORE>></p></a>
-                <ul class="con_l_nav fl_r fix">
-                    <gxcms name="menu" ids="1">
-                    <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1"> class="fl_l margin_l10 m" <else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
-                    </gxcms>
-                </ul>
-            </div>
-        </div>
-        <div class="ul_list">
-
-            <ul class="con_btm fix dis_block">
-                <gxcms name="video" cid="1" limit="6" order="addtime desc">
-                <li class="fl_l margin_b25">
-                    <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'"  src="{$video.picurl}" alt="{$video.title}"></a>
-                    <p class="fix margin_t10">
-                        <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
-                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
-                    </p>
-                </li>
-                </gxcms>
-            </ul>
-        </div>
-
-    </div>
-    <div class="con_r fl_r">
-        <div class="con_r_head">
-            <h6>热门直播</h6>
-            <b>HOT VIDEO</b>
-        </div>
-
-        <ul class="con_r_list">
-            <gxcms name="video" cid="1" limit="10" order="hits desc">
-            <li class="fix">
-                <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
-                <em>{$video.hits}</em>
             </li>
-            </gxcms>
-        </ul>
-    </div>
-</div>
+        </gxcms>
+    </ul>
+    <div class="con2 fix shipinzhibo">
+        <div class="con_l fl_l">
+            <div class="con_head">
+                <div class="fl_l fi">
+                    <i class="icon"></i>
+                    <h5 class="font24">{:get_channel_name(1)}</h5>
+                    <label>LIVE VIDEO</label>
+                </div>
+                <div class="fl_r head_r margin_t18">
+                    <a href="{:get_channel_name(1,'showurl')}" target="_blank" class="mor"><p class="bd_btm">MORE>></p></a>
+                    <ul class="con_l_nav fl_r fix">
+                        <gxcms name="menu" ids="1">
+                            <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1"> class="fl_l margin_l10 m" <else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
+                        </gxcms>
+                    </ul>
+                </div>
+            </div>
+            <div class="ul_list">
 
-<div class="con2 fix shipindianbo">
-    <div class="con_l fl_l">
-        <div class="con_head">
-            <div class="fl_l fi">
-                <i class="icon"></i>
-                <h5 class="font24">{:get_channel_name(2)}</h5>
-                <label>LIVE VIDEO</label>
-            </div>
-            <div class="fl_r head_r margin_t18">
-                <p class="bd_btm"><a href="{:get_channel_name(2,'showurl')}" target="_blank">MORE>></a></p>
-                <ul class="con_l_nav fl_r fix">
-                    <gxcms name="menu" ids="2">
-                    <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
-                    </gxcms>
-                </ul>
-
-            </div>
-        </div>
-        <div class="ul_list">
-            <ul class="con_btm fix dis_block">
-                <gxcms name="video" cid="2" limit="6" order="addtime desc">
-                <li class="fl_l margin_b25">
-                    <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}"></a>
-                    <p class="fix margin_t10">
-                        <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
-                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
-                    </p>
-                </li>
-                </gxcms>
-            </ul>
-            </div>
-    </div>
-    <div class="con_r fl_r">
-        <div class="con_r_head">
-            <h6>热门点播榜</h6>
-            <b>HOT VIDEO</b>
-        </div>
-        <ul class="con_r_list">
-            <gxcms name="video" cid="2" limit="10" order="hits desc">
-            <li class="fix">
-                <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
-                <em>{$video.hits}</em>
-            </li>
-            </gxcms>
-        </ul>
-    </div>
-</div>
-
-<div class="con2 fix wangluodianshi">
-    <div class="con_l fl_l">
-        <div class="con_head">
-            <div class="fl_l fi">
-                <i class="icon"></i>
-                <h5 class="font24">{:get_channel_name(3)}</h5>
-                <label>LIVE VIDEO</label>
-            </div>
-            <div class="fl_r head_r ">
-                <a href="{:get_channel_name(3,'showurl')}" target="_blank"><p class="bd_btm">MORE>></p></a>
-                <ul class="con_l_nav fl_r fix">
-                    <gxcms name="menu" ids="3">
-                        <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
+                <ul class="con_btm fix dis_block">
+                    <gxcms name="video" cid="1" limit="6" order="addtime desc">
+                        <li class="fl_l margin_b25">
+                            <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'"  src="{$video.picurl}" alt="{$video.title}"></a>
+                            <p class="fix margin_t10">
+                                <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
+                                <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                            </p>
+                        </li>
                     </gxcms>
                 </ul>
             </div>
+
         </div>
-        <div class="ul_list">
-            <ul class="con_btm fix dis_block">
-                <gxcms name="video" cid="3" limit="5" order="addtime desc">
-                <li class="fl_l margin_b25">
-                    <a href="{$video.readurl}" target="_blank" title="{$video.title}">
-                        <img  onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}" />
-                    </a>
-                    <p class="fix margin_t10">
-                        <a href="{$video.readurl}" target="_blank" class="title"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
-                        <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
-                    </p>
-                </li>
+        <div class="con_r fl_r">
+            <div class="con_r_head">
+                <h6>热门直播</h6>
+                <b>HOT VIDEO</b>
+            </div>
+
+            <ul class="con_r_list">
+                <gxcms name="video" cid="1" limit="10" order="hits desc">
+                    <li class="fix">
+                        <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                        <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
+                        <em>{$video.hits}</em>
+                    </li>
                 </gxcms>
             </ul>
         </div>
     </div>
-    <div class="con_r fl_r">
-        <div class="con_r_head">
-            <h6>电视热播网</h6>
-            <b>HOT VIDEO</b>
+
+    <div class="con2 fix shipindianbo">
+        <div class="con_l fl_l">
+            <div class="con_head">
+                <div class="fl_l fi">
+                    <i class="icon"></i>
+                    <h5 class="font24">{:get_channel_name(2)}</h5>
+                    <label>LIVE VIDEO</label>
+                </div>
+                <div class="fl_r head_r margin_t18">
+                    <p class="bd_btm"><a href="{:get_channel_name(2,'showurl')}" target="_blank">MORE>></a></p>
+                    <ul class="con_l_nav fl_r fix">
+                        <gxcms name="menu" ids="2">
+                            <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
+                        </gxcms>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="ul_list">
+                <ul class="con_btm fix dis_block">
+                    <gxcms name="video" cid="2" limit="6" order="addtime desc">
+                        <li class="fl_l margin_b25">
+                            <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}"></a>
+                            <p class="fix margin_t10">
+                                <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
+                                <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                            </p>
+                        </li>
+                    </gxcms>
+                </ul>
+            </div>
         </div>
-        <ul class="con_r_list">
-            <gxcms name="video" cid="3" limit="10" order="hits desc">
-            <li class="fix">
-                <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                <b><a href="{$video.readurl}" target="_blank">{$video.title}</a></b>
-                <em>{$video.hits}</em>
-            </li>
-            </gxcms>
-        </ul>
+        <div class="con_r fl_r">
+            <div class="con_r_head">
+                <h6>热门点播榜</h6>
+                <b>HOT VIDEO</b>
+            </div>
+            <ul class="con_r_list">
+                <gxcms name="video" cid="2" limit="10" order="hits desc">
+                    <li class="fix">
+                        <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                        <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
+                        <em>{$video.hits}</em>
+                    </li>
+                </gxcms>
+            </ul>
+        </div>
     </div>
-</div>
+
+    <div class="con2 fix wangluodianshi">
+        <div class="con_l fl_l">
+            <div class="con_head">
+                <div class="fl_l fi">
+                    <i class="icon"></i>
+                    <h5 class="font24">{:get_channel_name(3)}</h5>
+                    <label>LIVE VIDEO</label>
+                </div>
+                <div class="fl_r head_r ">
+                    <a href="{:get_channel_name(3,'showurl')}" target="_blank"><p class="bd_btm">MORE>></p></a>
+                    <ul class="con_l_nav fl_r fix">
+                        <gxcms name="menu" ids="3">
+                            <gxfor name="menu.son" id="menuson"><li <if condition="$i eq 1">class="fl_l margin_l10 m"<else />class="fl_l margin_l10"</if>><a href="{$menuson.showurl}" target="_blank">{$menuson.cname}</a></li></gxfor>
+                        </gxcms>
+                    </ul>
+                </div>
+            </div>
+            <div class="ul_list">
+                <ul class="con_btm fix dis_block">
+                    <gxcms name="video" cid="3" limit="5" order="addtime desc">
+                        <li class="fl_l margin_b25">
+                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                                <img  onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}" />
+                            </a>
+                            <p class="fix margin_t10">
+                                <a href="{$video.readurl}" target="_blank" class="title"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
+                                <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                            </p>
+                        </li>
+                    </gxcms>
+                </ul>
+            </div>
+        </div>
+        <div class="con_r fl_r">
+            <div class="con_r_head">
+                <h6>电视热播网</h6>
+                <b>HOT VIDEO</b>
+            </div>
+            <ul class="con_r_list">
+                <gxcms name="video" cid="3" limit="10" order="hits desc">
+                    <li class="fix">
+                        <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+                        <b><a href="{$video.readurl}" target="_blank">{$video.title}</a></b>
+                        <em>{$video.hits}</em>
+                    </li>
+                </gxcms>
+            </ul>
+        </div>
+    </div>
 </div>
 <include file="footer" />
 </div>

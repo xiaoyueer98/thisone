@@ -167,7 +167,8 @@ class VideoAction extends HomeAction{
 		//$this->assign('year',get_sys_year());
 		
 	//	file_put_contents('log.txt', "===== video lists ctpl: $channel['ctpl']\n", FILE_APPEND);
-		$this->display($channel['ctpl']);
+//		$this->display($channel['ctpl']);
+        $this->display('new/videohave');
     }
     //搜索影视列表
     public function search(){
