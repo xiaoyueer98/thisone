@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/reset.css">
+    <link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/style.css">
+    <script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
+    <script src="{$webpath}views/js/newjs/lunbotu.js"></script>
+    <script src="{$webpath}views/js/newjs/script.js"></script>
+</head>
+<body>
+<div class="mask"></div>
+<div class="header ">
+    <div class="head_con fix">
+        <div class="logo fl_l">
+            <img src="{$webpath}views/images/newimages/logo.png" alt="">
+        </div>
+        <div class="search bd margin_auto margin_t5 padding_l_r15 margin_t5">
+            <input type="text" class="fl_l" placeholder="搜索关键字">
+            <span class="fl_l"></span>
+        </div>
+        <div class="r fl_r">
+            <a class="fl_l margin_l20 font_blue padding_l20 denglu" href="">登录</a>
+            <div class="fl_l margin_l20 font_blue padding_l20 username_con">
+                <a class="fl_l  font_blue " id="username" href="">francis_fh@163.com</a>
+                <ul class="head_list">
+                    <li><a href="">个人中心</a></li>
+                    <li><a href="">退出登录</a></li>
+                </ul>
+            </div>
+            <a class="fl_l margin_l20 font_blue padding_l20 zhuce" href="">注册</a>
+            <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="">观看记录</a>
+
+        </div>
+
+    </div>
+    <span class="line2 margin_t30"></span>
+</div>
+<div class="login_and_register">
+    <div class="headers fix">
+        <span class="logo fl_l"><img src="/video/template/default/images/logo2.png"></span>
+        <a class="fl_r close" href="javascript:void(0)"></a>
+    </div>
+    <div class="login_con">
+        <form action="?s=Login/ajaxcheck" method="post">
+            <ul>
+                <li class="error"><p>账号或密码错误</p></li>
+                <li><input id="username" name="username" type="text" placeholder="用户名"/></li>
+                <li><input id="userpwd" name="userpwd" type="password" placeholder="密码"/></li>
+                <li class="fix">
+                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
+                    <span class="fl_r"><img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/></span>
+                </li>
+            </ul>
+            <div class="backpswd_btn_con fix">
+                <a href="javascript:void(0)" class="register_btn fl_l">还没账号，点此注册</a>
+                <a href="?s=Login/fog_pwd" class="backpswd_btn2 fl_r">忘记密码</a>
+            </div>
+            <input type="submit" class="submit_btn" name="submit" value="登录" />
+        </form>
+    </div>
+    <div class="register_con disun">
+        <form action="?s=Login/Register_do" method="post">
+            <ul>
+                <li class="error"><p>账号或密码错误</p></li>
+                <li><input id="user_name" name="user_name" type="text" placeholder="用户名"/></li>
+                <li><input id="password" name="password" type="password" placeholder="密码"/></li>
+                <li><input id="email" name="email" type="text" placeholder="邮箱"/></li>
+                <li class="fix">
+                    <input class="fl_l" id="verifycode" name="verifycode" type="text" placeholder="请输入验证码"/>
+                    <span class="fl_r"><img id="imageCode" class="upload_verifycode_img" src="?s=/Login/showImage" title="看不清可单击图片刷新" onclick="changeImg()"/></span>
+                </li>
+            </ul>
+            <div class="xieyi fix">
+                <span class="checked" id="xieyiChecked"></span>
+                <p>我已阅读并同意相关服务条款</p>
+            </div>
+            <input type="submit" class="submit_btn" value="注册" id="submit" />
+        </form>
+    </div>
+</div>
+<div class="nav padding_t20 margin_t20">
+    <ul class="fix margin_auto">
+        <a href=""><li class="fix"><b>首页</b><span></span></li></a>
+        <a href=""><li class="fix"><b>视频直播</b><span></span></li></a>
+        <a href=""><li class="fix"><b>视频点播</b><span></span></li></a>
+        <a href=""><li class="fix"><b>网络电视</b><span></span></li></a>
+        <a href=""><li class="fix"><b>网络电台</b><span></span></li></a>
+        <a href=""><li class="fix"><b>网络监控</b><span></span></li></a>
+        <a href=""><li class="fix"><b>归档视屏</b></li></a>
+    </ul>
+</div>
+<div class="back_color">
+<div class="banner">
+    <div class="box">
+        <div class="container">
+            <div class="img_con">
+                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
+            </div>
+            <div class="img_con">
+                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
+            </div>
+            <div class="img_con">
+                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
+            </div>
+            <div class="img_con">
+                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
+            </div>
+            <div class="img_con">
+                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
+            </div>
+            <div class="img_con">
+                <a href=""><img src="{$webpath}views/images/newimages/1.jpg" alt=""></a>
+            </div>
+        </div>
+        <div class="navs">
+            <div class="navBtn">
+                <span class="nav_l" ><i></i></span>
+                <span class="nav_r"><i></i></span>
+            </div>
+            <div class="ban_r_list">
+                <div class="ban_list_hide">
+                    <ul class="bn_nav fix">
+                        <li class="m">更新</li>
+                        <li>直播</li>
+                        <li>点播</li>
+                        <li>电视</li>
+                    </ul>
+                </div>
+
+                <div class="list_con fix">
+                    <ul class="fix">
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span>2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span>2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span>2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                    </ul>
+                    <ul class="fix">
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span>2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span>2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                    </ul>
+                    <ul class="fix">
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                    </ul>
+                    <ul class="fix">
+                        <li class="fix">
+                            <span class="m">2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                        <li class="fix">
+                            <span>2</span>
+                            <b>香港市委</b>
+                            <em>08-02</em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="nav_list">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<div class="title">
+    <i class="line"></i>
+    <span><img src="{$webpath}views/images/newimages/pic1.png" alt=""></span>
+</div>
+<div class="content margin_auto">
+<ul class="con1 fix">
+    <li>
+        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+    </li>
+    <li>
+        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+    </li>
+    <li>
+        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+    </li>
+    <li class="lastli">
+        <a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+        <p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+    </li>
+</ul>
+<div class="con2 fix shipinzhibo">
+    <div class="con_l fl_l">
+        <div class="con_head">
+            <div class="fl_l fi">
+                <i class="icon"></i>
+                <h5 class="font24">视频直播</h5>
+                <label>LIVE VIDEO</label>
+            </div>
+            <div class="fl_r head_r margin_t18">
+                <p class="bd_btm">MORE>></p>
+                <ul class="con_l_nav fl_r fix">
+                    <li class="fl_l margin_l10 m">活动直播</li>
+                    <li class="fl_l margin_l10">手机直播</li>
+                    <li class="fl_l margin_l10">PAD直播</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ul_list">
+            <ul class="con_btm fix dis_block">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="con_r fl_r">
+        <div class="con_r_head">
+            <h6>热门直播</h6>
+            <b>HOT VIDEO</b>
+        </div>
+        <ul class="con_r_list">
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="con2 fix shipindianbo">
+    <div class="con_l fl_l">
+        <div class="con_head">
+            <div class="fl_l fi">
+                <i class="icon"></i>
+                <h5 class="font24">视频点播</h5>
+                <label>LIVE VIDEO</label>
+            </div>
+            <div class="fl_r head_r margin_t18">
+                <p class="bd_btm">MORE>></p>
+                <ul class="con_l_nav fl_r fix">
+                    <li class="fl_l margin_l10 m">活动直播</li>
+                    <li class="fl_l margin_l10">手机直播</li>
+                    <li class="fl_l margin_l10">PAD直播</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ul_list">
+            <ul class="con_btm fix dis_block">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="con_r fl_r">
+        <div class="con_r_head">
+            <h6>热门直播</h6>
+            <b>HOT VIDEO</b>
+        </div>
+        <ul class="con_r_list">
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="con2 fix wangluodianshi">
+    <div class="con_l fl_l">
+        <div class="con_head">
+            <div class="fl_l fi">
+                <i class="icon"></i>
+                <h5 class="font24">网络电视</h5>
+                <label>LIVE VIDEO</label>
+            </div>
+            <div class="fl_r head_r margin_t18">
+                <p class="bd_btm">MORE>></p>
+                <ul class="con_l_nav fl_r fix">
+                    <li class="fl_l margin_l10 m">活动直播</li>
+                    <li class="fl_l margin_l10">手机直播</li>
+                    <li class="fl_l margin_l10">PAD直播</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ul_list">
+            <ul class="con_btm fix dis_block">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+            <ul class="con_btm fix">
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic3.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic4.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic5.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic6.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic7.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+                <li class="fl_l margin_b25">
+                    <img src="{$webpath}views/images/newimages/pic8.png" alt="">
+                    <p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="con_r fl_r">
+        <div class="con_r_head">
+            <h6>热门直播</h6>
+            <b>HOT VIDEO</b>
+        </div>
+        <ul class="con_r_list">
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+            <li class="fix">
+                <span class="m">2</span>
+                <b>香港市委</b>
+                <em>08-02</em>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<div class="footer">
+    <div class="footer_t fix">
+        <dl class="fix fl_l">
+            <dt><img src="{$webpath}views/images/newimages/footer_logo.png" alt=""></dt>
+            <dd>
+                <b>方讯科技</b>
+                <p>
+                    <a href="">首页</a>
+                    <a href="">视频直播</a>
+                    <a href="">视频点播</a>
+                    <a href="">网络电视</a>
+                    <a href="">网络电台</a>
+                    <a href="">网络监控</a>
+                    <a href="">网络视频</a>
+                </p>
+            </dd>
+        </dl>
+        <dl class="fix fl_r dl2">
+            <dd>
+                <b>友情链接</b>
+                <p>
+                    <a href="">防汛技术官网</a>
+                    <a href="">防汛网</a>
+                    <a href="">防汛视频管理系统</a>
+                    <a href="">防汛影视系统</a>
+                </p>
+            </dd>
+        </dl>
+    </div>
+    <span class="line2"></span>
+    <p>本系统版权归北京方讯科技有限公司所有 <br>Copyright © 2011 - 2016 方讯CMS 多媒体管理系统 Some Rights Reserved</p>
+</div>
+</div>
+
+</body>
+</html>
