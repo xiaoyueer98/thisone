@@ -541,6 +541,13 @@
     padding: 75px 115px 57px 90px;
     background-color: #f7f8f8;
 }
+.col_right .video_left{
+    width:962px;
+}
+.col_right .video_left div{
+    float: left;
+    margin-right: 25px;
+}
 .list_zb .db_video{
     width: 415px;
     height: 150px;
@@ -598,6 +605,109 @@
     margin-left: 0;
 }
 
+/*---找回密码---*/
+
+.back_paswd{
+    background: #fefefe no-repeat center -200px;
+    background-size: 100%;
+    padding:60px 0 300px 0;
+}
+.back_paswd .title{
+    position: relative;
+}
+.back_paswd .title .line3{
+    position: absolute;
+    top: 20px;
+}
+.back_paswd .title b{
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    color: #436eb3;
+}
+.back_paswd .title p{
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+}
+.line3{
+    display: block;
+    width: 100%;
+    background: url("../images/pages/line_03.png") no-repeat center;
+    height: 2px;
+}
+.back_paswd ul{
+    width: 382px;
+    margin: 0 auto;
+    margin-top: 55px;
+}
+.back_paswd ul li{
+    
+    height: 43px;
+   
+    margin-bottom: 22px;
+}
+.back_paswd ul li.first_li{
+    border:none;
+    line-height:65px;
+}
+.back_paswd ul li.last_li{
+    border:none;
+}
+.back_paswd ul li.last_li .submit{
+    height: 43px;
+    width: 100%;
+    background: #c1cef7;
+    color: #3b3636;
+    font-size: 14px;
+}
+.back_paswd ul li input{
+
+    border:none;
+    width: 100%;
+     border:1px #aaaaaa solid;
+    height: 43px;
+    line-height: 43px;
+    padding-left: 10px;
+}
+.back_paswd ul li.code_v input{
+    width: 230px;
+    float: left;
+    border-right: 1px #aaaaaa solid;
+}
+.back_paswd ul li.code_v span{
+    display: block;
+    width:136px;
+    height: 43px;
+    float: right;
+}
+
+ul.emial_con li.first_li{
+    padding-left: 44px;
+    background: url("../images/pages/ps001.png") no-repeat left center;
+    height: 44px;
+    line-height: 44px;
+}
+ul.emial_con li.li3 .btn{
+    display: block;
+    width: 176px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    color: #3b3636;
+     float: left;
+    background: url("../images/pages/button_ps01.png") no-repeat;
+
+}
+ul.emial_con li.li2{
+    margin-bottom: 0;
+}
+ul.emial_con li.li3 .text{
+    float: left;
+    line-height: 45px;
+    margin-left: 15px;
+    color: #35b777
+}
 
 
 
