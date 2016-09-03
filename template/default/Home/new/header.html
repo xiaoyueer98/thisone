@@ -3,6 +3,7 @@
 ?>
 <script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
 <script src="{$webpath}views/js/newjs/script.js"></script>
+<script src="{$webpath}views/js/newjs/yiku.js"></script>
 <script language="javascript">
     var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}'; var username='{$username}';
 
@@ -36,11 +37,10 @@
     }
 
     function usercenter(){
-        var url = "?s=User/Fusershow";
+        var url = "?s=User/Mycare";
         window.location = url;
     }
 </script>
-<script type="text/javascript" src="{$tplpath}yiku.js"></script>
 <script type="text/javascript">
     $(document).ready(function(e){
         /*------------登录注册页面-------------*/
@@ -81,7 +81,17 @@
             <if condition="$username eq ''">
                 <a class="fl_l margin_l20 font_blue padding_l20 denglu" href="javascript:void(0)" id="login_btn">登录</a>
                 <a class="fl_l margin_l20 font_blue padding_l20 zhuce" href="javascript:void(0)" id="reg_btn">注册</a>
-                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0)">观看记录</a>
+                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0)" onmousemove="showPlayOld();">观看记录</a>
+                <!--观看记录 开始-->
+                <!--<div class="jilu" id="play_old_list">-->
+                    <!--<span class="jilu1"></span>-->
+                    <!--<div class="jilu3" id="play_old_list_content">-->
+
+                        <!--<div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>-->
+                    <!--</div>-->
+                    <!--<span class="jilu2"></span>-->
+                <!--</div>-->
+                <!--观看记录 结束-->
             <else />
                 <div class="fl_l margin_l20 font_blue padding_l20 username_con">
                     <a class="fl_l  font_blue " id="username2" href="javascript:void(0)">{$username}</a>
@@ -90,7 +100,17 @@
                         <li><a href="?s=Login/Logout">退出登录</a></li>
                     </ul>
                 </div>
-                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="">观看记录</a>
+                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0);" onmousemove="showPlayOld();">观看记录</a>
+                <!--观看记录 开始-->
+                <!--<div class="jilu" id="play_old_list">-->
+                    <!--<span class="jilu1"></span>-->
+                    <!--<div class="jilu3" id="play_old_list_content">-->
+
+                        <!--<div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>-->
+                    <!--</div>-->
+                    <!--<span class="jilu2"></span>-->
+                <!--</div>-->
+                <!--观看记录 结束-->
 
             </if>
         </div>
