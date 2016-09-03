@@ -220,10 +220,22 @@ input::-moz-placeholder {
     margin-bottom: 30px;
 }
 
+
 .ml12 {
     margin-left: 12px;
 }
-
+.ml80{
+    margin-left:80px;
+}
+.ml88{
+    margin-left:88px;
+}
+.ml120{
+    margin-left: 120px;
+}
+.ml145{
+    margin-left: 145px;
+}
 .ml165 {
     margin-left: 165px;
 }
