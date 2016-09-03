@@ -22,7 +22,7 @@
                         <hr/>
                     </div>
                     <div>
-                        <form class="accounts mt45" action="index.php?s=User/Update" method="post">
+                        <form class="accounts mt45" action="index.php?s=Mycenter/updateinfo" method="post">
                             <div class="user_name">
                                 <span></span>
                                 <input name="username" id="username" type="text" placeholder="用户名" value="{$username}">
@@ -43,6 +43,7 @@
                                 <span></span>
                                 <input name="reuserpwd" type="password" placeholder="邮箱">
                             </div>
+                            <input type="hidden" value="{$id}" name="id">
                             <button name="submit">提交</button>
                         </form>
                     </div>

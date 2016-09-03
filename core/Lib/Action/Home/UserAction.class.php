@@ -190,7 +190,7 @@ class UserAction extends HomeAction{
 		}
 		$rs = D('Home.User');
 		$rs->delcookie();
-        $this->display("index");
+        $this->display("new/index");
         //redirect($backurl);
     }
 	//重置密码

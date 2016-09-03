@@ -70,7 +70,7 @@ class LoginAction extends CmsAction
         //	setcookie('gx_username', $_POST['username'], time()+3600, "/php100/");
         $this->assign('webpath', $webpath);
         $this->assign('tplpath', $tplpath);
-        $this->display("index");
+        $this->display("new/index");
     }
 
     public function login()
@@ -170,7 +170,7 @@ class LoginAction extends CmsAction
 
         $this->assign('webpath', $webpath);
         $this->assign("tplpath", $tplpath);
-        $this->display("index");
+        $this->display("new/index");
     }
 
     public function tousercenter()
@@ -280,7 +280,7 @@ class LoginAction extends CmsAction
 
     public function fog_pwd()
     {
-        $this->display('new/backPaswd');
+        $this->display('web_fpw');
     }
 
     public function sendpwd()

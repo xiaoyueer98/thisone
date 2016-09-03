@@ -9,37 +9,18 @@
 	<script src="{$webpath}views/js/newjs/lunbotu.js"></script>
 </head>
 <body class="videoplay">
-	<div class="header">
-		<div class="head_con fix">
-			<div class="logo fl_l">
-				<img src="{$webpath}views/images/newimages/logo.png" alt="">
-			</div>
-			<div class="search bd margin_auto margin_t5 padding_l_r15 margin_t5">
-				<input type="text" class="fl_l" placeholder="搜索关键字">
-				<span class="fl_l"></span>
-			</div>
-			<div class="r fl_r">
-				<a class="fl_l margin_l20 font_blue padding_l20" href="">登录</a>
-				<a class="fl_l margin_l20 font_blue padding_l20" href="">注册</a>
-				<a class="fl_l margin_l20 font_blue padding_r20" href="">观看记录</a>
-			</div>
-		</div>
-		<span class="line2 margin_t30"></span>
-	</div>
-	<div class="nav padding_t20 margin_t20 bd_b">
-		<ul class="fix margin_auto">
-			<a href=""><li class="fix"><b>首页</b><span></span></li></a>
-			<a href=""><li class="fix"><b>视频直播</b><span></span></li></a>
-			<a href=""><li class="fix"><b>视频点播</b><span></span></li></a>
-			<a href=""><li class="fix"><b>网络电视</b><span></span></li></a>
-			<a href=""><li class="fix"><b>网络电台</b><span></span></li></a>
-			<a href=""><li class="fix"><b>网络监控</b><span></span></li></a>
-			<a href=""><li class="fix"><b>归档视屏</b></li></a>
-		</ul>
+<include file="header" />
+<div class="nav padding_t20 margin_t20 bd_b">
+    <ul class="fix margin_auto">
+        <a href="{$webpath}"><li class="fix"><b>首页</b><span></span></li></a>
+        <gxcms name="menu">
+            <a href="{$menu.showurl}"><li class="fix"><b>{$menu.cname}</b><span></span></li></a>
+        </gxcms>
+    </ul>
 	</div> 
 	<div class="back_color">
 		<div class="cqwz fix width1184 margin_auto padding_t15">
-			<p><em class="fl_l">当前位置: </em><span class="fl_l">首页 ></span> <span class="fl_l">视屏点播</span></p>
+			<p><em class="fl_l">当前位置: </em><span class="fl_l">首页 ></span> <span class="fl_l">{$cname}</span></p>
 		</div>
 		<div class="_video margin_auto margin_b20 margin_t20 fix">
 			<div class="_video_t">
