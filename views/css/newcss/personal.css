@@ -538,6 +538,7 @@ html{
     -moz-opacity: 0;
     -khtml-opacity: 0;
     opacity: 0;
+    margin-left: 0;
 }
 .col_right .live li em {
     width: 109px;
@@ -549,6 +550,7 @@ html{
     float: left;
     border: 1px #aaaaaa solid;
     background: #ffffff;
+    overflow: hidden;
 }
 .col_right .video_left{
     width:962px;
@@ -580,6 +582,8 @@ html{
     opacity: 0;
     width: 96%;
     height: 100%;
+    position: relative;
+    z-index: 11;
 }
 .list_zb .db_video a{
     width: 100%;

@@ -31,5 +31,24 @@ $(document).ready(function(){
     	}else{
     		$(this).removeClass("m")
     	}
+    });
+
+    $("#upload").change(function(){
+        var imgName = $(this).val();
+        var filename;
+            if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
+            {
+                filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
+            }
+            else
+            {
+                filename=imgName;
+            }
+        if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
+            alert("图片类型必须是.gif,jpeg,jpg,png格式");
+        }else{
+            $("#imtext").text(filename)
+        }
     })
+
 })
