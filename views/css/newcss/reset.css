@@ -41,7 +41,7 @@ a{
 	width:2000px; 
 	*width:auto;
 }
-input, textarea {
+.header input, textarea {
 	outline: 0px none;
 	-webkit-appearance: none;
 	border:none;
