@@ -281,7 +281,7 @@ a:hover{
 .banner{
 	position: relative;
 }
-.banner a,span{display: block;}
+.banner a,.banner span{display: block;}
 .banner .box{
     width:100%;
     overflow: hidden;
