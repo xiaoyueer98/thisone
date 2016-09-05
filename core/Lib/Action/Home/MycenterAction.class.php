@@ -207,7 +207,7 @@ class MycenterAction extends HomeAction{
         $this->assign('status',$status);
         $this->assign('logtime',$logtime);
 //        $this->assign('pages',$listpages['listpages']);
-        $this->display("new/Personal_Center");
+        $this->display("new/mycare");
     }
 
     //我的直播、点播
@@ -236,9 +236,9 @@ class MycenterAction extends HomeAction{
         $this->assign('email',$email);
         $this->assign('status',$status);
         if($ctype=='live'){
-            $this->display("new/myLiveRadio");
+            $this->display("new/personal_mylive");
         }else{
-            $this->display("new/on_demand");
+            $this->display("new/personal_myvod");
         }
     }
 
@@ -253,7 +253,7 @@ class MycenterAction extends HomeAction{
         $this->assign("username",$username);
         $this->assign("email",$email);
         $this->assign("status",$status);
-        $this->display("new/Modify_data");
+        $this->display("new/reset");
     }
     //更新资料
     public function updateinfo(){
@@ -273,7 +273,7 @@ class MycenterAction extends HomeAction{
     //修改密码展示页
     public function repwd()
     {
-        $this->display("new/Modify_password");
+        $this->display("new/repwd");
     }
     //修改密码
     public function modifypwd(){
@@ -352,7 +352,7 @@ class MycenterAction extends HomeAction{
         $this->assign('list_channel_video',$list_channel_video);
         $this->assign($array);
 
-        $this->display("new/Create_live");
+        $this->display("new/create_live");
 
     }
 
@@ -480,7 +480,7 @@ class MycenterAction extends HomeAction{
         $this->assign('list_channel_video',$list_channel_video);
         $this->assign($array);
 
-        $this->display("new/Create_demand");
+        $this->display("new/create_vod");
     }
 
     public function _before_insertvod(){
