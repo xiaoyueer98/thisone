@@ -5,6 +5,8 @@
  * Date: 2016/9/2
  * Time: 9:58
  */
+ini_set("display_errors", "On");
+error_reporting(E_ALL);
 class MycenterAction extends HomeAction{
     private $VideoDB;
     private $UserDB;
@@ -31,6 +33,9 @@ class MycenterAction extends HomeAction{
     //我的关注
     public function mycare(){
         $arr = $this->checklogin();
+        $logtime=$arr['logtime'];
+        $email=$arr['email'];
+        $status=$arr['status'];
         $where['uid'] = $arr['id'];//用户id
         $result=$_COOKIE['gxhis'];
         $result=explode('/id/',$result);
@@ -41,6 +46,8 @@ class MycenterAction extends HomeAction{
                 $arr_id[$i]=$voide_ar[0];
             }
         }
+
+
         $a=array_values($arr_id);
         $list_video=array();
         for($i=0;$i<count($a);$i++) {
@@ -48,6 +55,8 @@ class MycenterAction extends HomeAction{
             $list=$this->VideoDB-->where($where)->find();
             $list_video[$i]=$list;
         }
+
+
 //        if(empty($list_video)){
 //            echo "您没有关注的视频！";
 //        }
@@ -55,173 +64,182 @@ class MycenterAction extends HomeAction{
 //        $video_page  = !empty($_GET['p'])?$_GET['p']:1;$video_page = intval($video_page);
 //        $video_url   = U('User/Myvod',array('p'=>''),false,false);
 //        $listpages     = get_cms_page($video_count,C('user_page_cm'),$video_page,$video_url,'条视频',false);
-        $list_video = array (
-            0 =>
-                array (
-                    'id' => '1590',
-                    'cid' => '42',
-                    'title' => 'CCTVNEWS',
-                    'intro' => '',
-                    'keywords' => '',
-                    'color' => '#FF0000',
-                    'actor' => '',
-                    'director' => '',
-                    'content' => '',
-                    'picurl' => 'video/20160220/cctvnewstv.jpg',
-                    'area' => '中国',
-                    'language' => '国语',
-                    'year' => '2000',
-                    'serial' => '0',
-                    'addtime' => '1455855436',
-                    'hits' => '46',
-                    'monthhits' => '3',
-                    'weekhits' => '1',
-                    'dayhits' => '1',
-                    'hitstime' => '1463888742',
-                    'stars' => '2',
-                    'status' => '1',
-                    'up' => '0',
-                    'down' => '0',
-                    'playurl' => '|58.200.131.2|1935|livetv|cctv16|flv|live|',
-                    'downurl' => '',
-                    'inputer' => 'admin',
-                    'reurl' => '',
-                    'letter' => 'C',
-                    'score' => '0.0',
-                    'scoreer' => '1',
-                    'genuine' => '0',
-                    'vodplay' => '0',
-                    'stype_mcid' => '0',
-                    'selftitle' => '',
-                    'selfkeywords' => '',
-                    'selfdescription' => '',
-                    'starttime' => '0',
-                    'endtime' => '0',
-                    'level' => '1',
-                    'ctype' => 'tv',
-                ),
-            1 =>
-                array (
-                    'id' => '1589',
-                    'cid' => '42',
-                    'title' => '香港卫视',
-                    'intro' => '',
-                    'keywords' => '',
-                    'color' => '#FF0000',
-                    'actor' => '',
-                    'director' => '',
-                    'content' => '',
-                    'picurl' => 'video/20160220/xianggangweishi.jpg',
-                    'area' => '中国',
-                    'language' => '国语',
-                    'year' => '2000',
-                    'serial' => '0',
-                    'addtime' => '1455855436',
-                    'hits' => '109',
-                    'monthhits' => '2',
-                    'weekhits' => '2',
-                    'dayhits' => '2',
-                    'hitstime' => '1471941637',
-                    'stars' => '4',
-                    'status' => '1',
-                    'up' => '0',
-                    'down' => '0',
-                    'playurl' => '|||fxtv|hktv|flv|live|',
-                    'downurl' => '',
-                    'inputer' => 'admin',
-                    'reurl' => '',
-                    'letter' => 'X',
-                    'score' => '10.0',
-                    'scoreer' => '1',
-                    'genuine' => '0',
-                    'vodplay' => '0',
-                    'stype_mcid' => '0',
-                    'selftitle' => '',
-                    'selfkeywords' => '',
-                    'selfdescription' => '',
-                    'starttime' => '0',
-                    'endtime' => '0',
-                    'level' => '1',
-                    'ctype' => 'tv',
-                ),
-            2 =>
-                array (
-                    'id' => '1587',
-                    'cid' => '42',
-                    'title' => 'CCTV-9',
-                    'intro' => '',
-                    'keywords' => '',
-                    'color' => '',
-                    'actor' => '',
-                    'director' => '',
-                    'content' => '',
-                    'picurl' => 'video/20160220/beijingtv.jpg',
-                    'area' => '中国',
-                    'language' => '国语',
-                    'year' => '2000',
-                    'serial' => '',
-                    'addtime' => '1455855398',
-                    'hits' => '42',
-                    'monthhits' => '1',
-                    'weekhits' => '1',
-                    'dayhits' => '1',
-                    'hitstime' => '1471941647',
-                    'stars' => '3',
-                    'status' => '1',
-                    'up' => '0',
-                    'down' => '0',
-                    'playurl' => '|||fxtv|CCTV-9|flv|live|',
-                    'downurl' => '',
-                    'inputer' => 'admin',
-                    'reurl' => '',
-                    'letter' => 'C',
-                    'score' => '10.0',
-                    'scoreer' => '1',
-                    'genuine' => '0',
-                    'vodplay' => '0',
-                    'stype_mcid' => '0',
-                    'selftitle' => '',
-                    'selfkeywords' => '',
-                    'selfdescription' => '',
-                    'starttime' => '0',
-                    'endtime' => '0',
-                    'level' => '1',
-                    'ctype' => 'tv',
-                ),
+        /*
+                $list_video = array (
+                    0 =>
+                        array (
+                            'id' => '1590',
+                            'cid' => '42',
+                            'title' => 'CCTVNEWS',
+                            'intro' => '',
+                            'keywords' => '',
+                            'color' => '#FF0000',
+                            'actor' => '',
+                            'director' => '',
+                            'content' => '',
+                            'picurl' => 'video/20160220/cctvnewstv.jpg',
+                            'area' => '中国',
+                            'language' => '国语',
+                            'year' => '2000',
+                            'serial' => '0',
+                            'addtime' => '1455855436',
+                            'hits' => '46',
+                            'monthhits' => '3',
+                            'weekhits' => '1',
+                            'dayhits' => '1',
+                            'hitstime' => '1463888742',
+                            'stars' => '2',
+                            'status' => '1',
+                            'up' => '0',
+                            'down' => '0',
+                            'playurl' => '|58.200.131.2|1935|livetv|cctv16|flv|live|',
+                            'downurl' => '',
+                            'inputer' => 'admin',
+                            'reurl' => '',
+                            'letter' => 'C',
+                            'score' => '0.0',
+                            'scoreer' => '1',
+                            'genuine' => '0',
+                            'vodplay' => '0',
+                            'stype_mcid' => '0',
+                            'selftitle' => '',
+                            'selfkeywords' => '',
+                            'selfdescription' => '',
+                            'starttime' => '0',
+                            'endtime' => '0',
+                            'level' => '1',
+                            'ctype' => 'tv',
+                        ),
+                    1 =>
+                        array (
+                            'id' => '1589',
+                            'cid' => '42',
+                            'title' => '香港卫视',
+                            'intro' => '',
+                            'keywords' => '',
+                            'color' => '#FF0000',
+                            'actor' => '',
+                            'director' => '',
+                            'content' => '',
+                            'picurl' => 'video/20160220/xianggangweishi.jpg',
+                            'area' => '中国',
+                            'language' => '国语',
+                            'year' => '2000',
+                            'serial' => '0',
+                            'addtime' => '1455855436',
+                            'hits' => '109',
+                            'monthhits' => '2',
+                            'weekhits' => '2',
+                            'dayhits' => '2',
+                            'hitstime' => '1471941637',
+                            'stars' => '4',
+                            'status' => '1',
+                            'up' => '0',
+                            'down' => '0',
+                            'playurl' => '|||fxtv|hktv|flv|live|',
+                            'downurl' => '',
+                            'inputer' => 'admin',
+                            'reurl' => '',
+                            'letter' => 'X',
+                            'score' => '10.0',
+                            'scoreer' => '1',
+                            'genuine' => '0',
+                            'vodplay' => '0',
+                            'stype_mcid' => '0',
+                            'selftitle' => '',
+                            'selfkeywords' => '',
+                            'selfdescription' => '',
+                            'starttime' => '0',
+                            'endtime' => '0',
+                            'level' => '1',
+                            'ctype' => 'tv',
+                        ),
+                    2 =>
+                        array (
+                            'id' => '1587',
+                            'cid' => '42',
+                            'title' => 'CCTV-9',
+                            'intro' => '',
+                            'keywords' => '',
+                            'color' => '',
+                            'actor' => '',
+                            'director' => '',
+                            'content' => '',
+                            'picurl' => 'video/20160220/beijingtv.jpg',
+                            'area' => '中国',
+                            'language' => '国语',
+                            'year' => '2000',
+                            'serial' => '',
+                            'addtime' => '1455855398',
+                            'hits' => '42',
+                            'monthhits' => '1',
+                            'weekhits' => '1',
+                            'dayhits' => '1',
+                            'hitstime' => '1471941647',
+                            'stars' => '3',
+                            'status' => '1',
+                            'up' => '0',
+                            'down' => '0',
+                            'playurl' => '|||fxtv|CCTV-9|flv|live|',
+                            'downurl' => '',
+                            'inputer' => 'admin',
+                            'reurl' => '',
+                            'letter' => 'C',
+                            'score' => '10.0',
+                            'scoreer' => '1',
+                            'genuine' => '0',
+                            'vodplay' => '0',
+                            'stype_mcid' => '0',
+                            'selftitle' => '',
+                            'selfkeywords' => '',
+                            'selfdescription' => '',
+                            'starttime' => '0',
+                            'endtime' => '0',
+                            'level' => '1',
+                            'ctype' => 'tv',
+                        ),
 
-        );
+                );
+                */
         $this->assign('list_video',$list_video);
+        $this->assign('arr',$arr);
+        $this->assign('email',$email);
+        $this->assign('status',$status);
+        $this->assign('logtime',$logtime);
 //        $this->assign('pages',$listpages['listpages']);
-        $this->display("/new/Personal_Center");
+        $this->display("new/Personal_Center");
     }
 
     //我的直播、点播
     public function personal_my(){
-        $arr = $this->checklogin();
-        $where['uid'] = $arr['id'];
-        $where['ctype'] = $_REQUEST['type'];
-        if($where['type']=='live'){
-            $list=M('mycenter')->where($where)->select();
-            $arr=array();
-            for($i=0;$i<count($list);$i++){
-                $arr['id']=$list['vid'];
-            }
-            $live_video=$this->VideoDB->where($arr)->select();
-            $this->assign('list_video',$live_video);
-            $this->display();
-        }else{
-            $list=M('mycenter')->where($where)->select();
-            $arr=array();
-            for($i=0;$i<count($list);$i++){
-                $arr['id']=$list[$i]['vid'];
-            }
-            $vod_video=M("video")->where($arr)->select();
-            $this->assign('list_video',$vod_video);
-//            echo "<pre>";var_dump($vod_video);echo "</pre>";
-            $this->display("/new/on_demand");
+        $arr1 = $this->checklogin();
+        $uid = $arr1['id'];
+        $logtime=$arr1['logtime'];
+        $email=$arr1['email'];
+        $status=$arr1['status'];
+        $ctype = $_REQUEST['type'];
+        file_put_contents('log.txt', "personal_my id:$uid\n", FILE_APPEND);
+        $where['uid'] = $uid;
+        $where['ctype'] = $ctype;
+
+
+        $list=M('mycenter')->where($where)->select();
+        $arr=array();
+        $count = count($list);
+        for($i=0;$i<count($list);$i++){
+            $arr[$i]=$list[$i]['vid'];
         }
-
-
+        $vod_video=M("video")->where(array('id'=>array('IN',$arr)))->select();
+        $count = count($vod_video);
+        file_put_contents('log.txt', "video count:$count\n", FILE_APPEND);
+        $this->assign('logtime',$logtime);
+        $this->assign('email',$email);
+        $this->assign('status',$status);
+        if($ctype=='live'){
+            $this->display("new/myLiveRadio");
+        }else{
+            $this->display("new/on_demand");
+        }
     }
 
     //设置资料
@@ -229,10 +247,12 @@ class MycenterAction extends HomeAction{
         $list = $this->checklogin();
         $id=$list[id];
         $email=$list[email];
+        $status=$list[status];
         $username=$list[username];
         $this->assign("id",$id);
         $this->assign("username",$username);
         $this->assign("email",$email);
+        $this->assign("status",$status);
         $this->display("new/Modify_data");
     }
     //更新资料
@@ -241,7 +261,6 @@ class MycenterAction extends HomeAction{
             $where['id']=$_POST['id'];
             $user['username']=$_POST['username'];
             $user['email']=$_POST['email'];
-            $user['userpwd']=md5($_POST['userpwd']);
             if(M("user")->where($where)->save($user)){
                 echo "<script>alert('修改成功！');</script>";
                 $this->display('user_login');
@@ -251,10 +270,37 @@ class MycenterAction extends HomeAction{
             }
         }
     }
+    //修改密码展示页
+    public function repwd()
+    {
+        $this->display("new/Modify_password");
+    }
+    //修改密码
+    public function modifypwd(){
+        $list = $this->checklogin();
+        $where['id']=$list[id];
+        $userpwd=md5($_POST['userpwd']);
+        if($userpwd!=$list['userpwd']){
+            echo"您输入的密码不正确，请重新输入！";
+        }
+        $userpwd1=$_POST['userpwd1'];
+        $userpwd2=$_POST['userpwd2'];
+        if($userpwd1!=$userpwd2){
+            echo "您两次输入的密码不一致，请重新输入！";
+        }
+        $arr=M("user")->where($where)->setField('userpwd',$userpwd1);
+        if(empty($arr)){
+            $this->redirect('Mycenter/setpwd',array('id'=> $where),1,'修改密码失败，请重新修改...');
+        }else{
+            $this->redirect('Index/index',array('id'=> $where),1,'密码修改成功，请重新登录...');
+        }
 
+
+    }
     //创建直播
     public function createlive(){
 
+        /*
         $this->_before_insertlive();
         if ($this->VideoDB->create()) {
 
@@ -267,8 +313,50 @@ class MycenterAction extends HomeAction{
         }else{
             $this->error($this->VideoDB->getError());
         }
+        */
+        $arr = $this->checklogin();
+        $logtime=$arr['logtime'];
+        $email=$arr['email'];
+        $status=$arr['status'];
+        $type = $_REQUEST['type'];
+        file_put_contents('log.txt', "type:$type \n", FILE_APPEND);
+        $where['id'] = $_GET['id'];
+        $con['pid'] = '1';
+        $con['ctype'] = "live";
+        $list_channel_video = M('Channel')->where($con)->select();
+        $channel_id = $list_channel_video[0]['id'];
+        $tid = $_REQUEST['tid'];
+        if(!get_channel_son($channel_id)){
+            $con['pid'] = $channel_id;
+            $c = M('channel');
+            $son = $c->where($con)->select();
+            $subid = $son[0]['id'];
+        }else{
+            $con['pid'] = get_channel_sqlin($channel_id);
+            $subid = 0;
+        }
+
+        if(($tid == null) || ($tid == "")){
+            $tid = randonumkeys(8);   /// a temp id for auth
+        }
+        $array['addtime']  = time();
+        $array['starttime'] = time();
+        $array['endtime'] = time() + 60*30;
+
+        $array['inputer']  = $_SESSION['user'];
+        $this->assign('logtime', $logtime);
+        $this->assign('email', $email);
+        $this->assign('status', $status);
+        $this->assign('channel_id', $channel_id);
+        $this->assign('subid', $subid);
+        $this->assign('list_channel_video',$list_channel_video);
+        $this->assign($array);
+
+        $this->display("new/Create_live");
 
     }
+
+
     public function _before_insertlive(){
         $uid   = intval($_COOKIE['gx_userid']);
         $_POST['level'] = $_POST['userlevel'];
@@ -301,6 +389,7 @@ class MycenterAction extends HomeAction{
         $this->replaceKey();//更新内链接替换
         //print_r($_POST['vodplay']);exit;
     }
+
     public function insertlive(){
         file_put_contents('log.txt', "insertlive....... \n", FILE_APPEND);
         if($this->VideoDB->create()){
@@ -315,6 +404,7 @@ class MycenterAction extends HomeAction{
             $this->error($this->VideoDB->getError());
         }
     }
+
     // 新增视频保存到数据库-后置操作
     public function _after_insertlive(){
 
@@ -337,6 +427,7 @@ class MycenterAction extends HomeAction{
 
     //创建点播
     public function createvod(){
+        /*
         $this->_before_insert();
         if ($this->VideoDB->create()) {
             if (false!==$this->VideoDB->save()) {
@@ -347,7 +438,51 @@ class MycenterAction extends HomeAction{
         }else{
             $this->error($this->VideoDB->getError());
         }
+        */
+        $arr = $this->checklogin();
+        $logtime=$arr['logtime'];
+        $email=$arr['email'];
+        $status=$arr['status'];
+        $type = $_REQUEST['type'];
+        file_put_contents('log.txt', "type:$type \n", FILE_APPEND);
+        $where['id'] = $_GET['id'];
+        $con['pid'] = '2';
+        $con['ctype'] = "vod";
+        $list_channel_video = M('Channel')->where($con)->select();
+
+        if($_GET['cid']){
+            $array['cid'] = intval($_GET['cid']);
+        }else{
+            $array['cid'] = cookie('video_cid');
+        }
+
+        $array['addtime']  = time();
+        $array['inputer']  = $_SESSION['user'];
+        $array['checktime']= 'checked';
+
+        $channel_id = $list_channel_video[0]['id'];
+        if(!get_channel_son($channel_id)){
+            $con['pid'] = $channel_id;
+            $c = M('channel');
+            $son = $c->where($con)->select();
+            $subid = $son[0]['id'];
+        }else{
+            $con['pid'] = get_channel_sqlin($channel_id);
+            $subid = 0;
+        }
+
+        $array['inputer']  = $_SESSION['user'];
+        $this->assign('logtime', $logtime);
+        $this->assign('email', $email);
+        $this->assign('status', $status);
+        $this->assign('channel_id', $channel_id);
+        $this->assign('subid', $subid);
+        $this->assign('list_channel_video',$list_channel_video);
+        $this->assign($array);
+
+        $this->display("new/Create_demand");
     }
+
     public function _before_insertvod(){
         file_put_contents('log.txt', "=-=-=-=-=- _before_insert\n", FILE_APPEND);
         $_POST['level'] = $_POST['userlevel'];
@@ -416,55 +551,20 @@ class MycenterAction extends HomeAction{
         }
         $array = $_POST['ids'];
         foreach($array as $val){
-            $this->delfile($val);
+            $this->del($val);
         }
         redirect($_SESSION['video_reurl']);
-    }
-
-    public function delfile($id){
-        M("video_play_white_list")->where('vid='.$id)->delete();
-        M("video_push_white_list")->where('vid='.$id)->delete();
-
-        //删除静态文件
-        $array = M("video")->field('id,cid,picurl,title,playurl')->where('id = '.intval($id))->find();
-        @unlink('./'.C('upload_path').'/'.$array['picurl']);
-        @unlink('./'.C('upload_path').'-s/'.$array['picurl']);
-        if(C('url_html')){
-            //删除内容页
-            @unlink(C('webpath').get_read_url_dir('video',$array['id'],$array['cid']).C('html_file_suffix'));
-            //删除播放页
-            if(C('url_html_play')){
-                $count = 1;
-                if(C('url_html_play') == 2){
-                    $count = $this->playlist($array['playurl'],$array['id'],$array['cid']);
-                    $count = $count[0]['playcount'];
-                }
-                for($i=0;$i<$count;$i++){
-                    $dirurl = get_play_url_dir($array['id'],$array['cid'],$i).C('html_file_suffix');
-                    @unlink($dirurl);
-                }
-            }
-        }
-        //删除专题收录
-        $rs = new Model();
-        $rs->execute("update ".C('db_prefix')."special set mids=Replace(Replace(Replace(Replace
-			(CONCAT(',,',mids,',,'),',$id,',','),',,,,',''),',,,',''),',,','')");
-        //删除视频ID
-        $where['id'] = $id;
-        M("video")->where($where)->delete();
-        unset($where);
-        //删除观看主录
-        $where['did'] = $id;
-        M("user_view")->where($where)->delete();
-        unset($where);
-        //删除相关评论
-        $where['did'] = $id;
-        $where['mid'] = 1;
-        M("comment")->where($where)->delete();
     }
 
     public function del(){
-        $this->delfile($_GET['id']);
-        redirect($_SESSION['video_reurl']);
+        $list = $this->checklogin();
+        $where['vid']=$_GET['id'];
+        $row=M('Mycenter')->where($where)->delete();
+        if($row==0){
+            redirect('Mycenter/mycare',array('id'=>$list),1,'删除失败...');
+        }else{
+            redirect('Mycenter/mycare',1,'删除成功...');
+        }
+
     }
 }

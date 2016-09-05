@@ -19,17 +19,17 @@
     </div>
     <div class="left_center">
         <ul class="list">
-            <li><i class="list1"></i> <a href="?s=Mycenter/mycare">我的关注</a></li>
-            <li><i class="list2"></i> <a href="?s=Mycenter/Personal_my/type/live">我的直播</a></li>
-            <li><i class="list3"></i> <a href="?s=Mycenter/Personal_my/type/vod">我的点播</a></li>
-            <li><i class="list4"></i> <a href="?s=Mycenter/reset">设置资料</a></li>
-            <li><i class="list5"></i> <a href="?s=Mycenter/reset">修改密码</a></li>
+            <li><i class="list1"></i> <a href="?s=mycenter/mycare">我的关注</a></li>
+            <li><i class="list2"></i> <a href="?s=mycenter/personal_my/type/live">我的直播</a></li>
+            <li><i class="list3"></i> <a href="?s=mycenter/personal_my/type/vod">我的点播</a></li>
+            <li><i class="list4"></i> <a href="?s=mycenter/reset">设置资料</a></li>
+            <li><i class="list5"></i> <a href="?s=mycenter/repwd">修改密码</a></li>
         </ul>
 
     </div>
     <div class="left_bottom pdb26">
-        <button onclick="javascript:location.href='?s=Mycenter/createlive'"><span>+</span>创建直播</button>
-        <button onclick="javascript:location.href='?s=Mycenter/createvod'"><span>+</span>创建点播</button>
+        <button onclick="javascript:location.href='?s=mycenter/createlive'"><span>+</span>创建直播</button>
+        <button onclick="javascript:location.href='?s=mycenter/createvod'"><span>+</span>创建点播</button>
     </div>
 </div>
 <script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
@@ -37,9 +37,10 @@
     geturl();
     function geturl()
     {
-        if(location.href.indexOf("Mycare") !== -1) $(".list li a").eq(0).addClass("current");
-        else if(location.href.indexOf("Personal_my/type/live") !== -1)  $(".list li a").eq(1).addClass("current");
-        else if(location.href.indexOf("Personal_my/type/vod") !== -1)  $(".list li a").eq(2).addClass("current");
-        else if(location.href.indexOf("reset") !== -1)  $(".list li a").eq(3).addClass("current");
+        if(location.href.indexOf("mycenter/mycare") !== -1) $(".list li a").eq(0).addClass("current");
+        else if(location.href.indexOf("personal_my/type/live") !== -1)  $(".list li a").eq(1).addClass("current");
+        else if(location.href.indexOf("personal_my/type/vod") !== -1)  $(".list li a").eq(2).addClass("current");
+        else if(location.href.indexOf("mycenter/reset") !== -1)  $(".list li a").eq(3).addClass("current");
+        else if(location.href.indexOf("mycenter/repwd") !== -1)  $(".list li a").eq(4).addClass("current");
     }
 </script>
