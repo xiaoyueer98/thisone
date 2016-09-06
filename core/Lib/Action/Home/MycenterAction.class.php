@@ -229,9 +229,11 @@ class MycenterAction extends HomeAction{
         for($i=0;$i<count($list);$i++){
             $arr[$i]=$list[$i]['vid'];
         }
+        $arr = array(1577,1578,1579);
         $vod_video=M("video")->where(array('id'=>array('IN',$arr)))->select();
         $count = count($vod_video);
         file_put_contents('log.txt', "video count:$count\n", FILE_APPEND);
+        $this->assign('list_video',$vod_video);
         $this->assign('logtime',$logtime);
         $this->assign('email',$email);
         $this->assign('status',$status);
@@ -570,6 +572,7 @@ class MycenterAction extends HomeAction{
 
     public function uploadfile()
     {
+//        var_dump($_REQUEST);
         error_reporting(E_ALL | E_STRICT);
         import('ORG.Util.Uploadhandler');
         $upload_handler = new UploadHandler();
