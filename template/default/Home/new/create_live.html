@@ -21,7 +21,7 @@
                         <h3>创建直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
                         <hr/>
                     </div>
-                    <form action="?s=mycenter/insertlive" method="post">
+                    <form action="?s=mycenter/insertlive" method="post" id="mycontent">
                     <div class="live clearfix">
                         <ul>
                             <li class="list_zb">
@@ -57,7 +57,7 @@
                                     <input type="file" value="..." class="">
                                 </label>
                                 <em>未选择文件</em>
-                                <input type="hidden" name="picurl" id="img">
+                                <input type="hidden" name="picurl" id="img" value="test">
                                 <button class="btn_zb ml12" type="button">上传</button>
 
                             </li>
@@ -125,7 +125,7 @@
         }
         else
         {
-            $("form")[0].submit();
+            $("#mycontent")[0].submit();
         }
 
     })
