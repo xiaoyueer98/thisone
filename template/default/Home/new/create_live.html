@@ -21,24 +21,24 @@
                         <h3>创建直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
                         <hr/>
                     </div>
+                    <form action="?s=mycenter/insertlive" method="post">
                     <div class="live clearfix">
                         <ul>
                             <li class="list_zb">
                                 <span class="span">名称</span>
-                                <input class="name_zb" type="text">
+                                <input class="name_zb" type="text" name="title" id="name">
                                 <span>视频分类</span>
-                                <select style="height: 30px;width:135px;" id="phone_sowing">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
+                                <select style="height: 30px;width:135px;" id="phone_sowing" name="type" id="type">
+                                    <volist name="list_channel_video" id="video">
+                                        <option value="{$video.id}">{$video.cname}</option>
+                                    </volist>
                                 </select>
                             </li>
                             <li class="list_zb">
                                 <span class="span">主持</span>
-                                <input class="host_zb mr35" type="text">
+                                <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi">
                                 <span>房间密码</span>
-                                <input class="room_password" type="text">
+                                <input class="room_password" type="text" name="room_num" id="room_num">
                             </li>
                             <li class="list_zb">
                                 <span class="span">时段</span>
@@ -57,30 +57,85 @@
                                     <input type="file" value="..." class="">
                                 </label>
                                 <em>未选择文件</em>
-                                <form>
-                                    <button class="btn_zb ml12" type="submit">上传</button>
-                                </form>
+                                <input type="hidden" name="picurl" id="img">
+                                <button class="btn_zb ml12" type="button">上传</button>
 
                             </li>
                             <li class="list_zb mt20">
                                 <span>直播简介</span>
-                                <textarea class="ml20" name="" id="brief_introduction" cols="98" rows="20"></textarea>
+                                <textarea class="ml20" name="intro" id="brief_introduction" cols="98" rows="20"></textarea>
                             </li>
                             <li class="btn1 fr">
-                                <button>公开</button>
-                                <button>隐藏</button>
+                                <button type="button" id="show">公开</button>
+                                <input type="hidden" value="1" name="display" id="display">
+                                <button type="button" id="hide">隐藏</button>
                             </li>
+                            <li class="btn2 fr" id="error">error位置</li>
                             <li class="btn2 fr">
-                                <button>提交</button>
-                                <button>重置</button>
+                                <button type="button" id="sub">提交</button>
+                                <button type="button" id="reset">重置</button>
                             </li>
                         </ul>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    //显示隐藏的选择切换
+    $("#show").click(function(){
+        $("#display").attr("value", 1);
+        $(this).addClass("m");
+        $("#hide").removeClass("m");
+    })
+    $("#hide").click(function(){
+        $("#display").attr("value", 0);
+        $(this).addClass("m");
+        $("#show").removeClass("m");
+    })
+
+    //提交重置按钮
+    $("#sub").click(function(){
+        if($("#name").val() == "")
+        {
+            $("#error").html("名称不能为空");
+            return false;
+        }
+        else if($("#img").val() == "")
+        {
+            $("#error").html("请上传海报");
+            return false;
+        }
+        else if($("#zhuchi").val() == "")
+        {
+            $("#zhuchi").html("支持人不能为空");
+            return false;
+        }
+        else if($("#intro").val() == "")
+        {
+            $("#error").html("请填写直播简介");
+            return false;
+        }
+        else if($("#display").val() == "")
+        {
+            $("#error").html("请选择直播状态");
+            return false;
+        }
+        else
+        {
+            $("form")[0].submit();
+        }
+
+    })
+
+    //点击重置按钮
+    $("#reset").click(function(){
+        location.reload();
+    })
+
+</script>
 </body>
 </html>
 
