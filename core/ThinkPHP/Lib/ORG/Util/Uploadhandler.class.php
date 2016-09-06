@@ -42,7 +42,7 @@ class Uploadhandler
 
     public function __construct($options = null, $initialize = true, $error_messages = null) {
         $file = date("Y-m-d");
-        $path = '/uploads/video/' .$file;
+        $path = '/uploads/video/' .$file. "/";
         if(!is_dir($path))
         {
             mkdir($file);
