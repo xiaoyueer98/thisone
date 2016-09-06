@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
+<div class="mask2"></div>
 <div class="box ma0">
     <include file="header"/>
     <div class="contents">
@@ -41,7 +42,7 @@
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
                                 </label>
-                                <em id="imtext">未选择文件</em>
+                                <em id="imtext"><b id="bar2"></b>未选择文件</em>
                                 
                                 <form action="value">
                                     <button class="btn_zb ml12" type="submit">上传</button>
@@ -124,10 +125,58 @@ $(function () {
         },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#bar').css(
-                'width',
-                progress + '%'
-            );
+            $('#bar').css({'width':progress + '%'});
+            //var barWidth = $('#bar').width();
+
+            if(progress >= 100){
+                $('#bar').css({'width':0});
+                $(".list_db .dspl .button").text("已上传");
+                $(".mask2").hide();
+            };
+            if(progress < 100){
+                $(".mask2").show();
+            }
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+
+
+    $('#upload').fileupload({
+        url: url,
+        dataType: 'json',
+        done: function (e, data) {
+            var _thsi = this;
+            $.each(data.result.files, function (index, file) {
+                var imgName = file.name;
+                var filename;
+                if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
+                {
+                    filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
+                }
+                else
+                {
+                    filename=imgName;
+                }
+                if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
+                    alert("图片类型必须是.gif,jpeg,jpg,png格式");
+                    
+                }else{
+                    $("#imtext").text(filename)
+                }
+            });
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#bar2').css({'width':progress + '%'});
+            if(progress >= 100){
+                $('#bar2').css({'width':0});
+                $(".live .list_zb .btn_zb").text("已上传");
+                $(".mask2").hide();
+            };
+            if(progress < 100){
+                $(".mask2").show();
+            }
         }
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
