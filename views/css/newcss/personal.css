@@ -551,6 +551,19 @@ html{
     border: 1px #aaaaaa solid;
     background: #ffffff;
     overflow: hidden;
+    position: relative;
+}
+.col_right .live li em b{
+    position: absolute;
+    left: 0;
+    display: block;
+    height: 100%;
+    filter:alpha(opacity=50);  
+    -moz-opacity:0.5;  
+    -khtml-opacity: 0.5;  
+    opacity: 0.5;  
+    background:green;
+    width: 0%;
 }
 .col_right .video_left{
     width:962px;
