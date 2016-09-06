@@ -625,10 +625,27 @@ html{
 .list_db .right_bottom{
     margin-top: 17px;
 }
-.list_db .dspl button{
+.list_db .dspl .button{
+    display: block;
     width: 175px;
     height: 30px;
     background-color:#436eb3;
+    position: relative;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+}
+.list_db .dspl .button b{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height:100%;
+    background:green;
+    filter:alpha(opacity=80);  
+    -moz-opacity:0.8;  
+    -khtml-opacity: 0.8;  
+    opacity: 0.8; 
 }
 .list_db .dspl h2{
     margin-bottom: 7px;

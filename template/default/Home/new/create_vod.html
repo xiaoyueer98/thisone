@@ -41,7 +41,7 @@
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
                                 </label>
-                                <em id="imtext"><b id="bar"></b>未选择文件</em>
+                                <em id="imtext">未选择文件</em>
                                 
                                 <form action="value">
                                     <button class="btn_zb ml12" type="submit">上传</button>
@@ -52,7 +52,7 @@
 
                                 <div class="db_video">
                                     <a href="javascript:;" class="file">
-                                        <input type="file" value="...">
+                                        <input type="file" id="upload2" value="...">
 
                                         <h1 class="psha"></h1>
                                     </a>
@@ -70,7 +70,7 @@
                                         <input class="ma0" type="radio">是
                                         <input type="radio">否
                                         <form action="value">
-                                            <button type="submit" name="submit">点击上传</button>
+                                            <span type="submit" class="button" name="submit"><b id="bar"></b>点击上传</span>
                                         </form>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@ $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
     var url = '?s=mycenter/uploadfile';
-    $('#upload').fileupload({
+    $('#upload2').fileupload({
         url: url,
         dataType: 'json',
         done: function (e, data) {
