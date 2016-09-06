@@ -567,4 +567,11 @@ class MycenterAction extends HomeAction{
         }
 
     }
+
+    public function uploadfile()
+    {
+        error_reporting(E_ALL | E_STRICT);
+        import('ORG.Util.UploadHandler');
+        $upload_handler = new UploadHandler();
+    }
 }
