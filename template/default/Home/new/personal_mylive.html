@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+    <!DOCTYPE HTML>
 <html lang="zh">
 <head>
     <meta charset="utf-8">
@@ -15,31 +15,35 @@
     <include file="header" />
     <div class="contents">
         <div class="center pdt20 clearfix w1180">
-            <include file="user_center_left" />
+            <include file="personal_center_left" />
                 <div class="col_right fr">
                     <div class="right_top pd30">
                         <h3>我的直播</h3> <h4 class="fz12 fwbold">MY LIVE</h4>
                         <hr/>
                     </div>
                     <div class="account">
+                        <form action="?s=Mycenter/delall" method="post" id="form">
                         <ul class="list_title">
                             <li class=" ml12">
-                                <input type="checkbox"> 全选
-                                <button type="submit">删除</button>
+                                <input type="checkbox" id="selectAll"> 全选
+                                <button onclick="delAll();" class="del" type="button">删除</button>
                             </li>
                             <li class="ml120">活动标题</li>
                             <li class="ml120">报名人数</li>
                             <li class="a3 fr mr156">操作</li>
                         </ul>
                         <ul class="list_centen">
+                            <volist name="list_video" id="video">
                             <li>
-                                <input type="checkbox">
+                                <input type="checkbox" class="select" value="{$video.id}" name="ids[]">
                                 <div class="img">
-                                    <img src="../images/pages/tu_pian.jpg"/>
+                                    <a href="?s=video/detail/id/{$video.id}">
+                                    <img src="uploads/{$video.picurl}"/>
+                                    </a>
                                 </div>
                                 <div class="list_center ml88">
-                                    <p class="mb15">国际金融一</p>
-                                    <span>2016-8-24 10：00</span>
+                                    <p class="mb15">{$video.title}</p>
+                                    <span>{$video.addtime|date="Y-m-d H:i",###}</span>
                                 </div>
                                 <div class="list_center ml80">
                                     <span>88</span>
@@ -47,17 +51,17 @@
                                 <div class="icon fr">
                                     <h2>
                                         <i class="icon_4"></i>
-                                        <span>删除</span>
+                                        <span>直播</span>
                                     </h2>
                                     <h2 class="mlr40">
                                         <i class="icon_5"></i>
-                                        <span>分享</span>
+                                        <span>回放管理</span>
                                     </h2>
                                     <h2>
                                         <i class="icon_l"></i>
                                         <span>编辑</span>
                                     </h2>
-                                    <h2 class="mlr40">
+                                    <h2 class="mlr40" onclick="location.href='?s=Mycenter/del/id/{$video.id}'">
                                         <i class="icon_c"></i>
                                         <span>删除</span>
                                     </h2>
@@ -68,49 +72,53 @@
                                     
                                 </div>
                             </li>
-                            <li>
-                                <input type="checkbox">
-                                <div class="img">
-                                    <img src="../images/pages/tu_pian.jpg"/>
-                                </div>
-                                <div class="list_center ml88">
-                                    <p class="mb15">国际金融一</p>
-                                    <span>2016-8-24 10：00</span>
-                                </div>
-                                <div class="list_center ml80">
-                                    <span>88</span>
-                                </div>
-                                <div class="icon fr">
-                                    <h2>
-                                        <i class="icon_4"></i>
-                                        <span>删除</span>
-                                    </h2>
-                                    <h2 class="mlr40">
-                                        <i class="icon_5"></i>
-                                        <span>分享</span>
-                                    </h2>
-                                    <h2>
-                                        <i class="icon_l"></i>
-                                        <span>编辑</span>
-                                    </h2>
-                                    <h2 class="mlr40">
-                                        <i class="icon_c"></i>
-                                        <span>删除</span>
-                                    </h2>
-                                    <h2>
-                                        <i class="icon_r"></i>
-                                        <span>分享</span>
-                                    </h2>
-
-                                </div>
-                            </li>
+                            </volist>
                         </ul>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $("#selectAll").click(function(){
+        if(this.checked == true)
+        {
+            $(".select").each(function(){
+                this.checked = true;
+            });
+        }
+        else
+        {
+            $(".select").each(function(){
+                this.checked = false;
+            });
+        }
+    })
+
+    function delAll()
+    {
+        var selected = false;
+        $(".select").each(function(){
+            if(this.checked == true)
+            {
+                selected = true;
+            }
+        });
+        if(selected)
+        {
+            $("#form")[0].submit();
+            return false;
+        }
+        else
+        {
+            alert("请选择要删除的视频");
+            return false;
+        }
+    }
+
+</script>
 </body>
 </html>
 

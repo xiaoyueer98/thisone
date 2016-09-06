@@ -15,7 +15,7 @@
     <include file="header" />
     <div class="contents">
         <div class="center pdt20 clearfix w1180">
-                <include file="user_center_left" />
+            <include file="personal_center_left" />
                 <div class="col_right fr fix">
                     <div class="right_top pd30">
                         <h3>修改资料</h3> <h4 class="fz12 fwbold">MOFIFY DATA</h4>
@@ -29,19 +29,7 @@
                             </div>
                             <div class="email mb55">
                                 <span></span>
-                                <input name="email" id="email"type="text" value="{$email}" placeholder="邮箱">
-                            </div>
-                            <div class="Old_password">
-                                <span></span>
-                                <input name="olduserpwd1" type="password" placeholder="邮箱">
-                            </div>
-                            <div class="New_password">
-                                <span></span>
-                                <input name="userpwd" type="password" placeholder="邮箱">
-                            </div>
-                            <div class="Confirm_password">
-                                <span></span>
-                                <input name="reuserpwd" type="password" placeholder="邮箱">
+                                <input name="email" id="email"type="text"  placeholder="邮箱" value="{$email}">
                             </div>
                             <input type="hidden" value="{$id}" name="id">
                             <button name="submit">提交</button>

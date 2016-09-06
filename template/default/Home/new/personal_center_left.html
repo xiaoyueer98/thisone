@@ -1,0 +1,46 @@
+<ul class="nav">
+    <li>当前位置:</li>
+    <li><a href="{$webpath}">首页</a></li>
+    <li> > </li>
+    <li>个人中心</li>
+</ul>
+<div class="col mt45">
+<div class="col_left fl">
+    <div class="left_top">
+        <span class="Head_portrait">
+            <img src="{$webpath}views/images/newimages/pages/touxiang.png" alt="user">
+        </span>
+        <div class="user_information">
+            <h5 class="mb30">{$username|htmlspecialchars} <span></span></h5>
+            <h6>用户状态 <span><eq name="status" value="1">正常<else /><font color="red">锁定</font></eq></span></h6>
+            <h6>{$email|htmlspecialchars}</h6>
+            <h6>最近登录：<i>{$logtime|date='Y-m-d',###}</i></h6>
+        </div>
+    </div>
+    <div class="left_center">
+        <ul class="list">
+            <li><i class="list1"></i> <a href="?s=mycenter/mycare">我的关注</a></li>
+            <li><i class="list2"></i> <a href="?s=mycenter/personal_my/type/live">我的直播</a></li>
+            <li><i class="list3"></i> <a href="?s=mycenter/personal_my/type/vod">我的点播</a></li>
+            <li><i class="list4"></i> <a href="?s=mycenter/reset">设置资料</a></li>
+            <li><i class="list5"></i> <a href="?s=mycenter/repwd">修改密码</a></li>
+        </ul>
+
+    </div>
+    <div class="left_bottom pdb26">
+        <button onclick="javascript:location.href='?s=mycenter/createlive'"><span>+</span>创建直播</button>
+        <button onclick="javascript:location.href='?s=mycenter/createvod'"><span>+</span>创建点播</button>
+    </div>
+</div>
+<script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
+<script>
+    geturl();
+    function geturl()
+    {
+        if(location.href.indexOf("mycenter/mycare") !== -1) $(".list li a").eq(0).addClass("current");
+        else if(location.href.indexOf("personal_my/type/live") !== -1)  $(".list li a").eq(1).addClass("current");
+        else if(location.href.indexOf("personal_my/type/vod") !== -1)  $(".list li a").eq(2).addClass("current");
+        else if(location.href.indexOf("mycenter/reset") !== -1)  $(".list li a").eq(3).addClass("current");
+        else if(location.href.indexOf("mycenter/repwd") !== -1)  $(".list li a").eq(4).addClass("current");
+    }
+</script>
