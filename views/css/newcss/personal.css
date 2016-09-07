@@ -596,6 +596,12 @@ html{
     margin-left: 19px;
     display: inline-block;
     border: 1px solid #aaa;
+    position: relative;
+}
+.list_zb .db_video>div{
+    width: 103.75px;
+    height:76px;
+    float: left;
 }
 .list_zb input{
     vertical-align: middle;
@@ -615,8 +621,9 @@ html{
     height: 100%;
     margin: 0 auto;
     text-align: center;
-    position: relative;
+    position: absolute;
     display: inline-block;
+    z-index: 3;
 }
 .list_zb .db_video h1{
     width: 45px;
@@ -647,12 +654,22 @@ html{
     line-height: 30px;
     color: #fff;
 }
-.list_db .dspl .button b{
+.list_db .dspl .button span{
+    width: 175px;
+    height: 30px;
     position: absolute;
     top: 0;
     left: 0;
     display: block;
-    height:100%;
+    z-index: 2;
+}
+.list_db .dspl #bar3{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height:30px;
+    width: 0%;
     background:green;
     filter:alpha(opacity=80);  
     -moz-opacity:0.8;  

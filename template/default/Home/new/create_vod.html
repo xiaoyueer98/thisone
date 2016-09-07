@@ -71,7 +71,11 @@
                                         <input class="ma0" type="radio">是
                                         <input type="radio">否
                                         <form action="value">
-                                            <span type="submit" class="button" name="submit"><b id="bar"></b>点击上传</span>
+                                            <div class="button">
+                                                <span type="submit" class="subtext" name="submit"><b id="bar"></b>点击上传</span>
+                                                <b id="bar3"></b>
+                                            </div>
+                                            
                                         </form>
                                     </div>
                                 </div>
@@ -108,6 +112,25 @@
 <script src="{$webpath}views/js/newjs/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
 <script src="{$webpath}views/js/newjs/jquery.fileupload.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+<!-- The File Upload processing plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
 <script>
 /*jslint unparam: true */
 /*global window, $ */
@@ -115,34 +138,61 @@ $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
     var url = '?s=mycenter/uploadfile';
+    var uploadButton = $('.list_db .dspl .button')
+            .addClass('btn btn-primary')
+            .prop('disabled', true)
+            //.text('Processing...')
+            .on('click', function () {
+              //  alert(23)
+                var $this = $(this),
+                    data = $this.data();
+                    $this
+                   // .off('click')
+                    /*
+                    .on('click', function () {
+                       // $this.remove();
+                        data.abort();
+                    });*/
+                data.submit().always(function () {
+                    //$this.remove();
+                    $(".subtext").text('已上传')
+                });
+            });
     $('#upload2').fileupload({
         url: url,
         dataType: 'json',
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo('#files');
-            });
-        },
-        progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#bar').css({'width':progress + '%'});
-            //var barWidth = $('#bar').width();
+        autoUpload: false,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 999000,
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        previewMaxWidth: 103.75,
+        previewMaxHeight: 76,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        $('#bar3').css(
+            'width',
+            0
+        );
+        $(".list_db .dspl .button span").text('已选择，请上传');
+        $(".list_db .dspl .button").data(data);
 
-            if(progress >= 100){
-                $('#bar').css({'width':0});
-                $(".list_db .dspl .button").text("已上传");
-                $(".mask2").hide();
-            };
-            if(progress < 100){
-                $(".mask2").show();
-            }
-        }
+    }).on('fileuploadprogressall', function (e, data) {
+        alert(25)
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#bar3').css(
+            'width',
+            progress + '%'
+        );
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
 
 
-    $('#upload').fileupload({
+    /*$('#upload').fileupload({
         url: url,
         dataType: 'json',
         done: function (e, data) {
@@ -179,7 +229,7 @@ $(function () {
             }
         }
     }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');*/
 });
 </script>
 </body>
