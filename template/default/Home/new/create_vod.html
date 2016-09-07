@@ -12,6 +12,8 @@
 </head>
 <body>
 <div class="mask2"></div>
+<!-- 视屏服务器端url地址 -->
+<input type="hidden" id="voidUrl">
 <div class="box ma0">
     <include file="header"/>
     <div class="contents">
@@ -37,7 +39,7 @@
                             </li>
                             <li class="list_zb">
                                 <span class="span fl">海报</span>
-                                <input class="poster fl mr10" type="text">
+                                <input class="poster fl mr10" id="imgurl" type="text">
                                 <label for="">
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
@@ -143,12 +145,15 @@ $(function () {
         var $this = $(this),
             data = $this.data();
             $this
-        data.submit().always(function () {
+        data.submit().always(function (data) {
             //$this.remove();
             $('#bar3').css(
                 'width',
                 0
             );
+            //截取域名后的voidUrl
+            //var voidUrl = data.files[0].url.replace("http://localhost/","");
+            $("#voidUrl").val(data.files[0].url);
             $(".list_db .dspl .button .subtext").val('已上传');
             $(".list_db .dspl .button .subtext").attr("disabled","disabled");
             $(".mask2").hide();
@@ -169,7 +174,7 @@ $(function () {
         previewMaxHeight: 76,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
-        alert(23)
+        //alert(23)
         $('#bar3').css(
             'width',
             0
@@ -214,14 +219,19 @@ $(function () {
         var $this = $(this),
             data = $this.data();
             $this
-        data.submit().always(function () {
-            //$this.remove();
+        data.submit().always(function (data) {
+            console.log(data.files[0].url)
+            console.log(data.files[0].url);
+            //截取域名后的imgurl
+            //var imgUrl = data.files[0].url.replace("http://localhost/","");
+            $("#imgurl").val(data.files[0].url)
             $('#bar2').css(
                 'width',
                 0
             );
             $(".mask2").hide();
             $("#imtext").text('已上传')
+            $(".live .list_zb .btn_zb").attr("disabled","disabled");
         });
     });
     $('#upload').fileupload({
@@ -240,7 +250,7 @@ $(function () {
             previewCrop: true
         }).on('fileuploadadd', function (e, data) {
             console.log(data.files[0].name)
-
+                console.log(data)
                 var imgName = data.files[0].name;
                 var filename;
                 if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
@@ -259,6 +269,7 @@ $(function () {
                     $("#imtext").text(filename)
                 }
              $('.live .list_zb .btn_zb').data(data);
+             $(".live .list_zb .btn_zb").attr("disabled",false);
 
         }).on('fileuploadprogressall', function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -270,7 +281,7 @@ $(function () {
                 $(".mask2").show();
             }
         }).prop('disabled', !$.support.fileInput)
-            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
     /*$('#upload').fileupload({
         url: url,
