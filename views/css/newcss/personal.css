@@ -580,7 +580,7 @@ html{
     overflow: hidden;
     position: relative;
 }
-.col_right .live li em.imtext {
+.col_right .live li em#imtext {
     width: 100%;
     height: 100%;
     text-align: center;
@@ -592,6 +592,8 @@ html{
     position: absolute;
     top: 0;
     left: 0;
+    margin-left: 0;
+    border: none;
 }
 .col_right .live li .imtext_con b{
     position: absolute;
