@@ -475,7 +475,6 @@ html{
     width: 605px;
     height: 198px;
     margin-left: 17px;
-    border: 1px #aaaaaa solid;
 }
 .list_zb .dspl{
     padding-left: 15px;
@@ -507,7 +506,6 @@ html{
     width: 75px;
     height: 30px;
     background-color: #436eb3;
-    color: #fff;
 }
 .live .btn1 button{
     width: 80px;
@@ -554,7 +552,7 @@ html{
     opacity: 0;
     margin-left: 0;
 }
-.col_right .live li .imtext_con {
+.col_right .live li em {
     width: 109px;
     height: 28px;
     text-align: center;
@@ -567,20 +565,7 @@ html{
     overflow: hidden;
     position: relative;
 }
-.col_right .live li em {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    color: #030303;
-    line-height: 30px;
-    float: left;
-    background: #ffffff;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.col_right .live li .imtext_con b{
+.col_right .live li em b{
     position: absolute;
     left: 0;
     display: block;
@@ -669,8 +654,7 @@ html{
     line-height: 30px;
     color: #fff;
 }
-.list_db .dspl .button input{
-    background-color:#436eb3;
+.list_db .dspl .button span{
     width: 175px;
     height: 30px;
     position: absolute;
@@ -678,8 +662,6 @@ html{
     left: 0;
     display: block;
     z-index: 2;
-    margin-left: 0;
-    color: #fff;
 }
 .list_db .dspl #bar3{
     position: absolute;
@@ -692,8 +674,7 @@ html{
     filter:alpha(opacity=80);  
     -moz-opacity:0.8;  
     -khtml-opacity: 0.8;  
-    opacity: 0.8;
-    z-index: 2; 
+    opacity: 0.8; 
 }
 .list_db .dspl h2{
     margin-bottom: 7px;
