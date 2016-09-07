@@ -14,6 +14,13 @@ class MycenterAction extends HomeAction{
     private $VideoplaywhiteDB;
     private $VideopushwhiteDB;
 
+    public function _initialize(){
+        parent::_initialize();
+        $this->VideoDB =D('Admin.Video');
+        $this->UserVDB =D('Admin.Userview');
+        $this->MycenterDB  =D('Admin.mycenter');
+    }    
+
     public function checklogin(){
         $userid   = intval($_COOKIE['gx_userid']);
         $username = $_COOKIE['gx_username'];
@@ -27,6 +34,7 @@ class MycenterAction extends HomeAction{
             }
         }
         $this->assign("jumpUrl",'index.php?s=User/Login');
+        $this->assign('list_video', $vod_video);
         $this->error('登陆超时或未登陆,请重新登陆!');
     }
 
