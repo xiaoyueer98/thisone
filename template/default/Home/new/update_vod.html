@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8">
-    <title>创建点播</title>
+    <title>修改点播</title>
     <meta charset="utf-8">
     <meta http-equiv=“X-UA-Compatible” content=“IE=8″>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -20,25 +20,25 @@
             <include file="personal_center_left" />
                 <div class="col_right zb fr">
                     <div class="right_top pd30">
-                        <h3>创建点播</h3> <h4 class="fz12 fwbold">CREATE ON DEMAND</h4>
+                        <h3>修改点播</h3> <h4 class="fz12 fwbold">CREATE ON DEMAND</h4>
                         <hr/>
                     </div>
-                    <form action="?s=mycenter/insertvod" method="post" class="forms">
+                    <form action="?s=mycenter/insertvod" method="post">
                     <div class="live live_db clearfix">
                         <ul>
                             <li class="list_zb">
                                 <span class="span">名称</span>
-                                <input class="name_zb" type="text" name="title" id="name">
+                                <input class="name_zb" type="text" name="title" id="name" value="{$title}" />
                                 <span>视频分类</span>
                                 <select style="height: 30px;width:133px;" id="phone_sowing" name="type" id="type">
                                     <volist name="list_channel_video" id="video">
-                                    <option value="{$video.id}">{$video.cname}</option>
+                                        <option value="{$video.id}" >{$video.cname}</option>
                                     </volist>
                                 </select>
                             </li>
                             <li class="list_zb">
                                 <span class="span fl">海报</span>
-                                <input class="poster fl mr10" id="imgurl" type="text" name="picurl">
+                                <input class="poster fl mr10" id="imgurl" type="text" value="{$picurl}">
                                 <label for="">
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
@@ -48,7 +48,9 @@
                                     <b id="bar2"></b>  
                                 </div>
                                 
+                                <!-- <form action="value"> -->
                                     <button class="btn_zb ml12" type="button">上传</button>
+                             <!--    </form> -->
                             </li>
                             <li class="list_zb list_db">
                                 <span class="span">上传视频</span>
@@ -72,12 +74,14 @@
                                         <h2>下载权限</h2>
                                         <input class="ma0" type="radio" name="down_power" value="1">是
                                         <input type="radio" name="down_power" value="1">否
+                                        <form action="value">
                                             <div class="button">
-                                                <input type="button" class="subtext" value="点击上传" />
-                                                <input type="hidden" id="voidUrl" name="playurl">
+                                                <input type="hidden" id="voidUrl">
+                                                <input type="button" class="subtext" value="点击上传" name="submit"/>
                                                 <b id="bar3"></b>
                                             </div>
                                             
+                                        </form>
                                     </div>
                                 </div>
 
@@ -85,7 +89,7 @@
                             </li>
                             <li class="list_zb">
                                 <span>视频简介</span>
-                                <textarea name="intro" id="brief_introduction"></textarea>
+                                <textarea name="intro" id="brief_introduction">{$intro}</textarea>
                             </li>
                             <li class="btn1 fr">
                                     <button type="button" id="show">公开</button>
@@ -361,7 +365,7 @@ $(function () {
         }
         else
         {
-            $("#sub").attr("type","submit");
+            $("form")[0].submit();
         }
 
     })

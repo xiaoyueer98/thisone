@@ -227,7 +227,7 @@ class MycenterAction extends HomeAction{
         $status=$arr1['status'];
         $ctype = $_REQUEST['type'];
         file_put_contents('log.txt', "personal_my id:$uid\n", FILE_APPEND);
-        $where['uid'] = $uid;
+        $where['uid'] = $uid = 8;
         $where['ctype'] = $ctype;
 
 
@@ -237,7 +237,6 @@ class MycenterAction extends HomeAction{
         for($i=0;$i<count($list);$i++){
             $arr[$i]=$list[$i]['vid'];
         }
-        $arr = array(1577,1578,1579);
         $vod_video=M("video")->where(array('id'=>array('IN',$arr)))->select();
         $count = count($vod_video);
         file_put_contents('log.txt', "video count:$count\n", FILE_APPEND);
@@ -578,11 +577,58 @@ class MycenterAction extends HomeAction{
 
     }
 
+    /**
+     * 上传图片和视频方法
+     */
     public function uploadfile()
     {
 //        var_dump($_REQUEST);
         error_reporting(E_ALL | E_STRICT);
         import('ORG.Util.Uploadhandler');
         $upload_handler = new UploadHandler();
+    }
+    
+    //修改直播和修改点播页面
+    public function updateplayinfo(){
+        $arr = $this->checklogin();
+        $logtime=$arr['logtime'];
+        $email=$arr['email'];
+        $status=$arr['status'];
+        $vid = $_REQUEST['vid'];
+        $type = $_REQUEST['type'];
+        if(empty($vid) || empty($type))
+        {
+           $this->redirect($_SERVER['HTTP_REFERER']); 
+        }
+        $where['id'] = $vid;
+        $where['ctype'] = $type;
+        $video = M('video')->where($where)->select();
+        if(empty($video))
+        { 
+            $this->redirect($_SERVER['HTTP_REFERER']); 
+        }
+        $con['pid'] = '2';
+        $con['ctype'] = "vod";
+        $list_channel_video = M('Channel')->where($con)->select();
+        $this->assign('logtime', $logtime);
+        $this->assign('email', $email);
+        $this->assign('status', $status);
+        $this->assign($video[0]);
+        $this->assign("list_channel_video", $list_channel_video);
+        
+        if($type == "vod")
+        {
+            $this->display("new/update_vod");
+        }
+        else
+        {
+            $this->display("new/update_live");
+        }
+
+    }
+    
+    public function onlive()
+    {
+        $this->display("new/currentLive");
     }
 }

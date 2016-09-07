@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>修改直播</title>
+    <meta charset="utf-8">
+    <meta http-equiv=“X-UA-Compatible” content=“IE=8″>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
+    <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
+    <link rel="stylesheet" href="{$webpath}views/css/newcss/date.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    
+</head>
+<body>
+<div class="box ma0">
+    <include file="header" />
+    
+    <div class="contents">
+        <div class="center pdt20 clearfix w1180">
+            <include file="personal_center_left" />
+                <div class="col_right zb fr">
+                    <div class="right_top pd30">
+                        <h3>修改直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
+                        <hr/>
+                    </div>
+                    <form action="?s=mycenter/insertlive" method="post" id="mycontent">
+                    <div class="live clearfix">
+                        <ul>
+                            <li class="list_zb">
+                                <span class="span">名称</span>
+                                <input class="name_zb" type="text" name="title" id="name" value="{$title}">
+                                <span>视频分类</span>
+                                <select style="height: 30px;width:135px;" id="phone_sowing" name="type" id="type">
+                                    <volist name="list_channel_video" id="video">
+                                        <option value="{$video.id}">{$video.cname}</option>
+                                    </volist>
+                                </select>
+                            </li>
+                            <li class="list_zb">
+                                <span class="span">主持</span>
+                                <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi">
+                                <span>房间密码</span>
+                                <input class="room_password" type="text" name="room_num" id="room_num">
+                            </li>
+                            <li class="list_zb">
+                                <span class="span">时段</span>
+                                <h1 class="dspl">
+                                    <span>开始时间</span>
+                                    <input class="datepicker datepicker1" style="width: 70px;" alt="开始日期"
+                                                title="开始日期" id="start_time" value="开始日期" default_val="开始日期"
+                                                style="color:#999999;" type="text">
+                                   <!-- // <input class="start_time mr15" type="text"> -->
+                                    <span>结束时间</span>
+                                    <input class="end_time" type="text">
+                                </h1>
+                            </li>
+                            <li class="list_zb">
+                                <span class="span fl">海报</span>
+                                <input class="poster fl mr10" type="text" value="{$picurl}">
+                                <label for="">
+                                    浏览
+                                    <input type="file" value="..." class="">
+                                </label>
+                                <em>未选择文件</em>
+                                <input type="hidden" name="picurl" id="img" value="test">
+                                <button class="btn_zb ml12" type="button">上传</button>
+
+                            </li>
+                            <li class="list_zb mt20">
+                                <span>直播简介</span>
+                                <textarea class="ml20" name="intro" id="brief_introduction" cols="98" rows="20">{$intro}</textarea>
+                            </li>
+                            <li class="btn1 fr">
+                                <button type="button" id="show">公开</button>
+                                <input type="hidden" value="1" name="display" id="display">
+                                <button type="button" id="hide">隐藏</button>
+                            </li>
+                            <li class="btn2 fr" id="error">error位置</li>
+                            <li class="btn2 fr">
+                                <button type="button" id="sub">提交</button>
+                                <button type="button" id="reset">重置</button>
+                            </li>
+                        </ul>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .datepicker-days{
+        top:0!important;
+    }
+</style>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="{$webpath}views/js/newjs/jquery.ui.widget.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="{$webpath}views/js/newjs/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+<!-- The File Upload processing plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
+<script src="{$webpath}views/js/newjs/bootstrap.js"></script>
+<script src="{$webpath}views/js/newjs/date.js"></script>
+<script>
+$(document).ready(function(){
+    $("#start_time").focus(function(){
+           $(".datepicker1").datepicker({
+                   format:"yyyy-mm-dd",  //格式化时间
+                   autoclose:true,
+                   language:"cn",
+                      
+            }).datepicker("show");
+    })
+    $("#end_time").focus(function(){
+           $(".datepicker2").datepicker({
+                   format:"yyyy-mm-dd",  //格式化时间
+                   autoclose:true,
+                   language:"cn",
+                      
+            }).datepicker("show");
+     
+    })
+})
+
+    //显示隐藏的选择切换
+    $("#show").click(function(){
+        $("#display").attr("value", 1);
+        $(this).addClass("m");
+        $("#hide").removeClass("m");
+    })
+    $("#hide").click(function(){
+        $("#display").attr("value", 0);
+        $(this).addClass("m");
+        $("#show").removeClass("m");
+    })
+
+    //提交重置按钮
+    $("#sub").click(function(){
+        if($("#name").val() == "")
+        {
+            $("#error").html("名称不能为空");
+            return false;
+        }
+        else if($("#img").val() == "")
+        {
+            $("#error").html("请上传海报");
+            return false;
+        }
+        else if($("#zhuchi").val() == "")
+        {
+            $("#zhuchi").html("支持人不能为空");
+            return false;
+        }
+        else if($("#intro").val() == "")
+        {
+            $("#error").html("请填写直播简介");
+            return false;
+        }
+        else if($("#display").val() == "")
+        {
+            $("#error").html("请选择直播状态");
+            return false;
+        }
+        else
+        {
+            $("#mycontent")[0].submit();
+        }
+
+    })
+
+    //点击重置按钮
+    $("#reset").click(function(){
+        location.reload();
+    })
+
+</script>
+</body>
+</html>
+
