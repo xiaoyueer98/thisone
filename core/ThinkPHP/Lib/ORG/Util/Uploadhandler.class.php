@@ -44,10 +44,10 @@ class Uploadhandler
         $type = $_FILES['files']['type']['0'];
         $file = date("Y-m-d");
         $path =  (strpos($type, "video") === false) ? '/uploads/video/' .$file. "/" : "/var/media/";
-        if(!is_dir($path))
-        {
-            mkdir($file);
-        }
+//        if(!is_dir($path))
+//        {
+//            mkdir($file);
+//        }
         $this->response = array();
         $this->options = array(
             'script_url' => $this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
