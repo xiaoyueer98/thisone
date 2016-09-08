@@ -14,12 +14,13 @@ class MycenterAction extends HomeAction{
     private $VideoplaywhiteDB;
     private $VideopushwhiteDB;
 
-    public function _initialize(){
-        parent::_initialize();
-        $this->VideoDB =D('Admin.Video');
-        $this->UserVDB =D('Admin.Userview');
-        $this->MycenterDB  =D('Admin.mycenter');
-    }    
+
+    public function get_uid_by_email($email){
+        $UserDB = M('user');
+        $where['email'] = $email;
+        $user = $UserDB->where($where)->find();
+        return $user['id'];
+    }
 
     public function checklogin(){
         $userid   = intval($_COOKIE['gx_userid']);
@@ -453,7 +454,7 @@ class MycenterAction extends HomeAction{
         $email=$arr['email'];
         $status=$arr['status'];
         $type = $_REQUEST['type'];
-        file_put_contents('log.txt', "type:$type \n", FILE_APPEND);
+        file_put_contents('log.txt', "email:$email;type:$type \n", FILE_APPEND);
         $where['id'] = $_GET['id'];
         $con['pid'] = '2';
         $con['ctype'] = "vod";
@@ -487,6 +488,7 @@ class MycenterAction extends HomeAction{
         $this->assign('channel_id', $channel_id);
         $this->assign('subid', $subid);
         $this->assign('list_channel_video',$list_channel_video);
+        $this->assign('email', $email);
         $this->assign($array);
 
         $this->display("new/create_vod");
@@ -495,55 +497,96 @@ class MycenterAction extends HomeAction{
     public function _before_insertvod(){
         file_put_contents('log.txt', "=-=-=-=-=- _before_insert\n", FILE_APPEND);
         $_POST['level'] = $_POST['userlevel'];
-        if (strpos($_POST['picurl'],'://') > 0 && C('upload_http')) {
+//         if (strpos($_POST['picurl'],'://') > 0 && C('upload_http')) {
+//             $down = D('Down');
+//             $_POST['picurl']= $down->down_img(trim($_POST['picurl']));
+//         }
+
+        $title = $_POST['title'];
+        $type = $_POST['type'];
+        $picUrl = $_POST['picurl'];
+        $upload2 = $_POST['upload2'];
+        $converse = $_POST['converse'];
+        $down_power = $_POST['down_power'];
+        $intro = $_POST['intro'];
+        $_POST['ctype'] = "vod";
+
+        if (strpos($_POST['picurl'],'://') > 0) {
             $down = D('Down');
             $_POST['picurl']= $down->down_img(trim($_POST['picurl']));
+            $picUrl = $_POST['picurl'];
+            file_put_contents('log.txt', "ssssssssssssssss pic:$picUrl\n", FILE_APPEND);
         }
 
-        for($i=0;$i<count($_POST['playurl']);$i++)
-        {
-            if (!$_POST['playurl'][$i])
-            {
-                unset($_POST['playurl'][$i]);
-                unset($_POST['vodplay'][$i]);
-            }
-        }
-        $_POST['playurl'] = empty($_POST['playurl']) ? 0 : implode('$$$$$$', $_POST['playurl']);
-        $_POST['vodplay'] = empty($_POST['vodplay']) ? 0 : implode('$$$$$$', $_POST['vodplay']);
+        file_put_contents('log.txt', "name:$$title;type:$type;picurl:$picUrl;upload2:$upload2;converse:$converse;down_power:$down_power;intro:$intro\n", FILE_APPEND);
+
+//         for($i=0;$i<count($_POST['playurl']);$i++)
+//         {
+//             if (!$_POST['playurl'][$i])
+//             {
+//                 unset($_POST['playurl'][$i]);
+//                 unset($_POST['vodplay'][$i]);
+//             }
+//         }
+//         $_POST['playurl'] = empty($_POST['playurl']) ? 0 : implode('$$$$$$', $_POST['playurl']);
+//         $_POST['vodplay'] = empty($_POST['vodplay']) ? 0 : implode('$$$$$$', $_POST['vodplay']);
         $vodplay = $_POST['vodplay'];
 
         file_put_contents('log.txt', "=-=-=-=-=- vodplay:$vodplay\n", FILE_APPEND);
-        $_POST['cid'] = $_POST['channel_mcid'];
+        $_POST['cid'] = $type;
         $cid = $_POST['cid'];
         file_put_contents('log.txt', "=-=-=-=-=- cid:$cid\n", FILE_APPEND);
 
 
-        $_POST['stype_mcid'] = empty($_POST['stype_mcids']) ? 0 : implode(',', $_POST['stype_mcids']);
+        //   $_POST['stype_mcid'] = empty($_POST['stype_mcids']) ? 0 : implode(',', $_POST['stype_mcids']);
 
 
 
-        $this->weiRepalce();//伪原创
-        $this->replaceKey();//更新内链接替换
+        //  $this->weiRepalce();//伪原创
+        //  $this->replaceKey();//更新内链接替换
         //print_r($_POST['vodplay']);exit;
     }
     // 新增视频保存到数据库
     public function insertvod(){
-        file_put_contents('log.txt', "=-=-=-=-=- insert\n", FILE_APPEND);
-        if($this->VideoDB->create()){
-            $id = $this->VideoDB->add();
-            $data['ctype'] = "vod";
-            $data['vid'] = $id;
-            $data['uid ']= intval($_COOKIE['gx_userid']);
-            if(false==$this->MycenterDB->add($data)){
+        file_put_contents('log.txt', "=-=-=-=-=- insert vod\n", FILE_APPEND);
+        $VideoDB = M('video');
+        $data['title'] = $_POST['title'];
+        $data['cid'] = $_POST['cid'];
+        $data['intro'] = $_POST['intro'];
+        $data['ctype'] = $_POST['ctype'];
+        $data['playurl'] = $_POST['playurl'];
+
+
+
+        $data['picurl'] = $_POST['picurl'];
+
+
+
+        $id = $VideoDB->add($data);
+
+        if($id !== false){
+            $email = $_POST['email'];
+
+            $uid = $this->get_uid_by_email($email);
+            file_put_contents('log.txt', "insert void uid:$uid\n", FILE_APPEND);
+
+            $data1['ctype'] = "vod";
+            $data1['vid'] = $id;
+            $data1['uid'] = $uid;
+
+            $MycenterDB = M('mycenter');
+            if(false==$MycenterDB->add($data1)){
                 $this->error('视频添加失败!');
             }
+
             if( false!== $id){
-                $this->assign("jumpUrl",C('cms_admin').'?s=Admin/Video/Add/type/vod');
+                //$this->assign("jumpUrl",C('cms_admin').'?s=Admin/Video/Add/type/vod');
+                $this->display("new/create_vod");
             }else{
                 $this->error('视频添加失败!');
             }
         }else{
-            $this->error($this->VideoDB->getError());
+            $this->error('视频添加失败!');
         }
     }
 
@@ -587,7 +630,7 @@ class MycenterAction extends HomeAction{
         import('ORG.Util.Uploadhandler');
         $upload_handler = new UploadHandler();
     }
-    
+
     //修改直播和修改点播页面
     public function updateplayinfo(){
         $arr = $this->checklogin();
@@ -598,14 +641,14 @@ class MycenterAction extends HomeAction{
         $type = $_REQUEST['type'];
         if(empty($vid) || empty($type))
         {
-           $this->redirect($_SERVER['HTTP_REFERER']); 
+            $this->redirect($_SERVER['HTTP_REFERER']);
         }
         $where['id'] = $vid;
         $where['ctype'] = $type;
         $video = M('video')->where($where)->select();
         if(empty($video))
-        { 
-            $this->redirect($_SERVER['HTTP_REFERER']); 
+        {
+            $this->redirect($_SERVER['HTTP_REFERER']);
         }
         $con['pid'] = '2';
         $con['ctype'] = "vod";
@@ -615,7 +658,7 @@ class MycenterAction extends HomeAction{
         $this->assign('status', $status);
         $this->assign($video[0]);
         $this->assign("list_channel_video", $list_channel_video);
-        
+
         if($type == "vod")
         {
             $this->display("new/update_vod");
@@ -626,9 +669,10 @@ class MycenterAction extends HomeAction{
         }
 
     }
-    
+
     public function onlive()
     {
         $this->display("new/currentLive");
     }
+
 }

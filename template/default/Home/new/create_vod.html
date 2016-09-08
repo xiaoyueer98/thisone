@@ -24,6 +24,7 @@
                         <hr/>
                     </div>
                     <form action="?s=mycenter/insertvod" method="post" class="forms">
+                    <input type="hidden" name="email" id="email" value="{$email}"/>
                     <div class="live live_db clearfix">
                         <ul>
                             <li class="list_zb">
@@ -38,7 +39,8 @@
                             </li>
                             <li class="list_zb">
                                 <span class="span fl">海报</span>
-                                <input class="poster fl mr10" id="imgurl" type="text" name="picurl">
+                                <input class="poster fl mr10" id="imgurl" type="text">
+                                <input id="imgurlreal" type="hidden" name="picurl">
                                 <label for="">
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
@@ -63,14 +65,14 @@
                                 <div class="dspl">
                                     <div class="right_top">
                                         <h2>视频转换码率</h2>
-                                        <input class="ma0" type="radio" name="converse">流畅
+                                        <input class="ma0" type="radio" name="converse" checked="checked">流畅
                                         <input type="radio" name="converse">标清
                                         <input type="radio" name="converse">高清
 
                                     </div>
                                     <div class="right_bottom">
                                         <h2>下载权限</h2>
-                                        <input class="ma0" type="radio" name="down_power" value="1">是
+                                        <input class="ma0" type="radio" name="down_power" value="1" checked="checked">是
                                         <input type="radio" name="down_power" value="1">否
                                             <div class="button">
                                                 <input type="button" class="subtext" value="点击上传" />
@@ -221,6 +223,7 @@ $(function () {
             //截取域名后的imgurl
             //var imgUrl = data.files[0].url.replace("http://localhost/","");
             $("#imgurl").val(data.files[0].url)
+            $("#imgurlreal").val(data.files[0].url)
             $('#bar2').css(
                 'width',
                 0
@@ -320,6 +323,7 @@ $(function () {
 });
 </script>
 <script>
+    
     //显示隐藏的选择切换
     $("#show").click(function(){
         $("#display").attr("value", 1);
@@ -339,12 +343,12 @@ $(function () {
             $("#error").html("名称不能为空");
             return false;
         }
-        else if($("#img").val() == "")
+        else if($("#imgurlreal").val() == "")
         {
             $("#error").html("请上传海报");
             return false;
         }
-        else if($("#video").val() == "")
+        else if($("#voidUrl").val() == "")
         {
             $("#error").html("视频不能为空");
             return false;
@@ -352,11 +356,6 @@ $(function () {
         else if($("#intro").val() == "")
         {
             $("#error").html("请填写视频简介");
-            return false;
-        }
-        else if($("#display").val() == "")
-        {
-            $("#error").html("请选择点播状态");
             return false;
         }
         else
