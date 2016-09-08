@@ -89,12 +89,13 @@
                                 <span>视频简介</span>
                                 <textarea name="intro" id="brief_introduction"></textarea>
                             </li>
+                            <li class="btn2" id="error">error位置</li>
                             <li class="btn1 fr">
-                                    <button type="button" id="show">公开</button>
+                                    <button type="button" id="show" class="m">公开</button>
                                     <input type="hidden" value="1" name="display" id="display">
                                     <button type="button" id="hide">隐藏</button>
                             </li>
-                            <li class="btn2 fr" id="error">error位置</li>
+                            
                             <li class="btn2 fr">
                                     <button type="button" id="sub">提交</button>
                                     <button type="button" id="reset">重置</button>
@@ -336,6 +337,9 @@ $(function () {
         $("#show").removeClass("m");
     })
 
+    $(".live .btn1 button").mouseenter(function(){
+        $(this).addClass("m").siblings().removeClass("m");
+    })
     //提交重置按钮
     $("#sub").click(function(){
         if($("#name").val() == "")

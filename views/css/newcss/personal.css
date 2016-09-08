@@ -516,7 +516,8 @@ html{
     background-color: #f7f8f8;
     border: 1px solid #88abda;
 }
-.live .btn1 button:hover{
+
+.live .btn1 button.m{
     color: #fff;
     background-color: #436eb3;
 }
@@ -619,6 +620,15 @@ html{
     width: 682px;
     padding: 75px 115px 57px 90px;
     background-color: #f7f8f8;
+}
+.col_right .live_db li#error{
+    color: red;
+    width: 597px;
+    border:1px red solid;
+    line-height: 25px;
+    margin-left: 70px;
+    margin-bottom: 10px;
+    padding-left: 10px;
 }
 .list_zb .db_video{
     width: 415px;
