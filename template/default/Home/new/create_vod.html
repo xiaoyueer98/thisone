@@ -39,7 +39,7 @@
                             </li>
                             <li class="list_zb">
                                 <span class="span fl">海报</span>
-                                <input class="poster fl mr10" id="imgurl" type="text">
+                                <input class="poster fl mr10" id="imgurl" type="text" readonly>
                                 <input id="imgurlreal" type="hidden" name="picurl">
                                 <label for="">
                                     浏览
@@ -89,7 +89,7 @@
                                 <span>视频简介</span>
                                 <textarea name="intro" id="brief_introduction"></textarea>
                             </li>
-                            <li class="btn2" id="error">error位置</li>
+                            <li class="btn2" id="error" style="display: none;"></li>
                             <li class="btn1 fr">
                                     <button type="button" id="show" class="m">公开</button>
                                     <input type="hidden" value="1" name="display" id="display">
@@ -326,40 +326,41 @@ $(function () {
 <script>
     
     //显示隐藏的选择切换
-    $("#show").click(function(){
+    $("#show").mouseenter(function(){
         $("#display").attr("value", 1);
         $(this).addClass("m");
         $("#hide").removeClass("m");
     })
-    $("#hide").click(function(){
+    $("#hide").mouseenter(function(){
         $("#display").attr("value", 0);
         $(this).addClass("m");
         $("#show").removeClass("m");
     })
 
-    $(".live .btn1 button").mouseenter(function(){
-        $(this).addClass("m").siblings().removeClass("m");
-    })
     //提交重置按钮
     $("#sub").click(function(){
         if($("#name").val() == "")
         {
             $("#error").html("名称不能为空");
+            $("#error").show();
             return false;
         }
         else if($("#imgurlreal").val() == "")
         {
             $("#error").html("请上传海报");
+            $("#error").show();
             return false;
         }
         else if($("#voidUrl").val() == "")
         {
             $("#error").html("视频不能为空");
+            $("#error").show();
             return false;
         }
         else if($("#intro").val() == "")
         {
             $("#error").html("请填写视频简介");
+            $("#error").show();
             return false;
         }
         else
