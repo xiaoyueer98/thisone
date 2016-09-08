@@ -41,8 +41,9 @@ class Uploadhandler
     protected $image_objects = array();
 
     public function __construct($options = null, $initialize = true, $error_messages = null) {
+        $type = $_FILES['files']['type']['0'];
         $file = date("Y-m-d");
-        $path = '/uploads/video/' .$file. "/";
+        $path =  (strpos($type, "video") === false) ? '/uploads/video/' .$file. "/" : "/var/media/";
         if(!is_dir($path))
         {
             mkdir($file);
