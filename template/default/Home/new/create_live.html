@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv=“X-UA-Compatible” content=“IE=8″>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link href="{$webpath}views/css/newcss/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link href="{$webpath}views/css/newcss/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="{$webpath}views/css/newcss/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    
 </head>
 <body>
 <div class="box ma0">
@@ -27,7 +28,7 @@
                     <form action="?s=mycenter/insertlive" method="post" id="mycontent">
                     <div class="live clearfix">
                         <ul>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix">
                                 <span class="span">名称</span>
                                 <input class="name_zb" type="text" name="title" id="name">
                                 <span>视频分类</span>
@@ -37,17 +38,17 @@
                                     </volist>
                                 </select>
                             </li>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix">
                                 <span class="span">主持</span>
                                 <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi">
                                 <span>房间密码</span>
                                 <input class="room_password" type="text" name="room_num" id="room_num">
                             </li>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix data">
                                 <span class="span">时段</span>
-                                <h1 class="dspl">
+                                <h1 class="dspl fl">
                                     <span>开始时间</span>
-                                    <div class="controls input-append date form_datetime" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
+                                    <div class="controls input-append date form_datetime fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
                                         <input size="16" type="text" value="" readonly name="starttime">
                                         <span class="add-on"><i class="icon-remove"></i></span>
                                         <span class="add-on"><i class="icon-th"></i></span>
@@ -55,7 +56,7 @@
                                     </div>
                                    <!-- // <input class="start_time mr15" type="text"> -->
                                     <span>结束时间</span>
-                                    <div class="controls input-append date form_datetime" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
+                                    <div class="controls input-append date form_datetime lastdiv fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
                                         <input size="16" type="text" value="" readonly name="endtime">
                                         <span class="add-on"><i class="icon-remove"></i></span>
                                         <span class="add-on"><i class="icon-th"></i></span>
@@ -64,29 +65,33 @@
 
                                 </h1>
                             </li>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix">
                                 <span class="span fl">海报</span>
-                                <input class="poster fl mr10" type="text">
+                                <input style="width:300px;" id="imgurl" class="poster fl mr10" type="text">
                                 <label for="">
                                     浏览
-                                    <input type="file" value="..." class="">
+                                    <input type="file" id="upload" value="..." class="">
                                 </label>
-                                <em>未选择文件</em>
+                                <div class="imtext_con">
+                                   <em id="imtext">未选择文件</em>
+                                    <b id="bar2"></b>  
+                                </div>
                                 <input type="hidden" name="picurl" id="img" value="test">
                                 <button class="btn_zb ml12" type="button">上传</button>
 
                             </li>
-                            <li class="list_zb mt20">
-                                <span>直播简介</span>
+                            <li class="list_zb mt20 clearfix">
+                                <span class="fl">直播简介</span>
                                 <textarea class="ml20" name="intro" id="brief_introduction" cols="98" rows="20"></textarea>
                             </li>
-                            <li class="btn1 fr">
-                                <button type="button" id="show">公开</button>
+                            <li class="btn2" id="error">error位置</li>
+                            <li class="btn1 fr clearfix pding-r">
+                                <button type="button" class="m" id="show">公开</button>
                                 <input type="hidden" value="1" name="display" id="display">
                                 <button type="button" id="hide">隐藏</button>
                             </li>
-                            <li class="btn2 fr" id="error">error位置</li>
-                            <li class="btn2 fr">
+                            
+                            <li class="btn2 fr clearfix pding-r">
                                 <button type="button" id="sub">提交</button>
                                 <button type="button" id="reset">重置</button>
                             </li>
@@ -129,11 +134,91 @@
 <!-- The File Upload validation plugin -->
 <script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
 
-
-<script type="text/javascript" src="{$webpath}views/js/newjs/jquery-1.8.3.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap.min.js"></script>
 <script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script>
+/*jslint unparam: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = '?s=mycenter/uploadfile';
+
+
+
+
+    $('.live .list_zb .btn_zb').on('click', function () {
+        var $this = $(this),
+            data = $this.data();
+            $this
+        data.submit().always(function (data) {
+            console.log(data.files[0].url)
+            console.log(data.files[0].url);
+            //截取域名后的imgurl
+            //var imgUrl = data.files[0].url.replace("http://localhost/","");
+            $("#imgurl").val(data.files[0].url)
+            $("#imgurlreal").val(data.files[0].url)
+            $('#bar2').css(
+                'width',
+                0
+            );
+            $(".mask2").hide();
+            $("#imtext").text('已上传')
+            $(".live .list_zb .btn_zb").attr("disabled","disabled");
+        });
+    });
+    $('#upload').fileupload({
+            url: url,
+            dataType: 'json',
+            autoUpload: false,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxFileSize: 999000,
+            // Enable image resizing, except for Android and Opera,
+            // which actually support image resizing, but fail to
+            // send Blob objects via XHR requests:
+            disableImageResize: /Android(?!.*Chrome)|Opera/
+                .test(window.navigator.userAgent),
+            previewMaxWidth: 103.75,
+            previewMaxHeight: 76,
+            previewCrop: true
+        }).on('fileuploadadd', function (e, data) {
+            console.log(data.files[0].name)
+                console.log(data)
+                var imgName = data.files[0].name;
+                var filename;
+                if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
+                {
+                    filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
+                }
+                else
+                {
+                    filename=imgName;
+                }
+                if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
+                    alert("图片类型必须是.gif,jpeg,jpg,png格式");
+                    $('.live .list_zb .btn_zb').attr("disabled","disabled")
+                }else{
+                    $('.live .list_zb .btn_zb').attr("disabled",false)
+                    $("#imtext").text(filename)
+                }
+             $('.live .list_zb .btn_zb').data(data);
+             $(".live .list_zb .btn_zb").attr("disabled",false);
+
+        }).on('fileuploadprogressall', function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#bar2').css(
+                'width',
+                progress + '%'
+            );
+            if(progress<=100){
+                $(".mask2").show();
+            }
+        }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+
 <script>
     $('.form_datetime').datetimepicker({
         language:  'zh-CN',
@@ -157,7 +242,9 @@
         $(this).addClass("m");
         $("#show").removeClass("m");
     })
-
+    $(".live .btn1 button").mouseenter(function(){
+        $(this).addClass("m").siblings().removeClass("m");
+    })
     //提交重置按钮
     $("#sub").click(function(){
         if($("#name").val() == "")
@@ -196,7 +283,6 @@
     $("#reset").click(function(){
         location.reload();
     })
-
 </script>
 </body>
 </html>

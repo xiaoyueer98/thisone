@@ -460,28 +460,54 @@ html{
     display: inline-block;
     line-height: 30px;
     text-align-last: justify;
+    margin-left: 0;
 }
 .live .list_zb input{
     border:1px #aaaaaa solid;
+    border-radius:1px;
+}
+.live .list_zb select{
+    border-radius:1px;
 }
 .live .list_zb{
     margin-bottom: 10px;
 }
 .live .host_zb{
-    width: 329px;
-    margin-right: 20px;
+    width: 316px;
+    margin-right: 19px;
 }
 .live .list_zb textarea{
-    width: 605px;
+    width: 597px;
     height: 198px;
-    margin-left: 17px;
+    margin-left: 23px;
     border: 1px #aaaaaa solid;
+    border-radius: 0px;
+}
+.live .data input{
+    width:169px;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+.live .data h1>div{
+    margin-right: 10px;
+}
+.pding-r{
+    padding-right: 4px;
+}
+.live .data h1>div.lastdiv{
+    margin-right: 0;
+}
+.live .data h1>span{
+    float: left;
+    line-height: 31px;
 }
 .list_zb .dspl{
     padding-left: 15px;
+    font-size: 12px;
 }
 .list_zb .dspl span{
     font-weight: normal;
+    background: #fff;
 }
 .live .room_password{
     width: 177px;
@@ -542,6 +568,15 @@ html{
     float: left;
     position: relative;
     background: #436eb3;
+}
+.col_right .live #error{
+    width: 600px;
+    margin-left: 70px;
+    border: 1px red solid;
+    color: red;
+    line-height: 25px;
+    margin-bottom: 10px;
+    padding-left: 10px;
 }
 .col_right .live li label input {
     position: absolute;
