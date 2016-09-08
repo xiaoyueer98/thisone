@@ -43,18 +43,15 @@ class Uploadhandler
     public function __construct($options = null, $initialize = true, $error_messages = null) {
         $type = $_FILES['files']['type']['0'];
         $file = date("Y-m-d");
-        $path =  (strpos($type, "video") === false) ? '/uploads/video/' .$file. "/" : "/var/media/";
-//        if(!is_dir($path))
-//        {
-//            mkdir($file);
-//        }
+        $uploadDir =  (strpos($type, "video") === false) ? dirname($this->get_server_var('SCRIPT_FILENAME')). '/uploads/video/' .$file. "/" : "/var/media/";
+        $uploadUrl =  (strpos($type, "video") === false) ? $this->get_full_url(). '/uploads/video/' .$file. "/" : "/var/media/";
         $this->response = array();
         $this->options = array(
             'script_url' => $this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
 //            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/',
 //            'upload_url' => $this->get_full_url().'/files/',
-            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).$path,
-            'upload_url' => $this->get_full_url().$path,
+            'upload_dir' => $uploadDir,
+            'upload_url' => $uploadUrl,
             'input_stream' => 'php://input',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
