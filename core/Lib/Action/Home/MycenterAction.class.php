@@ -401,6 +401,7 @@ class MycenterAction extends HomeAction{
     }
 
     public function insertlive(){
+
         file_put_contents('log.txt', "insertlive....... \n", FILE_APPEND);
         if($this->VideoDB->create()){
             $id = $this->VideoDB->add();
@@ -672,6 +673,27 @@ class MycenterAction extends HomeAction{
 
     public function onlive()
     {
+        $arr = $this->checklogin();
+//        echo "<pre>";var_dump($arr);echo "</pre>";
+        $username = $arr['username'];
+        $userpwd = $arr['userpwd'];
+        $vid = $_REQUEST['vid'];
+        $type = "live";
+        if(empty($vid) || empty($type))
+        {
+            $this->redirect($_SERVER['HTTP_REFERER']);
+        }
+        $where['id'] = $vid;
+        $where['ctype'] = $type;
+        $video = M('video')->where($where)->select();
+        if(empty($video))
+        {
+            $this->redirect($_SERVER['HTTP_REFERER']);
+        }
+        $this->assign('username', $username);
+        $this->assign('userpwd', $userpwd);
+        $this->assign($video[0]);
+
         $this->display("new/currentLive");
     }
 
