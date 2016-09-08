@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv=“X-UA-Compatible” content=“IE=8″>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link href="{$webpath}views/css/newcss/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
-    <link rel="stylesheet" href="{$webpath}views/css/newcss/date.min.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="{$webpath}views/css/newcss/bootstrap.min.css" rel="stylesheet" media="screen">
     
 </head>
 <body>
@@ -21,63 +22,76 @@
             <include file="personal_center_left" />
                 <div class="col_right zb fr">
                     <div class="right_top pd30">
-                        <h3>修改直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
+                        <h3>创建直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
                         <hr/>
                     </div>
                     <form action="?s=mycenter/insertlive" method="post" id="mycontent">
                     <div class="live clearfix">
                         <ul>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix">
                                 <span class="span">名称</span>
                                 <input class="name_zb" type="text" name="title" id="name" value="{$title}">
                                 <span>视频分类</span>
                                 <select style="height: 30px;width:135px;" id="phone_sowing" name="type" id="type">
                                     <volist name="list_channel_video" id="video">
-                                        <option value="{$video.id}">{$video.cname}</option>
+                                        <option value="{$video.id}" {if condition='$video.id eq $cid'}" selected='selected' {/if}>{$video.cname}</option>
                                     </volist>
                                 </select>
                             </li>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix">
                                 <span class="span">主持</span>
                                 <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi">
                                 <span>房间密码</span>
-                                <input class="room_password" type="text" name="room_num" id="room_num">
+                                <input class="room_password" type="password" name="room_num" id="room_num">
                             </li>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix data">
                                 <span class="span">时段</span>
-                                <h1 class="dspl">
+                                <h1 class="dspl fl">
                                     <span>开始时间</span>
-                                    <input class="datepicker datepicker1" style="width: 70px;" alt="开始日期"
-                                                title="开始日期" id="start_time" value="开始日期" default_val="开始日期"
-                                                style="color:#999999;" type="text">
+                                    <div class="controls input-append date form_datetime fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                        <input size="16" type="text" value='{$starttime|date="Y-m-d H:i",###}'  readonly>
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <input type="hidden" id="start_time" value='{$starttime|date="Y-m-d H:i",###}' name="starttime"/><br/>
+                                    </div>
                                    <!-- // <input class="start_time mr15" type="text"> -->
                                     <span>结束时间</span>
-                                    <input class="end_time" type="text">
+                                    <div class="controls input-append date form_datetime lastdiv fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                        <input size="16" type="text" value='{$starttime|date="Y-m-d H:i",###}' readonly >
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <input type="hidden" id="end_time" value='{$starttime|date="Y-m-d H:i",###}' name="endtime"/><br/>
+                                    </div>
+
                                 </h1>
                             </li>
-                            <li class="list_zb">
+                            <li class="list_zb clearfix">
                                 <span class="span fl">海报</span>
-                                <input class="poster fl mr10" type="text" value="{$picurl}">
+                                <input style="width:300px;" id="imgurl" class="poster fl mr10" type="text" value="{$picurl}">
+                                <input style="width:300px;" id="imgurlreal" class="poster fl mr10" type="hidden" value="{$picurl}" name="picurl">
                                 <label for="">
                                     浏览
-                                    <input type="file" value="..." class="">
+                                    <input type="file" id="upload" value="..." class="">
                                 </label>
-                                <em>未选择文件</em>
-                                <input type="hidden" name="picurl" id="img" value="test">
+                                <div class="imtext_con">
+                                   <em id="imtext">未选择文件</em>
+                                    <b id="bar2"></b>  
+                                </div>
                                 <button class="btn_zb ml12" type="button">上传</button>
 
                             </li>
-                            <li class="list_zb mt20">
-                                <span>直播简介</span>
+                            <li class="list_zb mt20 clearfix">
+                                <span class="fl">直播简介</span>
                                 <textarea class="ml20" name="intro" id="brief_introduction" cols="98" rows="20">{$intro}</textarea>
                             </li>
-                            <li class="btn1 fr">
-                                <button type="button" id="show">公开</button>
+                            <li class="btn2" id="error" style="display: none;">error位置</li>
+                            <li class="btn1 fr clearfix pding-r">
+                                <button type="button" class="m" id="show">公开</button>
                                 <input type="hidden" value="1" name="display" id="display">
                                 <button type="button" id="hide">隐藏</button>
                             </li>
-                            <li class="btn2 fr" id="error">error位置</li>
-                            <li class="btn2 fr">
+                            
+                            <li class="btn2 fr clearfix pding-r">
                                 <button type="button" id="sub">提交</button>
                                 <button type="button" id="reset">重置</button>
                             </li>
@@ -119,71 +133,162 @@
 <script src="{$webpath}views/js/newjs/jquery.fileupload-video.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
-<script src="{$webpath}views/js/newjs/bootstrap.js"></script>
-<script src="{$webpath}views/js/newjs/date.js"></script>
+
+<script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap.min.js"></script>
+<script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script>
-$(document).ready(function(){
-    $("#start_time").focus(function(){
-           $(".datepicker1").datepicker({
-                   format:"yyyy-mm-dd",  //格式化时间
-                   autoclose:true,
-                   language:"cn",
-                      
-            }).datepicker("show");
-    })
-    $("#end_time").focus(function(){
-           $(".datepicker2").datepicker({
-                   format:"yyyy-mm-dd",  //格式化时间
-                   autoclose:true,
-                   language:"cn",
-                      
-            }).datepicker("show");
-     
-    })
-})
+/*jslint unparam: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = '?s=mycenter/uploadfile';
+
+    $('.live .list_zb .btn_zb').on('click', function () {
+        var $this = $(this),
+            data = $this.data();
+            $this
+        data.submit().always(function (data) {
+            console.log(data.files[0].url)
+            console.log(data.files[0].url);
+            //截取域名后的imgurl
+            //var imgUrl = data.files[0].url.replace("http://localhost/","");
+            $("#imgurl").val(data.files[0].url)
+            $("#imgurlreal").val(data.files[0].url)
+            $('#bar2').css(
+                'width',
+                0
+            );
+            $(".mask2").hide();
+            $("#imtext").text('已上传')
+            $(".live .list_zb .btn_zb").attr("disabled","disabled");
+        });
+    });
+    $('#upload').fileupload({
+            url: url,
+            dataType: 'json',
+            autoUpload: false,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxFileSize: 999000,
+            // Enable image resizing, except for Android and Opera,
+            // which actually support image resizing, but fail to
+            // send Blob objects via XHR requests:
+            disableImageResize: /Android(?!.*Chrome)|Opera/
+                .test(window.navigator.userAgent),
+            previewMaxWidth: 103.75,
+            previewMaxHeight: 76,
+            previewCrop: true
+        }).on('fileuploadadd', function (e, data) {
+            console.log(data.files[0].name)
+                console.log(data)
+                var imgName = data.files[0].name;
+                var filename;
+                if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
+                {
+                    filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
+                }
+                else
+                {
+                    filename=imgName;
+                }
+                if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
+                    alert("图片类型必须是.gif,jpeg,jpg,png格式");
+                    $('.live .list_zb .btn_zb').attr("disabled","disabled")
+                }else{
+                    $('.live .list_zb .btn_zb').attr("disabled",false)
+                    $("#imtext").text(filename)
+                }
+             $('.live .list_zb .btn_zb').data(data);
+             $(".live .list_zb .btn_zb").attr("disabled",false);
+
+        }).on('fileuploadprogressall', function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#bar2').css(
+                'width',
+                progress + '%'
+            );
+            if(progress<=100){
+                $(".mask2").show();
+            }
+        }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+
+<script>
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
 
     //显示隐藏的选择切换
-    $("#show").click(function(){
+    $("#show").mouseenter(function(){
         $("#display").attr("value", 1);
         $(this).addClass("m");
         $("#hide").removeClass("m");
     })
-    $("#hide").click(function(){
+    $("#hide").mouseenter(function(){
         $("#display").attr("value", 0);
         $(this).addClass("m");
         $("#show").removeClass("m");
     })
-
+//    $(".live .btn1 button").mouseenter(function(){
+//        $(this).addClass("m").siblings().removeClass("m");
+//    })
     //提交重置按钮
     $("#sub").click(function(){
         if($("#name").val() == "")
         {
             $("#error").html("名称不能为空");
-            return false;
-        }
-        else if($("#img").val() == "")
-        {
-            $("#error").html("请上传海报");
+            $("#error").show();
             return false;
         }
         else if($("#zhuchi").val() == "")
         {
-            $("#zhuchi").html("支持人不能为空");
+            $("#error").html("主持不能为空");
+            $("#error").show();
             return false;
         }
-        else if($("#intro").val() == "")
+        else if($("#room_num").val() == "")
         {
-            $("#error").html("请填写直播简介");
+            $("#error").html("房间密码不能为空");
+            $("#error").show();
             return false;
         }
-        else if($("#display").val() == "")
+        else if($("#start_time").val() == "")
         {
-            $("#error").html("请选择直播状态");
+            $("#error").html("请选择开始时间");
+            $("#error").show();
+            return false;
+        }
+        else if($("#end_time").val() == "")
+        {
+            $("#error").html("请选择结束时间");
+            $("#error").show();
+            return false;
+        }
+        else if($("#imgurlreal").val() == "")
+        {
+            $("#error").html("请上传海报");
+            $("#error").show();
+            return false;
+        }
+        else if($("#brief_introduction").val() == "")
+        {
+            $("#error").html("请填写视频简介");
+            $("#error").show();
             return false;
         }
         else
         {
-            $("#mycontent")[0].submit();
+            $("#sub").attr("type","submit");
         }
 
     })
@@ -192,7 +297,6 @@ $(document).ready(function(){
     $("#reset").click(function(){
         location.reload();
     })
-
 </script>
 </body>
 </html>
