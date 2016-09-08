@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
-    <link rel="stylesheet" href="{$webpath}views/css/newcss/date.min.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    
+    <link href="{$webpath}views/css/newcss/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{$webpath}views/css/newcss/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <div class="box ma0">
@@ -47,12 +47,21 @@
                                 <span class="span">时段</span>
                                 <h1 class="dspl">
                                     <span>开始时间</span>
-                                    <input class="datepicker datepicker1" style="width: 70px;" alt="开始日期"
-                                                title="开始日期" id="start_time" value="开始日期" default_val="开始日期"
-                                                style="color:#999999;" type="text">
+                                    <div class="controls input-append date form_datetime" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
+                                        <input size="16" type="text" value="" readonly name="starttime">
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <input type="hidden" id="start_time" value="" /><br/>
+                                    </div>
                                    <!-- // <input class="start_time mr15" type="text"> -->
                                     <span>结束时间</span>
-                                    <input class="end_time" type="text">
+                                    <div class="controls input-append date form_datetime" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
+                                        <input size="16" type="text" value="" readonly name="endtime">
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <input type="hidden" id="endtime" value="" /><br/>
+                                    </div>
+
                                 </h1>
                             </li>
                             <li class="list_zb">
@@ -119,28 +128,23 @@
 <script src="{$webpath}views/js/newjs/jquery.fileupload-video.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
-<script src="{$webpath}views/js/newjs/bootstrap.js"></script>
-<script src="{$webpath}views/js/newjs/date.js"></script>
+
+
+<script type="text/javascript" src="{$webpath}views/js/newjs/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap.min.js"></script>
+<script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{$webpath}views/js/newjs/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script>
-$(document).ready(function(){
-    $("#start_time").focus(function(){
-           $(".datepicker1").datepicker({
-                   format:"yyyy-mm-dd",  //格式化时间
-                   autoclose:true,
-                   language:"cn",
-                      
-            }).datepicker("show");
-    })
-    $("#end_time").focus(function(){
-           $(".datepicker2").datepicker({
-                   format:"yyyy-mm-dd",  //格式化时间
-                   autoclose:true,
-                   language:"cn",
-                      
-            }).datepicker("show");
-     
-    })
-})
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
 
     //显示隐藏的选择切换
     $("#show").click(function(){
