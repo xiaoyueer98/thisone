@@ -32,13 +32,14 @@
                                 <span>视频分类</span>
                                 <select style="height: 30px;width:133px;" id="phone_sowing" name="type" id="type">
                                     <volist name="list_channel_video" id="video">
-                                        <option value="{$video.id}" >{$video.cname}</option>
+                                        <option value="{$video.id}" {if condition='$video.id eq $cid'}" selected='selected' {/if}>{$video.cname}</option>
                                     </volist>
                                 </select>
                             </li>
                             <li class="list_zb">
                                 <span class="span fl">海报</span>
                                 <input class="poster fl mr10" id="imgurl" type="text" value="{$picurl}">
+                                <input class="poster fl mr10" id="imgurlreal" type="hidden" value="{$picurl}">
                                 <label for="">
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
@@ -48,9 +49,7 @@
                                     <b id="bar2"></b>  
                                 </div>
                                 
-                                <!-- <form action="value"> -->
-                                    <button class="btn_zb ml12" type="button">上传</button>
-                             <!--    </form> -->
+                                <button class="btn_zb ml12" type="button">上传</button>
                             </li>
                             <li class="list_zb list_db">
                                 <span class="span">上传视频</span>
@@ -63,25 +62,22 @@
                                     </a>
                                 </div>
                                 <div class="dspl">
-                                    <div class="right_top">
+                                    <div class="right_top converse">
                                         <h2>视频转换码率</h2>
-                                        <input class="ma0" type="radio" name="converse">流畅
-                                        <input type="radio" name="converse">标清
-                                        <input type="radio" name="converse">高清
-
+                                        <input class="ma0" type="radio" name="converse" value="1">流畅
+                                        <input type="radio" name="converse" value="2">标清
+                                        <input type="radio" name="converse" value="3">高清
                                     </div>
-                                    <div class="right_bottom">
+                                    <div class="right_bottom down_power">
                                         <h2>下载权限</h2>
                                         <input class="ma0" type="radio" name="down_power" value="1">是
-                                        <input type="radio" name="down_power" value="1">否
-                                        <form action="value">
-                                            <div class="button">
-                                                <input type="hidden" id="voidUrl">
-                                                <input type="button" class="subtext" value="点击上传" name="submit"/>
-                                                <b id="bar3"></b>
-                                            </div>
+                                        <input type="radio" name="down_power" value="0">否
+                                        <div class="button">
+                                            <input type="hidden" id="voidUrl" value="{$playurl}">
+                                            <input type="button" class="subtext" value="点击上传" name="button"/>
+                                            <b id="bar3"></b>
+                                        </div>
                                             
-                                        </form>
                                     </div>
                                 </div>
 
@@ -89,14 +85,14 @@
                             </li>
                             <li class="list_zb">
                                 <span>视频简介</span>
-                                <textarea name="intro" id="brief_introduction">{$intro}</textarea>
+                                <textarea name="intro" id="brief_introduction" >{$intro}</textarea>
                             </li>
                             <li class="btn1 fr">
                                     <button type="button" id="show">公开</button>
                                     <input type="hidden" value="1" name="display" id="display">
                                     <button type="button" id="hide">隐藏</button>
                             </li>
-                            <li class="btn2 fr" id="error">error位置</li>
+                            <li class="btn2 fr" id="error" style="display: none;">error位置</li>
                             <li class="btn2 fr">
                                     <button type="button" id="sub">提交</button>
                                     <button type="button" id="reset">重置</button>
@@ -134,107 +130,33 @@
 <script src="{$webpath}views/js/newjs/jquery.fileupload-video.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
+
 <script>
-/*jslint unparam: true */
-/*global window, $ */
-$(function () {
-    'use strict';
-    // Change this to the location of your server-side upload handler:
-    var url = '?s=mycenter/uploadfile';
-    $('.list_db .dspl .button .subtext').on('click', function () {
-        var $this = $(this),
-            data = $this.data();
+    /*jslint unparam: true */
+    /*global window, $ */
+    $(function () {
+        'use strict';
+        // Change this to the location of your server-side upload handler:
+        var url = '?s=mycenter/uploadfile';
+        $('.list_db .dspl .button .subtext').on('click', function () {
+            var $this = $(this),
+                    data = $this.data();
             $this
-        data.submit().always(function (data) {
-            //$this.remove();
-            $('#bar3').css(
-                'width',
-                0
-            );
-            //截取域名后的voidUrl
-            //var voidUrl = data.files[0].url.replace("http://localhost/","");
-            $("#voidUrl").val(data.files[0].url);
-            $(".list_db .dspl .button .subtext").val('已上传');
-            $(".list_db .dspl .button .subtext").attr("disabled","disabled");
-            $(".mask2").hide();
+            data.submit().always(function (data) {
+                //$this.remove();
+                $('#bar3').css(
+                        'width',
+                        0
+                );
+                //截取域名后的voidUrl
+                //var voidUrl = data.files[0].url.replace("http://localhost/","");
+                $("#voidUrl").val(data.files[0].url);
+                $(".list_db .dspl .button .subtext").val('已上传');
+                $(".list_db .dspl .button .subtext").attr("disabled","disabled");
+                $(".mask2").hide();
+            });
         });
-    });
-    $('#upload2').fileupload({
-        url: url,
-        dataType: 'json',
-        autoUpload: false,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-        maxFileSize: 999000,
-        // Enable image resizing, except for Android and Opera,
-        // which actually support image resizing, but fail to
-        // send Blob objects via XHR requests:
-        disableImageResize: /Android(?!.*Chrome)|Opera/
-            .test(window.navigator.userAgent),
-        previewMaxWidth: 103.75,
-        previewMaxHeight: 76,
-        previewCrop: true
-    }).on('fileuploadadd', function (e, data) {
-        //alert(23)
-        $('#bar3').css(
-            'width',
-            0
-        );
-        console.log(data)
-        $(".list_db .dspl .button .subtext").attr("disabled",false);
-        $(".list_db .dspl .button .subtext").val('已选择，请上传');
-        $(".list_db .dspl .button .subtext").data(data);
-
-    }).on('fileuploadprogressall', function (e, data) {
-       // alert(25)
-        var progress = parseInt(data.loaded / data.total * 100, 10);
-        if(progress<=100){
-            $(".mask2").show();
-        }
-        $('#bar3').css(
-            'width',
-            progress + '%'
-        );
-    }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $('.live .list_zb .btn_zb').on('click', function () {
-        var $this = $(this),
-            data = $this.data();
-            $this
-        data.submit().always(function (data) {
-            console.log(data.files[0].url)
-            console.log(data.files[0].url);
-            //截取域名后的imgurl
-            //var imgUrl = data.files[0].url.replace("http://localhost/","");
-            $("#imgurl").val(data.files[0].url)
-            $('#bar2').css(
-                'width',
-                0
-            );
-            $(".mask2").hide();
-            $("#imtext").text('已上传')
-            $(".live .list_zb .btn_zb").attr("disabled","disabled");
-        });
-    });
-    $('#upload').fileupload({
+        $('#upload2').fileupload({
             url: url,
             dataType: 'json',
             autoUpload: false,
@@ -244,93 +166,116 @@ $(function () {
             // which actually support image resizing, but fail to
             // send Blob objects via XHR requests:
             disableImageResize: /Android(?!.*Chrome)|Opera/
-                .test(window.navigator.userAgent),
+                    .test(window.navigator.userAgent),
+            previewMaxWidth: 103.75,
+            previewMaxHeight: 76,
+            previewCrop: true
+        }).on('fileuploadadd', function (e, data) {
+            //alert(23)
+            $('#bar3').css(
+                    'width',
+                    0
+            );
+            console.log(data)
+            $(".list_db .dspl .button .subtext").attr("disabled",false);
+            $(".list_db .dspl .button .subtext").val('已选择，请上传');
+            $(".list_db .dspl .button .subtext").data(data);
+
+        }).on('fileuploadprogressall', function (e, data) {
+            // alert(25)
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            if(progress<=100){
+                $(".mask2").show();
+            }
+            $('#bar3').css(
+                    'width',
+                    progress + '%'
+            );
+        }).prop('disabled', !$.support.fileInput)
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+
+        $('.live .list_zb .btn_zb').on('click', function () {
+            var $this = $(this),
+                    data = $this.data();
+            $this
+            data.submit().always(function (data) {
+                console.log(data.files[0].url)
+                console.log(data.files[0].url);
+                //截取域名后的imgurl
+                //var imgUrl = data.files[0].url.replace("http://localhost/","");
+                $("#imgurl").val(data.files[0].url)
+                $("#imgurlreal").val(data.files[0].url)
+                $('#bar2').css(
+                        'width',
+                        0
+                );
+                $(".mask2").hide();
+                $("#imtext").text('已上传')
+                $(".live .list_zb .btn_zb").attr("disabled","disabled");
+            });
+        });
+        $('#upload').fileupload({
+            url: url,
+            dataType: 'json',
+            autoUpload: false,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxFileSize: 999000,
+            // Enable image resizing, except for Android and Opera,
+            // which actually support image resizing, but fail to
+            // send Blob objects via XHR requests:
+            disableImageResize: /Android(?!.*Chrome)|Opera/
+                    .test(window.navigator.userAgent),
             previewMaxWidth: 103.75,
             previewMaxHeight: 76,
             previewCrop: true
         }).on('fileuploadadd', function (e, data) {
             console.log(data.files[0].name)
-                console.log(data)
-                var imgName = data.files[0].name;
-                var filename;
-                if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
-                {
-                    filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
-                }
-                else
-                {
-                    filename=imgName;
-                }
-                if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
-                    alert("图片类型必须是.gif,jpeg,jpg,png格式");
-                    $('.live .list_zb .btn_zb').attr("disabled","disabled")
-                }else{
-                    $('.live .list_zb .btn_zb').attr("disabled",false)
-                    $("#imtext").text(filename)
-                }
-             $('.live .list_zb .btn_zb').data(data);
-             $(".live .list_zb .btn_zb").attr("disabled",false);
+            console.log(data)
+            var imgName = data.files[0].name;
+            var filename;
+            if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
+            {
+                filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
+            }
+            else
+            {
+                filename=imgName;
+            }
+            if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
+                alert("图片类型必须是.gif,jpeg,jpg,png格式");
+                $('.live .list_zb .btn_zb').attr("disabled","disabled")
+            }else{
+                $('.live .list_zb .btn_zb').attr("disabled",false)
+                $("#imtext").text(filename)
+            }
+            $('.live .list_zb .btn_zb').data(data);
+            $(".live .list_zb .btn_zb").attr("disabled",false);
 
         }).on('fileuploadprogressall', function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
             $('#bar2').css(
-                'width',
-                progress + '%'
+                    'width',
+                    progress + '%'
             );
             if(progress<=100){
                 $(".mask2").show();
             }
         }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
-    /*$('#upload').fileupload({
-        url: url,
-        dataType: 'json',
-        done: function (e, data) {
-            var _thsi = this;
-            $.each(data.result.files, function (index, file) {
-                var imgName = file.name;
-                var filename;
-                if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
-                {
-                    filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
-                }
-                else
-                {
-                    filename=imgName;
-                }
-                if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
-                    alert("图片类型必须是.gif,jpeg,jpg,png格式");
-                    
-                }else{
-                    $("#imtext").text(filename)
-                }
-            });
-        },
-        progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#bar2').css({'width':progress + '%'});
-            if(progress >= 100){
-                $('#bar2').css({'width':0});
-                $(".live .list_zb .btn_zb").text("已上传");
-                $(".mask2").hide();
-            };
-            if(progress < 100){
-                $(".mask2").show();
-            }
-        }
-    }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');*/
-});
+
+    });
 </script>
 <script>
+
     //显示隐藏的选择切换
-    $("#show").click(function(){
+    $("#show").mouseenter(function(){
         $("#display").attr("value", 1);
         $(this).addClass("m");
         $("#hide").removeClass("m");
     })
-    $("#hide").click(function(){
+    $("#hide").mouseenter(function(){
         $("#display").attr("value", 0);
         $(this).addClass("m");
         $("#show").removeClass("m");
@@ -341,31 +286,42 @@ $(function () {
         if($("#name").val() == "")
         {
             $("#error").html("名称不能为空");
+            $("#error").show();
             return false;
         }
-        else if($("#img").val() == "")
+        else if($("#imgurlreal").val() == "")
         {
             $("#error").html("请上传海报");
+            $("#error").show();
             return false;
         }
-        else if($("#video").val() == "")
+        else if($("#voidUrl").val() == "")
         {
             $("#error").html("视频不能为空");
+            $("#error").show();
             return false;
         }
-        else if($("#intro").val() == "")
+        else if($('.converse input:radio:checked').val() == undefined)
+        {
+            $("#error").html("请选择视频转换码率");
+            $("#error").show();
+            return false;
+        }
+        else if($('.down_power input:radio:checked').val() == undefined)
+        {
+            $("#error").html("请选择下载权限");
+            $("#error").show();
+            return false;
+        }
+        else if($("#brief_introduction").val() == "")
         {
             $("#error").html("请填写视频简介");
-            return false;
-        }
-        else if($("#display").val() == "")
-        {
-            $("#error").html("请选择点播状态");
+            $("#error").show();
             return false;
         }
         else
         {
-            $("form")[0].submit();
+            $("#sub").attr("type","submit");
         }
 
     })

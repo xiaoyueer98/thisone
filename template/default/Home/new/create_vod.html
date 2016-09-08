@@ -65,9 +65,9 @@
                                 <div class="dspl">
                                     <div class="right_top">
                                         <h2>视频转换码率</h2>
-                                        <input class="ma0" type="radio" name="converse" checked="checked">流畅
-                                        <input type="radio" name="converse">标清
-                                        <input type="radio" name="converse">高清
+                                        <input class="ma0" type="radio" name="converse" value="1" checked="checked">流畅
+                                        <input type="radio" name="converse" value="2">标清
+                                        <input type="radio" name="converse" value="3">高清
 
                                     </div>
                                     <div class="right_bottom">
@@ -197,23 +197,6 @@ $(function () {
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $('.live .list_zb .btn_zb').on('click', function () {
         var $this = $(this),
             data = $this.data();
@@ -283,44 +266,7 @@ $(function () {
         }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
-    /*$('#upload').fileupload({
-        url: url,
-        dataType: 'json',
-        done: function (e, data) {
-            var _thsi = this;
-            $.each(data.result.files, function (index, file) {
-                var imgName = file.name;
-                var filename;
-                if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
-                {
-                    filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
-                }
-                else
-                {
-                    filename=imgName;
-                }
-                if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
-                    alert("图片类型必须是.gif,jpeg,jpg,png格式");
-                    
-                }else{
-                    $("#imtext").text(filename)
-                }
-            });
-        },
-        progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#bar2').css({'width':progress + '%'});
-            if(progress >= 100){
-                $('#bar2').css({'width':0});
-                $(".live .list_zb .btn_zb").text("已上传");
-                $(".mask2").hide();
-            };
-            if(progress < 100){
-                $(".mask2").show();
-            }
-        }
-    }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');*/
+
 });
 </script>
 <script>
@@ -357,7 +303,7 @@ $(function () {
             $("#error").show();
             return false;
         }
-        else if($("#intro").val() == "")
+        else if($("#brief_introduction").val() == "")
         {
             $("#error").html("请填写视频简介");
             $("#error").show();
