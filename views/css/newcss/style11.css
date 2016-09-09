@@ -18,7 +18,6 @@
 	width: 255px;
 	height: 36px;
 	line-height: 36px;
-	padding:0;
 }
 .search span{
 	display: block;
@@ -790,12 +789,13 @@ a:hover{
 	height: 650px;
 }
 .video_comment{
-	height: 97%;
-	padding:10px 10px;
+	width: 247px;
+	height: 650px;
 	background:#1d2023;
 	position: relative;
 }
 .video_comment h5{
+	width: 236px;
 	height:34px;
 	line-height: 34px;
 	text-align: center;
@@ -808,7 +808,6 @@ a:hover{
 }
 .comment_con{
 	padding-bottom: 78px;
-	margin:0 auto;
 }
 .comment_con span{
 	display: block;
@@ -819,31 +818,23 @@ a:hover{
 	color: #ffffff;
 	line-height: 25px;
 }
-.video_r{
-	width: 247px;
-    height: 650px;
-    background: #1d2023;
-    position: relative;
-}
 .video_comment .comment_text{
-	width: 98%;
+	width: 242px;
+	height: 78px;
 	position: absolute;
 	bottom: 2px;
 	left: 50%;
-	margin-left:-49%; 
-	display: -webkit-box;
-	display: -moz-box;
-	display: -o-box;
-	display: -ms-box;
+	margin-left:-121px; 
 }
 .video_comment .comment_text textarea{
 	display: block;
 	border:none;
 	border:0;
-	background:#d9d9d9 url(../../images/newimages/icon003.png) no-repeat 99% 5px;
-	-webkit-box-flex:1;
+	background:#d9d9d9 url(../../images/newimages/icon003.png) no-repeat 160px 5px;
+	width: 144px;
 	height: 68px;
 	padding:5px 30px 5px 10px;
+	float: left;
 	outline: medium;
 	resize: none;
 }
@@ -855,7 +846,6 @@ a:hover{
 	background:#00a0e9;
 	font-size: 14px;
 	font-weight: bold;
-	border:none;
 }
 ._video_b{
 	padding:34px 25px;
