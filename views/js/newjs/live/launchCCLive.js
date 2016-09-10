@@ -184,9 +184,9 @@
         //
         //     uri = uri + '/' + pn + '/' + encodeURIComponent(publishPassword);
         // }
-        var uri =document.getElementsById('playurl').value;
+        var uri =document.getElementById('playurl').value;
         var strs= new Array(); //定义一数组
-        strs=url.split("|"); //字符分割
+        strs=uri.split("|"); //字符分割
         url =strs[0]+strs[1]+strs[2]+strs[3]+strs[4];  //推流地址
 
         return uri;
