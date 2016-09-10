@@ -74,7 +74,15 @@
                                                 <input type="button" class="subtext" value="点击上传" />
                                                 <input type="hidden" id="voidUrl" name="playurl">
                                                 <b id="bar3"></b>
-                                            </div>                                            <div class="button">                                                <input type="button" value="点击转码" id="transcode"/>                                                <input type="hidden" id="voidUrl" name="playurl">                                                <b id="bar3"></b>                                                <div id="transcode_percent"> </div>                                                                                            </div>                                                                                        
+                                            </div>
+                                            <div class="button">
+                                                <input type="button" value="点击转码" id="transcode"/>
+                                                <input type="hidden" id="voidUrl" name="playurl">
+                                                <b id="bar3"></b>
+                                                <div id="transcode_percent"> </div>
+                                                
+                                            </div>                                            
+                                            
                                     </div>
                                 </div>
 
@@ -130,7 +138,9 @@
 <script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
 <script>
 /*jslint unparam: true */
-/*global window, $ */var file_name = "";
+/*global window, $ */
+
+var file_name = "";
 $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
@@ -176,8 +186,28 @@ $(function () {
         console.log(data)
         $(".list_db .dspl .button .subtext").attr("disabled",false);
         $(".list_db .dspl .button .subtext").val('已选择，请上传');
-        $(".list_db .dspl .button .subtext").data(data);        var imgName = data.files[0].name;        var filename;        if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串        {            filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);        }        else        {            filename=imgName;        }
-        file_name = filename;
+        $(".list_db .dspl .button .subtext").data(data);
+        var imgName = data.files[0].name;
+
+        var filename;
+
+        if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
+
+        {
+
+            filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
+
+        }
+
+        else
+
+        {
+
+            filename=imgName;
+
+        }
+
+        file_name = filename;
     }).on('fileuploadprogressall', function (e, data) {
        // alert(25)
         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -310,11 +340,66 @@ $(function () {
         }
 
     })
-    var src_id;
+
+    var src_id;
     //点击重置按钮
     $("#reset").click(function(){
         location.reload();
-    })        // this just for test     $("#transcode").click(function (){    	var mychannel = document.getElementById("cid");    	var index = mychannel.selectedIndex;    	var cid = mychannel.options[index].value;    	    	var myconverse = document.getElementsByName("converse");    	var converse;    	 for(var i=0;i<myconverse.length;i++){    		 if(myconverse[i].checked){    			 converse = myconverse[i].value    		 }    	 }    	alert(file_name);    	alert(cid);    	alert("converse:" + converse);		$.ajax({			  type: 'get',			  url: "?s=Mycenter/transcode_do/filename/" + file_name + "/cid/" + cid + "/converse/" + converse,			  success:function(data){				  var obj = eval('('+data+')');				  var status = obj.data.status;				  if(status  == "success"){					  src_id = obj.data.src_id;					  setTimeout(function() {  						  get_transcode_percent();  				           },  				        200); 					  setInterval(function() {get_transcode_percent();}, 3000);				  }				  			}		});	    	    })        function get_transcode_percent(){    	$.ajax({    		  type : "get",    		  url : "?s=Mycenter/transcode_percent/src_id/" + src_id,    		  success:function(dates){    			  var obj = eval('('+data+')');				  var status = obj.data.status;				  var percent = obj.data.percent;				  alert(percent);    		  		$("#transcode_percent").html(percent);//要刷新的div    		  },    		  error: function() {    		        // alert("失败，请稍后再试！");    		      }    		 });    	    }    // test end
+    })
+    
+    // this just for test 
+    $("#transcode").click(function (){
+    	var mychannel = document.getElementById("cid");
+    	var index = mychannel.selectedIndex;
+    	var cid = mychannel.options[index].value;
+    	
+    	var myconverse = document.getElementsByName("converse");
+    	var converse;
+    	 for(var i=0;i<myconverse.length;i++){
+    		 if(myconverse[i].checked){
+    			 converse = myconverse[i].value
+    		 }
+    	 }
+
+    	alert(file_name);
+    	alert(cid);
+    	alert("converse:" + converse);
+		$.ajax({
+			  type: 'get',
+			  url: "?s=Mycenter/transcode_do/filename/" + file_name + "/cid/" + cid + "/converse/" + converse,
+			  success:function(data){
+				  var obj = eval('('+data+')');
+				  var status = obj.data.status;
+				  if(status  == "success"){
+					  src_id = obj.data.src_id;
+					  setTimeout(function() {  
+						  get_transcode_percent();  
+				           },  
+				        200); 
+					  setInterval(function() {get_transcode_percent();}, 3000);
+				  }
+				  
+			}
+		});	    	
+    })
+    
+    function get_transcode_percent(){
+    	$.ajax({
+    		  type : "get",
+    		  url : "?s=Mycenter/transcode_percent/src_id/" + src_id,
+    		  success:function(dates){
+    			  var obj = eval('('+data+')');
+				  var status = obj.data.status;
+				  var percent = obj.data.percent;
+				  alert(percent);
+    		  		$("#transcode_percent").html(percent);//要刷新的div
+    		  },
+    		  error: function() {
+    		        // alert("失败，请稍后再试！");
+    		      }
+    		 });    	
+    }
+    // test end
 </script>
 </body>
 </html>

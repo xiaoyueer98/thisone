@@ -60,10 +60,21 @@
                 <div class="like">
                     <div id="tab" class="tab">
                         <div class="on" title="播放" onclick="change(this)"><span>播放</span></div>
+                        <!--
+                        <volist name="ppplay" id="video">
+                            <div id="play_name_{$i}" <if condition="$i eq 1"> class="on"<else />class="off"</if> title="{$video.playername}" onclick="video_detail_tag_change({$i},10,'play_name_','play_ji_','on','off','show','hide')"><span>{$video.playername}</span></div>
+                        </volist>
+                        -->
                     </div>
 
                     <volist name="ppplay" id="video">
                         <div id="play_ji_{$i}" <if condition="$i eq 1"> class="show"<else />class="hide"</if>>
+                            <!--
+                            <div class="like1-2"><span class="on5">正序</span>
+                                <span onclick="document.getElementById('play_ji_{$i}').className = 'hide';document.getElementById('play_ji_desc_{$i}').className = 'show';">倒序</span>
+                            </div>
+                            -->
+
                             <!--剧集 开始-->
                                 <div class="juji">
                                         <volist name="video['son']" id="ppvodson" key='ii'>
@@ -71,9 +82,9 @@
                                                  <img src="{$tplpath}images/play_icon.png" onmouseover="this.src='{$tplpath}images/play_icon_on.png'" onmouseout="this.src='{$tplpath}images/play_icon.png'" style="cursor:pointer;" onclick="to_play('{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod');"></img>
                                              <else />
                                                  <if condition="$ii eq $ppvodson['playcount']">
-                                                    <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank" style="background-color:#999;">{$ppvodson.playname}</a>
+                                                    <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank" style="background-color:#999;">sun1{$ppvodson.playname}</a>
                                                  <else />
-                                                     <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank">{$ppvodson.playname}</a>
+                                                     <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank">sun1{$ppvodson.playname}</a>
                                                   </if>  
                                               </if> 
                                         </volist>
@@ -89,9 +100,9 @@
                             <div class="juji">
                                     <volist name="vers" id="v" key='ii'>
                                         <if condition="$ii eq 1">
-                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank" style="background-color:#999;">第{$ii}节</a>
+                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank" style="background-color:#999;">sun3第{$ii}节</a>
                                         <else />
-                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank">第{$ii}节</a>
+                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank"><sun4></sun4>第{$ii}节</a>
                                         </if> 
                                     </volist>
                                 <div class="clear"></div>

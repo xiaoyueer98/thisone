@@ -476,8 +476,7 @@ class VideoAction extends HomeAction{
 			$this->assign("transmit", $transmit);
 			$this->assign("ver", $ver);
             $this->assign('isMobile', $is_mobile);
-//			$this->display('video_play');
-            $this->display('new/videoplay');
+			$this->display('video_play');
 		}else{
 		    file_put_contents('log.txt', "play... 2222222222\n", FILE_APPEND);
 			$this->assign("jumpUrl",C('web_path'));
