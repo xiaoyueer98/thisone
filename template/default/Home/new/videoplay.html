@@ -34,39 +34,48 @@
 					<li>视频简介</li>
 				</ul>
 				<div class="con_list">
-                    <!--剧集 开始-->
-                    <volist name="ppplay" id="video">
-                        <div class="fix disblock" id="play_ji_{$i}" <if condition="$i eq 1"> class="show"<else />class="hide"</if>>
-                            <!--剧集 开始-->
-                            <div class="juji">
-                                <volist name="video['son']" id="ppvodson" key='ii'>
-                                    <if condition="$ppvodson['playcount'] eq 1">
-                                        <img src="{$tplpath}images/play_icon.png" onmouseover="this.src='{$tplpath}images/play_icon_on.png'" onmouseout="this.src='{$tplpath}images/play_icon.png'" style="cursor:pointer;" onclick="to_play('{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod');"></img>
-                                        <else />
-                                        <if condition="$ii eq $ppvodson['playcount']">
-                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank" style="background-color:#999;">{$ppvodson.playname}</a>
-                                            <else />
-                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank">{$ppvodson.playname}</a>
-                                        </if>
-                                    </if>
-                                </volist>
-                            </div>
-                            <!--剧集 结束-->
-                        </div>
-                        <div class="fix disblock" <if condition="$hasver eq 1"> class="show"<else />class="hide"</if>>
-                            <!--剧集 开始-->
-                            <div class="juji">
-                            <volist name="vers" id="v" key='ii'>
-                            <if condition="$ii eq 1">
-                                <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank" style="background-color:#999;">第{$ii}节</a>
+                    <div class="fix disblock">
+                        <volist name="vers" id="v" key='ii'>
+                        <if condition="$ii eq 1">
+                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank" style="background-color:#999;">第{$ii}节</a>
                             <else />
-                                <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank">第{$ii}节</a>
-                            </if>
-                            </volist>
-                            </div>
-                            <!--剧集 结束-->
-                        </div>
-                    </volist>
+                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank">第{$ii}节</a>
+                        </if>
+                        </volist>
+                    </div>
+                    <!--&lt;!&ndash;剧集 开始&ndash;&gt;-->
+                    <!--<volist name="ppplay" id="video">-->
+                        <!--<div class="fix disblock" id="play_ji_{$i}" <if condition="$i eq 1"> class="show"<else />class="hide"</if>>-->
+                            <!--&lt;!&ndash;剧集 开始&ndash;&gt;-->
+                            <!--<div class="juji">-->
+                                <!--<volist name="video['son']" id="ppvodson" key='ii'>-->
+                                    <!--<if condition="$ppvodson['playcount'] eq 1">-->
+                                        <!--<img src="{$tplpath}images/play_icon.png" onmouseover="this.src='{$tplpath}images/play_icon_on.png'" onmouseout="this.src='{$tplpath}images/play_icon.png'" style="cursor:pointer;" onclick="to_play('{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod');"></img>-->
+                                        <!--<else />-->
+                                        <!--<if condition="$ii eq $ppvodson['playcount']">-->
+                                            <!--<a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank" style="background-color:#999;">{$ppvodson.playname}</a>-->
+                                            <!--<else />-->
+                                            <!--<a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank">{$ppvodson.playname}</a>-->
+                                        <!--</if>-->
+                                    <!--</if>-->
+                                <!--</volist>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;剧集 结束&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="fix disblock" <if condition="$hasver eq 1"> class="show"<else />class="hide"</if>>-->
+                            <!--&lt;!&ndash;剧集 开始&ndash;&gt;-->
+                            <!--<div class="juji">-->
+                            <!--<volist name="vers" id="v" key='ii'>-->
+                            <!--<if condition="$ii eq 1">-->
+                                <!--<a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank" style="background-color:#999;">第{$ii}节</a>-->
+                            <!--<else />-->
+                                <!--<a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank">第{$ii}节</a>-->
+                            <!--</if>-->
+                            <!--</volist>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;剧集 结束&ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</volist>-->
                     <!--剧集 结束-->
                 <div class="">
 						<p>{$intro}</p>
@@ -79,11 +88,8 @@
 			<span class="margin_l10">GUESS YOU LIKE</span>
 		</div>
 		<div class="content margin_auto">
-			<ul class="con1 fix margin_b10" id="hot_video" href="{$webpath}index.php?s=my/show/id/hot_video/cid/{$cid}/limit/3">
-				<!--<li>-->
-					<!--<a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>-->
-					<!--<p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>-->
-				<!--</li>-->
+			<ul class="con1 fix margin_b10" id="hot_video" href="{$webpath}index.php?s=my/show/id/hot_video/cid/{$cid}/limit/4">
+
 			</ul>
 
             <div class="clear" style="height:15px;">&nbsp;</div>
