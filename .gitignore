@@ -2,6 +2,4 @@
 /temp/Data/*
 /temp/Logs/*
 /uploads/*
-/template/default/images/*
-/template/default/css/*
-/template/default/js/*
+log.txt
