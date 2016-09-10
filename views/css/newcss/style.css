@@ -75,6 +75,19 @@ a:hover{
 	border-radius: 5px;
 	display: none;
 }
+.head_con .head_list a{
+    display: block;
+    line-height: 20px;
+    text-align: center;
+}
+.head_con .head_list a.qk:hover{
+    color: red;
+    background: #fff;
+}
+.head_con .head_list a:hover{
+    background: #e4e8e6;
+    color: #333333;
+}
 .head_con .head_list li{
 	line-height: 28px;
 	color: #333333;
@@ -99,6 +112,11 @@ a:hover{
 	display: block;
 	padding: 0 10px;
 	text-align: center;
+}
+.head_con .head_list div span{
+    display: block;
+    line-height: 20px;
+    height: 20px;
 }
 .mask{
 	width:100%;

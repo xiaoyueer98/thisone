@@ -20,21 +20,16 @@ $(function () {
         // var publishName = $.trim($('#publishName').val());
         // var publishPassword = $.trim($('#publishPassword').val());
         window.launchCCLive(username, userpwd, url,function () {
-            alert(11);
+
             if (isChromeOr360) {
-                alert(22);
                 return;
             }
             var c = confirm('您还没有下载客户端，点击确定按钮下载');
-            alert(33);
             if (c) {
                 window.open('http://dl.csslcloud.net/client/windows/CCLive3.2.0.exe', '_target');
             }
-            alert(44);
         });
-        alert(55);
         window.open('http://dl.csslcloud.net/client/windows/CCLive3.2.0.exe', '_target');
-        alert(66);
     });
 
     // 进入页面
