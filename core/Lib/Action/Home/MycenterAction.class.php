@@ -5,8 +5,8 @@
  * Date: 2016/9/2
  * Time: 9:58
  */
-ini_set("display_errors", "On");
-error_reporting(E_ALL);
+//ini_set("display_errors", "On");
+//error_reporting(E_ALL);
 class MycenterAction extends HomeAction{
     private $VideoDB;
     private $UserDB;
@@ -20,6 +20,19 @@ class MycenterAction extends HomeAction{
         $where['email'] = $email;
         $user = $UserDB->where($where)->find();
         return $user['id'];
+    }
+    
+    public function get_app_by_cid($cid){
+        $Channel = M('channel');
+        $where['id'] = $cid;
+        $cn = $Channel->where($where)->find();
+        return $cn['cfile'];
+    }
+    
+    public function get_file_name($playurl){
+        $name = explode("/", $playurl);
+        $count = count($name);
+        return $name[$count - 1];
     }
 
     public function checklogin(){
@@ -59,9 +72,10 @@ class MycenterAction extends HomeAction{
 
         $a=array_values($arr_id);
         $list_video=array();
+        $VideoDB = M('video');
         for($i=0;$i<count($a);$i++) {
             $where['vid']=$a[$i];//用户观看的视频的id
-            $list=$this->VideoDB-->where($where)->find();
+            $list=$VideoDB->where($where)->find();
             $list_video[$i]=$list;
         }
 
@@ -228,9 +242,8 @@ class MycenterAction extends HomeAction{
         $status=$arr1['status'];
         $ctype = $_REQUEST['type'];
         file_put_contents('log.txt', "personal_my id:$uid\n", FILE_APPEND);
-        $where['uid'] = $uid = 8;
+        $where['uid'] = $uid;
         $where['ctype'] = $ctype;
-
 
         $list=M('mycenter')->where($where)->select();
         $arr=array();
@@ -304,26 +317,9 @@ class MycenterAction extends HomeAction{
         }else{
             $this->redirect('Index/index',array('id'=> $where),1,'密码修改成功，请重新登录...');
         }
-
-
     }
     //创建直播
     public function createlive(){
-
-        /*
-        $this->_before_insertlive();
-        if ($this->VideoDB->create()) {
-
-            if (false!==$this->VideoDB->save()) {
-                $url = $_SESSION['video_reurl'];
-                $this->assign("jumpUrl",$_SESSION['video_reurl']);
-            }else{
-                $this->error("编辑视频信息失败!");
-            }
-        }else{
-            $this->error($this->VideoDB->getError());
-        }
-        */
         $arr = $this->checklogin();
         $logtime=$arr['logtime'];
         $email=$arr['email'];
@@ -331,7 +327,8 @@ class MycenterAction extends HomeAction{
         $type = $_REQUEST['type'];
         file_put_contents('log.txt', "type:$type \n", FILE_APPEND);
         $where['id'] = $_GET['id'];
-        $con['pid'] = '1';
+        //$con['pid'] = '1';
+        $con['pid'] = array('neq',0);
         $con['ctype'] = "live";
         $list_channel_video = M('Channel')->where($con)->select();
         $channel_id = $list_channel_video[0]['id'];
@@ -373,46 +370,75 @@ class MycenterAction extends HomeAction{
         $_POST['ctype'] = "live";
 
         $c = M('Channel');
-        $where['id'] = $_POST['channel_mcid'];
+        $cid = $_POST['type'];
+        $where['id'] = $cid;
         $channel = $c->where($where)->find();
         $app = $channel['cfile'];
 
-        // the format is '|host:port|application|stream|format|ctype|'
         $_POST['playurl'] = "|||".$app.'|'.randomkeys(16).'|flv|live|';
         $_POST['vodplay'] = empty($_POST['vodplay']) ? 0 : implode('$$$$$$', $_POST['vodplay']);
         $vodplay = $_POST['vodplay'];
 
         file_put_contents('log.txt', "=-=-=-=-=- vodplay:$vodplay\n", FILE_APPEND);
-        $_POST['cid'] = $_POST['channel_mcid'];
-
-        $cid = $_POST['cid'];
+        $_POST['cid'] = $_POST['type'];
         file_put_contents('log.txt', "=-=-=-=-=- cid:$cid\n", FILE_APPEND);
 
+        if (strpos($_POST['picurl'],'://') > 0) {
+            $down = D('Down');
+            $_POST['picurl']= $down->down_img(trim($_POST['picurl']));
+            $picUrl = $_POST['picurl'];
+        }
+        
         $stime = $_POST['starttime'];
         $etime = $_POST['endtime'];
         $_POST['starttime'] = strtotime($stime);
         $_POST['endtime'] = strtotime($etime);
 
         $_POST['stype_mcid'] = empty($_POST['stype_mcids']) ? 0 : implode(',', $_POST['stype_mcids']);
-
-        $this->weiRepalce();//伪原创
-        $this->replaceKey();//更新内链接替换
-        //print_r($_POST['vodplay']);exit;
     }
 
     public function insertlive(){
 
         file_put_contents('log.txt', "insertlive....... \n", FILE_APPEND);
-        if($this->VideoDB->create()){
-            $id = $this->VideoDB->add();
+        $VideoDB = M('video');
+        $data['title'] = $_POST['title'];
+        $data['cid'] = $_POST['cid'];
+        $data['intro'] = $_POST['intro'];
+        $data['ctype'] = $_POST['ctype'];
+        $data['playurl'] = $_POST['playurl'];
+        $data['picurl'] = $_POST['picurl'];
+        $data['addtime'] = time();
+        $data['starttime'] = $_POST['starttime'];
+        $data['endtime'] = $_POST['endtime'];
+        $data['status'] = $_POST['display'];
+        
+        file_put_contents('log.txt', "title:".$data['title'].";cid:".$data['cid'].";intro:".$data['intro'].";ctype:".$data['ctype']."\n", FILE_APPEND);
+        file_put_contents('log.txt', "playurl:".$data['playurl'].";picurl:".$data['picurl'].";addtime:".$data['addtime'].";starttime:".$data['starttime'].";endtime:".$data['endtime']."\n", FILE_APPEND);
+
+        $id = $VideoDB->add($data);
+        if($id !== false){
+            $email = $_POST['email'];
+        
+            $uid = $this->get_uid_by_email($email);
+            file_put_contents('log.txt', "insert live uid:$uid\n", FILE_APPEND);
+        
+            $data1['ctype'] = "live";
+            $data1['vid'] = $id;
+            $data1['uid'] = $uid;
+            $data1['roompwd'] = $_POST['room_num'];
+        
+            $MycenterDB = M('mycenter');
+            if(false==$MycenterDB->add($data1)){
+                $this->error('直播添加失败11!');
+            }
+        
             if( false!== $id){
-                $_POST['id'] = $id;
-                $this->assign("jumpUrl",C('cms_admin').'?s=Admin/Video/Add/type/live');
+                $this->display("new/create_live");
             }else{
-                $this->error('直播添加失败!');
+                $this->error('直播添加失败22!');
             }
         }else{
-            $this->error($this->VideoDB->getError());
+            $this->error('直播添加失败33!');
         }
     }
 
@@ -438,18 +464,7 @@ class MycenterAction extends HomeAction{
 
     //创建点播
     public function createvod(){
-        /*
-        $this->_before_insert();
-        if ($this->VideoDB->create()) {
-            if (false!==$this->VideoDB->save()) {
-                $this->assign("jumpUrl",$_SESSION['video_reurl']);
-            }else{
-                $this->error("点播视频添加失败!");
-            }
-        }else{
-            $this->error($this->VideoDB->getError());
-        }
-        */
+
         $arr = $this->checklogin();
         $logtime=$arr['logtime'];
         $email=$arr['email'];
@@ -457,7 +472,8 @@ class MycenterAction extends HomeAction{
         $type = $_REQUEST['type'];
         file_put_contents('log.txt', "email:$email;type:$type \n", FILE_APPEND);
         $where['id'] = $_GET['id'];
-        $con['pid'] = '2';
+     //   $con['pid'] = '2';
+        $con['pid'] = array('neq',0);
         $con['ctype'] = "vod";
         $list_channel_video = M('Channel')->where($con)->select();
 
@@ -498,43 +514,81 @@ class MycenterAction extends HomeAction{
     public function _before_insertvod(){
         file_put_contents('log.txt', "=-=-=-=-=- _before_insert\n", FILE_APPEND);
         $_POST['level'] = $_POST['userlevel'];
-//         if (strpos($_POST['picurl'],'://') > 0 && C('upload_http')) {
-//             $down = D('Down');
-//             $_POST['picurl']= $down->down_img(trim($_POST['picurl']));
-//         }
 
         $title = $_POST['title'];
-        $type = $_POST['type'];
+        $cid = $_POST['type'];
         $picUrl = $_POST['picurl'];
         $upload2 = $_POST['upload2'];
         $converse = $_POST['converse'];
         $down_power = $_POST['down_power'];
         $intro = $_POST['intro'];
         $_POST['ctype'] = "vod";
+        $display = $_POST['display'];
 
+        file_put_contents('log.txt', "picurl:$picUrl\n", FILE_APPEND);
         if (strpos($_POST['picurl'],'://') > 0) {
             $down = D('Down');
             $_POST['picurl']= $down->down_img(trim($_POST['picurl']));
             $picUrl = $_POST['picurl'];
-            file_put_contents('log.txt', "ssssssssssssssss pic:$picUrl\n", FILE_APPEND);
         }
 
-        file_put_contents('log.txt', "name:$$title;type:$type;picurl:$picUrl;upload2:$upload2;converse:$converse;down_power:$down_power;intro:$intro\n", FILE_APPEND);
-
-//         for($i=0;$i<count($_POST['playurl']);$i++)
-//         {
-//             if (!$_POST['playurl'][$i])
-//             {
-//                 unset($_POST['playurl'][$i]);
-//                 unset($_POST['vodplay'][$i]);
-//             }
-//         }
-//         $_POST['playurl'] = empty($_POST['playurl']) ? 0 : implode('$$$$$$', $_POST['playurl']);
-//         $_POST['vodplay'] = empty($_POST['vodplay']) ? 0 : implode('$$$$$$', $_POST['vodplay']);
+        if($down_power == 1){
+            $_POST['downurl'] = $_POST['picurl'];
+        }
+        
+        $playurl = $_POST['playurl'];
+        
+        $src_name = $this->get_file_name($playurl);
+        $host = $_SERVER['HTTP_HOST'];
+        $port = $_SERVER['HTTP_PORT'];
+        $app_info = $this->get_app_by_cid($cid);
+        $stream = randomkeys(16);
+        $playurl = "|".$host."|".$port."|".$app_info."|".$stream."|flv|vod|";
+        $_POST['playurl'] = $playurl;
+        
+        $tid = 6;    //default; 
+        if($converse == 1){
+          $tid = 6;  
+        }else if($converse == 2){
+          $tid = 4;
+        }else if($converse == 3){
+          $tid = 1;
+        }
+        
+        $_POST['tid'] = $tid;
+        $t = M('transcode_info');
+        $where['id'] = $tid;
+        $transcode_info = $t->where($where)->find();
+        $video_bitrate = $transcode_info['video_bitrate'];
+        $audio_bitrate = $transcode_info['audio_bitrate'];
+        $width = $transcode_info['width'];
+        $height = $transcode_info['height'];
+        $ret = check_login();
+        file_put_contents('log.txt', "upload streams 111......\n", FILE_APPEND);
+        if($ret == false){
+            file_put_contents('log.txt', "upload streams 222......\n", FILE_APPEND);
+            header("Location: ../auth/right_error.html?error=notauthorized");
+        }else{
+            $_SESSION['mstoken'] = $ret;
+        }
+        
+        $media_host = C('mserver_url');
+        $webpath = C('web_path');
+        $querystr = "application=$app_info&src=$src_name&src_id=$stream&video_bitrate=$video_bitrate&audio_bitrate=$audio_bitrate&width=$width&height=$height&token=$ret";
+        $url      = "http://".$media_host."/mserver/interface/transcode/?app=transcode&".$querystr;
+        $ret = transcode($url);
+        if($ret !== true){
+            file_put_contents('log.txt', "ret:$ret \n", FILE_APPEND);
+        }
+        
+        file_put_contents('log.txt', "url:$url\n", FILE_APPEND);
+        file_put_contents('log.txt', "display:$display;name:$title;type:$cid;picurl:$picUrl;upload2:$upload2;converse:$converse;down_power:$down_power;intro:$intro\n", FILE_APPEND);
+        $down_power = $_POST['down_power'];
+        
         $vodplay = $_POST['vodplay'];
 
         file_put_contents('log.txt', "=-=-=-=-=- vodplay:$vodplay\n", FILE_APPEND);
-        $_POST['cid'] = $type;
+        $_POST['cid'] = $cid;
         $cid = $_POST['cid'];
         file_put_contents('log.txt', "=-=-=-=-=- cid:$cid\n", FILE_APPEND);
 
@@ -556,38 +610,50 @@ class MycenterAction extends HomeAction{
         $data['intro'] = $_POST['intro'];
         $data['ctype'] = $_POST['ctype'];
         $data['playurl'] = $_POST['playurl'];
-
-
-
         $data['picurl'] = $_POST['picurl'];
-
-
-
-        $id = $VideoDB->add($data);
+        $data['addtime'] = time();
+        $data['status'] = $_POST['display'];
+        $data['downurl'] = $_POST['downurl'];
+        $data['tid'] =  $_POST['tid'];
+        
+        $vid = $_POST['vid'];
+        
+        file_put_contents('log.txt', "tttt vid:".$vid."\n", FILE_APPEND);
+        
+        if($vid){
+            $where['id'] = $vid;
+            $id = $VideoDB->where($where)->save($data);
+        }else{
+            $id = $VideoDB->add($data);
+        }
 
         if($id !== false){
-            $email = $_POST['email'];
-
-            $uid = $this->get_uid_by_email($email);
-            file_put_contents('log.txt', "insert void uid:$uid\n", FILE_APPEND);
-
-            $data1['ctype'] = "vod";
-            $data1['vid'] = $id;
-            $data1['uid'] = $uid;
-
-            $MycenterDB = M('mycenter');
-            if(false==$MycenterDB->add($data1)){
-                $this->error('视频添加失败!');
+            if(!$vid){
+                $email = $_POST['email'];
+                $uid = $this->get_uid_by_email($email);
+                file_put_contents('log.txt', "insert void uid:$uid\n", FILE_APPEND);
+    
+                $data1['ctype'] = "vod";
+                $data1['vid'] = $id;
+                $data1['uid'] = $uid;
+    
+                $MycenterDB = M('mycenter');
+                if(false==$MycenterDB->add($data1)){
+                    $this->error('视频添加失败!');
+                }
+    
+                if( false!== $id){
+                    $this->display("new/create_vod");
+                }else{
+                    $this->error('视频添加失败!');
+                }
             }
-
-            if( false!== $id){
-                //$this->assign("jumpUrl",C('cms_admin').'?s=Admin/Video/Add/type/vod');
-                $this->display("new/create_vod");
+        }else{
+            if($vid){
+                $this->error('视频修改失败!');
             }else{
                 $this->error('视频添加失败!');
             }
-        }else{
-            $this->error('视频添加失败!');
         }
     }
 
@@ -651,14 +717,19 @@ class MycenterAction extends HomeAction{
         {
             $this->redirect($_SERVER['HTTP_REFERER']);
         }
-        $con['pid'] = '2';
+        
+        $downurl = $video['downurl'];
+        $con['pid'] = array('neq',0);
         $con['ctype'] = "vod";
         $list_channel_video = M('Channel')->where($con)->select();
         $this->assign('logtime', $logtime);
         $this->assign('email', $email);
-        $this->assign('status', $status);
+        $this->assign('display', $status);
         $this->assign($video[0]);
         $this->assign("list_channel_video", $list_channel_video);
+        $this->assign('vid', $vid);
+        $this->assign('downurl', $downurl);
+        
 
         if($type == "vod")
         {
