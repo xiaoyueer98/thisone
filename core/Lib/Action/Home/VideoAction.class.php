@@ -396,8 +396,8 @@ class VideoAction extends HomeAction{
 		$rs = M("Video");
 		$array   = $rs->where($where)->find();
 		$playarr = explode('-',$where['id']);//ID与集数分隔
-		if($array){            
-		    
+		if($array){
+
 		    // the format is '|host|port|application|stream|format|ctype|'
             $url = $array['playurl'];
             $arr = explode("|",$url);
@@ -476,7 +476,8 @@ class VideoAction extends HomeAction{
 			$this->assign("transmit", $transmit);
 			$this->assign("ver", $ver);
             $this->assign('isMobile', $is_mobile);
-			$this->display('video_play');
+//			$this->display('video_play');
+            $this->display('new/videoplay');
 		}else{
 		    file_put_contents('log.txt', "play... 2222222222\n", FILE_APPEND);
 			$this->assign("jumpUrl",C('web_path'));
