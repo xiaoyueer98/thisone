@@ -11,9 +11,9 @@ $(document).ready(function(){
         $(this).find("ul").show();
         showPlayOld()
     });
-//    $(".record").mouseleave(function(){
-//        $(this).find("ul").hide();
-//    });
+    $(".record").mouseleave(function(){
+        $(this).find("ul").hide();
+    });
     /*------------登录注册页面-------------*/
     $("#login_btn").click(function(){
         $(".login_and_register").show();
