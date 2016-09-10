@@ -187,12 +187,12 @@ function check_login($url){
     
     $token = $_SESSION['mstoken'];
     
-    /*
+    
     if(strpos($url,"islogin")===FALSE && is_login($media_host)===FALSE){
         file_put_contents('log.txt', "reget token again...\n", FILE_APPEND);
         $token = get_media_token($media_host, $user_name, $media_pwd);
     }
-    */
+    
     
     if(($token == null) || ($token == "")){
         $token = get_media_token($media_host, $user_name, $media_pwd);
