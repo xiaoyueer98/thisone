@@ -1,10 +1,19 @@
 $(document).ready(function(){
 	$(".username_con").mouseenter(function(){
-		$(".head_con .head_list").show();
+		$(this).find("ul").show();
 	});
 	$(".username_con").mouseleave(function(){
-		$(".head_con .head_list").hide();
+		$(this).find("ul").hide();
 	});
+
+
+    $(".record").mouseenter(function(){
+        $(this).find("ul").show();
+        showPlayOld()
+    });
+    $(".record").mouseleave(function(){
+        $(this).find("ul").hide();
+    });
     /*------------登录注册页面-------------*/
     $("#login_btn").click(function(){
         $(".login_and_register").show();
@@ -33,22 +42,14 @@ $(document).ready(function(){
     	}
     });
 
-   /* $("#upload").change(function(){
-        var imgName = $(this).val();
-        var filename;
-            if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
-            {
-                filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);
-            }
-            else
-            {
-                filename=imgName;
-            }
-        if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filename)){
-            alert("图片类型必须是.gif,jpeg,jpg,png格式");
-        }else{
-            $("#imtext").text(filename)
-        }
-    })*/
 
+
+    /*创建点播页面下载权限 默认是否选中*/
+
+    var checkedRadio = $("#downloadSpkm").val();
+    if(checkedRadio == ""){
+        $("#checkedTrue").attr("checked",false);
+    }else if(checkedRadio != ""){
+        $("#checkedTrue").attr("checked","checked");
+    }
 })

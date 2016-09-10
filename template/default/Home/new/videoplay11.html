@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/reset.css">
 	<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/style.css">
 	<script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
+	<script src="{$webpath}views/js/newjs/lunbotu.js"></script>
 </head>
 <body class="videoplay">
 <include file="header" />
@@ -23,53 +24,38 @@
 		</div>
 		<div class="_video margin_auto margin_b20 margin_t20 fix">
 			<div class="_video_t">
-				<div class="video_l fl_l" ><img src="{$webpath}views/images/newimages/pic1.jpg" alt=""></div>
-				<div class="fl_r video_r">
-					<include file="chat" />
+				<div class="video_l fl_l"><img src="{$webpath}views/images/newimages/pic1.jpg" alt=""></div>
+				<div class="video_comment fl_r">
+					<h5>活动聊天区</h5>
+					<div class="comment_con padding_t20 padding_b10 padding_l10 padding_r10">
+						<div>
+							<span>熊大熊二</span>
+							<p>老师讲的真棒，思路清晰，语言幽默。</p>
+						</div>
+						<div>
+							<span>熊大熊二</span>
+							<p>老师讲的真棒，思路清晰，语言幽默。</p>
+						</div>
+						<div>
+							<span>熊大熊二</span>
+							<p>老师讲的真棒，思路清晰，语言幽默。</p>
+						</div>
+					</div>
+					<div class="comment_text fix">
+						<textarea class="fl_l" plearhoder="和大家聊几句吧" name="" id="" cols="30" rows="10"></textarea>
+						<input class="fl_r" value="发送" type="button" 发送>
+					</div>
 				</div>
 			</div>
 			<div class="_video_b">
 				<ul class="video_nav fix">
 					<li class="li1 m">正在播放</li>
-					<li>视频简介</li>
+					<li>视屏简介</li>
 				</ul>
 				<div class="con_list">
-                    <!--剧集 开始-->
-                    <volist name="ppplay" id="video">
-                        <div class="fix disblock" id="play_ji_{$i}" <if condition="$i eq 1"> class="show"<else />class="hide"</if>>
-                            <!--剧集 开始-->
-                            <div class="juji">
-                                <volist name="video['son']" id="ppvodson" key='ii'>
-                                    <if condition="$ppvodson['playcount'] eq 1">
-                                        <img src="{$tplpath}images/play_icon.png" onmouseover="this.src='{$tplpath}images/play_icon_on.png'" onmouseout="this.src='{$tplpath}images/play_icon.png'" style="cursor:pointer;" onclick="to_play('{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod');"></img>
-                                        <else />
-                                        <if condition="$ii eq $ppvodson['playcount']">
-                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank" style="background-color:#999;">{$ppvodson.playname}</a>
-                                            <else />
-                                            <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}/ctype/vod" target="_blank">{$ppvodson.playname}</a>
-                                        </if>
-                                    </if>
-                                </volist>
-                            </div>
-                            <!--剧集 结束-->
-                        </div>
-                        <div class="fix disblock" <if condition="$hasver eq 1"> class="show"<else />class="hide"</if>>
-                            <!--剧集 开始-->
-                            <div class="juji">
-                            <volist name="vers" id="v" key='ii'>
-                            <if condition="$ii eq 1">
-                                <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank" style="background-color:#999;">第{$ii}节</a>
-                            <else />
-                                <a href="{$webpath}?s=video/play/id/{$id}/ver/{$ii}" target="_blank">第{$ii}节</a>
-                            </if>
-                            </volist>
-                            </div>
-                            <!--剧集 结束-->
-                        </div>
-                    </volist>
-                    <!--剧集 结束-->
-                <div class="">
-						<p>{$intro}</p>
+					<div class="fix disblock"><a href="">第一节</a> <a href="">第二节</a></div>
+					<div class="">
+						<p>发大水发快乐的建安费了解到快乐撒富家大室发按房间打扫快乐飞机的卡死了发大水发快乐的建安费了解到快乐撒富家大室发按房间打扫快乐飞机的卡死了发大水发快乐的建安费了解到快乐撒富家大室发按房间打扫快乐飞机的卡死了发大水发快乐的建安费了解到快乐撒富家大室发按房间打扫快乐飞机的卡死了</p>
 					</div>
 				</div>
 			</div>
@@ -79,14 +65,24 @@
 			<span class="margin_l10">GUESS YOU LIKE</span>
 		</div>
 		<div class="content margin_auto">
-			<ul class="con1 fix margin_b10" id="hot_video" href="{$webpath}index.php?s=my/show/id/hot_video/cid/{$cid}/limit/3">
-				<!--<li>-->
-					<!--<a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>-->
-					<!--<p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>-->
-				<!--</li>-->
+			<ul class="con1 fix margin_b10">
+				<li>
+					<a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+					<p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+				</li>
+				<li>
+					<a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+					<p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+				</li>
+				<li>
+					<a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+					<p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+				</li>
+				<li class="lastli">
+					<a href=""><img src="{$webpath}views/images/newimages/pic2.png" alt=""></a>
+					<p><span class="fl_l"><a href="">我是歌王第一季</a></span><span class="fl_r"><a href="">我是歌王</a></span></p>
+				</li>
 			</ul>
-
-            <div class="clear" style="height:15px;">&nbsp;</div>
 		</div>
 		<div class="comment width1184 margin_auto fix">
 			<span>评论<i>45</i></span>

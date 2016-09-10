@@ -26,6 +26,7 @@
                         <hr/>
                     </div>
                     <form action="?s=mycenter/insertlive" method="post" id="mycontent">
+                    <input type="hidden" name="email" id="email" value="{$email}"/>
                     <div class="live clearfix">
                         <ul>
                             <li class="list_zb clearfix">
@@ -42,25 +43,25 @@
                                 <span class="span">主持</span>
                                 <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi">
                                 <span>房间密码</span>
-                                <input class="room_password" type="text" name="room_num" id="room_num">
+                                <input class="room_password" type="password" name="room_num" id="room_num">
                             </li>
                             <li class="list_zb clearfix data">
                                 <span class="span">时段</span>
                                 <h1 class="dspl fl">
                                     <span>开始时间</span>
-                                    <div class="controls input-append date form_datetime fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
-                                        <input size="16" type="text" value="" readonly name="starttime">
+                                    <div class="controls input-append date form_datetime fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                        <input size="16" type="text" value="" readonly>
                                         <span class="add-on"><i class="icon-remove"></i></span>
                                         <span class="add-on"><i class="icon-th"></i></span>
-                                        <input type="hidden" id="start_time" value="" /><br/>
+                                        <input type="hidden" id="start_time" value="" name="starttime"/><br/>
                                     </div>
                                    <!-- // <input class="start_time mr15" type="text"> -->
                                     <span>结束时间</span>
-                                    <div class="controls input-append date form_datetime lastdiv fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii p" data-link-field="dtp_input1">
-                                        <input size="16" type="text" value="" readonly name="endtime">
+                                    <div class="controls input-append date form_datetime lastdiv fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                        <input size="16" type="text" value="" readonly >
                                         <span class="add-on"><i class="icon-remove"></i></span>
                                         <span class="add-on"><i class="icon-th"></i></span>
-                                        <input type="hidden" id="endtime" value="" /><br/>
+                                        <input type="hidden" id="end_time" value="" name="endtime"/><br/>
                                     </div>
 
                                 </h1>
@@ -68,6 +69,7 @@
                             <li class="list_zb clearfix">
                                 <span class="span fl">海报</span>
                                 <input style="width:300px;" id="imgurl" class="poster fl mr10" type="text">
+                                <input style="width:300px;" id="imgurlreal" class="poster fl mr10" type="hidden" name="picurl">
                                 <label for="">
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
@@ -76,7 +78,6 @@
                                    <em id="imtext">未选择文件</em>
                                     <b id="bar2"></b>  
                                 </div>
-                                <input type="hidden" name="picurl" id="img" value="test">
                                 <button class="btn_zb ml12" type="button">上传</button>
 
                             </li>
@@ -84,7 +85,7 @@
                                 <span class="fl">直播简介</span>
                                 <textarea class="ml20" name="intro" id="brief_introduction" cols="98" rows="20"></textarea>
                             </li>
-                            <li class="btn2" id="error">error位置</li>
+                            <li class="btn2" id="error" style="display: none;">error位置</li>
                             <li class="btn1 fr clearfix pding-r">
                                 <button type="button" class="m" id="show">公开</button>
                                 <input type="hidden" value="1" name="display" id="display">
@@ -144,9 +145,6 @@ $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
     var url = '?s=mycenter/uploadfile';
-
-
-
 
     $('.live .list_zb .btn_zb').on('click', function () {
         var $this = $(this),
@@ -232,49 +230,66 @@ $(function () {
     });
 
     //显示隐藏的选择切换
-    $("#show").click(function(){
+    $("#show").mouseenter(function(){
         $("#display").attr("value", 1);
         $(this).addClass("m");
         $("#hide").removeClass("m");
     })
-    $("#hide").click(function(){
+    $("#hide").mouseenter(function(){
         $("#display").attr("value", 0);
         $(this).addClass("m");
         $("#show").removeClass("m");
     })
-    $(".live .btn1 button").mouseenter(function(){
-        $(this).addClass("m").siblings().removeClass("m");
-    })
+//    $(".live .btn1 button").mouseenter(function(){
+//        $(this).addClass("m").siblings().removeClass("m");
+//    })
     //提交重置按钮
     $("#sub").click(function(){
         if($("#name").val() == "")
         {
             $("#error").html("名称不能为空");
-            return false;
-        }
-        else if($("#img").val() == "")
-        {
-            $("#error").html("请上传海报");
+            $("#error").show();
             return false;
         }
         else if($("#zhuchi").val() == "")
         {
-            $("#zhuchi").html("支持人不能为空");
+            $("#error").html("主持不能为空");
+            $("#error").show();
             return false;
         }
-        else if($("#intro").val() == "")
+        else if($("#room_num").val() == "")
         {
-            $("#error").html("请填写直播简介");
+            $("#error").html("房间密码不能为空");
+            $("#error").show();
             return false;
         }
-        else if($("#display").val() == "")
+        else if($("#start_time").val() == "")
         {
-            $("#error").html("请选择直播状态");
+            $("#error").html("请选择开始时间");
+            $("#error").show();
+            return false;
+        }
+        else if($("#end_time").val() == "")
+        {
+            $("#error").html("请选择结束时间");
+            $("#error").show();
+            return false;
+        }
+        else if($("#imgurlreal").val() == "")
+        {
+            $("#error").html("请上传海报");
+            $("#error").show();
+            return false;
+        }
+        else if($("#brief_introduction").val() == "")
+        {
+            $("#error").html("请填写视频简介");
+            $("#error").show();
             return false;
         }
         else
         {
-            $("#mycontent")[0].submit();
+            $("#sub").attr("type","submit");
         }
 
     })

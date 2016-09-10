@@ -36,7 +36,7 @@
                             <li>
                                 <input type="checkbox" class="select" value="{$video.id}" name="ids[]">
                                 <div class="img">
-                                    <a href="?s=video/detail/id/{$video.id}">
+                                    <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/vod">
                                     <img src="uploads/{$video.picurl}">
                                     </a>
                                 </div>
@@ -49,7 +49,7 @@
                                         <i class="icon_l"></i>
                                         <span>编辑</span>
                                     </h2>
-                                    <h2 class="mlr40" onclick="location.href='?s=Mycenter/del/id/{$video.id}'">
+                                    <h2 class="mlr40" onclick="location.href='?s=Mycenter/del/id/{$video.id}/type/vod'">
                                         <i class="icon_c"></i>
                                         <span>删除</span>
                                     </h2>

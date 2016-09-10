@@ -350,6 +350,7 @@ function showPlayOld()
 	}else{
 
 		var result=getCookie("gxhis");
+		var bb="delCookie('gxhis')";
 
 		if(result==null)
 
@@ -359,7 +360,7 @@ function showPlayOld()
 
 			cc += '<div class="d5" style="text-align:center;color:#F00;">暂无观看记录</div>';;
 
-			cc +=' <div class="jilu1-3"><a href="javascript:void(0);" onclick="'+bb+'"class="qk">全部清空</a><a href="#">帐号登录>></a></div>';
+			cc +=' <div class="jilu1-3"><a href="javascript:void(0);" onclick="'+bb+'"class="qk">全部清空</a></div>';
 
 			document.getElementById("play_old_list_content").innerHTML = cc;
 

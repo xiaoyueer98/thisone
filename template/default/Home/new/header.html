@@ -93,23 +93,32 @@
                 <!--</div>-->
                 <!--观看记录 结束-->
             <else />
-                <div class="fl_l margin_l20 font_blue padding_l20 username_con">
+                <div class="fl_l margin_l20 font_blue padding_l20 alert username_con">
                     <a class="fl_l  font_blue " id="username2" href="javascript:void(0)">{$username}</a>
                     <ul class="head_list">
                         <li><a href="javascript:usercenter()">个人中心</a></li>
                         <li><a href="?s=Login/Logout">退出登录</a></li>
                     </ul>
                 </div>
-                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0);" onmousemove="showPlayOld();">观看记录</a>
-                <!--观看记录 开始-->
-                <!--<div class="jilu" id="play_old_list">-->
-                    <!--<span class="jilu1"></span>-->
-                    <!--<div class="jilu3" id="play_old_list_content">-->
 
-                        <!--<div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>-->
-                    <!--</div>-->
-                    <!--<span class="jilu2"></span>-->
-                <!--</div>-->
+                <div class="fl_l margin_l20 font_blue padding_l20 alert record">
+                    <a class="fl_l  font_blue jilu1" id="username2" href="javascript:void(0)">观看记录</a>
+                    <ul class="head_list jilu3" id="play_old_list_content">
+                       <!--  <li class="jilu1-3"><a href="javascript:usercenter()"  class="qk">全部清空</a></li> -->
+                       <!--  <li><a href="?s=Login/Logout">退出登录</a></li> -->
+                    </ul>
+                    <a class="jilu2"></a>
+                </div>
+               <!--  <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0);" onmousemove="showPlayOld();">观看记录</a>
+               观看记录 开始
+               <div class="jilu" id="play_old_list">
+                   <span class="jilu1"></span>
+                   <div class="jilu3" id="play_old_list_content">
+               
+                       <div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>
+                   </div>
+                   <span class="jilu2"></span>
+               </div> -->
                 <!--观看记录 结束-->
 
             </if>

@@ -910,7 +910,7 @@ ul.emial_con li.li3 .text{
     font-size: 14px;
     text-align: center;
     margin: 0 auto;
-    
+     cursor:pointer;
 }
 .account .cur_live_btn .dl2{
     padding-top: 102px;
@@ -919,7 +919,7 @@ ul.emial_con li.li3 .text{
 .account .cur_live_btn .dl2 dt{
     text-align: center;
     line-height: 25px;
-    text-align: c
+    text-align: center;
 }
 .account .cur_live_btn .dl1 dd{
     margin-top: 45px;

