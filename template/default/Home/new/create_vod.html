@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
-
 <div class="mask2"></div>
 <!-- 视屏服务器端url地址 -->
 <div class="box ma0">
@@ -32,7 +31,7 @@
                                 <span class="span">名称</span>
                                 <input class="name_zb" type="text" name="title" id="name">
                                 <span>视频分类</span>
-                                <select style="height: 30px;width:133px;" id="phone_sowing" name="type" id="type">
+                                <select style="height: 30px;width:133px;" id="cid" name="cid">
                                     <volist name="list_channel_video" id="video">
                                     <option value="{$video.id}">{$video.cname}</option>
                                     </volist>
@@ -50,16 +49,13 @@
                                    <em id="imtext">未选择文件</em>
                                     <b id="bar2"></b>  
                                 </div>
-                                
                                     <button class="btn_zb ml12" type="button">上传</button>
                             </li>
                             <li class="list_zb list_db">
                                 <span class="span">上传视频</span>
-
                                 <div class="db_video">
                                     <a href="javascript:;" class="file">
                                         <input type="file" id="upload2" value="...">
-
                                         <h1 class="psha"></h1>
                                     </a>
                                 </div>
@@ -69,18 +65,16 @@
                                         <input class="ma0" type="radio" name="converse" value="1" checked="checked">流畅
                                         <input type="radio" name="converse" value="2">标清
                                         <input type="radio" name="converse" value="3">高清
-
                                     </div>
                                     <div class="right_bottom">
                                         <h2>下载权限</h2>
-                                        <input class="ma0" id="checkedTrue" type="radio" name="down_power" value="1" checked="checked">是
-                                        <input type="radio" id="checkedFalse" name="down_power" value="1">否
+                                        <input class="ma0" type="radio" name="down_power" value="1" checked="checked">是
+                                        <input type="radio" name="down_power" value="1">否
                                             <div class="button">
                                                 <input type="button" class="subtext" value="点击上传" />
                                                 <input type="hidden" id="voidUrl" name="playurl">
                                                 <b id="bar3"></b>
-                                            </div>
-                                            
+                                            </div>                                            <div class="button">                                                <input type="button" value="点击转码" id="transcode"/>                                                <input type="hidden" id="voidUrl" name="playurl">                                                <b id="bar3"></b>                                                <div id="transcode_percent"> </div>                                                                                            </div>                                                                                        
                                     </div>
                                 </div>
 
@@ -136,7 +130,7 @@
 <script src="{$webpath}views/js/newjs/jquery.fileupload-validate.js"></script>
 <script>
 /*jslint unparam: true */
-/*global window, $ */
+/*global window, $ */var file_name = "";
 $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
@@ -182,8 +176,8 @@ $(function () {
         console.log(data)
         $(".list_db .dspl .button .subtext").attr("disabled",false);
         $(".list_db .dspl .button .subtext").val('已选择，请上传');
-        $(".list_db .dspl .button .subtext").data(data);
-
+        $(".list_db .dspl .button .subtext").data(data);        var imgName = data.files[0].name;        var filename;        if(imgName.indexOf("\\")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串        {            filename=imgName.substring(imgName.lastIndexOf("\\")+1,imgName.length);        }        else        {            filename=imgName;        }
+        file_name = filename;
     }).on('fileuploadprogressall', function (e, data) {
        // alert(25)
         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -316,11 +310,11 @@ $(function () {
         }
 
     })
-
+    var src_id;
     //点击重置按钮
     $("#reset").click(function(){
         location.reload();
-    })
+    })        // this just for test     $("#transcode").click(function (){    	var mychannel = document.getElementById("cid");    	var index = mychannel.selectedIndex;    	var cid = mychannel.options[index].value;    	    	var myconverse = document.getElementsByName("converse");    	var converse;    	 for(var i=0;i<myconverse.length;i++){    		 if(myconverse[i].checked){    			 converse = myconverse[i].value    		 }    	 }    	alert(file_name);    	alert(cid);    	alert("converse:" + converse);		$.ajax({			  type: 'get',			  url: "?s=Mycenter/transcode_do/filename/" + file_name + "/cid/" + cid + "/converse/" + converse,			  success:function(data){				  var obj = eval('('+data+')');				  var status = obj.data.status;				  if(status  == "success"){					  src_id = obj.data.src_id;					  setTimeout(function() {  						  get_transcode_percent();  				           },  				        200); 					  setInterval(function() {get_transcode_percent();}, 3000);				  }				  			}		});	    	    })        function get_transcode_percent(){    	$.ajax({    		  type : "get",    		  url : "?s=Mycenter/transcode_percent/src_id/" + src_id,    		  success:function(dates){    			  var obj = eval('('+data+')');				  var status = obj.data.status;				  var percent = obj.data.percent;				  alert(percent);    		  		$("#transcode_percent").html(percent);//要刷新的div    		  },    		  error: function() {    		        // alert("失败，请稍后再试！");    		      }    		 });    	    }    // test end
 </script>
 </body>
 </html>

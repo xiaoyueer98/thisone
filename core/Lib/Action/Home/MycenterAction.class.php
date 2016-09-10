@@ -284,6 +284,10 @@ class MycenterAction extends HomeAction{
             $where['id']=$_POST['id'];
             $user['username']=$_POST['username'];
             $user['email']=$_POST['email'];
+            $list=M("user")->where($user)->find();
+            if(!empty($list)){
+                echo "该用户名已经存在，请重新输入！";
+            }
             if(M("user")->where($where)->save($user)){
                 echo "<script>alert('修改成功！');</script>";
                 $this->display('user_login');
@@ -472,7 +476,6 @@ class MycenterAction extends HomeAction{
         $type = $_REQUEST['type'];
         file_put_contents('log.txt', "email:$email;type:$type \n", FILE_APPEND);
         $where['id'] = $_GET['id'];
-     //   $con['pid'] = '2';
         $con['pid'] = array('neq',0);
         $con['ctype'] = "vod";
         $list_channel_video = M('Channel')->where($con)->select();
@@ -524,8 +527,10 @@ class MycenterAction extends HomeAction{
         $intro = $_POST['intro'];
         $_POST['ctype'] = "vod";
         $display = $_POST['display'];
+        $playurl = $_POST['playurl'];
 
         file_put_contents('log.txt', "picurl:$picUrl\n", FILE_APPEND);
+        file_put_contents('log.txt', "playurl:$playurl\n", FILE_APPEND);
         if (strpos($_POST['picurl'],'://') > 0) {
             $down = D('Down');
             $_POST['picurl']= $down->down_img(trim($_POST['picurl']));
@@ -535,9 +540,7 @@ class MycenterAction extends HomeAction{
         if($down_power == 1){
             $_POST['downurl'] = $_POST['picurl'];
         }
-        
-        $playurl = $_POST['playurl'];
-        
+
         $src_name = $this->get_file_name($playurl);
         $host = $_SERVER['HTTP_HOST'];
         $port = $_SERVER['HTTP_PORT'];
@@ -545,41 +548,6 @@ class MycenterAction extends HomeAction{
         $stream = randomkeys(16);
         $playurl = "|".$host."|".$port."|".$app_info."|".$stream."|flv|vod|";
         $_POST['playurl'] = $playurl;
-        
-        $tid = 6;    //default; 
-        if($converse == 1){
-          $tid = 6;  
-        }else if($converse == 2){
-          $tid = 4;
-        }else if($converse == 3){
-          $tid = 1;
-        }
-        
-        $_POST['tid'] = $tid;
-        $t = M('transcode_info');
-        $where['id'] = $tid;
-        $transcode_info = $t->where($where)->find();
-        $video_bitrate = $transcode_info['video_bitrate'];
-        $audio_bitrate = $transcode_info['audio_bitrate'];
-        $width = $transcode_info['width'];
-        $height = $transcode_info['height'];
-        $ret = check_login();
-        file_put_contents('log.txt', "upload streams 111......\n", FILE_APPEND);
-        if($ret == false){
-            file_put_contents('log.txt', "upload streams 222......\n", FILE_APPEND);
-            header("Location: ../auth/right_error.html?error=notauthorized");
-        }else{
-            $_SESSION['mstoken'] = $ret;
-        }
-        
-        $media_host = C('mserver_url');
-        $webpath = C('web_path');
-        $querystr = "application=$app_info&src=$src_name&src_id=$stream&video_bitrate=$video_bitrate&audio_bitrate=$audio_bitrate&width=$width&height=$height&token=$ret";
-        $url      = "http://".$media_host."/mserver/interface/transcode/?app=transcode&".$querystr;
-        $ret = transcode($url);
-        if($ret !== true){
-            file_put_contents('log.txt', "ret:$ret \n", FILE_APPEND);
-        }
         
         file_put_contents('log.txt', "url:$url\n", FILE_APPEND);
         file_put_contents('log.txt', "display:$display;name:$title;type:$cid;picurl:$picUrl;upload2:$upload2;converse:$converse;down_power:$down_power;intro:$intro\n", FILE_APPEND);
@@ -618,7 +586,7 @@ class MycenterAction extends HomeAction{
         
         $vid = $_POST['vid'];
         
-        file_put_contents('log.txt', "tttt vid:".$vid."\n", FILE_APPEND);
+        file_put_contents('log.txt', "tttt tid:".$data['tid']."\n", FILE_APPEND);
         
         if($vid){
             $where['id'] = $vid;
@@ -676,15 +644,58 @@ class MycenterAction extends HomeAction{
     }
 
     public function del(){
-        $list = $this->checklogin();
-        $where['vid']=$_GET['id'];
-        $row=M('Mycenter')->where($where)->delete();
-        if($row==0){
-            redirect('Mycenter/mycare',array('id'=>$list),1,'删除失败...');
-        }else{
-            redirect('Mycenter/mycare',1,'删除成功...');
+        $type = $_GET['type'];
+        $this->delfile($_GET['id']);
+        $this->assign('type', $type);
+        $this->personal_my();
+    }
+    
+    // 删除静态文件与图片
+    public function delfile($id){
+        //删除静态文件
+        $VideoDB = M("video");
+        $array = $VideoDB->field('id,cid,picurl,title,playurl')->where('id = '.intval($id))->find();
+        @unlink('./'.C('upload_path').'/'.$array['picurl']);
+        @unlink('./'.C('upload_path').'-s/'.$array['picurl']);
+        if(C('url_html')){
+            //删除内容页
+            @unlink(C('webpath').get_read_url_dir('video',$array['id'],$array['cid']).C('html_file_suffix'));
+            //删除播放页
+            if(C('url_html_play')){
+                $count = 1;
+                if(C('url_html_play') == 2){
+                    $count = $this->playlist($array['playurl'],$array['id'],$array['cid']);
+                    $count = $count[0]['playcount'];
+                }
+                for($i=0;$i<$count;$i++){
+                    $dirurl = get_play_url_dir($array['id'],$array['cid'],$i).C('html_file_suffix');
+                    @unlink($dirurl);
+                }
+            }
         }
-
+        //删除专题收录
+        $rs = new Model();
+        $rs->execute("update ".C('db_prefix')."special set mids=Replace(Replace(Replace(Replace
+            (CONCAT(',,',mids,',,'),',$id,',','),',,,,',''),',,,',''),',,','')");
+        //删除视频ID
+        $where['id'] = $id;
+        $VideoDB->where($where)->delete();
+        unset($where);
+        //删除观看主录
+        $UserVDB = M('userview');
+        $where['did'] = $id;
+        $UserVDB->where($where)->delete();
+        unset($where);
+        //删除相关评论
+        $CommDB = M('comment');
+        $where['did'] = $id;
+        $where['mid'] = 1;
+        $CommDB->where($where)->delete();
+        
+        //删除我的记录
+        $MyCenter = M('mycenter');
+        $where['vid'] = $id;
+        $MyCenter->where($where)->delete();
     }
 
     /**
@@ -703,7 +714,7 @@ class MycenterAction extends HomeAction{
         $arr = $this->checklogin();
         $logtime=$arr['logtime'];
         $email=$arr['email'];
-        $status=$arr['status'];
+       // $status=$arr['status'];
         $vid = $_REQUEST['vid'];
         $type = $_REQUEST['type'];
         if(empty($vid) || empty($type))
@@ -712,25 +723,38 @@ class MycenterAction extends HomeAction{
         }
         $where['id'] = $vid;
         $where['ctype'] = $type;
-        $video = M('video')->where($where)->select();
+        $video = M('video')->where($where)->find();
         if(empty($video))
         {
             $this->redirect($_SERVER['HTTP_REFERER']);
         }
         
+        $cid = $video['cid'];
         $downurl = $video['downurl'];
+        $display = $video['status'];
+        $tid = $video['tid'];
+        if(($tid >= 1) && ($tid <= 3)){
+            $tid = 3;
+        }else if(($tid > 3) && ($tid <= 5)){
+            $tid = 2;
+        }else{
+            $tid = 1;
+        }
+        
         $con['pid'] = array('neq',0);
         $con['ctype'] = "vod";
+        
+        file_put_contents('log.txt', "display:$display\n", FILE_APPEND);
         $list_channel_video = M('Channel')->where($con)->select();
         $this->assign('logtime', $logtime);
         $this->assign('email', $email);
-        $this->assign('display', $status);
-        $this->assign($video[0]);
+        $this->assign('display', $display);
+        $this->assign($video);
         $this->assign("list_channel_video", $list_channel_video);
         $this->assign('vid', $vid);
+        $this->assign('cid', $cid);
         $this->assign('downurl', $downurl);
         
-
         if($type == "vod")
         {
             $this->display("new/update_vod");
@@ -766,6 +790,106 @@ class MycenterAction extends HomeAction{
         $this->assign($video[0]);
 
         $this->display("new/currentLive");
+    }
+    
+    public function chattest(){
+        $this->display("new/chat");
+    }
+    
+    public function transcode_do(){
+        $filename = $_REQUEST['filename'];
+        $cid = $_REQUEST['cid'];
+        $converse = $_REQUEST['converse'];
+        file_put_contents('log.txt', "filename:$filename;cid:$cid;converse:$converse \n", FILE_APPEND);
+        $tid = 6;    //default;
+        if($converse == 1){
+            $tid = 6;
+        }else if($converse == 2){
+            $tid = 4;
+        }else if($converse == 3){
+            $tid = 1;
+        }
+        
+        $t = M('transcode_info');
+        $where['id'] = $tid;
+        file_put_contents('log.txt', "tid:$tid\n", FILE_APPEND);
+        $transcode_info = $t->where($where)->find();
+        $video_bitrate = $transcode_info['video_bitrate'];
+        $audio_bitrate = $transcode_info['audio_bitrate'];
+        $width = $transcode_info['width'];
+        $height = $transcode_info['height'];
+        
+        file_put_contents('log.txt', "v_bit:$video_bitrate;a_bit:$audio_bitrate;w:$width;h:$height\n", FILE_APPEND);
+        
+        $ret = check_login();
+        file_put_contents('log.txt', "transcode_do 111......\n", FILE_APPEND);
+        if($ret == false){
+            file_put_contents('log.txt', "transcode_do 222......\n", FILE_APPEND);
+            header("Location: ../auth/right_error.html?error=notauthorized");
+        }else{
+            $_SESSION['mstoken'] = $ret;
+        }
+        
+        $app_info = $this->get_app_by_cid($cid);
+        $src_id = randomkeys(16);
+        
+        $media_host = C('mserver_url');
+        $webpath = C('web_path');
+        $querystr = "application=$app_info&src=$filename&src_id=$src_id&video_bitrate=$video_bitrate&audio_bitrate=$audio_bitrate&width=$width&height=$height&token=$ret";
+        $url      = "http://".$media_host."/mserver/interface/transcode/?app=transcode&".$querystr;
+        $ret = transcode($url);
+        if($ret !== true){
+            file_put_contents('log.txt', "ret:$ret \n", FILE_APPEND);
+        } 
+        
+        $data['status'] = 'success';
+        $data['src_id'] = $src_id;
+        $this->ajaxReturn($data);
+    }
+    
+    public function transcode_percent(){
+        $src_id = $_REQUEST['src_id'];
+        file_put_contents('log.txt', "src_id:$src_id \n", FILE_APPEND);
+        
+        $media_host = C('mserver_url');
+        $ret = check_login();
+        if($ret == false){
+            header("Location: ../auth/right_error.html?error=notauthorized");
+        }else{
+            $_SESSION['mstoken'] = $ret;
+        }
+        
+        
+        $waiting_stream_array = get_duty_array("waiting", $ret);
+        $count = count($waiting_stream_array);
+        file_put_contents('log.txt', "111 count:$count\n", FILE_APPEND);
+        for($i = 0; $i < $count; $i++){
+            if($src_id == $waiting_stream_array[$i]['src_id']){
+                $transcode['src_id'] = $src_id;
+                $percent = $waiting_stream_array[$i]['encode_progress'];
+                $transcode['percent'] = $percent;
+                $transcode['status'] = 'waiting';
+                file_put_contents('log.txt', "22 percent:".$percent."\n", FILE_APPEND);
+                $this->ajaxReturn($transcode);
+            }
+        }
+        
+        unset($count);
+        $working_stream_array = get_duty_array("working", $ret);
+        
+        $count = count($working_stream_array);
+        file_put_contents('log.txt', "222 count:$count\n", FILE_APPEND);
+        for($i = 0; $i < $count; $i++){
+            if($src_id == $working_stream_array[$i]['src_id']){
+                $transcode['src_id'] = $src_id;
+                $percent = $working_stream_array[$i]['encode_progress'];
+                $transcode['percent'] = $percent;
+                $transcode['status'] = 'working';
+                file_put_contents('log.txt', "22 percent:".$percent."\n", FILE_APPEND);
+                $this->ajaxReturn($transcode);
+            }
+        }
+
     }
 
 }
