@@ -258,6 +258,7 @@ class MycenterAction extends HomeAction{
         $this->assign('logtime',$logtime);
         $this->assign('email',$email);
         $this->assign('status',$status);
+        $this->assign('uid', $uid);
         if($ctype=='live'){
             $this->display("new/personal_mylive");
         }else{
@@ -328,6 +329,7 @@ class MycenterAction extends HomeAction{
         $logtime=$arr['logtime'];
         $email=$arr['email'];
         $status=$arr['status'];
+        $uid = $arr1['id'];
         $type = $_REQUEST['type'];
         file_put_contents('log.txt', "type:$type \n", FILE_APPEND);
         $where['id'] = $_GET['id'];
@@ -357,6 +359,7 @@ class MycenterAction extends HomeAction{
         $array['inputer']  = $_SESSION['user'];
         $this->assign('logtime', $logtime);
         $this->assign('email', $email);
+        $this->assign('uid', $uid);
         $this->assign('status', $status);
         $this->assign('channel_id', $channel_id);
         $this->assign('subid', $subid);
@@ -702,7 +705,7 @@ class MycenterAction extends HomeAction{
      * 上传图片和视频方法
      */
     public function uploadfile()
-    {
+{
 //        var_dump($_REQUEST);
         error_reporting(E_ALL | E_STRICT);
         import('ORG.Util.Uploadhandler');
@@ -793,6 +796,9 @@ class MycenterAction extends HomeAction{
     }
     
     public function chattest(){
+        $this->assign('room', "mytest");
+        $this->assign('jid', "fanson");
+        $this->assign('passwd', "fanson");
         $this->display("new/chat");
     }
     
@@ -809,7 +815,7 @@ class MycenterAction extends HomeAction{
         }else if($converse == 3){
             $tid = 1;
         }
-
+        
         $t = M('transcode_info');
         $where['id'] = $tid;
         file_put_contents('log.txt', "tid:$tid\n", FILE_APPEND);
@@ -818,9 +824,9 @@ class MycenterAction extends HomeAction{
         $audio_bitrate = $transcode_info['audio_bitrate'];
         $width = $transcode_info['width'];
         $height = $transcode_info['height'];
-
+        
         file_put_contents('log.txt', "v_bit:$video_bitrate;a_bit:$audio_bitrate;w:$width;h:$height\n", FILE_APPEND);
-
+        
         $ret = check_login();
         file_put_contents('log.txt', "transcode_do 111......\n", FILE_APPEND);
         if($ret == false){
@@ -829,10 +835,10 @@ class MycenterAction extends HomeAction{
         }else{
             $_SESSION['mstoken'] = $ret;
         }
-
+        
         $app_info = $this->get_app_by_cid($cid);
         $src_id = randomkeys(16);
-
+        
         $media_host = C('mserver_url');
         $webpath = C('web_path');
         $querystr = "application=$app_info&src=$filename&src_id=$src_id&video_bitrate=$video_bitrate&audio_bitrate=$audio_bitrate&width=$width&height=$height&token=$ret";
@@ -858,8 +864,23 @@ class MycenterAction extends HomeAction{
         }else{
             $_SESSION['mstoken'] = $ret;
         }
-        
-        
+
+        /*
+        $done_stream_array = get_duty_array('done', $ret);
+        $count = count($done_stream_array);
+        file_put_contents('log.txt', "111 count:$count; src_id:$src_id\n", FILE_APPEND);
+        for($i = 0; $i < $count; $i++){
+            if($src_id == $done_stream_array[$i]['src_id']){
+                $transcode['src_id'] = $src_id;
+                $transcode['percent'] = 100;
+                $transcode['status'] = 'done';
+                file_put_contents('log.txt', "22 percent:100\n", FILE_APPEND);
+                $this->ajaxReturn($transcode);
+                return;
+            }
+        }
+        */
+
         $waiting_stream_array = get_duty_array("waiting", $ret);
         $count = count($waiting_stream_array);
         file_put_contents('log.txt', "111 count:$count\n", FILE_APPEND);
@@ -867,10 +888,11 @@ class MycenterAction extends HomeAction{
             if($src_id == $waiting_stream_array[$i]['src_id']){
                 $transcode['src_id'] = $src_id;
                 $percent = $waiting_stream_array[$i]['encode_progress'];
-                $transcode['percent'] = $percent;
+                $transcode['percent'] = substr($percent, 0, strlen($percent) - 1);
                 $transcode['status'] = 'waiting';
                 file_put_contents('log.txt', "22 percent:".$percent."\n", FILE_APPEND);
                 $this->ajaxReturn($transcode);
+                return;
             }
         }
         
@@ -881,15 +903,22 @@ class MycenterAction extends HomeAction{
         file_put_contents('log.txt', "222 count:$count\n", FILE_APPEND);
         for($i = 0; $i < $count; $i++){
             if($src_id == $working_stream_array[$i]['src_id']){
-                $transcode['src_id'] = $src_id;
+                $data['src_id'] = $src_id;
                 $percent = $working_stream_array[$i]['encode_progress'];
-                $transcode['percent'] = $percent;
-                $transcode['status'] = 'working';
+                $data['percent'] = substr($percent, 0, strlen($percent) - 1);
+                $data['status'] = 'working';
                 file_put_contents('log.txt', "22 percent:".$percent."\n", FILE_APPEND);
-                $this->ajaxReturn($transcode);
+                $this->ajaxReturn($data);
+                return;
             }
         }
 
+        $data['src_id'] = $src_id;
+        $data['percent'] = 100;
+        $data['status'] = 'done';
+        file_put_contents('log.txt', "22 percent:100\n", FILE_APPEND);
+        $this->ajaxReturn($data);
+        return;
     }
 
 }

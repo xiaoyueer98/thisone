@@ -146,7 +146,7 @@ return  array(
     'TAG_EXTEND_PARSE'      => '',   // 指定对普通标签进行扩展定义和解析的函数名称。
 
     /* 表单令牌验证 */
-    'TOKEN_ON'                    =>   true,     // 开启令牌验证
+    'TOKEN_ON'                    =>   false,     // 开启令牌验证
     'TOKEN_NAME'                =>   '__hash__',    // 令牌验证的表单隐藏字段名称
     'TOKEN_TYPE'                 =>    'md5',   // 令牌验证哈希规则
 

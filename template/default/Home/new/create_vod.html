@@ -60,7 +60,7 @@
                                     </a>
                                 </div>
                                 <div class="dspl">
-                                    <div class="right_top">
+                                    <div class="right_top checkradio_con">
                                         <h2>视频转换码率</h2>
                                         <input class="ma0" type="radio" name="converse" value="1" checked="checked">流畅
                                         <input type="radio" name="converse" value="2">标清
@@ -78,7 +78,7 @@
                                             <div class="button">
                                                 <input type="button" value="点击转码" id="transcode"/>
                                                 <input type="hidden" id="voidUrl" name="playurl">
-                                                <b id="bar3"></b>
+                                                <b id="bar4"></b>
                                                 <div id="transcode_percent"> </div>
                                                 
                                             </div>                                            
@@ -139,7 +139,7 @@
 <script>
 /*jslint unparam: true */
 /*global window, $ */
-
+var num = 0;
 var file_name = "";
 $(function () {
     'use strict';
@@ -150,6 +150,7 @@ $(function () {
             data = $this.data();
             $this
         data.submit().always(function (data) {
+            num = 2;
             //$this.remove();
             $('#bar3').css(
                 'width',
@@ -179,6 +180,14 @@ $(function () {
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
         //alert(23)
+        //重新选择文件清楚转码进度
+        num = 1;
+        $("#bar4").css("width",0);
+        $(".list_db .dspl .button .subtext").attr("disabled",false);
+        $(".checkradio_con input").attr("disabled",false);
+        clearInterval(tim);
+
+
         $('#bar3').css(
             'width',
             0
@@ -186,6 +195,7 @@ $(function () {
         console.log(data)
         $(".list_db .dspl .button .subtext").attr("disabled",false);
         $(".list_db .dspl .button .subtext").val('已选择，请上传');
+        $("#transcode").val("点击转码");
         $(".list_db .dspl .button .subtext").data(data);
         var imgName = data.files[0].name;
 
@@ -346,9 +356,15 @@ $(function () {
     $("#reset").click(function(){
         location.reload();
     })
-    
+    var tim;
     // this just for test 
     $("#transcode").click(function (){
+        var voidUrl = $("#voidUrl").val();
+        //alert(num)
+        if(num == 1){
+            alert("请先上传您的视频。");
+            return
+        }
     	var mychannel = document.getElementById("cid");
     	var index = mychannel.selectedIndex;
     	var cid = mychannel.options[index].value;
@@ -361,22 +377,24 @@ $(function () {
     		 }
     	 }
 
-    	alert(file_name);
+    	/*alert(file_name);
     	alert(cid);
-    	alert("converse:" + converse);
+    	alert("converse:" + converse);*/
 		$.ajax({
 			  type: 'get',
 			  url: "?s=Mycenter/transcode_do/filename/" + file_name + "/cid/" + cid + "/converse/" + converse,
 			  success:function(data){
+                
 				  var obj = eval('('+data+')');
+                  console.log(obj+"sd");
 				  var status = obj.data.status;
 				  if(status  == "success"){
 					  src_id = obj.data.src_id;
 					  setTimeout(function() {  
 						  get_transcode_percent();  
 				           },  
-				        200); 
-					  setInterval(function() {get_transcode_percent();}, 3000);
+				        1); 
+					 tim = setInterval(function() {get_transcode_percent();}, 3000);
 				  }
 				  
 			}
@@ -388,11 +406,28 @@ $(function () {
     		  type : "get",
     		  url : "?s=Mycenter/transcode_percent/src_id/" + src_id,
     		  success:function(dates){
-    			  var obj = eval('('+data+')');
+                console.log(dates)
+               // console.log(dates.data.percent)
+    			  var obj = eval('('+dates+')');
 				  var status = obj.data.status;
 				  var percent = obj.data.percent;
-				  alert(percent);
-    		  		$("#transcode_percent").html(percent);//要刷新的div
+                  console.log(dates)
+				  //alert(percent);
+
+                  $("#bar4").css("width",percent+"%");
+                  if(percent<100){
+                    $(".checkradio_con input").attr("disabled",'disabled');
+                    $("#transcode").val("正在转码");
+                    //$(".list_db .dspl .button .subtext").attr("disabled","disabled");
+                  }else{
+                    $("#transcode").val("转码完成");
+                    clearInterval(tim)
+                    $(".checkradio_con input").attr("disabled",false);
+                    $("#bar4").css("width",0);
+                   // $(".list_db .dspl .button .subtext").attr("disabled",false);
+                  };
+                  
+    		  		//$("#transcode_percent").html(percent);//要刷新的div
     		  },
     		  error: function() {
     		        // alert("失败，请稍后再试！");

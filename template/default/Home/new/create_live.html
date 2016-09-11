@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    
+    <script type='text/javascript' src='{$tplpath}js/jquery-3.0.0.min.js'></script>
+	<script type='text/javascript' src='{$tplpath}js/strophe.js'></script>
+	<script type='text/javascript' src='{$tplpath}js/strophe.muc.js'></script>
+	
     <link href="{$webpath}views/css/newcss/bootstrap.min.css" rel="stylesheet" media="screen">
     
 </head>
@@ -25,8 +30,9 @@
                         <h3>创建直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
                         <hr/>
                     </div>
-                    <form action="?s=mycenter/insertlive" method="post" id="mycontent">
+                    <form action="?s=mycenter/insertlive" method="post" id="mycontent" onsubmit="return create_room()">
                     <input type="hidden" name="email" id="email" value="{$email}"/>
+                        <input type="hidden" name="uid" id="uid" value="{$uid}" />
                     <div class="live clearfix">
                         <ul>
                             <li class="list_zb clearfix">
@@ -122,8 +128,6 @@
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-
-
 <!-- The File Upload processing plugin -->
 <script src="{$webpath}views/js/newjs/jquery.fileupload-process.js"></script>
 <!-- The File Upload image preview & resize plugin -->
@@ -141,6 +145,9 @@
 <script>
 /*jslint unparam: true */
 /*global window, $ */
+ 
+var src_id = "<?php echo randomkeys(16); ?>";
+
 $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
@@ -215,6 +222,30 @@ $(function () {
         }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
+
+var connection = null;
+function SuccessCb(msg){
+    alert("success...");
+}
+
+function ErrorCb(msg){
+    alert("error...");
+}
+
+function onConnect(status){
+    if (status == Strophe.Status.CONNECTED) {
+        connection.muc.init(connection);
+        connection.muc.createInstantRoom($('#title').get(0).value + "@conference.v.8dage.cn", SuccessCb, ErrorCb);
+    }else if (status == Strophe.Status.CONNFAIL) {
+
+    }
+}
+
+function create_room(){
+	var BOSH_SERVICE = '/http-bind/';
+	connection = new Strophe.Connection(BOSH_SERVICE);
+    connection.connect(uid + "@v.8dage.cn", pwd, onConnect);
+}
 </script>
 
 <script>
