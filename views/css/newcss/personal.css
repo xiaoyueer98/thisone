@@ -667,7 +667,7 @@ html{
 }
 .list_zb .db_video{
     width: 415px;
-    height: 150px;
+    height: 190px;
     margin-left: 19px;
     display: inline-block;
     border: 1px solid #aaa;
@@ -704,7 +704,7 @@ html{
     width: 45px;
     height: 45px;
     left: 45.5%;
-    top: 33%;
+    top: 42%;
     background: url("../../images/newimages/icon/icons.png") no-repeat 0 -88px;
 }
 
@@ -728,6 +728,7 @@ html{
     text-align: center;
     line-height: 30px;
     color: #fff;
+    margin-bottom: 10px;
 }
 .list_db .dspl .button input{
     background-color:#436eb3;
@@ -740,8 +741,9 @@ html{
     z-index: 2;
     margin-left: 0;
     color: #fff;
+    border:none;
 }
-.list_db .dspl #bar3{
+.list_db .dspl #bar3,.list_db .dspl #bar4{
     position: absolute;
     top: 0;
     left: 0;
