@@ -1,8 +1,8 @@
-    <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="zh">
 <head>
     <meta charset="utf-8">
-    <title>我的点播</title>
+    <title>我的直播</title>
     <meta charset="utf-8">
     <meta http-equiv=“X-UA-Compatible” content=“IE=8″>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -11,18 +11,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
+<div class="mask2"></div>
 <div class="box ma0">
     <include file="header" />
     <div class="contents">
         <div class="center pdt20 clearfix w1180">
             <include file="personal_center_left" />
-                <div class="col_right fr">
-                    <div class="right_top pd30">
-                        <h3>我的直播</h3> <h4 class="fz12 fwbold">MY LIVE</h4>
-                        <hr/>
-                    </div>
-                    <div class="account">
-                        <form action="?s=Mycenter/delall" method="post" id="form">
+            <div class="col_right fr">
+                <div class="right_top pd30">
+                    <h3>我的直播</h3> <h4 class="fz12 fwbold">MY LIVE</h4>
+                    <hr/>
+                </div>
+                <div class="account">
+                    <form action="?s=Mycenter/delall" method="post" id="form">
                         <ul class="list_title">
                             <li class=" ml12">
                                 <input type="checkbox" id="selectAll"> 全选
@@ -32,56 +33,75 @@
                             <li class="ml120">报名人数</li>
                             <li class="a3 fr mr156">操作</li>
                         </ul>
+                        <volist name="list_video" id="video">
                         <ul class="list_centen">
-                            <volist name="list_video" id="video">
-                            <li>
-                                <input type="checkbox" class="select" value="{$video.id}" name="ids[]">
-                                <div class="img">
-                                    <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live">
-                                    <img src="uploads/{$video.picurl}"/>
-                                    </a>
-                                </div>
-                                <div class="list_center ml88">
-                                    <p class="mb15">{$video.title}</p>
-                                    <span>{$video.addtime|date="Y-m-d H:i",###}</span>
-                                </div>
-                                <div class="list_center ml80">
-                                    <span>{$video.hits}</span>
-                                </div>
-                                <div class="icon fr">
-                                    <h2 onclick="location.href='?s=Mycenter/onlive/vid/{$video.id}'">
-                                        <i class="icon_4"></i>
-                                        <span>直播</span>
-                                    </h2>
-                                    <h2 class="mlr40">
-                                        <i class="icon_5"></i>
-                                        <span>回放管理</span>
-                                    </h2>
-                                    <h2 onclick="location.href='?s=mycenter/updateplayinfo/type/live/vid/{$video.id}'">
-                                        <i class="icon_l"></i>
-                                        <span>编辑</span>
-                                    </h2>
-                                    <h2 class="mlr40" onclick="location.href='?s=Mycenter/del/id/{$video.id}/type/live'">
-                                        <i class="icon_c"></i>
-                                        <span>删除</span>
-                                    </h2>
-                                    <h2>
-                                        <i class="icon_r"></i>
-                                        <span>分享</span>
-                                    </h2>
-                                    
-                                </div>
-                            </li>
-                            </volist>
+
+                                <li>
+                                    <input type="checkbox" class="select" value="{$video.id}" name="ids[]">
+                                    <div class="img">
+                                        <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live">
+                                            <img src="uploads/{$video.picurl}"/>
+                                        </a>
+                                    </div>
+                                    <div class="list_center ml88">
+                                        <p class="mb15">{$video.title}</p>
+                                        <span>{$video.addtime|date="Y-m-d H:i",###}</span>
+                                    </div>
+                                    <div class="list_center ml80">
+                                        <span>{$video.hits}</span>
+                                    </div>
+                                    <div class="icon fr">
+                                        <h2 onclick="location.href='?s=Mycenter/onlive/vid/{$video.id}'">
+                                            <i class="icon_4"></i>
+                                            <span>直播</span>
+                                        </h2>
+                                        <h2 class="mlr40" onclick="location.href='?s=Mycenter/historyvod'">
+                                            <i class="icon_5"></i>
+                                            <span>回放管理</span>
+                                        </h2>
+                                        <h2 onclick="location.href='?s=mycenter/updateplayinfo/type/live/vid/{$video.id}'">
+                                            <i class="icon_l"></i>
+                                            <span>编辑</span>
+                                        </h2>
+                                        <h2 class="mlr40" onclick="location.href='?s=Mycenter/del/id/{$video.id}/type/live'">
+                                            <i class="icon_c"></i>
+                                            <span>删除</span>
+                                        </h2>
+                                        <h2 class="fenxiang">
+                                            <i class="icon_r"></i>
+                                            <span>分享</span>
+                                        </h2>
+                                        <div class="jiathis_style_32x32" style="display:none">
+                                            <a class="jiathis_button_qzone"></a>
+                                            <a class="jiathis_button_tsina"></a>
+                                            <!--  <a class="jiathis_button_tqq"></a> -->
+                                            <a class="jiathis_button_weixin"></a>
+                                            <!--   <a class="jiathis_button_renren"></a> -->
+                                            <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                                            <a class="jiathis_counter_style"></a>
+                                        </div>
+                                    </div>
+                                </li>
                         </ul>
-                        </form>
-                    </div>
+                        </volist>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 <script>
+    $(".fenxiang").click(function(){
+        $(".mask2").show();
+        $(".list_centen .jiathis_style_32x32").show();
+        $(".list_centen .jiathis_style_32x32").attr("z-index",100);
+    })
+    $(".mask2").click(function(){
+        $(".list_centen .jiathis_style_32x32").hide();
+        $(".mask2").hide();
+    });
     $("#selectAll").click(function(){
         if(this.checked == true)
         {
@@ -116,6 +136,15 @@
             alert("请选择要删除的视频");
             return false;
         }
+    }
+
+    var jiathis_config = {
+        imageWidth: 26,
+        marginTop: 150,
+        url: "http://103.231.69.228/video/",
+        title: "{$video[0]['title']}",
+        summary: "{$video[0]['intor']}",
+        pic: "{$video[0]['picurl']}"
     }
 
 </script>

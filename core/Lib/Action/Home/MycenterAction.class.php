@@ -921,4 +921,31 @@ class MycenterAction extends HomeAction{
         return;
     }
 
+    //我的直播、点播
+    public function historyvod(){
+        $arr1 = $this->checklogin();
+        $uid = $arr1['id'];
+        $logtime=$arr1['logtime'];
+        $email=$arr1['email'];
+        $status=$arr1['status'];
+        file_put_contents('log.txt', "personal_my id:$uid\n", FILE_APPEND);
+        $where['uid'] = $uid;
+
+        $list=M('mycenter')->where($where)->select();
+        $arr=array();
+        $count = count($list);
+        for($i=0;$i<count($list);$i++){
+            $arr[$i]=$list[$i]['vid'];
+        }
+        $vod_video=M("video")->where(array('id'=>array('IN',$arr)))->select();
+        $count = count($vod_video);
+        file_put_contents('log.txt', "video count:$count\n", FILE_APPEND);
+        $this->assign('list_video',$vod_video);
+        $this->assign('logtime',$logtime);
+        $this->assign('email',$email);
+        $this->assign('status',$status);
+        $this->assign('uid', $uid);
+
+        $this->display("new/history_vod");
+    }
 }

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>回放记录</title>
+    <meta charset="utf-8">
+    <meta http-equiv=“X-UA-Compatible” content=“IE=8″>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
+    <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<div class="box ma0">
+    <include file="header" />
+    <div class="contents">
+        <div class="center pdt20 clearfix w1180">
+           <include file="personal_center_left" />
+                <div class="col_right govering fr">
+                    <div class="right_top pd30">
+                        <h3>回放记录</h3> <h4 class="fz12 fwbold">MY ON DEMAND</h4>
+                        <hr/>
+                    </div>
+
+                    <div class="account">
+                        <ul class="title_list clearfix">
+                            <li class="li1">编号</li>
+                            <li class="li2">流名称</li>
+                            <li class="li3">创建时间</li>
+                            <li class="li4">时常</li>
+                            <li class="li5">大小</li>
+                            <li class="li6">播放</li>
+                            <li class="li7">操作</li>
+                        </ul>
+                        <volist name="list_video" id="video">
+                        <ul class="list_centen fix">
+                            <li class="clearfix">
+                                <input type="checkbox">
+                                <div class="clearfix">
+                                    <span class="span1">{$key+1}</span>
+                                    <span class="span2">{$video.title}</span>
+                                    <span class="span3">{$video.addtime|date="Y-m-d H:i",###}</span>
+                                    <span class="span4">00:03:08</span>
+                                    <span class="span5">15.1 M</span>
+                                    <span class="span6">15.1 M</span>
+                                    <em> <i></i><b class="fl"  onclick="location.href='?s=Mycenter/del/id/{$video.id}/type/live'">删除</b></em>
+                                </div>
+
+                            </li>
+                        </ul>
+                         </volist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$("#selectAll").click(function(){
+        if(this.checked == true)
+        {
+            $(".select").each(function(){
+                this.checked = true;
+            });
+        }
+        else
+        {
+            $(".select").each(function(){
+                this.checked = false;
+            });
+        }
+    })
+
+    function delAll()
+    {
+        var selected = false;
+        $(".select").each(function(){
+            if(this.checked == true)
+            {
+                selected = true;
+            }
+        });
+        if(selected)
+        {
+            $("#form")[0].submit();
+            return false;
+        }
+        else
+        {
+            alert("请选择要删除的视频");
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
+

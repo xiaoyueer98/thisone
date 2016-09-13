@@ -187,8 +187,8 @@ html{
     background-position: -94px 5px;
 }
 .list .list3{
-     background-position: -118px 2px;
- }
+    background-position: -118px 2px;
+}
 .list .list4{
     background-position: -24px 0;
 }
@@ -362,6 +362,19 @@ html{
 
 .account .list_title li{
     display: inline-block;
+}
+.myvod .list_centen{
+    position: relative;
+}
+.myvod .list_centen .jiathis_style_32x32{
+    position: absolute;
+    right: 0;
+    top: -11px;
+    display: none;
+    z-index: 99;
+}
+.myvod .list_centen .jiathis ,.myvod .list_centen .jiathis_button_expanded{
+    display: none!important;
 }
 .list_centen{
     margin: 20px 0;
@@ -636,10 +649,10 @@ html{
     left: 0;
     display: block;
     height: 100%;
-    filter:alpha(opacity=50);  
-    -moz-opacity:0.5;  
-    -khtml-opacity: 0.5;  
-    opacity: 0.5;  
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
     background:green;
     width: 0%;
 }
@@ -751,11 +764,11 @@ html{
     height:30px;
     width: 0%;
     background:green;
-    filter:alpha(opacity=80);  
-    -moz-opacity:0.8;  
-    -khtml-opacity: 0.8;  
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
     opacity: 0.8;
-    z-index: 2; 
+    z-index: 2;
 }
 .list_db .dspl h2{
     margin-bottom: 7px;
@@ -800,9 +813,9 @@ html{
     margin-top: 55px;
 }
 .back_paswd ul li{
-    
+
     height: 43px;
-   
+
     margin-bottom: 22px;
 }
 .back_paswd ul li.first_li{
@@ -823,7 +836,7 @@ html{
 
     border:none;
     width: 100%;
-     border:1px #aaaaaa solid;
+    border:1px #aaaaaa solid;
     height: 43px;
     line-height: 43px;
     padding-left: 10px;
@@ -853,7 +866,7 @@ ul.emial_con li.li3 .btn{
     text-align: center;
     line-height: 45px;
     color: #3b3636;
-     float: left;
+    float: left;
     background: url("../../images/newimages/button_ps01.png") no-repeat;
 
 }
@@ -912,7 +925,7 @@ ul.emial_con li.li3 .text{
     font-size: 14px;
     text-align: center;
     margin: 0 auto;
-     cursor:pointer;
+    cursor:pointer;
 }
 .account .cur_live_btn .dl2{
     padding-top: 102px;
@@ -934,3 +947,106 @@ ul.emial_con li.li3 .text{
 }
 
 
+
+
+
+
+
+
+
+
+
+
+.govering .title_list{
+    margin-left: 25px;
+}
+.govering .title_list li{
+    float: left;
+}
+.govering .title_list li.li1{
+    margin-left: 15px;
+}
+.govering .title_list li.li2{
+    margin-left: 75px;
+}
+.govering .title_list li.li3{
+    margin-left: 190px;
+}
+.govering .title_list li.li4{
+    margin-left: 75px;
+}
+.govering .title_list li.li5{
+    margin-left: 70px;
+}
+
+.govering .title_list li.li6{
+    margin-left: 50px;
+}
+.govering .title_list li.li7{
+    margin-left: 95px;
+}
+.govering .list_centen li{
+    border:none;
+    background: none;
+}
+.govering .list_centen li input{
+    float: left;
+    margin-right: 3px;
+    margin-top: 17px;
+}
+.govering .list_centen li div{
+    display: block;
+    float: left;
+    height: 48px;
+    border:1px #aaaaaa solid;
+    border-radius: 3px;
+    background: #fff;
+}
+.govering .list_centen li div span{
+    float: left;
+    margin-top: 17px;
+}
+.govering .list_centen span.span1{
+    margin-left:0;
+    width: 35px;
+    text-align: center;
+}
+.govering .list_centen span.span2{
+    margin-left: 72px;
+    width: 219px;
+}
+.govering .list_centen span.span3{
+    margin-left: 10px;
+    width: 115px;
+    margin-top: 10px;
+}
+.govering .list_centen span.span4{
+    margin-left: 10px;
+    width: 90px;
+}
+.govering .list_centen span.span5{
+    margin-left: 10px;
+    width: 65px;
+}
+.govering .list_centen span.span6{
+    margin-left: 10px;
+    width: 110px;
+}
+.govering .list_centen em{
+    display: block;
+    float: left;
+    margin-left: 10px;
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 17px;
+}
+.govering .list_centen em i{
+    display:block;
+    width: 17px;
+    height: 20px;
+    background: url("../../images/newimages/icons.png") no-repeat -94px -27px;
+    float: left;
+    margin-right: 3px;
+}
