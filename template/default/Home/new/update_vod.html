@@ -11,8 +11,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
-<!-- 下载权默认是否选中返回值 -->
-<input type="hidden" id="downloadSpkm" value="{$downurl}">
 <div class="mask2"></div>
 <!-- 视屏服务器端url地址 -->
 <div class="box ma0">
@@ -25,8 +23,7 @@
                         <h3>修改点播</h3> <h4 class="fz12 fwbold">CREATE ON DEMAND</h4>
                         <hr/>
                     </div>
-                    <form action="?s=mycenter/insertvod" method="post">
-                    <input type="hidden" name="vid" id="vid" value="{$vid}" />
+                    <form action="?s=mycenter/insertvod" method="post">                    <input type="hidden" name="vid" id="vid" value="{$vid}" />
                     <div class="live live_db clearfix">
                         <ul>
                             <li class="list_zb">
@@ -34,15 +31,16 @@
                                 <input class="name_zb" type="text" name="title" id="name" value="{$title}" />
                                 <span>视频分类</span>
                                 <select style="height: 30px;width:133px;" id="phone_sowing" name="type" id="type">
-                                    <volist name="list_channel_video" id="video">
-                                        <option value="{$video.id}" {if condition='$video.id eq $cid'}" selected='selected' {/if}>{$video.cname}</option>
+                                    <volist name="list_channel_video" id="gxcms">                                    	<option value="{$gxcms.id}" <eq name="gxcms.id" value="$cid">selected</eq>>{$gxcms.cname}</option>
                                     </volist>
                                 </select>
                             </li>
                             <li class="list_zb">
                                 <span class="span fl">海报</span>
                                 <input class="poster fl mr10" id="imgurl" type="text" value="{$picurl}">
-                                <input class="poster fl mr10" id="imgurlreal" type="hidden" value="{$picurl}">
+
+                                <input class="poster fl mr10" id="imgurlreal" type="hidden" value="{$picurl}"name="picurl">
+
                                 <label for="">
                                     浏览
                                     <input type="file" id="upload" value="..." class="">
@@ -56,44 +54,38 @@
                             </li>
                             <li class="list_zb list_db">
                                 <span class="span">上传视频</span>
-
                                 <div class="db_video">
                                     <a href="javascript:;" class="file">
                                         <input type="file" id="upload2" value="...">
-
                                         <h1 class="psha"></h1>
                                     </a>
                                 </div>
                                 <div class="dspl">
                                     <div class="right_top converse">
-                                        <h2>视频转换码率</h2>
-                                        <input class="ma0" type="radio" name="converse" value="1">流畅
-                                        <input type="radio" name="converse" value="2">标清
-                                        <input type="radio" name="converse" value="3">高清
+                                        <h2>视频转换码率</h2>                                        <input class="ma0" type="radio" name="converse" <if condition='$tid eq 1'> selected</if> >流畅                                        <input type="radio" name="converse" value="2" <if condition='$tid eq 2'>selected</if>>标清                                        <input type="radio" name="converse" value="3" <if condition='$tid eq 3'>selected</if>>高清                                        
                                     </div>
                                     <div class="right_bottom down_power">
                                         <h2>下载权限</h2>
+
                                         <input class="ma0" id="checkedTrue" type="radio" name="down_power" value="1">是
+
                                         <input type="radio" id="checkedFalse" name="down_power" value="0">否
+
                                         <div class="button">
-                                            <input type="hidden" id="voidUrl" value="{$playurl}">
+                                            <input type="hidden" id="voidUrl" value="{$playurl}" name="playurl">
                                             <input type="button" class="subtext" value="点击上传" name="button"/>
                                             <b id="bar3"></b>
                                         </div>
                                             
                                     </div>
                                 </div>
-
-
                             </li>
                             <li class="list_zb">
                                 <span>视频简介</span>
                                 <textarea name="intro" id="brief_introduction" >{$intro}</textarea>
                             </li>
-                            <li class="btn1 fr">
-                                    <button type="button" id="show">公开</button>
-                                    <input type="hidden" value="1" name="display" id="display">
-                                    <button type="button" id="hide">隐藏</button>
+                            <li class="btn1 fr">	
+									<button type="button" id="show" <if condition='$display eq 1'>class='m'</if> >公开</button>                                    <input type="hidden" value="{$display}" name="display" id="display">                                    <button type="button" id="hide" <if condition='$display eq 0'>class='m'</if> >隐藏</button>
                             </li>
                             <li class="btn2 fr" id="error" style="display: none;">error位置</li>
                             <li class="btn2 fr">

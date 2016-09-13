@@ -365,14 +365,14 @@ function get_stream_versions($app, $stream, $format, $pageno="1", $force_update=
          
         
         $media_host = C('mserver_url');
-        $ret = check_login();
+        $ret = check_login("");
         file_put_contents('log.txt', "get_stream_vers 111......\n", FILE_APPEND);
-        if($ret !== false){
+        if($ret == false){
             header("Location: ../auth/right_error.html?error=notauthorized");
         }else{
             $_SESSION['mstoken'] = $ret;
         }
-
+         
         $location = "http://".$media_host."/mserver/interface/stream/?app=get_stream_files&application=$app" .
         "&stream=$stream&format=$format&pageno=$pageno&force_update=$force_update&token=".$_SESSION['mstoken'];
          //print_r($location);

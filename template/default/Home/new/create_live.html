@@ -47,9 +47,9 @@
                             </li>
                             <li class="list_zb clearfix">
                                 <span class="span">主持</span>
-                                <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi">
+                                <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi" value="{$username}">
                                 <span>房间密码</span>
-                                <input class="room_password" type="password" name="room_num" id="room_num">
+                                <input class="room_password" type="text" name="room_num" id="room_num">
                             </li>
                             <li class="list_zb clearfix data">
                                 <span class="span">时段</span>
@@ -147,6 +147,7 @@
 /*global window, $ */
  
 var src_id = "<?php echo randomkeys(16); ?>";
+var connection = null;
 
 $(function () {
     'use strict';
@@ -221,9 +222,10 @@ $(function () {
             }
         }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    
+    create_room();
 });
 
-var connection = null;
 function SuccessCb(msg){
     alert("success...");
 }
@@ -233,18 +235,24 @@ function ErrorCb(msg){
 }
 
 function onConnect(status){
-    if (status == Strophe.Status.CONNECTED) {
-        connection.muc.init(connection);
-        connection.muc.createInstantRoom($('#title').get(0).value + "@conference.v.8dage.cn", SuccessCb, ErrorCb);
-    }else if (status == Strophe.Status.CONNFAIL) {
-
-    }
+   if (status == Strophe.Status.CONNECTING) {
+	  //alert('IM is connecting.');
+   } else if (status == Strophe.Status.CONNFAIL) {
+	   //alert('IM failed to connect.');
+   } else if (status == Strophe.Status.DISCONNECTING) {
+	  // alert('IM is disconnecting.');
+   } else if (status == Strophe.Status.DISCONNECTED) {
+	   //alert('IM is disconnected.');
+   } else if (status == Strophe.Status.CONNECTED) {
+	   //alert('IM is disconnected.');
+	   connection.muc.init(connection);
+   }
 }
 
 function create_room(){
 	var BOSH_SERVICE = '/http-bind/';
 	connection = new Strophe.Connection(BOSH_SERVICE);
-    connection.connect(uid + "@v.8dage.cn", pwd, onConnect);
+    connection.connect("fanson" + "@v.8dage.cn", "fanson", onConnect);
 }
 </script>
 
@@ -288,12 +296,6 @@ function create_room(){
             $("#error").show();
             return false;
         }
-        else if($("#room_num").val() == "")
-        {
-            $("#error").html("房间密码不能为空");
-            $("#error").show();
-            return false;
-        }
         else if($("#start_time").val() == "")
         {
             $("#error").html("请选择开始时间");
@@ -320,15 +322,18 @@ function create_room(){
         }
         else
         {
+        	//connection.muc.createInstantRoom(src_id + "@conference.v.8dage.cn", SuccessCb, ErrorCb);
             $("#sub").attr("type","submit");
         }
 
+        
     })
 
     //点击重置按钮
     $("#reset").click(function(){
         location.reload();
     })
+    
 </script>
 </body>
 </html>

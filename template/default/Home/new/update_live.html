@@ -22,7 +22,7 @@
             <include file="personal_center_left" />
                 <div class="col_right zb fr">
                     <div class="right_top pd30">
-                        <h3>创建直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
+                        <h3>修改直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
                         <hr/>
                     </div>
                     <form action="?s=mycenter/insertlive" method="post" id="mycontent">
@@ -41,9 +41,9 @@
                             </li>
                             <li class="list_zb clearfix">
                                 <span class="span">主持</span>
-                                <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi">
+                                <input class="host_zb mr35" type="text" name="zhuchi" id="zhuchi" value="{$actor}">
                                 <span>房间密码</span>
-                                <input class="room_password" type="password" name="room_num" id="room_num">
+                                <input class="room_password" type="text" name="room_num" id="room_num"value="{$roompwd}">
                             </li>
                             <li class="list_zb clearfix data">
                                 <span class="span">时段</span>
@@ -254,12 +254,6 @@ $(function () {
         else if($("#zhuchi").val() == "")
         {
             $("#error").html("主持不能为空");
-            $("#error").show();
-            return false;
-        }
-        else if($("#room_num").val() == "")
-        {
-            $("#error").html("房间密码不能为空");
             $("#error").show();
             return false;
         }

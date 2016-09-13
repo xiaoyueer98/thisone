@@ -3,10 +3,16 @@
 ?>
 <script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js" xmlns="http://www.w3.org/1999/html"></script>
 <script src="{$webpath}views/js/newjs/script.js"></script>
-<script src="{$webpath}views/js/newjs/yiku.js"></script>
+<script type='text/javascript' src='{$tplpath}/js/jquery-3.0.0.min.js'></script>
+<script type='text/javascript' src='{$tplpath}/js/strophe.min.js'></script>
+<script type='text/javascript' src='{$tplpath}/js/strophe.register.js'></script>
 <script language="javascript">
     var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}'; var username='{$username}';
-
+    var connection = null;
+    var BOSH_SERVICE = '/http-bind/';
+    var jid = "";
+    var pwd = "";
+    
     function fxsearch()
     {
         var wd = document.getElementById('wd').value;
@@ -42,6 +48,8 @@
     }
 </script>
 <script type="text/javascript">
+
+
     $(document).ready(function(e){
         /*------------登录注册页面-------------*/
         $("#login_btn").click(function(){
@@ -53,6 +61,7 @@
             $(".login_and_register").show();
             $(".login_and_register .register_con").show();
             $(".login_and_register .login_con").hide();
+            connection = new Strophe.Connection(BOSH_SERVICE);
         });
         $(".backpswd_btn_con .register_btn").click(function(){
             $(".login_and_register").show();
@@ -62,6 +71,8 @@
         $(".login_and_register .close").click(function(){
             $(".login_and_register").hide();
         });
+        
+        
     })
 </script>
 <link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/reset.css">
@@ -93,32 +104,23 @@
                 <!--</div>-->
                 <!--观看记录 结束-->
             <else />
-                <div class="fl_l margin_l20 font_blue padding_l20 alert username_con">
+                <div class="fl_l margin_l20 font_blue padding_l20 username_con">
                     <a class="fl_l  font_blue " id="username2" href="javascript:void(0)">{$username}</a>
                     <ul class="head_list">
                         <li><a href="javascript:usercenter()">个人中心</a></li>
                         <li><a href="?s=Login/Logout">退出登录</a></li>
                     </ul>
                 </div>
+                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0);" onmousemove="showPlayOld();">观看记录</a>
+                <!--观看记录 开始-->
+                <!--<div class="jilu" id="play_old_list">-->
+                    <!--<span class="jilu1"></span>-->
+                    <!--<div class="jilu3" id="play_old_list_content">-->
 
-                <div class="fl_l margin_l20 font_blue padding_l20 alert record">
-                    <a class="fl_l  font_blue jilu1" id="username2" href="javascript:void(0)">观看记录</a>
-                    <ul class="head_list jilu3" id="play_old_list_content">
-                       <!--  <li class="jilu1-3"><a href="javascript:usercenter()"  class="qk">全部清空</a></li> -->
-                       <!--  <li><a href="?s=Login/Logout">退出登录</a></li> -->
-                    </ul>
-                    <a class="jilu2"></a>
-                </div>
-               <!--  <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0);" onmousemove="showPlayOld();">观看记录</a>
-               观看记录 开始
-               <div class="jilu" id="play_old_list">
-                   <span class="jilu1"></span>
-                   <div class="jilu3" id="play_old_list_content">
-               
-                       <div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>
-                   </div>
-                   <span class="jilu2"></span>
-               </div> -->
+                        <!--<div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>-->
+                    <!--</div>-->
+                    <!--<span class="jilu2"></span>-->
+                <!--</div>-->
                 <!--观看记录 结束-->
 
             </if>
@@ -153,7 +155,7 @@
         </form>
     </div>
     <div class="register_con disun">
-        <form action="?s=Login/Register_do" method="post">
+        <form action="?s=Login/Register_do" method="post" name="register_form", id="register_form">
             <ul>
                 <li class="error" style="display: none;" id="reg_error"><p id="reg_error1">账号或密码错误</p></li>
                 <li><input id="user_name" name="user_name" type="text" placeholder="用户名"/></li>
@@ -173,6 +175,41 @@
     </div>
 </div>
 <script type="text/javascript">
+
+var callback = function (status) {
+    alert(23423323)
+  	if (status === Strophe.Status.REGISTER) {
+  		alert("start register!");
+        connection.register.fields.username = jid;
+        connection.register.fields.password = pwd;
+
+        connection.register.submit();
+      } 
+      else if (status === Strophe.Status.REGISTERED) {
+        alert("registered!");
+        // calling login will authenticate the registered JID.
+    //    connection.register.authenticate();
+        
+       
+        alert("11");
+      
+        $("#submit").attr("type", "submit");
+         alert("33");
+        } else if (status === Strophe.Status.CONFLICT) {
+            alert("Contact already existed!");
+        } else if (status === Strophe.Status.NOTACCEPTABLE) {
+            alert("Registration form not properly filled out.")
+        } else if (status === Strophe.Status.REGIFAIL) {
+            alert("The Server does not support In-Band Registration")
+        } else if (status === Strophe.Status.CONNECTED) {
+            alert('logged in')
+        } else {
+         alert("every other status a connection.connect would receive");
+        }
+    };
+
+
+
     $("#login").click(function(){
          if($("#username").val() == "")
          {
@@ -230,9 +267,16 @@
         }
         else
         {
-            $(this).attr("type", "submit");
+        	jid = $("#user_name").val();
+        	pwd = $("#password").val();
+        	connection.register.connect(jid + "@v.8dage.cn", callback, 60, 1);
+//            $(this).attr("type", "submit");
         }
     })
+    
+    function showPlayOld(){
+    	
+    }
 </script>
 <style>
     .login_and_register li input#verifycode1 {

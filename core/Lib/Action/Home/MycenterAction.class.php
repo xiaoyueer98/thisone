@@ -48,7 +48,7 @@ class MycenterAction extends HomeAction{
             }
         }
         $this->assign("jumpUrl",'index.php?s=User/Login');
-        $this->assign('list_video', $vod_video);
+       // $this->assign('list_video', $vod_video);
         $this->error('登陆超时或未登陆,请重新登陆!');
     }
 
@@ -87,143 +87,6 @@ class MycenterAction extends HomeAction{
 //        $video_page  = !empty($_GET['p'])?$_GET['p']:1;$video_page = intval($video_page);
 //        $video_url   = U('User/Myvod',array('p'=>''),false,false);
 //        $listpages     = get_cms_page($video_count,C('user_page_cm'),$video_page,$video_url,'条视频',false);
-        /*
-                $list_video = array (
-                    0 =>
-                        array (
-                            'id' => '1590',
-                            'cid' => '42',
-                            'title' => 'CCTVNEWS',
-                            'intro' => '',
-                            'keywords' => '',
-                            'color' => '#FF0000',
-                            'actor' => '',
-                            'director' => '',
-                            'content' => '',
-                            'picurl' => 'video/20160220/cctvnewstv.jpg',
-                            'area' => '中国',
-                            'language' => '国语',
-                            'year' => '2000',
-                            'serial' => '0',
-                            'addtime' => '1455855436',
-                            'hits' => '46',
-                            'monthhits' => '3',
-                            'weekhits' => '1',
-                            'dayhits' => '1',
-                            'hitstime' => '1463888742',
-                            'stars' => '2',
-                            'status' => '1',
-                            'up' => '0',
-                            'down' => '0',
-                            'playurl' => '|58.200.131.2|1935|livetv|cctv16|flv|live|',
-                            'downurl' => '',
-                            'inputer' => 'admin',
-                            'reurl' => '',
-                            'letter' => 'C',
-                            'score' => '0.0',
-                            'scoreer' => '1',
-                            'genuine' => '0',
-                            'vodplay' => '0',
-                            'stype_mcid' => '0',
-                            'selftitle' => '',
-                            'selfkeywords' => '',
-                            'selfdescription' => '',
-                            'starttime' => '0',
-                            'endtime' => '0',
-                            'level' => '1',
-                            'ctype' => 'tv',
-                        ),
-                    1 =>
-                        array (
-                            'id' => '1589',
-                            'cid' => '42',
-                            'title' => '香港卫视',
-                            'intro' => '',
-                            'keywords' => '',
-                            'color' => '#FF0000',
-                            'actor' => '',
-                            'director' => '',
-                            'content' => '',
-                            'picurl' => 'video/20160220/xianggangweishi.jpg',
-                            'area' => '中国',
-                            'language' => '国语',
-                            'year' => '2000',
-                            'serial' => '0',
-                            'addtime' => '1455855436',
-                            'hits' => '109',
-                            'monthhits' => '2',
-                            'weekhits' => '2',
-                            'dayhits' => '2',
-                            'hitstime' => '1471941637',
-                            'stars' => '4',
-                            'status' => '1',
-                            'up' => '0',
-                            'down' => '0',
-                            'playurl' => '|||fxtv|hktv|flv|live|',
-                            'downurl' => '',
-                            'inputer' => 'admin',
-                            'reurl' => '',
-                            'letter' => 'X',
-                            'score' => '10.0',
-                            'scoreer' => '1',
-                            'genuine' => '0',
-                            'vodplay' => '0',
-                            'stype_mcid' => '0',
-                            'selftitle' => '',
-                            'selfkeywords' => '',
-                            'selfdescription' => '',
-                            'starttime' => '0',
-                            'endtime' => '0',
-                            'level' => '1',
-                            'ctype' => 'tv',
-                        ),
-                    2 =>
-                        array (
-                            'id' => '1587',
-                            'cid' => '42',
-                            'title' => 'CCTV-9',
-                            'intro' => '',
-                            'keywords' => '',
-                            'color' => '',
-                            'actor' => '',
-                            'director' => '',
-                            'content' => '',
-                            'picurl' => 'video/20160220/beijingtv.jpg',
-                            'area' => '中国',
-                            'language' => '国语',
-                            'year' => '2000',
-                            'serial' => '',
-                            'addtime' => '1455855398',
-                            'hits' => '42',
-                            'monthhits' => '1',
-                            'weekhits' => '1',
-                            'dayhits' => '1',
-                            'hitstime' => '1471941647',
-                            'stars' => '3',
-                            'status' => '1',
-                            'up' => '0',
-                            'down' => '0',
-                            'playurl' => '|||fxtv|CCTV-9|flv|live|',
-                            'downurl' => '',
-                            'inputer' => 'admin',
-                            'reurl' => '',
-                            'letter' => 'C',
-                            'score' => '10.0',
-                            'scoreer' => '1',
-                            'genuine' => '0',
-                            'vodplay' => '0',
-                            'stype_mcid' => '0',
-                            'selftitle' => '',
-                            'selfkeywords' => '',
-                            'selfdescription' => '',
-                            'starttime' => '0',
-                            'endtime' => '0',
-                            'level' => '1',
-                            'ctype' => 'tv',
-                        ),
-
-                );
-                */
         $this->assign('list_video',$list_video);
         $this->assign('arr',$arr);
         $this->assign('email',$email);
@@ -258,7 +121,6 @@ class MycenterAction extends HomeAction{
         $this->assign('logtime',$logtime);
         $this->assign('email',$email);
         $this->assign('status',$status);
-        $this->assign('uid', $uid);
         if($ctype=='live'){
             $this->display("new/personal_mylive");
         }else{
@@ -328,8 +190,8 @@ class MycenterAction extends HomeAction{
         $arr = $this->checklogin();
         $logtime=$arr['logtime'];
         $email=$arr['email'];
+        $username=$arr['username'];
         $status=$arr['status'];
-        $uid = $arr1['id'];
         $type = $_REQUEST['type'];
         file_put_contents('log.txt', "type:$type \n", FILE_APPEND);
         $where['id'] = $_GET['id'];
@@ -359,7 +221,7 @@ class MycenterAction extends HomeAction{
         $array['inputer']  = $_SESSION['user'];
         $this->assign('logtime', $logtime);
         $this->assign('email', $email);
-        $this->assign('uid', $uid);
+        $this->assign('username', $username);
         $this->assign('status', $status);
         $this->assign('channel_id', $channel_id);
         $this->assign('subid', $subid);
@@ -382,7 +244,8 @@ class MycenterAction extends HomeAction{
         $channel = $c->where($where)->find();
         $app = $channel['cfile'];
 
-        $_POST['playurl'] = "|||".$app.'|'.randomkeys(16).'|flv|live|';
+        
+        $_POST['playurl'] = "|". $_SERVER['HTTP_HOST']."||".$app.'|'.randomkeys(16).'|flv|live|';
         $_POST['vodplay'] = empty($_POST['vodplay']) ? 0 : implode('$$$$$$', $_POST['vodplay']);
         $vodplay = $_POST['vodplay'];
 
@@ -411,6 +274,7 @@ class MycenterAction extends HomeAction{
         $data['title'] = $_POST['title'];
         $data['cid'] = $_POST['cid'];
         $data['intro'] = $_POST['intro'];
+        $data['actor'] = $_POST['zhuchi'];
         $data['ctype'] = $_POST['ctype'];
         $data['playurl'] = $_POST['playurl'];
         $data['picurl'] = $_POST['picurl'];
@@ -418,56 +282,58 @@ class MycenterAction extends HomeAction{
         $data['starttime'] = $_POST['starttime'];
         $data['endtime'] = $_POST['endtime'];
         $data['status'] = $_POST['display'];
-        
-        file_put_contents('log.txt', "title:".$data['title'].";cid:".$data['cid'].";intro:".$data['intro'].";ctype:".$data['ctype']."\n", FILE_APPEND);
-        file_put_contents('log.txt', "playurl:".$data['playurl'].";picurl:".$data['picurl'].";addtime:".$data['addtime'].";starttime:".$data['starttime'].";endtime:".$data['endtime']."\n", FILE_APPEND);
+        $limit['id']=$_POST['vid'];
+        $MycenterDB = M('mycenter');
+        if(empty($_POST['vid'])) {
 
-        $id = $VideoDB->add($data);
-        if($id !== false){
-            $email = $_POST['email'];
-        
-            $uid = $this->get_uid_by_email($email);
-            file_put_contents('log.txt', "insert live uid:$uid\n", FILE_APPEND);
-        
-            $data1['ctype'] = "live";
-            $data1['vid'] = $id;
-            $data1['uid'] = $uid;
-            $data1['roompwd'] = $_POST['room_num'];
-        
-            $MycenterDB = M('mycenter');
-            if(false==$MycenterDB->add($data1)){
-                $this->error('直播添加失败11!');
-            }
-        
-            if( false!== $id){
-                $this->display("new/create_live");
-            }else{
-                $this->error('直播添加失败22!');
+            file_put_contents('log.txt', "title:" . $data['title'] . ";cid:" . $data['cid'] . ";intro:" . $data['intro'] . ";ctype:" . $data['ctype'] . "\n", FILE_APPEND);
+            file_put_contents('log.txt', "playurl:" . $data['playurl'] . ";picurl:" . $data['picurl'] . ";addtime:" . $data['addtime'] . ";starttime:" . $data['starttime'] . ";endtime:" . $data['endtime'] . "\n", FILE_APPEND);
+            $id = $VideoDB->add($data);
+            if ($id !== false) {
+                $email = $_POST['email'];
+
+                $uid = $this->get_uid_by_email($email);
+                file_put_contents('log.txt', "insert live uid:$uid\n", FILE_APPEND);
+
+                $data1['ctype'] = "live";
+                $data1['vid'] = $id;
+                $data1['uid'] = $uid;
+                $data1['roompwd'] = $_POST['room_num'];
+                $result = $MycenterDB->add($data1);
+                if (false == $result) {
+                    $where['id']=$id;
+                    $VideoDB->where($where)-delete();
+                    $this->error('直播添加失败!');
+                    $this->assign("jumpUrl", C('cms_admin') .'?s=Mycenter/createlive');
+                }else{
+                    $this->success('直播添加成功！');
+                    $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/createlive');
+                }
             }
         }else{
-            $this->error('直播添加失败33!');
+            //编辑视频
+            $limit2['vid']=$_POST['vid'];
+            $result3=$VideoDB->where($limit)->save($data);
+            if(false!==$result3 ){
+                $data1['roompwd'] = $_POST['room_num'];
+                $result2=$MycenterDB->where($limit2)->save($data1);
+                $this->success('编辑视频成功！');
+                $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/updateplayinfo');
+            }else{
+                $this->error('编辑视频失败,请重新填写!');
+                $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/updateplayinfo');
+            }
         }
     }
 
     // 新增视频保存到数据库-后置操作
-    public function _after_insertlive(){
-
-        $id = $_POST['id'];
-        $data['roompwd']=$_POST['roompwd'];
-        $tid = $_POST['tid'];
-        $data['roompwd']=$_POST['roompwd'];//房间密码
-        $data['uid']   = intval($_COOKIE['gx_userid']);
-        file_put_contents('log.txt', "_after_insertlive id:$id; tid:$tid \n", FILE_APPEND);
-        $data['vid'] = $id;
-        $data['status'] = 1;
-        $data['ctype'] = "live";
-        $this->MycenterDB->add($data);
-        $this->VideoplaywhiteDB->where('vid='.$tid)->save($data);
-        $this->VideopushwhiteDB->where('vid='.$tid)->save($data);
-
-        cookie('video_cid',intval($_POST["cid"]));
-        $this->success('直播添加成功,继续添加新视频！');
-    }
+//    public function _after_insertlive(){
+//       // echo "ssssssssssss";die();
+//        file_put_contents('log.txt', "_after_insertlive id:$id; tid:$tid \n", FILE_APPEND);
+//
+//        cookie('video_cid',intval($_POST["cid"]));
+//        $this->success('直播添加成功,继续添加新视频！');
+//    }
 
     //创建点播
     public function createvod(){
@@ -522,7 +388,7 @@ class MycenterAction extends HomeAction{
         $_POST['level'] = $_POST['userlevel'];
 
         $title = $_POST['title'];
-        $cid = $_POST['type'];
+        $cid = $_POST['cid'];
         $picUrl = $_POST['picurl'];
         $upload2 = $_POST['upload2'];
         $converse = $_POST['converse'];
@@ -531,7 +397,19 @@ class MycenterAction extends HomeAction{
         $_POST['ctype'] = "vod";
         $display = $_POST['display'];
         $playurl = $_POST['playurl'];
+        $src_id = $_POST['src_id'];
+        
+        file_put_contents('log.txt', "src_id:".$src_id."\n", FILE_APPEND);
+        $tid = 6;    //default;
+        if($converse == 1){
+            $tid = 6;
+        }else if($converse == 2){
+            $tid = 4;
+        }else if($converse == 3){
+            $tid = 1;
+        }
 
+        $_POST['tid'] = $tid;
         file_put_contents('log.txt', "picurl:$picUrl\n", FILE_APPEND);
         file_put_contents('log.txt', "playurl:$playurl\n", FILE_APPEND);
         if (strpos($_POST['picurl'],'://') > 0) {
@@ -548,11 +426,10 @@ class MycenterAction extends HomeAction{
         $host = $_SERVER['HTTP_HOST'];
         $port = $_SERVER['HTTP_PORT'];
         $app_info = $this->get_app_by_cid($cid);
-        $stream = randomkeys(16);
-        $playurl = "|".$host."|".$port."|".$app_info."|".$stream."|flv|vod|";
+      //  $stream = randomkeys(16);
+        $playurl = "|".$host."|".$port."|".$app_info."|".$src_id."|flv|vod|";
         $_POST['playurl'] = $playurl;
         
-        file_put_contents('log.txt', "url:$url\n", FILE_APPEND);
         file_put_contents('log.txt', "display:$display;name:$title;type:$cid;picurl:$picUrl;upload2:$upload2;converse:$converse;down_power:$down_power;intro:$intro\n", FILE_APPEND);
         $down_power = $_POST['down_power'];
         
@@ -575,6 +452,7 @@ class MycenterAction extends HomeAction{
     // 新增视频保存到数据库
     public function insertvod(){
         file_put_contents('log.txt', "=-=-=-=-=- insert vod\n", FILE_APPEND);
+        $arr=$this->checklogin();
         $VideoDB = M('video');
         $data['title'] = $_POST['title'];
         $data['cid'] = $_POST['cid'];
@@ -590,40 +468,34 @@ class MycenterAction extends HomeAction{
         $vid = $_POST['vid'];
         
         file_put_contents('log.txt', "tttt tid:".$data['tid']."\n", FILE_APPEND);
-        
+        $MycenterDB=M('Mycenter');
         if($vid){
             $where['id'] = $vid;
             $id = $VideoDB->where($where)->save($data);
-        }else{
-            $id = $VideoDB->add($data);
-        }
-
-        if($id !== false){
-            if(!$vid){
-                $email = $_POST['email'];
-                $uid = $this->get_uid_by_email($email);
-                file_put_contents('log.txt', "insert void uid:$uid\n", FILE_APPEND);
-    
-                $data1['ctype'] = "vod";
-                $data1['vid'] = $id;
-                $data1['uid'] = $uid;
-    
-                $MycenterDB = M('mycenter');
-                if(false==$MycenterDB->add($data1)){
-                    $this->error('视频添加失败!');
-                }
-    
-                if( false!== $id){
-                    $this->display("new/create_vod");
-                }else{
-                    $this->error('视频添加失败!');
-                }
+            if(false!== $id){
+                $this->success('成功修改视频信息！');
+                $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/updateplayinfo');
+            }else{
+                $this->success('修改视频信息失败，请重新修改！');
+                $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/updateplayinfo');
             }
         }else{
-            if($vid){
-                $this->error('视频修改失败!');
+            $id = $VideoDB->add($data);
+            if(false!== $id){
+                $data1['uid']=$arr['id'];
+                $data1['vid']=$id;
+                $data1['ctype']=$_POST['ctype'];
+                $result2=$MycenterDB->add($data1);
+                if($result2){
+                    $this->success('视频添加成功！');
+                    $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/createvod');
+                }else{
+                    $this->success('视频添加失败，请返回重新添加！');
+                    $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/createvod');
+                }
             }else{
-                $this->error('视频添加失败!');
+                $this->success('视频添加失败，请返回重新添加！');
+                $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/createvod');
             }
         }
     }
@@ -681,6 +553,7 @@ class MycenterAction extends HomeAction{
         $rs->execute("update ".C('db_prefix')."special set mids=Replace(Replace(Replace(Replace
             (CONCAT(',,',mids,',,'),',$id,',','),',,,,',''),',,,',''),',,','')");
         //删除视频ID
+        unset($where);
         $where['id'] = $id;
         $VideoDB->where($where)->delete();
         unset($where);
@@ -694,7 +567,7 @@ class MycenterAction extends HomeAction{
         $where['did'] = $id;
         $where['mid'] = 1;
         $CommDB->where($where)->delete();
-        
+        unset($where);
         //删除我的记录
         $MyCenter = M('mycenter');
         $where['vid'] = $id;
@@ -705,7 +578,7 @@ class MycenterAction extends HomeAction{
      * 上传图片和视频方法
      */
     public function uploadfile()
-{
+    {
 //        var_dump($_REQUEST);
         error_reporting(E_ALL | E_STRICT);
         import('ORG.Util.Uploadhandler');
@@ -735,6 +608,8 @@ class MycenterAction extends HomeAction{
         $cid = $video['cid'];
         $downurl = $video['downurl'];
         $display = $video['status'];
+        $picurl=$video['picurl'];
+        $actor=$video['actor'];
         $tid = $video['tid'];
         if(($tid >= 1) && ($tid <= 3)){
             $tid = 3;
@@ -743,26 +618,32 @@ class MycenterAction extends HomeAction{
         }else{
             $tid = 1;
         }
-        
+        $limit['vid']=$vid;
+        $list=M('mycenter')->where($limit)->find();
+        $roompwd=$list['roompwd'];
         $con['pid'] = array('neq',0);
         $con['ctype'] = "vod";
         
-        file_put_contents('log.txt', "display:$display\n", FILE_APPEND);
+        file_put_contents('log.txt', "display:$display; tid:$tid\n", FILE_APPEND);
         $list_channel_video = M('Channel')->where($con)->select();
         $this->assign('logtime', $logtime);
+        $this->assign('actor', $actor);
+        $this->assign('roompwd', $roompwd);
         $this->assign('email', $email);
         $this->assign('display', $display);
         $this->assign($video);
+        $this->assign('picurl',$picurl);
         $this->assign("list_channel_video", $list_channel_video);
         $this->assign('vid', $vid);
         $this->assign('cid', $cid);
+        $this->assign('tid', 2);
         $this->assign('downurl', $downurl);
         
+        file_put_contents('log.txt', "type:$type\n", FILE_APPEND);
         if($type == "vod")
         {
             $this->display("new/update_vod");
-        }
-        else
+        } else
         {
             $this->display("new/update_live");
         }
@@ -774,7 +655,7 @@ class MycenterAction extends HomeAction{
         $arr = $this->checklogin();
 //        echo "<pre>";var_dump($arr);echo "</pre>";
         $username = $arr['username'];
-        $userpwd = $arr['userpwd'];
+        $userpwd = $_SESSION['force_userpwd'];
         $vid = $_REQUEST['vid'];
         $type = "live";
         if(empty($vid) || empty($type))
@@ -784,21 +665,23 @@ class MycenterAction extends HomeAction{
         $where['id'] = $vid;
         $where['ctype'] = $type;
         $video = M('video')->where($where)->select();
+        $str= M('video')->where($where)->getField('playurl');
+        //$str="|103.231.69.228||uploadvod|ui6egjjol8s7b32r|flv|vod|";
+        $play=explode('|',$str);
+        $videoplayurl=$play['1'].'/'.$play['3'].'/'.$play['4'];
         if(empty($video))
         {
             $this->redirect($_SERVER['HTTP_REFERER']);
         }
         $this->assign('username', $username);
         $this->assign('userpwd', $userpwd);
+        $this->assign('videoplayurl', $videoplayurl);
         $this->assign($video[0]);
 
         $this->display("new/currentLive");
     }
     
-    public function chattest(){
-        $this->assign('room', "mytest");
-        $this->assign('jid', "fanson");
-        $this->assign('passwd', "fanson");
+    public function group_chat(){
         $this->display("new/chat");
     }
     
@@ -864,33 +747,33 @@ class MycenterAction extends HomeAction{
         }else{
             $_SESSION['mstoken'] = $ret;
         }
-
-        /*
-        $done_stream_array = get_duty_array('done', $ret);
+        
+        $done_stream_array = get_duty_array("done", $ret);
         $count = count($done_stream_array);
-        file_put_contents('log.txt', "111 count:$count; src_id:$src_id\n", FILE_APPEND);
+        
         for($i = 0; $i < $count; $i++){
             if($src_id == $done_stream_array[$i]['src_id']){
                 $transcode['src_id'] = $src_id;
                 $transcode['percent'] = 100;
                 $transcode['status'] = 'done';
-                file_put_contents('log.txt', "22 percent:100\n", FILE_APPEND);
+                file_put_contents('log.txt', "done percent:100\n", FILE_APPEND);
                 $this->ajaxReturn($transcode);
                 return;
             }
         }
-        */
-
+        
+        unset($count);
+        
         $waiting_stream_array = get_duty_array("waiting", $ret);
         $count = count($waiting_stream_array);
-        file_put_contents('log.txt', "111 count:$count\n", FILE_APPEND);
         for($i = 0; $i < $count; $i++){
             if($src_id == $waiting_stream_array[$i]['src_id']){
                 $transcode['src_id'] = $src_id;
                 $percent = $waiting_stream_array[$i]['encode_progress'];
-                $transcode['percent'] = substr($percent, 0, strlen($percent) - 1);
+                $percent = substr($percent, 0, strlen($percent) - 1);
+                $transcode['percent'] = $percent;
                 $transcode['status'] = 'waiting';
-                file_put_contents('log.txt', "22 percent:".$percent."\n", FILE_APPEND);
+                file_put_contents('log.txt', "waiting percent:".$percent."\n", FILE_APPEND);
                 $this->ajaxReturn($transcode);
                 return;
             }
@@ -900,25 +783,19 @@ class MycenterAction extends HomeAction{
         $working_stream_array = get_duty_array("working", $ret);
         
         $count = count($working_stream_array);
-        file_put_contents('log.txt', "222 count:$count\n", FILE_APPEND);
         for($i = 0; $i < $count; $i++){
             if($src_id == $working_stream_array[$i]['src_id']){
                 $data['src_id'] = $src_id;
                 $percent = $working_stream_array[$i]['encode_progress'];
-                $data['percent'] = substr($percent, 0, strlen($percent) - 1);
+                $percent = substr($percent, 0, strlen($percent) - 1);
+                $data['percent'] = $percent;
                 $data['status'] = 'working';
-                file_put_contents('log.txt', "22 percent:".$percent."\n", FILE_APPEND);
+                file_put_contents('log.txt', "working percent:".$percent."\n", FILE_APPEND);
                 $this->ajaxReturn($data);
                 return;
             }
         }
 
-        $data['src_id'] = $src_id;
-        $data['percent'] = 100;
-        $data['status'] = 'done';
-        file_put_contents('log.txt', "22 percent:100\n", FILE_APPEND);
-        $this->ajaxReturn($data);
-        return;
     }
 
 }

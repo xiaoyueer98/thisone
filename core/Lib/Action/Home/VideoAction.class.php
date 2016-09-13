@@ -395,6 +395,7 @@ class VideoAction extends HomeAction{
 		$where['status'] = array('eq',1);
 		$rs = M("Video");
 		$array   = $rs->where($where)->find();
+		$tag = $array['ctype'];
 		$playarr = explode('-',$where['id']);//ID与集数分隔
 		if($array){
 
@@ -425,6 +426,7 @@ class VideoAction extends HomeAction{
 				$format=$_GET['format'];
 			}
             $array = $this->tags_video_read($array,$playarr);
+
             
            // $nodeList = $this->play_versions($app, $stream, "flv", 0, 1, "no");
             $nodeList = get_stream_versions($app, $stream, "flv", 0, 1, "no");
@@ -476,7 +478,15 @@ class VideoAction extends HomeAction{
 			$this->assign("transmit", $transmit);
 			$this->assign("ver", $ver);
             $this->assign('isMobile', $is_mobile);
-			$this->display('new/videoplay');
+			if($tag == "vod")
+			{
+				$this->display('new/videovod');
+			//$this->display('video_play');
+			}	
+			else
+			{
+				$this->display('new/videoplay');
+			}
 		}else{
 		    file_put_contents('log.txt', "play... 2222222222\n", FILE_APPEND);
 			$this->assign("jumpUrl",C('web_path'));

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    
+    <script src="{$webpath}views/js/newjs/live/jquery.js"></script>
 </head>
 <body>
 <div class="box ma0">
@@ -38,7 +38,7 @@
                         <div class="cur_live_btn clearfix">
                             <dl class="dl1 fl">
                                 <dt>如果您已经安装了CClive客户端</dt>
-                                <dd id="starlive">立即启动</dd>
+                                <dd id="starlive"><a href="fsProtocol://publish=rtmp://{$videoplayurl}&username={$username}&userpwd={$userpwd}">立即启动</a></dd>
                             </dl>
                             <dl class="dl2 fl">
                                 <dt>
@@ -46,21 +46,27 @@
                                 客户端可在windows7/8/10系统下使用<br>   
                                 下载并安装完成后，再次点击启动
                                 </dt>
-                                <dd id="launch">立即启动</dd>
+                                <dd id="launchfsLive"><a href="/video/fslive/FSLive-setup.exe" >下载安装</a></dd>
                             </dl>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" value="{$playurl}" id="playurl">
-                <input type="hidden" value="{$username}" id="uname">
-                <input type="hidden" value="{$userpwd}" id="upwd">
             </div>
         </div>
     </div>
 </div>
-<script src="{$webpath}views/js/newjs/live/jquery.js"></script>
-<script src="{$webpath}views/js/newjs/live/launchCCLive.js"></script>
-<script src="{$webpath}views/js/newjs/live/launch.js"></script>
+<script>
+    $('#starlive').click(function () {
+        alert(fsProtocol://publish=rtmp://{$videoplayurl}&username={$username}&userpwd={$userpwd});
+        window.launchCCLive(function () {
+            var c = confirm('您还没有下载客户端，点击确定按钮下载');
+            if (c) {
+                window.open('103.231.69.228/video/fslive/FSLive-setup.exe', '_target');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
 
