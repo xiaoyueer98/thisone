@@ -34,7 +34,7 @@ class CommentAction extends HomeAction{
 		$this->assign('pages',$pages);
 		$this->assign('count',$count);
 		$this->assign('list_comment',$list);
-		$this->display('comment');
+		$this->display('new/comment');
     }
 	// 添加评论
     public function insert(){

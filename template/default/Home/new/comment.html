@@ -1,0 +1,24 @@
+                    <span>评论<i>45</i></span>
+                    <div class="text_con fix">
+                        <textarea class="margin_t5" plearhoder="和大家聊几句吧" name="content" id="comment_content" cols="30" rows="10"></textarea>
+                        <input type="button" value="发表评论" class="fl_r" onclick="CommentPost();">
+                    </div>
+
+                    <ul class="com_list">
+                        <!--评论列表 开始-->
+                        <notempty name="list_comment">
+                            <gxfor name="list_comment" id="comment">
+                        <li class="margin-t">
+                            <span class="name">{$comment.floor}楼 &nbsp;{$comment.addtime|date='Y-m-d',###}</span>
+                            <p>{$comment.content|htmlspecialchars|remove_xss}</p>
+                        </li>
+                            </gxfor>
+                        </notempty>
+                        <!--评论列表 结束-->
+                        <div class="clear">&nbsp;</div>
+                        <!----分页 开始---->
+
+                        <if condition="$count gt C('user_page_cm')"><div class="pag">{$pages}</div></if>
+                        <!----分页 结束---->
+                    </ul>
+                </div>
