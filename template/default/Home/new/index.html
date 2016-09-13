@@ -45,7 +45,7 @@
                 <div class="list_con fix">
                     <ul class="fix">
                         <gxcms name="video" cid='1,2,3,4,5,6' limit="10" order="addtime desc">
-                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                            <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/{video.type}" target="_blank" title="{$video.title}">
                                 <li class="fix">
                                     <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                                     <b>{$video.title|get_replace_html=0,8}</b>
@@ -56,7 +56,7 @@
                     </ul>
                     <ul class="fix">
                         <gxcms name="video" cid='1' limit="10" order="addtime desc">
-                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                            <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/vod" target="_blank" title="{$video.title}">
                                 <li class="fix">
                                     <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                                     <b>{$video.title|get_replace_html=0,8}</b>
@@ -67,7 +67,7 @@
                     </ul>
                     <ul class="fix">
                         <gxcms name="video" cid='2' limit="10" order="addtime desc">
-                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                            <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank" title="{$video.title}">
                                 <li class="fix">
                                     <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                                     <b>{$video.title|get_replace_html=0,8}</b>
@@ -78,7 +78,7 @@
                     </ul>
                     <ul class="fix">
                         <gxcms name="video" cid='3' limit="10" order="addtime desc">
-                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                            <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank" title="{$video.title}">
                                 <li class="fix">
                                     <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
                                     <b>{$video.title|get_replace_html=0,8}</b>
@@ -134,7 +134,7 @@
                 <ul class="con_btm fix dis_block">
                     <gxcms name="video" cid="1" limit="6" order="addtime desc">
                         <li class="fl_l margin_b25">
-                            <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'"  src="{$video.picurl}" alt="{$video.title}"></a>
+                            <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'"  src="{$video.picurl}" alt="{$video.title}"></a>
                             <p class="fix margin_t10">
                                 <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
                                 <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
@@ -155,7 +155,7 @@
                 <gxcms name="video" cid="1" limit="10" order="hits desc">
                     <li class="fix">
                         <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                        <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
+                        <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank"><b>{$video.title}</b></a>
                         <em>{$video.hits}</em>
                     </li>
                 </gxcms>
@@ -185,7 +185,7 @@
                 <ul class="con_btm fix dis_block">
                     <gxcms name="video" cid="2" limit="6" order="addtime desc">
                         <li class="fl_l margin_b25">
-                            <a href="{$video.readurl}" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}"></a>
+                            <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/vod" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}"></a>
                             <p class="fix margin_t10">
                                 <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
                                 <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
@@ -204,7 +204,7 @@
                 <gxcms name="video" cid="2" limit="10" order="hits desc">
                     <li class="fix">
                         <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                        <a href="{$video.readurl}" target="_blank"><b>{$video.title}</b></a>
+                        <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/vod" target="_blank"><b>{$video.title}</b></a>
                         <em>{$video.hits}</em>
                     </li>
                 </gxcms>
@@ -233,7 +233,7 @@
                 <ul class="con_btm fix dis_block">
                     <gxcms name="video" cid="3" limit="5" order="addtime desc">
                         <li class="fl_l margin_b25">
-                            <a href="{$video.readurl}" target="_blank" title="{$video.title}">
+                            <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank" title="{$video.title}">
                                 <img  onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}" />
                             </a>
                             <p class="fix margin_t10">
@@ -254,7 +254,7 @@
                 <gxcms name="video" cid="3" limit="10" order="hits desc">
                     <li class="fix">
                         <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                        <b><a href="{$video.readurl}" target="_blank">{$video.title}</a></b>
+                        <b><a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank">{$video.title}</a></b>
                         <em>{$video.hits}</em>
                     </li>
                 </gxcms>

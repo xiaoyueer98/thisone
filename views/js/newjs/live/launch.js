@@ -4,21 +4,16 @@ $(function () {
     if (isChromeOr360) {
         $('#msg').show();
     }
-    $('#starlive').click(function () {
-        var username=$('#uname').val();
-        var userpwd=$('#upwd').val();
+    $('#launchfsLive').click(function () {
+        var username=$('#username').val();
+        var userpwd=$('#userpwd').val();
         var url=$('#playurl').val();
-
-        var strs= new Array(); //定义一数组
-        strs=url.split("|"); //字符分割
-        url =strs[0]+strs[1]+strs[2]+strs[3]+strs[4];  //推流地址
-        alert(url);
-        //  if (!userId || !roomId) {
-        //      return alert('userId & roomId is empty');
-        // }
-
-        // var publishName = $.trim($('#publishName').val());
-        // var publishPassword = $.trim($('#publishPassword').val());
+       // alert(url);
+        //alert(username);
+        //alert(userpwd);
+         var strs= new Array(); //定义一数组
+         strs=url.split("|"); //字符分割
+         url =strs[0]+strs[1]+strs[2]+strs[3]+strs[4];  //推流地址
         window.launchCCLive(username, userpwd, url,function () {
 
             if (isChromeOr360) {
@@ -26,10 +21,10 @@ $(function () {
             }
             var c = confirm('您还没有下载客户端，点击确定按钮下载');
             if (c) {
-                window.open('http://dl.csslcloud.net/client/windows/CCLive3.2.0.exe', '_target');
+                window.open('103.231.69.228/video/fslive/FSLive-setup.exe', '_target');
             }
         });
-        window.open('http://dl.csslcloud.net/client/windows/CCLive3.2.0.exe', '_target');
+        window.open('103.231.69.228/video/fslive/FSLive-setup.exe', '_target');
     });
 
     // 进入页面
@@ -38,8 +33,8 @@ $(function () {
     $('#launch').click();
 
 
-    $('#download').click(function () {
-        window.open('http://dl.csslcloud.net/client/windows/CCLive3.2.0.exe', '_target');
+    $('#launch').click(function () {
+        window.open('103.231.69.228/video/fslive/FSLive-setup.exe', '_target');
     });
 });
 

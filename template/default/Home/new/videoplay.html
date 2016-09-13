@@ -14,7 +14,11 @@
 	<script type="text/javascript">jwplayer.key="38uAPADVt3eQaliBV2/DIi2ia+QhrVz0lhwLMg==";</script>
 
 </head>
+
+<!--  
 <body class="videoplay" onLoad="InitDoc()" onUnload="close_player()" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
+-->
+<body class="videoplay" onload="alert('aaa');" onUnload="close_player()" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
 <include file="header" />
 <div class="nav padding_t20 margin_t20 bd_b">
     <ul class="fix margin_auto">
@@ -29,7 +33,7 @@
 			<p><em class="fl_l">当前位置: </em><span class="fl_l">首页 ></span> <span class="fl_l">{$cname}</span></p>
 		</div>
 		<div class="_video margin_auto margin_b20 margin_t20 fix">
-			<div class="_video_t">
+			<div class="_video_t fix">
 				<div class="video_l fl_l" id="fxplayer"><!--<img src="{$webpath}views/images/newimages/pic1.jpg" alt="">--></div>
 				<div class="fl_r video_r">
 					<include file="chat" />
@@ -226,6 +230,7 @@
 
 		 video_detail_tag_change2(type,10,'play_name_','play_ji_','on','off','show','hide');
 		 */
+		 InitDoc();
 	});
 
 	function IsPC()
@@ -407,15 +412,15 @@
 
 	function playVod(url,title)
 	{
-		var h = 480;
-		var w = 640;
+		var h = 651;
+		var w = 937;
 		play_flv(w,h,url,"",title);
 	}
 
 	function playLive(url,title)
 	{
-		var h = 480;
-		var w = 640;
+		var h = 651;
+		var w = 937;
 		play_flv(w,h,url,"live",title);
 	}
 
@@ -615,8 +620,11 @@
 
 			if(isPC){
 				if(superFLV == 1){
+
+					//alert("app:" + app + ";stream:" + stream);
 					url = gen_flv_vod_url(host,app,stream, ver,token);
 					url  = url + "&uid=" + uid + "&sid=" + uid;
+					//alert(url);
 					playVod(url,tl);
 				}else if(superHTML5 == 1){
 					url = gen_mp4_url(host,app,stream,ver,token);
