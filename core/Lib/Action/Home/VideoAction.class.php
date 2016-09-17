@@ -388,6 +388,8 @@ class VideoAction extends HomeAction{
 	//视频播放页
     public function play(){
 		$userid   = intval($_COOKIE['gx_userid']);
+		$username = $_COOKIE['gx_username'];
+		$pwd = $_COOKIE['gx_userpwd'];
 		$id = $_GET['id'];
 		$transmit=$_GET['transmit'];
 		file_put_contents('log.txt', "======= video play $id\n", FILE_APPEND);
@@ -485,7 +487,17 @@ class VideoAction extends HomeAction{
 			}	
 			else
 			{
-				$this->display('new/videoplay');
+			    $username = $_SESSION['force_user'];
+			    
+			    file_put_contents('log.txt', "ssss userid:$username\n", FILE_APPEND);
+			    if(($username === null) || ($username === "") || ($username === 0)){
+			        $this->assign("jumpUrl",C('web_path'));
+			        $this->error('观看直播需要先登录！');
+			    }else{
+    			    $this->assign("username", $username);
+    			    $this->assign("userpwd", $pwd);
+    				$this->display('new/videoplay');
+			    }
 			}
 		}else{
 		    file_put_contents('log.txt', "play... 2222222222\n", FILE_APPEND);

@@ -66,6 +66,7 @@ class UserModel extends AdvModel {
 		$userpwd  = trim($_POST['userpwd']);
 		$where['username'] = array('eq',$username);
 		$where['email']    = array('eq',$username);
+		file_put_contents('log.txt', "user moduel check_login  user_name:$username;pwd:$userpwd\n", FILE_APPEND);
 		$where['_logic']   = 'or';
 		$rs = M("User");
 		$list = $rs->where($where)->find();
@@ -79,7 +80,8 @@ class UserModel extends AdvModel {
 			return 0;
 		}		
 		//保存登陆信息
-		$this->addcookie($list['username'],$list['userpwd'],$list['id']);	
+		//$this->addcookie($list['username'],$list['userpwd'],$list['id']);	
+		$this->addcookie($list['username'],$userpwd,$list['id']);
 		$data = array();
 		$data['id']     = $list['id'];
 		$data['lognum'] = array('exp','lognum+1');

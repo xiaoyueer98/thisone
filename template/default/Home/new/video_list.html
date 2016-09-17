@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>首页</title>
+
+	<title>{$webtitle}</title>
+
 	<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/reset.css">
 	<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/style.css">
 	<script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
@@ -23,7 +25,9 @@
 
 	<div class="bacgrd padding_t20">
 		<div class="cqwz fix width1184 margin_auto padding_t15">
-			<p><em class="fl_l">当前位置：</em><span class="fl_l">首页 ></span> <span class="fl_l">{$cname}</span></p>
+
+			<p><em class="fl_l">当前位置：</em><span class="fl_l">{$navtitle}</span></p>
+
 		</div>
 		<div class="content margin_auto ">
 			<div class="con2 fix margin_t10">
@@ -35,9 +39,12 @@
 								<span class="margin_l10">GUESS YOU LIKE</span>
 							</div>
 							<div class="fl_r fix">
-								<a href="" <if condition="$order eq 'addtime'">class="fl_l m"<else />class="fl_l"</if> title="最近更新" onclick="window.location='{:getlistorderurl('addtime')}'">最近更新</a>
-								<a href="" <if condition="$order eq 'weekhits'">class="fl_l m"<else />class="fl_l"</if> title="最高人气" onclick="window.location='{:getlistorderurl('weekhits')}'">最高人气</a>
-								<a href="" <if condition="$order eq 'score'">class="fl_l m"<else />class="fl_l"</if> title="最受好评" onclick="window.location='{:getlistorderurl('score')}'">最受好评</a>
+
+								<a  <if condition="$order eq 'addtime'">class="fl_l m"<else />class="fl_l"</if> title="最近更新" onclick="window.location='{:getlistorderurl('addtime')}'">最近更新</a>
+
+								<a <if condition="$order eq 'weekhits'">class="fl_l m"<else />class="fl_l"</if> title="最高人气" onclick="window.location='{:getlistorderurl('weekhits')}'">最高人气</a>
+
+								<a  <if condition="$order eq 'score'">class="fl_l m"<else />class="fl_l"</if> title="最受好评" onclick="window.location='{:getlistorderurl('score')}'">最受好评</a>
 							</div>
 						</div>
 						<div class="fl_l head_r width100 margin_b10">
@@ -45,7 +52,7 @@
 								<em class="fl_l">类型</em>
                                 <li class="fl_l margin_l10 m"><a href="{:gettypelink($pid)}" <if condition="$pid eq 0">class="on3"</if>>全部</a></li>
                                     <gxcms name="menu" ids="'.$pid.'">
-                                        <gxfor name="menu.son" id="menuson"> <li class="fl_l margin_l10"><a href="{:gettypelink($menuson['id'])}" <eq name="cid" value="$menuson.id">class="on3"</eq> >{$menuson.cname}</a></li></gxfor>
+                                        <gxfor name="menu.son" id="menuson"> <li class="fl_l margin_l10"><a href="{:gettypelink($menuson['id'])}" <eq name="cid" value="$menuson.id">class="on3"</eq> >{$menuson.cname}</a></li></gxfor>
                                     </gxcms>
 							</ul>
 						</div>
@@ -55,84 +62,36 @@
 							<ul class="con_btm fix dis_block">
                                 <gxlist name="video" cid="'.$cid.'" limit="15" order="'.$order.'">
 								<li class="fl_l margin_b25">
-                                    <a href="{$video.readurl}" class="img" target="_blank">
+
+                                    <a href="{$webpath}?s=video/play/id/{$video.id}/ctype/{$video.ctype}/ver/-1" class="img" target="_blank">
+
 									<img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}">
                                     </a>
-									<p class="fix margin_t10"><span class="fl_l">{$video.actor|get_replace_html=0,10|get_actor_url}</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
+
+									<p class="fix margin_t10"><span class="fl_l">{$video.actor|get_replace_html=0,10|get_actor_url}</span><label class="fl_r"></label></p>
+
 								</li>
                                 </gxlist>
 
                             </ul>
 							<ol class="fenye fix fl_l">
                                 <li class="fl_l"><a href="{$ekupage['firstlink']}">首页</a></li>
-								<li class="fl_l prev"><a href="{$ekupage['prelink']}"> </a></li>
+
+								<li class="fl_l"><a href="{$ekupage['prelink']}">上一页 </a></li>
+
                                 <volist name="ekupage['list']" id="vo" limit="9">
                                     <li class="fl_l"><a href="{$vo.link}">{$vo.ii}</a></li>
                                 </volist>
 								<li class="fl_l">...</li>
-								<li class="fl_l next" onclick="location.href={$ekupage['nextlink']}"><a href="{$ekupage['nextlink']}"></a></li>
+
+								<li class="fl_l" onclick="location.href={$ekupage['nextlink']}"><a href="{$ekupage['nextlink']}">下一页</a></li>
+
 								<li class="fl_l"><a href="{$ekupage['lastlink']}">尾页</a></li>
 								<li class="fl_l bdnone">共{$ekupage['totalpages']}页，到第</li>
 								<li class="fl_l"><input type="text"></li>
 								<li class="fl_l bdnone">页</li>
 							</ol>
 							
-						</div>
-						<div class="ul_con">
-							<ul class="con_btm fix dis_block">
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic3.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic4.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic5.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic6.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic7.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic8.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-							</ul>	
-						</div>
-						<div class="ul_con">
-							<ul class="con_btm fix dis_block">
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic3.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">运动会直播</span><label class="fl_r"><b class="m"></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic4.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic5.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic6.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic7.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-								<li class="fl_l margin_b25">
-									<img src="{$webpath}views/images/newimages/pic8.png" alt="">
-									<p class="fix margin_t10"><span class="fl_l">赛事直播</span><label class="fl_r"><b></b><i>3</i></label></p>
-								</li>
-							</ul>	
 						</div>
 					</div>
 					
@@ -143,13 +102,13 @@
 						<b>HOT VIDEO</b>
 					</div>
 					<ul class="con_r_list">
-                        <gxcms name="video" cid="'.$cid.'" limit="10" order="addtime desc">
-                        <li class="fix">
-                        <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                        <b><a href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title|get_replace_html=0,14}</a></b>
-                        <em>{$video.addtime|get_color_date='m-d',###}</em>
-                        </li>
-                        </gxcms>
+						<gxcms name="video" cid="1" limit="10" order="hits desc">
+							<li class="fix">
+								<span <if condition="$i lt 4">class="m"</if>>{$i}</span>
+								<a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank"><b>{$video.title}</b></a>
+								<em>{$video.addtime|get_color_date='m-d',###}</em>
+							</li>
+						</gxcms>
 					</ul>
 
 
@@ -161,7 +120,9 @@
                         <gxcms name="video" cid="'.$cid.'" limit="10" order="addtime desc">
                             <li class="fix">
                                 <span <if condition="$i lt 4">class="m"</if>>{$i}</span>
-                                <b><a href="{$video.readurl}" target="_blank" title="{$video.title}">{$video.title|get_replace_html=0,14}</a></b>
+
+                                <b><a href="{$webpath}?s=video/play/id/{$video.id}/ctype/{$video.ctype}" target="_blank" title="{$video.title}">{$video.title|get_replace_html=0,14}</a></b>
+
                                 <em>{$video.addtime|get_color_date='m-d',###}</em>
                             </li>
                         </gxcms>

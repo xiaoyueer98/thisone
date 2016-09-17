@@ -137,7 +137,7 @@
                             <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'"  src="{$video.picurl}" alt="{$video.title}"></a>
                             <p class="fix margin_t10">
                                 <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
-                                <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                                <label class="fl_r"></label>
                             </p>
                         </li>
                     </gxcms>
@@ -188,7 +188,7 @@
                             <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/vod" target="_blank" title="{$video.title}"><img onerror="this.src='{$webpath}views/images/nophoto.jpg'" src="{$video.picurl}" alt="{$video.title}"></a>
                             <p class="fix margin_t10">
                                 <a href="{$video.readurl}" target="_blank"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
-                                <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                                <label class="fl_r"></b></label>
                             </p>
                         </li>
                     </gxcms>
@@ -238,7 +238,7 @@
                             </a>
                             <p class="fix margin_t10">
                                 <a href="{$video.readurl}" target="_blank" class="title"><span class="fl_l">{$video.title|get_replace_html=0,10}</span></a>
-                                <label class="fl_r"><b class="m"></b><i>{$video.actor|get_replace_html=0,10|get_actor_url}</i></label>
+                                <label class="fl_r"></label>
                             </p>
                         </li>
                     </gxcms>
@@ -264,5 +264,6 @@
 </div>
 <include file="footer" />
 </div>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
 </body>
 </html>

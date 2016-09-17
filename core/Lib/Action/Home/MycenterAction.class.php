@@ -39,11 +39,16 @@ class MycenterAction extends HomeAction{
         $userid   = intval($_COOKIE['gx_userid']);
         $username = $_COOKIE['gx_username'];
         $userpwd  = $_COOKIE['gx_userpwd'];
+        
+        file_put_contents('log.txt', "checklogin user_id:".$userid.";userpwd:$userpwd\n", FILE_APPEND);
+        
         if ($userid) {
             $rs = M("User");
-            $where['id'] = array('eq',$userid);
+            $where['id'] = $userid;
             $list = $rs->where($where)->find();
-            if(($username == $list['username'])&&($userpwd == $list['userpwd'])){
+            $count = count($list);
+            file_put_contents('log.txt', "checklogin  count:$count;userpwd:".$list['userpwd'].";pwd:$userpwd\n", FILE_APPEND);
+            if(($username == $list['username'])&&( md5($userpwd) == $list['userpwd'])){
                 return $list;
             }
         }
@@ -71,23 +76,25 @@ class MycenterAction extends HomeAction{
 
 
         $a=array_values($arr_id);
-        $list_video=array();
+    //    $list_video=array();
         $VideoDB = M('video');
         for($i=0;$i<count($a);$i++) {
-            $where['vid']=$a[$i];//用户观看的视频的id
-            $list=$VideoDB->where($where)->find();
-            $list_video[$i]=$list;
+            $limit['id']=$a[$i];//用户观看的视频的id
+            $list[$i]=$VideoDB->where($limit)->find();
+
         }
+        if(empty($list)){
+            echo "您没有关注的视频！";
+        }
+        foreach ($list as $k=>$v){
 
-
-//        if(empty($list_video)){
-//            echo "您没有关注的视频！";
-//        }
+        }
 //        $video_count = $this->MycenterDB->where($where)->count('vid');//查找该用户所观看视频的数量
 //        $video_page  = !empty($_GET['p'])?$_GET['p']:1;$video_page = intval($video_page);
 //        $video_url   = U('User/Myvod',array('p'=>''),false,false);
 //        $listpages     = get_cms_page($video_count,C('user_page_cm'),$video_page,$video_url,'条视频',false);
-        $this->assign('list_video',$list_video);
+
+        $this->assign('list', $list);
         $this->assign('arr',$arr);
         $this->assign('email',$email);
         $this->assign('status',$status);
@@ -120,6 +127,7 @@ class MycenterAction extends HomeAction{
         $this->assign('list_video',$vod_video);
         $this->assign('logtime',$logtime);
         $this->assign('email',$email);
+        $this->assign('ctype',$ctype);
         $this->assign('status',$status);
         if($ctype=='live'){
             $this->display("new/personal_mylive");
@@ -133,10 +141,12 @@ class MycenterAction extends HomeAction{
         $list = $this->checklogin();
         $id=$list[id];
         $email=$list[email];
+        $logtime=$list[logtime];
         $status=$list[status];
         $username=$list[username];
         $this->assign("id",$id);
         $this->assign("username",$username);
+        $this->assign("logtime",$logtime);
         $this->assign("email",$email);
         $this->assign("status",$status);
         $this->display("new/reset");
@@ -163,6 +173,17 @@ class MycenterAction extends HomeAction{
     //修改密码展示页
     public function repwd()
     {
+        $list = $this->checklogin();
+        $id=$list[id];
+        $email=$list[email];
+        $logtime=$list[logtime];
+        $status=$list[status];
+        $username=$list[username];
+        $this->assign("id",$id);
+        $this->assign("username",$username);
+        $this->assign("logtime",$logtime);
+        $this->assign("email",$email);
+        $this->assign("status",$status);
         $this->display("new/repwd");
     }
     //修改密码
@@ -190,6 +211,7 @@ class MycenterAction extends HomeAction{
         $arr = $this->checklogin();
         $logtime=$arr['logtime'];
         $email=$arr['email'];
+        $uid = $arr['id'];
         $username=$arr['username'];
         $status=$arr['status'];
         $type = $_REQUEST['type'];
@@ -221,6 +243,7 @@ class MycenterAction extends HomeAction{
         $array['inputer']  = $_SESSION['user'];
         $this->assign('logtime', $logtime);
         $this->assign('email', $email);
+        $this->assign('uid', $uid);
         $this->assign('username', $username);
         $this->assign('status', $status);
         $this->assign('channel_id', $channel_id);
@@ -244,8 +267,9 @@ class MycenterAction extends HomeAction{
         $channel = $c->where($where)->find();
         $app = $channel['cfile'];
 
-        
-        $_POST['playurl'] = "|". $_SERVER['HTTP_HOST']."||".$app.'|'.randomkeys(16).'|flv|live|';
+        $src_id = randomkeys(16);
+        $_POST['src_id'] = $src_id;
+        $_POST['playurl'] = "|". $_SERVER['HTTP_HOST']."||".$app.'|'.$src_id.'|flv|live|';
         $_POST['vodplay'] = empty($_POST['vodplay']) ? 0 : implode('$$$$$$', $_POST['vodplay']);
         $vodplay = $_POST['vodplay'];
 
@@ -302,9 +326,9 @@ class MycenterAction extends HomeAction{
                 $result = $MycenterDB->add($data1);
                 if (false == $result) {
                     $where['id']=$id;
-                    $VideoDB->where($where)-delete();
-                    $this->error('直播添加失败!');
-                    $this->assign("jumpUrl", C('cms_admin') .'?s=Mycenter/createlive');
+                    $VideoDB->where($where)->delete();
+                   $this->error('直播添加失败!');
+                   $this->assign("jumpUrl", C('cms_admin') .'?s=Mycenter/createlive');
                 }else{
                     $this->success('直播添加成功！');
                     $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/createlive');
@@ -324,6 +348,7 @@ class MycenterAction extends HomeAction{
                 $this->assign("jumpUrl",C('cms_admin').'?s=Mycenter/updateplayinfo');
             }
         }
+        $this->display('new/createlive');
     }
 
     // 新增视频保存到数据库-后置操作
@@ -508,19 +533,20 @@ class MycenterAction extends HomeAction{
     }
 
     public function delall(){
-        if(empty($_POST['ids'])){
-            $this->error('请选择需要删除的视频!');
-        }
+        $type=$_POST['type'];
         $array = $_POST['ids'];
         foreach($array as $val){
-            $this->del($val);
+            $this->delfile($val);
         }
-        redirect($_SESSION['video_reurl']);
+        $this->assign('type',$type);
+        $this->success('视频删除成功！');
+        $this->personal_my();
     }
 
     public function del(){
         $type = $_GET['type'];
         $this->delfile($_GET['id']);
+        $this->success('视频删除成功！');
         $this->assign('type', $type);
         $this->personal_my();
     }
@@ -682,6 +708,14 @@ class MycenterAction extends HomeAction{
     }
     
     public function group_chat(){
+        $username = $_REQUEST['username'];
+        $userpwd = $_REQUEST['userpwd'];
+        $room = $_REQUEST['room'];
+        
+        file_put_contents('log.txt', "username:$username;userpwd:$userpwd;room:$room\n", FILE_APPEND);
+        $this->assign('username', $username);
+        $this->assign('userpwd', $userpwd);
+        $this->assign('room', $room);
         $this->display("new/chat");
     }
     

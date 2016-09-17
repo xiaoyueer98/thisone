@@ -24,6 +24,7 @@
                 </div>
                 <div class="account">
                     <form action="?s=Mycenter/delall" method="post" id="form">
+                        <input type="hidden" name="type" value="{$ctype}">
                         <ul class="list_title">
                             <li class=" ml12">
                                 <input type="checkbox" id="selectAll"> 全选
@@ -39,7 +40,7 @@
                                 <li>
                                     <input type="checkbox" class="select" value="{$video.id}" name="ids[]">
                                     <div class="img">
-                                        <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/live">
+                                        <a href="{$webpath}?s=video/play/id/{$video.id}/ver/-1/ctype/{$ctype}">
                                             <img src="uploads/{$video.picurl}"/>
                                         </a>
                                     </div>
@@ -148,6 +149,7 @@
     }
 
 </script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
 </body>
 </html>
 

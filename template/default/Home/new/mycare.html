@@ -22,12 +22,20 @@
                             <hr/>
                         </div>
                         <div class="video_left clearfix">
+                            <!--
                         <volist name="list_video" id="video">
                             <div>
-                                <a href="?s=video/detail/id/{$video.id}"><img src="uploads/{$video.picurl}"></a>
+                                <a href="?s=video/play/id/{$video.id}/type/{$type}"><img src="uploads/{$video.picurl}"></a>
                                 <h5>{$video.title}</h5>
                             </div>
                         </volist>
+                        -->
+                            <volist name="list" id="gxcms">
+                                <div>
+                                    <a href="?s=video/play/id/{$gxcms.id}/type/{$gxcms.ctype}"><img src="uploads/{$gxcms.picurl}"></a>
+                                    <h5>{$gxcms.title}</h5>
+                                </div>
+                            </volist>
                         </div>
                     </div>
                 </div>
@@ -35,5 +43,6 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="{$tplpath}yiku.js"></script>
 </body>
 </html>

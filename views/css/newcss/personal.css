@@ -663,6 +663,15 @@ html{
     float: left;
     margin-right: 25px;
 }
+.col_right .video_left div a{
+    display: block;
+    width:276px;
+    height: 168px;
+    overflow: hidden;
+}
+.col_right .video_left div a img{
+    width: 100%;
+}
 /*创建点播*/
 .col_right .live_db {
     width: 682px;

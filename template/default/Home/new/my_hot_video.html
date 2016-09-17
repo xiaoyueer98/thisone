@@ -1,6 +1,6 @@
 <gxcms name="video" cid="'.$_GET['cid'].'" limit="'.$_GET['limit'].'" order="stars desc,hits desc">
     <li>
-        <a href="{$video.readurl}" target="_blank" >
+        <a href="{$webpath}?s=video/play/id/{$video.id}/ctype/{$video.ctype}" target="_blank" >
             <img src="{$video.picurl}" alt="">
         </a>
         <p>

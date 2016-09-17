@@ -10,11 +10,7 @@
     <link rel="stylesheet" href="{$webpath}views/css/newcss/sesizer.css">
     <link rel="stylesheet" href="{$webpath}views/css/newcss/personal.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    
-    <script type='text/javascript' src='{$tplpath}js/jquery-3.0.0.min.js'></script>
-	<script type='text/javascript' src='{$tplpath}js/strophe.js'></script>
-	<script type='text/javascript' src='{$tplpath}js/strophe.muc.js'></script>
-	
+	    
     <link href="{$webpath}views/css/newcss/bootstrap.min.css" rel="stylesheet" media="screen">
     
 </head>
@@ -30,9 +26,10 @@
                         <h3>创建直播</h3> <h4 class="fz12 fwbold">CREATE LIVE</h4>
                         <hr/>
                     </div>
-                    <form action="?s=mycenter/insertlive" method="post" id="mycontent" onsubmit="return create_room()">
+                    <form action="?s=mycenter/insertlive" method="post" id="mycontent">
                     <input type="hidden" name="email" id="email" value="{$email}"/>
-                        <input type="hidden" name="uid" id="uid" value="{$uid}" />
+                    <input type="hidden" name="uid" id="uid" value="{$uid}" />
+                    <input type="hidden" name=username" id="username" value="{username}" />
                     <div class="live clearfix">
                         <ul>
                             <li class="list_zb clearfix">
@@ -58,7 +55,7 @@
                                     <div class="controls input-append date form_datetime fl" data-date="2016-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
                                         <input size="16" type="text" value="" readonly>
                                         <span class="add-on"><i class="icon-remove"></i></span>
-                                        <span class="add-on"><i class="icon-th"></i></span>
+                                        <span class="add-on"><i class="icon-th"value="时间"></i></span>
                                         <input type="hidden" id="start_time" value="" name="starttime"/><br/>
                                     </div>
                                    <!-- // <input class="start_time mr15" type="text"> -->
@@ -145,9 +142,6 @@
 <script>
 /*jslint unparam: true */
 /*global window, $ */
- 
-var src_id = "<?php echo randomkeys(16); ?>";
-var connection = null;
 
 $(function () {
     'use strict';
@@ -222,41 +216,11 @@ $(function () {
             }
         }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
-    
-    create_room();
 });
-
-function SuccessCb(msg){
-    alert("success...");
-}
-
-function ErrorCb(msg){
-    alert("error...");
-}
-
-function onConnect(status){
-   if (status == Strophe.Status.CONNECTING) {
-	  //alert('IM is connecting.');
-   } else if (status == Strophe.Status.CONNFAIL) {
-	   //alert('IM failed to connect.');
-   } else if (status == Strophe.Status.DISCONNECTING) {
-	  // alert('IM is disconnecting.');
-   } else if (status == Strophe.Status.DISCONNECTED) {
-	   //alert('IM is disconnected.');
-   } else if (status == Strophe.Status.CONNECTED) {
-	   //alert('IM is disconnected.');
-	   connection.muc.init(connection);
-   }
-}
-
-function create_room(){
-	var BOSH_SERVICE = '/http-bind/';
-	connection = new Strophe.Connection(BOSH_SERVICE);
-    connection.connect("fanson" + "@v.8dage.cn", "fanson", onConnect);
-}
 </script>
 
 <script>
+
     $('.form_datetime').datetimepicker({
         language:  'zh-CN',
         weekStart: 1,
@@ -322,19 +286,17 @@ function create_room(){
         }
         else
         {
-        	//connection.muc.createInstantRoom(src_id + "@conference.v.8dage.cn", SuccessCb, ErrorCb);
             $("#sub").attr("type","submit");
         }
 
-        
     })
 
     //点击重置按钮
     $("#reset").click(function(){
         location.reload();
     })
-    
 </script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
 </body>
 </html>
 

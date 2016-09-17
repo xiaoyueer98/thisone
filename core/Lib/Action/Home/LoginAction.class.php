@@ -36,11 +36,11 @@ class LoginAction extends CmsAction
         file_put_contents('log.txt', "==========  _before_ajaxcheck \n", FILE_APPEND);
         $ue = $_POST['username'];
         if (empty($_POST['username'])) {
-            $this->assign('jumpUrl', C('cms_admin') . '?s=login/Login');
+            $this->assign('jumpUrl', C('cms_admin') . '?s=index/index');
             $this->error('请填写用户名称！！');
         }
         if (empty($_POST['userpwd'])) {
-            $this->assign('jumpUrl', C('cms_admin') . '?s=login/Login');
+            $this->assign('jumpUrl', C('cms_admin') . '?s=index/index');
             $this->error('请填写用户密码！');
         }
     }
@@ -52,20 +52,21 @@ class LoginAction extends CmsAction
 
         $login = $this->UserDB->check_login();
         if ($login === NULL) {
-            $this->assign('jumpUrl', C('cms_admin') . '?s=login/Login');
+            $this->assign('jumpUrl', C('cms_admin') . '?s=index/index');
             $this->error('没有该用户的注册信息！');
         }
 
         if ($login === false) {
-            $this->assign('jumpUrl', C('cms_admin') . '?s=login/Login');
+            $this->assign('jumpUrl', C('cms_admin') . '?s=index/index');
             $this->error('用户密码错误，请重新输入！');
         }
         if ($login === 0) {
-            $this->assign('jumpUrl', C('cms_admin') . '?s=login/Login');
+            $this->assign('jumpUrl', C('cms_admin') . '?s=index/index');
             $this->error('该用户已被管理员锁定，如有疑问请联系管理员！');
         }
 
         $_SESSION['force_user'] = $_POST["username"];
+        $_SESSION['force_userpwd'] = $_POST["userpwd"];
         //	$_COOKIE['gx_username'] = $_POST['username'];
         //	setcookie('gx_username', $_POST['username'], time()+3600, "/php100/");
         $this->assign('webpath', $webpath);
@@ -96,17 +97,19 @@ class LoginAction extends CmsAction
 
     public function _before_Register_do()
     {
-        $username = trim($_POST['user_name']);
-        $password = trim($_POST['password']);
-        $verifycode = trim(strtolower($_POST['verifycode']));
+        file_put_contents('log.txt', "befor register do was called\n", FILE_APPEND);
+        $username = $_REQUEST['user_name'];
+        $password = $_REQUEST['password'];
+        $verifycode = strtolower($_REQUEST['verifycode']);
 
         file_put_contents('log.txt', "n:$username;p:$password;c:$verifycode \n", FILE_APPEND);
         $checkCode = strtolower($_SESSION['checkCode']);//验证码内容
 
         file_put_contents('log.txt', "code:$verifycode;checkCode:$checkCode \n", FILE_APPEND);
         if ($verifycode !== $checkCode) {
-            $this->assign('jumpUrl', C('cms_admin') . '?s=login/Register');
+            $this->assign('jumpUrl', C('cms_admin') . '?s=index/index');
             $this->error('验证码不正确！');
+            $_POST['regstate']  = "failed";
         }
 
         $unknown = 'unknown';
@@ -130,35 +133,67 @@ class LoginAction extends CmsAction
         $_POST['agree'] = 1;
         $_POST['question'] = "f";
         $_POST['answer'] = "f";
+        $_POST['email'] = $_REQUEST['email'];
     }
 
     public function Register_do()
     {
+        file_put_contents('log.txt', "register do was called\n", FILE_APPEND);
+        C('TOKEN_ON',false);//关闭令牌验证
         $webpath = C('web_path');
         $tplpath = C('web_path') . 'template/' . C('default_theme') . '/';
-        if ($this->UserDB->create()) {
+        $username = $_POST['username'];
+        file_put_contents('log.txt', "Register_do name:$username\n", FILE_APPEND);
+        
+       // $UserDB = M('user');
+       if ($this->UserDB->create()) {
             $id = $this->UserDB->add();
             if (false !== $id) {
-                $this->redirect('login/login', array('id' => $id), 0.8, '注册成功...');
-                //$this->success('注册成功!');
-                //$this->assign("jumpUrl",C('cms_admin').'?s=Login/Register'.$webpath);
+                file_put_contents('log.txt', "register success\n", FILE_APPEND);
+                setcookie("gx_username", $username, 0);
+                setcookie("gx_userpwd", $_POST['userpwd'], 0);
+                setcookie("gx_userid", $id, 0);
+                file_put_contents('log.txt', "get cookie user_name:".$_COOKIE['gx_username'].";user_id:".$_COOKIE['gx_userid']."; user_pwd:".$_COOKIE['gx_userpwd']."\n", FILE_APPEND);
+                //$data['state'] = "Success";
+                $_POST['regstate']  = "success";
             } else {
+                file_put_contents('log.txt', "register failed 11\n", FILE_APPEND);
                 $this->error('注册失败!');
+                $_POST['regstate']  = "failed";
             }
         } else {
+            file_put_contents('log.txt', "register failed 22\n", FILE_APPEND);
             $this->error($this->UserDB->getError());
         }
 
-        $_SESSION['fore_user'] = $_POST["username"];
-        // $_COOKIE['gx_username'] = $_POST['username'];
-        //    setcookie('gx_username', $_POST['username'], time()+3600, "/php100/");
+        $_SESSION['force_user'] = $_POST["username"];
+        file_put_contents('log.txt', "Register_do force_user:".$_SESSION['force_user']."\n", FILE_APPEND);
 
         file_put_contents('log.txt', "=== webpath:$webpath;tplpath:$tplpath \n", FILE_APPEND);
         $this->assign('webpath', $webpath);
         $this->assign("tplpath", $tplpath);
-        $this->display("index");
+        
+        
+        $data['id'] = $id;
+        $data['state'] = $_POST['regstate'];
+        $this->ajaxReturn($data);
+    //    $this->display("index");
     }
 
+    public function Register_finish(){
+        $username = $_REQUEST["username"];
+        $webpath = C('web_path');
+        $tplpath = C('web_path') . 'template/' . C('default_theme') . '/';
+        $this->assign('webpath', $webpath);
+        $this->assign("tplpath", $tplpath);
+        $_SESSION['force_user'] = $username;
+        file_put_contents('log.txt', "force_user:".$_SESSION['force_user']."\n", FILE_APPEND);
+    //    $this->redirect('login/login', array('id' => $id), 0.8, '注册成功...');
+        file_put_contents('log.txt', "Register_finish get cookie user_name:".$_COOKIE['gx_username'].";user_id:".$_COOKIE['gx_userid']."\n", FILE_APPEND);
+        $this->display("new/index");
+   //     $this->assign("jumpUrl",C('cms_admin').'?s=Login/Register');
+    }
+    
     public function logout()
     {
         $webpath = C('web_path');

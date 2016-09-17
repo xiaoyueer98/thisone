@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>首页</title>
+
+	<title>{$webtitle}</title>
+
 	<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/reset.css">
 	<link rel="stylesheet" type="text/css" href="{$webpath}views/css/newcss/style.css">
 	<script src="{$webpath}views/js/newjs/jquery-1.11.0.min.js"></script>
@@ -95,7 +97,9 @@
 			</div>
 		</div>
 		<div class="cnxh margin_auto margin_t20">
+
 			<h6 class="margin_l10">猜你喜欢</h6>
+
 			<span class="margin_l10">GUESS YOU LIKE</span>
 		</div>
 		<div class="content margin_auto">
@@ -118,7 +122,7 @@
 <script type="text/javascript">
 	var superHTML5 = 0;
 	var superFLV = 0;
-	var isPC = false;
+	var isPC = false;	var room = "{$stream}";	var jid = "{$username}";	var pwd = "{$userpwd}";//	alert("11u:" + jid + ";pwd:" + pwd + ";room:" + room);
 
 	$(document).ready(function(){
 		var name='{$title}';

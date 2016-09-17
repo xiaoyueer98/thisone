@@ -6,12 +6,14 @@
 <script type='text/javascript' src='{$tplpath}/js/jquery-3.0.0.min.js'></script>
 <script type='text/javascript' src='{$tplpath}/js/strophe.min.js'></script>
 <script type='text/javascript' src='{$tplpath}/js/strophe.register.js'></script>
+<script type="text/javascript" src="{$tplpath}yiku.js"></script>
 <script language="javascript">
     var SitePath='{$webpath}';var SiteMid='{$mid}';var SiteCid='{$cid}';var SiteId='{$id}'; var username='{$username}';
     var connection = null;
     var BOSH_SERVICE = '/http-bind/';
     var jid = "";
     var pwd = "";
+    var user_id = "";
     
     function fxsearch()
     {
@@ -97,11 +99,10 @@
                 <!--<div class="jilu" id="play_old_list">-->
                     <!--<span class="jilu1"></span>-->
                     <!--<div class="jilu3" id="play_old_list_content">-->
-
                         <!--<div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>-->
                     <!--</div>-->
                     <!--<span class="jilu2"></span>-->
-                <!--</div>-->
+                <!-- </div> -->
                 <!--观看记录 结束-->
             <else />
                 <div class="fl_l margin_l20 font_blue padding_l20 username_con">
@@ -111,16 +112,19 @@
                         <li><a href="?s=Login/Logout">退出登录</a></li>
                     </ul>
                 </div>
-                <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0);" onmousemove="showPlayOld();">观看记录</a>
-                <!--观看记录 开始-->
-                <!--<div class="jilu" id="play_old_list">-->
-                    <!--<span class="jilu1"></span>-->
-                    <!--<div class="jilu3" id="play_old_list_content">-->
+                <div class="record">
+                    <a class="fl_l margin_l20 font_blue padding_r20 jilu" href="javascript:void(0);">观看记录</a>
+                    <!--观看记录 开始-->
+                    <ul class="jilu head_list">
+                        <span class="jilu1"></span>
+                        <div class="jilu3" id="play_old_list_content">
 
-                        <!--<div class="jilu1-3"><a href="#" class="qk">全部清空</a></div>-->
-                    <!--</div>-->
-                    <!--<span class="jilu2"></span>-->
-                <!--</div>-->
+                            <div class="jilu1-3"><a href="javacript:void(0);" onclick="delCookie('gxhis')"  class="qk">全部清空</a></div
+                        </div>
+                        <span class="jilu2"></span>
+                    </ul>
+                </div>
+                
                 <!--观看记录 结束-->
 
             </if>
@@ -149,7 +153,7 @@
             </ul>
             <div class="backpswd_btn_con fix">
                 <a href="javascript:void(0)" class="register_btn fl_l">还没账号，点此注册</a>
-                <a href="?s=Login/fog_pwd" class="backpswd_btn2 fl_r">忘记密码</a>
+                <!-- <a href="?s=Login/fog_pwd" class="backpswd_btn2 fl_r">忘记密码</a> -->
             </div>
             <input type="button" class="submit_btn" name="submit" value="登录" id="login"/>
         </form>
@@ -177,38 +181,58 @@
 <script type="text/javascript">
 
 var callback = function (status) {
-    alert(23423323)
+	var user_name = $("#user_name").val();
   	if (status === Strophe.Status.REGISTER) {
-  		alert("start register!");
+  	//	alert("start register!");
         connection.register.fields.username = jid;
         connection.register.fields.password = pwd;
 
         connection.register.submit();
       } 
       else if (status === Strophe.Status.REGISTERED) {
-        alert("registered!");
-        // calling login will authenticate the registered JID.
-    //    connection.register.authenticate();
-        
-       
-        alert("11");
-      
-        $("#submit").attr("type", "submit");
-         alert("33");
+        //alert("registered!");
+        window.location = "?s=Login/Register_finish/username/" + user_name;
         } else if (status === Strophe.Status.CONFLICT) {
-            alert("Contact already existed!");
+           // alert("Contact already existed!");
         } else if (status === Strophe.Status.NOTACCEPTABLE) {
-            alert("Registration form not properly filled out.")
+           // alert("Registration form not properly filled out.")
         } else if (status === Strophe.Status.REGIFAIL) {
-            alert("The Server does not support In-Band Registration")
+          //  alert("The Server does not support In-Band Registration")
         } else if (status === Strophe.Status.CONNECTED) {
-            alert('logged in')
+           // alert('logged in')
         } else {
-         alert("every other status a connection.connect would receive");
+        // alert("every other status a connection.connect would receive");
         }
     };
 
-
+	function register_do(){
+		var user_name = $("#user_name").val();
+		var password = $("#password").val();
+		var verify_code = $("#verifycode1").val();
+		var email = $("#email").val();
+		$.ajax({
+		  type : "post",
+		  url : "?s=Login/Register_do/user_name/" + user_name + "/password/" + password + "/verifycode/" + verify_code + "/email/" + email,
+		  success:function(datas){
+			  var obj = eval('('+datas+')');
+			  user_id = obj.data.id;
+			  var state = obj.data.state;
+			 // alert("state:" + state);
+			  if(state == "success"){
+			   // alert("register success");
+	        	jid = $("#user_name").val();
+	        	pwd = $("#password").val();
+			    connection.register.connect(jid + "@v.8dage.cn", callback, 60, 1);
+			  }else{
+				  alert("注册失败");
+				  location.reload();
+			  }
+		  },
+		  error: function() {
+		        // alert("失败，请稍后再试！");
+		      }
+		 }); 
+	}
 
     $("#login").click(function(){
          if($("#username").val() == "")
@@ -267,10 +291,7 @@ var callback = function (status) {
         }
         else
         {
-        	jid = $("#user_name").val();
-        	pwd = $("#password").val();
-        	connection.register.connect(jid + "@v.8dage.cn", callback, 60, 1);
-//            $(this).attr("type", "submit");
+        	register_do();
         }
     })
     
