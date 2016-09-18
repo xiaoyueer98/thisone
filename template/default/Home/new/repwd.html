@@ -19,14 +19,14 @@
             <include file="personal_center_left" />
                 <div class="col_right fr">
                     <div class="right_top pd30">
-                        <h3>修改密码</h3> <h4 class="fz12 fwbold">MOFIFY PASSWORD</h4>
+                        <h3>修改密码</h3> <h4 class="fz12 fwbold">MODIFY PASSWORD</h4>
                         <hr/>
                     </div>
-                    <form class="acconts mt45" action="?s=mycenter/modifypwd">
-                        <input type="password" class="Old_password" name="userpwd" placeholder="旧密码">
-                        <input type="password" class="New_password" name="userpwd1"  placeholder="新密码">
-                        <input type="password" class="Confirm_password" name="userpwd2"  placeholder="确认密码">
-                        <button class="mt65" type="button">提交</button>
+                    <form class="acconts mt45" action="?s=mycenter/modifypwd" method="post">
+                        <input type="password" class="Old_password" name="ruserpwd" id="ruserpwd" placeholder="旧密码">
+                        <input type="password" class="New_password" name="ruserpwd1"  id="ruserpwd1"  placeholder="新密码">
+                        <input type="password" class="Confirm_password" name="ruserpwd2" id="ruserpwd2"  placeholder="确认密码">
+                        <button class="mt65" type="button" id="rsubmit" onclick="checkSubmit();">提交</button>
                     </form>
                 </div>
             </div>
@@ -34,6 +34,33 @@
     </div>
 
 </div>
+<script>
+function checkSubmit(){
+	var userpwd = $.trim($("#ruserpwd").val());
+	var userpwd1 = $.trim($("#ruserpwd1").val());
+	var userpwd2 = $.trim($("#ruserpwd2").val());
+        if(userpwd == "")
+        {
+            alert("请输入旧密码");
+	    return false;
+        }
+        else if(userpwd1 == "" || userpwd1.length<4 || userpwd1.length>16)
+        {
+            alert("新密码请使用4_16位字母数字或下划线组成");
+	    return false;
+        }
+        else if(userpwd2 != userpwd1)
+        {
+            alert("两次密码输入不一致");
+	    return false;
+        }
+        else
+        {
+            $("#rsubmit").attr("type", "submit");
+        }
+}
+    
+</script>
 </body>
 </html>
 

@@ -83,9 +83,9 @@ class MycenterAction extends HomeAction{
             $list[$i]=$VideoDB->where($limit)->find();
 
         }
-        if(empty($list)){
-            echo "您没有关注的视频！";
-        }
+//        if(empty($list)){
+//            echo "您没有关注的视频！";
+//        }
         foreach ($list as $k=>$v){
 
         }
@@ -155,8 +155,8 @@ class MycenterAction extends HomeAction{
     public function updateinfo(){
         if(isset($_POST['submit'])){
             $where['id']=$_POST['id'];
-            $user['username']=$_POST['username'];
-            $user['email']=$_POST['email'];
+            $user['username']=$_POST['rusername'];
+            $user['email']=$_POST['remail'];
             $list=M("user")->where($user)->find();
             if(!empty($list)){
                 echo "该用户名已经存在，请重新输入！";
@@ -190,20 +190,20 @@ class MycenterAction extends HomeAction{
     public function modifypwd(){
         $list = $this->checklogin();
         $where['id']=$list[id];
-        $userpwd=md5($_POST['userpwd']);
+        $userpwd=md5($_POST['ruserpwd']);
         if($userpwd!=$list['userpwd']){
             echo"您输入的密码不正确，请重新输入！";
         }
-        $userpwd1=$_POST['userpwd1'];
-        $userpwd2=$_POST['userpwd2'];
+        $userpwd1=$_POST['ruserpwd1'];
+        $userpwd2=$_POST['ruserpwd2'];
         if($userpwd1!=$userpwd2){
             echo "您两次输入的密码不一致，请重新输入！";
         }
-        $arr=M("user")->where($where)->setField('userpwd',$userpwd1);
+        $arr=M("user")->where($where)->setField('userpwd',md5($userpwd1));
         if(empty($arr)){
             $this->redirect('Mycenter/setpwd',array('id'=> $where),1,'修改密码失败，请重新修改...');
         }else{
-            $this->redirect('Index/index',array('id'=> $where),1,'密码修改成功，请重新登录...');
+            $this->redirect('Login/logout',array('id'=> $where),1,'密码修改成功，请重新登录...');
         }
     }
     //创建直播
@@ -832,31 +832,72 @@ class MycenterAction extends HomeAction{
 
     }
 
-    //我的直播、点播
+    //回放管理
     public function historyvod(){
         $arr1 = $this->checklogin();
-        $uid = $arr1['id'];
-        $logtime=$arr1['logtime'];
-        $email=$arr1['email'];
-        $status=$arr1['status'];
-        file_put_contents('log.txt', "personal_my id:$uid\n", FILE_APPEND);
-        $where['uid'] = $uid;
+        $id = $_REQUEST['vid'];//获取视频的id
+        $where['id'] = $id;
+        $video = $this->VideoDB->field('id,playurl')->where($where)->find();
+        $list=$this->VideoDB->where($where)->find();
+        //print_r($list);die();
+        file_put_contents('log.txt', "versions....22 \n", FILE_APPEND);
+        $playurl = $video['playurl'];
+        file_put_contents('log.txt', "versions... $playurl \n", FILE_APPEND);
 
-        $list=M('mycenter')->where($where)->select();
-        $arr=array();
-        $count = count($list);
-        for($i=0;$i<count($list);$i++){
-            $arr[$i]=$list[$i]['vid'];
+        $arr = explode("|",$playurl);
+        $app = $arr[3];
+        $stream = $arr[4];
+        //$pageno = 1;
+        //$force_update='no';
+
+        file_put_contents('log.txt', "versions....$app:$stream \n", FILE_APPEND);
+        $nodeList = get_stream_versions($app, $stream, "flv");
+        $ver = 0;
+        if($nodeList !== FALSE){
+            $len = $nodeList->length;
+            file_put_contents('log.txt', "versions.... len:$len\n", FILE_APPEND);
+            if($nodeList->length > 0){
+                $arr_duties = array();
+                for ($i = 0; $i < $nodeList->length; $i++)
+                {
+                    $arr         = array();
+                    $sub_node    = $nodeList->item($i);
+                    $arr['stime']    = $sub_node->getAttribute('starttime');//开始时间
+                    $arr['tag'] = $sub_node->getAttribute('tag');//标签
+
+                    $arr['duration'] = $sub_node->getAttribute('duration');//时长
+
+                    $arr['ver']      = $sub_node->getAttribute('version');//版本编号
+
+                    $arr['size']     = $sub_node->getAttribute('size');//视频的大小，比特
+
+                    //$stime = $sub_node->getAttribute('stime');
+                    $stime = $arr['stime'];
+
+                    $arr['stime']    = get_time_readable($stime);//开始时间，正常格式
+
+                    $duration = $sub_node->getAttribute('duration');//
+
+                    $arr['durtext']  = get_duration_readable($duration);//时长，正常格式
+
+                    $size = $sub_node->getAttribute('size');
+
+                    $arr['sizetext'] = get_filesize_readable($size);
+                    $arr['stream']=$stream;
+
+                    $arr['formats']  = $sub_node->getAttribute('formats');//转码格式
+                    $arr[id] = $id;
+                    $arr_duties[] = $arr;
+                }
+                $this->assign("vers", $arr_duties);
+                $ver = 1;
+            }
         }
-        $vod_video=M("video")->where(array('id'=>array('IN',$arr)))->select();
-        $count = count($vod_video);
-        file_put_contents('log.txt', "video count:$count\n", FILE_APPEND);
-        $this->assign('list_video',$vod_video);
-        $this->assign('logtime',$logtime);
-        $this->assign('email',$email);
-        $this->assign('status',$status);
-        $this->assign('uid', $uid);
-
+        //echo "111";
+        $this->assign('ver', $ver);
+        $this->assign('id', $id);
+        $this->assign("app", $app);
+        $this->assign("stream", $stream);
         $this->display("new/history_vod");
     }
 }

@@ -25,14 +25,14 @@
                         <form class="accounts mt45" action="index.php?s=Mycenter/updateinfo" method="post">
                             <div class="user_name">
                                 <span></span>
-                                <input name="username" id="username" type="text" placeholder="用户名" value="{$username}">
+                                <input name="rusername" id="rusername" type="text" placeholder="用户名" value="{$username}">
                             </div>
                             <div class="email mb55">
                                 <span></span>
-                                <input name="email" id="email"type="text"  placeholder="邮箱" value="{$email}">
+                                <input name="remail" id="remail"type="text"  placeholder="邮箱" value="{$email}">
                             </div>
                             <input type="hidden" value="{$id}" name="id">
-                            <button name="submit">提交</button>
+                            <button name="submit" id="rsubmit" type="button" onclick="checkSubmit();">提交</button>
                         </form>
                     </div>
                     
@@ -42,6 +42,30 @@
     </div>
 
 </div>
+<script>
+function checkSubmit(){
+	var username = $.trim($("#rusername").val());
+	var email = $.trim($("#remail").val());
+        if(username == "" || username.length<6)
+        {
+            alert("用户名必须以6-20位的字母，数字或下划线组成");
+	    return false;
+        }
+        else if(email == "")
+        {
+            alert("请输入正确的邮箱地址");
+	    return false;
+        }
+        else
+        {
+            $("#rsubmit").attr("type", "submit");
+        }
+}
+    
+</script>
+</body>
+</html>
+
 </body>
 </html>
 
